@@ -7,7 +7,7 @@ Game Design and Development
 Links to Tutorials
 -------------------
 
-`Dark Views`_ A Blog with a comprehensive tutorial forriting games using `Processing`_.
+`Dark Views`_ A Blog with a comprehensive tutorial for writing games using `Processing`_.
  
 
 
