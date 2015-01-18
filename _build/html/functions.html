@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Functions &mdash; CS1335 Documentation</title>
+    
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="4. Game Design and Development" href="game-design.html" />
+    <link rel="prev" title="2. Variables" href="variables.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">CS1335 Documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="variables.html" title="2. Variables"
+             accesskey="P">previous</a> |
+          <a href="game-design.html" title="4. Game Design and Development"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="functions">
+<span id="id1"></span><h1>3. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<p>The project below creates an interactive HSB color selector.</p>
+<img alt="_images/HSBSlider.png" src="_images/HSBSlider.png" />
+<div class="highlight-Java"><div class="highlight"><pre><span class="cm">/*Program to create an interactive HSB color picker*/</span>
+
+<span class="c1">//global values</span>
+<span class="kt">float</span> <span class="n">_barWidth</span><span class="o">=</span><span class="mf">300.0</span><span class="o">;</span>
+<span class="kt">float</span> <span class="n">_sliderPos</span><span class="o">=</span><span class="mf">100.0</span><span class="o">;</span>  <span class="c1">//initial slider position</span>
+<span class="kt">float</span> <span class="n">_hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">_sliderPos</span><span class="o">,</span><span class="n">_barWidth</span><span class="o">);</span>  <span class="c1">//initial hueValue</span>
+ 
+<span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
+  <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+  <span class="n">size</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span><span class="mi">300</span><span class="o">);</span>
+  <span class="n">colorMode</span><span class="o">(</span><span class="n">HSB</span><span class="o">);</span>
+  <span class="n">stroke</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+  <span class="n">println</span><span class="o">(</span><span class="n">_hueVal</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
+  <span class="n">_hueVal</span><span class="o">=</span> <span class="n">drawSlider</span><span class="o">(</span><span class="mf">20.0</span><span class="o">,</span><span class="mf">20.0</span><span class="o">,</span><span class="n">_barWidth</span><span class="o">,</span><span class="mf">30.0</span><span class="o">,</span><span class="n">_hueVal</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kt">float</span> <span class="nf">drawSlider</span><span class="o">(</span><span class="kt">float</span> <span class="n">xPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">bWidth</span><span class="o">,</span> <span class="kt">float</span> <span class="n">bHeight</span><span class="o">,</span><span class="kt">float</span> <span class="n">hueVal</span><span class="o">){</span>
+  <span class="n">fill</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+  <span class="n">noStroke</span><span class="o">();</span>
+  <span class="n">rect</span><span class="o">(</span><span class="n">xPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">10</span><span class="o">,</span><span class="n">bWidth</span><span class="o">+</span><span class="mi">10</span><span class="o">,</span><span class="n">bHeight</span><span class="o">+</span><span class="mi">20</span><span class="o">);</span>  <span class="c1">//draw white background behind slider</span>
+  
+  <span class="kt">float</span> <span class="n">sliderPos</span><span class="o">=</span><span class="n">getSliderPos</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>  <span class="c1">//find the current sliderPosition from hueVal</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">bWidth</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  <span class="c1">//draw 1 line for each hueValue from 0-255</span>
+      <span class="n">hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>  <span class="c1">//get hueVal for each position in the bar</span>
+      <span class="n">stroke</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">);</span>
+      <span class="n">line</span><span class="o">(</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">,</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">+</span><span class="n">bHeight</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">mousePressed</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&gt;</span><span class="n">xPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&lt;(</span><span class="n">xPos</span><span class="o">+</span><span class="n">bWidth</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span><span class="o">&gt;</span><span class="n">yPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span> <span class="o">&lt;</span><span class="n">yPos</span><span class="o">+</span><span class="n">bHeight</span><span class="o">){</span>
+     <span class="n">sliderPos</span><span class="o">=</span><span class="n">mouseX</span><span class="o">-</span><span class="n">xPos</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">stroke</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+  <span class="n">hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>
+  <span class="n">fill</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">);</span>
+  <span class="n">rect</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">+</span><span class="n">xPos</span><span class="o">-</span><span class="mi">3</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="n">bHeight</span><span class="o">+</span><span class="mi">10</span><span class="o">);</span>
+  <span class="n">rect</span><span class="o">(</span><span class="n">bWidth</span><span class="o">+</span><span class="mi">40</span><span class="o">,</span> <span class="n">yPos</span><span class="o">,</span> <span class="n">bHeight</span><span class="o">,</span><span class="n">bHeight</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">hueVal</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/* function to map slider position to determine HSB value</span>
+<span class="cm">sliderPos: current value of the slider</span>
+<span class="cm">sliderWidth: width of slider bar</span>
+<span class="cm">*/</span>
+<span class="kt">float</span> <span class="nf">getHSBVal</span><span class="o">(</span><span class="kt">float</span> <span class="n">sliderPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sliderWidth</span><span class="o">){</span>
+  <span class="kt">float</span> <span class="n">val</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sliderWidth</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">val</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/* function to map slider HSB value to determine slider position</span>
+<span class="cm">sliderPos: current value of the slider</span>
+<span class="cm">sliderWidth: width of slider bar</span>
+<span class="cm">*/</span>
+<span class="kt">float</span> <span class="nf">getSliderPos</span><span class="o">(</span><span class="kt">float</span> <span class="n">val</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sliderWidth</span><span class="o">){</span>
+  <span class="kt">float</span> <span class="n">sliderPos</span><span class="o">=</span><span class="mf">0.0</span><span class="o">;</span>
+  <span class="n">sliderPos</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">val</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sliderWidth</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">sliderPos</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">2. Variables</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">3. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game-design.html">4. Game Design and Development</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+            </form>
+            <p class="searchtip" style="font-size: 90%">
+                Enter search terms or a module, class or function name.
+            </p>
+          </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="variables.html" title="2. Variables"
+              >previous</a> |
+            <a href="game-design.html" title="4. Game Design and Development"
+              >next</a> |
+            <a href="genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Karen Doore.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
