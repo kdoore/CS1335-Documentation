@@ -13,9 +13,13 @@ Declaration and Initialization
 In the example code below, the first line shows declaration of the int variable *num1*.   ::
 
 	println(5 + 7);  //two integer literal values are added together
-   	int num1;  		//declare an integer variable
+	
+   	int num1;  //declare an integer variable
+
 	int num2 = 5;   // declare an integer and assign it a literal integer value
+	
 	float num3 = 5.0 //declare a floating point variable and assign it a literal decimal value;
+	
 
 .. _typed-variables:
 
@@ -40,8 +44,10 @@ When initializing floating point numbers which are created using math operators,
 In the code below, since both 2 and 5 are written as integer literals, then expression 5/2 is evaluated using integer division. Make sure that at least 1 value is a decimal value to insure correct division of numbers assigned to float variables::
 
 		float someFraction=5 / 2;   // integer division of 5/2 is truncated so the result is 2.0
+		
 		float correctFraction = 5.0 / 2;    // 2.5  
-		correctFraction = (5 / 2) * 1.0  // 2.5  multiplication by 1.0 insures decimal division
+		
+		float correctFraction2 = (5 / 2) * 1.0  // 2.5  multiplication by 1.0 insures decimal division
 
 Integer and Float Type Conversion
 ==================================

@@ -1,11 +1,15 @@
 .. _game-design:
 
-============================
-Game Programming
-============================
-
-Links to Tutorials
 ===================
+Game Programming
+===================
+
+Learning to design and program simple games provides a good context for learning many fundamental computing concepts such as user interaction, collision detection, conditional branching, boolean logic, object oriented design, and state machines.
+
+Links to Game Programming Tutorials
+====================================
+
+Listed below are links to some excellent online tutorials and blogs that focus on simple game programming using the `Processing`_ language.  
 
 `Dark Views`_ Writing Games with `Processing`_.
 ------------------------------------------------
@@ -15,15 +19,21 @@ Links to Tutorials
 `Dr Doane`_ Thinking Through A Basic Pong Game in `Processing`_.
 -----------------------------------------------------------------
 
-	This blog provides a very good overview of the problem-solving approach to designing a basic Pong game using `Processing`_. This tutorial uses functional decomposition rather than an object oriented approach so this tutorial can help students understand basic function design including basic collision detection.  
+	This blog provides a very good overview of the problem-solving approach to designing a basic Pong game using `Processing`_. This tutorial uses functional decomposition rather than an object oriented approach so this tutorial can help students understand basic function design including basic collision detection.
+	
+`Mike Kamermans`_  Let's Make Some Games
+-----------------------------------------
+ 	
+	This excellent set of tutorials starts with a simple object oriented game tutorial using processing and then progresses to a set of tutorials to create a Mario game.  The tutorials include embedded live versions of each tutorial component which makes it easier to understand each step of the project design and programming.  The author also has an extensive github repository of processing project tutorials explaining mathematics of curve drawing algorithms.
 
 `Cate Huston`_ Let's Make a Simplified Game of Pacman. 
 ---------------------------------------------------------
 
-	This simple blog tutorial creates a very simple version of Pacman.   
+	This blog tutorial creates a very simple version of Pacman.  
 
 
 .. _Dark Views: http://blog.pdark.de/2013/12/15/writing-games-with-processing-getting-started/ 
 .. _Processing: http://processing.org
 .. _Dr Doane: http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/
 .. _Cate Huston: http://catehuston.com/workshop/?p=42
+.. _Mike Kamermans: http://processingjs.nihongoresources.com/test/PjsGameEngine/docs/tutorial/basic.html

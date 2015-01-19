@@ -24,7 +24,7 @@ Websites
 
 `Learning Processing`_
  
-	Website to accompany Daniel Shiffman's book. 
+	Website to accompany Daniel Shiffman's book which we'll use as the course textbook. 
 
 `Open Processing`_
  
