@@ -54,32 +54,50 @@
             
   <div class="section" id="variables">
 <span id="id1"></span><h1>2. Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h1>
-<p>Variables can be considered as named containers to hold values that can be modified, see <a class="reference internal" href="#typed-variables"><em>Typed Variables</em></a>.</p>
+<p>Variables can be considered as named containers to hold values that can be modified.  Since <a class="reference external" href="http://processing.org">Processing</a> is based on the Java language, it uses <a class="reference internal" href="#typed-variables"><em>Primitive Typed Variables</em></a>.  Variables can hold <em>primitive</em> values like integers (<em>int</em>), decimal numbers (<em>float</em>), booleans, and characters (<em>char</em>).  P</p>
 <div class="section" id="declaration-and-initialization">
 <h2>2.1. Declaration and Initialization<a class="headerlink" href="#declaration-and-initialization" title="Permalink to this headline">¶</a></h2>
-<p>This is example code:</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">num1</span><span class="o">;</span>  <span class="c1">//declare an integer</span>
-<span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>  <span class="c1">// declare and assign a value</span>
+<p>In the example code below, the first line shows declaration of the int variable <em>num1</em>.</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">println</span><span class="o">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">7</span><span class="o">);</span>  <span class="c1">//two integer literal values are added together</span>
+<span class="kt">int</span> <span class="n">num1</span><span class="o">;</span>               <span class="c1">//declare an integer variable</span>
+<span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>   <span class="c1">// declare an integer and assign it a literal integer value</span>
+<span class="kt">float</span> <span class="n">num3</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="c1">//declare a floating point variable and assign it a literal decimal value;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="typed-variables">
-<span id="id2"></span><h2>2.2. Typed Variables<a class="headerlink" href="#typed-variables" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="integer">
-<h3>2.2.1. Integer<a class="headerlink" href="#integer" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="float">
-<h4>2.2.1.1. Float<a class="headerlink" href="#float" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="primitive-typed-variables">
+<span id="typed-variables"></span><h2>2.2. Primitive Typed Variables<a class="headerlink" href="#primitive-typed-variables" title="Permalink to this headline">¶</a></h2>
+<p>When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type <strong>var</strong>.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific type.</p>
 </div>
-<div class="section" id="boolean">
-<h4>2.2.1.2. Boolean<a class="headerlink" href="#boolean" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="character">
-<h4>2.2.1.3. Character<a class="headerlink" href="#character" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="string">
-<h4>2.2.1.4. String<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="integers">
+<h2>2.3. Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h2>
+<p>Whole numbers like -1, 0, 1, 2.</p>
+<div class="section" id="integer-division">
+<h3>2.3.1. Integer Division<a class="headerlink" href="#integer-division" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
+<div class="section" id="floats">
+<h2>2.4. Floats<a class="headerlink" href="#floats" title="Permalink to this headline">¶</a></h2>
+<p>Decimal numbers like 1.0, 5.5, -1.0.  Also, whole numbers like 1, 0, 1 can be stored as floating point numbers.</p>
+<p>When initializing floating point numbers which are created using math operators, it&#8217;s important to realize that integer division can still cause unexpected results.  Multiplying values by 1.0 can help insure no truncation occurs.</p>
+<p>In the code below, since both 2 and 5 are written as integer literals, then expression 5/2 is evaluated using integer division. Make sure that atleast 1 value is a decimal value to insure correct division of numbers assigned to float variables:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">someFraction</span><span class="o">=</span><span class="mi">5</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span>   <span class="c1">// integer division of 5/2 is truncated so the result is 2.0</span>
+<span class="kt">float</span> <span class="n">correctFraction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span>    <span class="c1">// 2.5</span>
+<span class="n">correctFraction</span> <span class="o">=</span> <span class="o">(</span><span class="mi">5</span> <span class="o">/</span> <span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mf">1.0</span>  <span class="c1">// 2.5  multiplication by 1.0 insures decimal division</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="integer-and-float-type-conversion">
+<h2>2.5. Integer and Float Type Conversion<a class="headerlink" href="#integer-and-float-type-conversion" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="booleans">
+<h2>2.6. Booleans<a class="headerlink" href="#booleans" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="characters">
+<h2>2.7. Characters<a class="headerlink" href="#characters" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="questions">
+<h2>2.8. Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -94,7 +112,8 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">2. Variables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">3. Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="game-design.html">4. Game Design and Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game-design.html">4. Game Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">5. Resources</a></li>
 </ul>
 
           <div role="search">

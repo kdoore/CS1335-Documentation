@@ -17,6 +17,8 @@ Contents:
    	variables
 	functions
 	game-design
+	resources
+	
 
 
 

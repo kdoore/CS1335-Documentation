@@ -4,36 +4,57 @@
  Variables
 ============
 
-Variables can be considered as named containers to hold values that can be modified, see :ref:`typed-variables`.
+Variables can be considered as named containers to hold values that can be modified.  Since `Processing`_ is based on the Java language, it uses :ref:`Typed-Variables`.  Variables can hold *primitive* values like integers (*int*), decimal numbers (*float*), booleans, and characters (*char*).  P
 
 
 Declaration and Initialization
 ===============================
 
-This is example code::
+In the example code below, the first line shows declaration of the int variable *num1*.   ::
 
-   	int num1;  //declare an integer
-	int num2 = 5;  // declare and assign a value
+	println(5 + 7);  //two integer literal values are added together
+   	int num1;  		//declare an integer variable
+	int num2 = 5;   // declare an integer and assign it a literal integer value
+	float num3 = 5.0 //declare a floating point variable and assign it a literal decimal value;
 
 .. _typed-variables:
 
-Typed Variables
-================
+Primitive Typed Variables
+==========================
 
-Integer
-^^^^^^^
+When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type **var**.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific type. 
+
+Integers
+=========
+Whole numbers like -1, 0, 1, 2.
+
+Integer Division
+-----------------
+
+Floats
+======
+Decimal numbers like 1.0, 5.5, -1.0.  Also, whole numbers like 1, 0, 1 can be stored as floating point numbers.
+
+When initializing floating point numbers which are created using math operators, it's important to realize that integer division can still cause unexpected results.  Multiplying values by 1.0 can help insure no truncation occurs.
+
+In the code below, since both 2 and 5 are written as integer literals, then expression 5/2 is evaluated using integer division. Make sure that atleast 1 value is a decimal value to insure correct division of numbers assigned to float variables::
+
+		float someFraction=5/2;   // integer division of 5/2 is truncated so the result is 2.0
+		float correctFraction = 5.0/2;    // 2.5  
+		correctFraction = (5 / 2) * 1.0  // 2.5  multiplication by 1.0 insures decimal division
+
+Integer and Float Type Conversion
+==================================
+
+Booleans
+========
+
+Characters
+===========
 
 
-Float
-------
+Questions
+==========
 
 
-
-Boolean
---------
-
-Character
----------
-
-String
-------
+.. _Processing: http://processing.org

@@ -2,24 +2,23 @@
  Introduction
 =============
 
-Overview
----------
+Course Overview 
+===============
+
+Computer Science 1 for ATEC Students
+-------------------------------------
 
 Introduction to object-oriented software analysis, design, and development. Classes and objects. Object composition and polymorphism. Sorting and searching. Strings using core classes. Inheritance and interfaces. Graphical User Interfaces. 
 
 Processing
-__________
+----------
 
-In this course we will use the Processing language.  Projects will explore programming in the contexts of media, generative art, game design, and interaction design. see :ref:`variables`.
+In this course we will use the Processing language.  Projects will explore programming in the contexts of media, generative art, game design, and interaction design. 
 
+Textbook
+---------
 
-Integers::
+The textbook for the course is `Learning Processing`_ by Daniel Shiffman.
 
-   	int num1;  //declare an integer
-	int num2 = 5;  // declare and assign a value
-	
-This is normal text
+.. _Learning Processing: http://www.learningprocessing.com/	
 
-
-This is a new Section
-_____________________
