@@ -92,7 +92,7 @@ The modulus operator :code:`%` calculates the remainder of integer division. Mod
 Booleans
 ========
 
-Boolean variables can have the value :code:`true` or :code:`false`;  Boolean variables are useful for storing the state some program element to control some branch option within the program, often within a conditional branch, the boolean variable value is changed to indicate the state of the program has changed::.
+Boolean variables can have the value :code:`true` or :code:`false`;  Boolean variables are useful for storing the state some program element to control some branch option within the program, often within a conditional branch, the boolean variable value is changed to indicate the state of the program has changed.::
 
 	var isActive = true;
 	if(isActive){ 
@@ -112,7 +112,7 @@ Single letters or other unicode symbol like 'a', 'b', 'A', '%' .  The :code:`cha
 Random Numbers
 ===============
 
-The :code:`random( )` function in Processing_ can be used to generate random variables. The :code:`random(float min, float max)` function takes 2 input parameters and returns a floating point number ranging from the first argument to the second argument.  If only 1 argument is used, then 0 is the default minimum value.::
+The :code:`random( )` function in Processing_ can be used to generate psudo-random variables. The :code:`random(float min, float max)` function takes 2 input parameters and returns a floating point number ranging from the first argument to the second argument.  If only 1 argument is used, then 0 is the default minimum value.::
 	
 	float randVal1 = random( 1 , 100 );   //returns a float between 1 and 100.
 	float randVal2 = random( 100 );	//returns a float between 0 and 100.
@@ -121,5 +121,13 @@ The :code:`random( )` function in Processing_ can be used to generate random var
 Questions
 ==========
 
+	What are the values of the following?
+	
+		1. :code:`int num1 = 2 % 10;`
+		2. :code:`int num2 = 10 % 2;`
+		3. :code:`int num3 = int(4.999);`
+		
+		
+	
 
 .. _Processing: http://processing.org

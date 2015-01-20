@@ -73,20 +73,27 @@
   <span class="n">_hueVal</span><span class="o">=</span> <span class="n">drawSlider</span><span class="o">(</span><span class="mf">20.0</span><span class="o">,</span><span class="mf">20.0</span><span class="o">,</span><span class="n">_barWidth</span><span class="o">,</span><span class="mf">30.0</span><span class="o">,</span><span class="n">_hueVal</span><span class="o">);</span>
 <span class="o">}</span>
 
+<span class="cm">/* Function that draws an interactive HSB color-slider bar. </span>
+<span class="cm">Input is the current value of selected hue.  </span>
+<span class="cm">Return value is the updated value of the selected hue</span>
+<span class="cm">*/</span>
 <span class="kt">float</span> <span class="nf">drawSlider</span><span class="o">(</span><span class="kt">float</span> <span class="n">xPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">bWidth</span><span class="o">,</span> <span class="kt">float</span> <span class="n">bHeight</span><span class="o">,</span><span class="kt">float</span> <span class="n">hueVal</span><span class="o">){</span>
   <span class="n">fill</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
   <span class="n">noStroke</span><span class="o">();</span>
   <span class="n">rect</span><span class="o">(</span><span class="n">xPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">10</span><span class="o">,</span><span class="n">bWidth</span><span class="o">+</span><span class="mi">10</span><span class="o">,</span><span class="n">bHeight</span><span class="o">+</span><span class="mi">20</span><span class="o">);</span>  <span class="c1">//draw white background behind slider</span>
-  
   <span class="kt">float</span> <span class="n">sliderPos</span><span class="o">=</span><span class="n">getSliderPos</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>  <span class="c1">//find the current sliderPosition from hueVal</span>
+  
+  <span class="c1">//Create Slider background by getting sliderVal for each x position in the slider</span>
   <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">bWidth</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  <span class="c1">//draw 1 line for each hueValue from 0-255</span>
       <span class="n">hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>  <span class="c1">//get hueVal for each position in the bar</span>
       <span class="n">stroke</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">);</span>
       <span class="n">line</span><span class="o">(</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">,</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">+</span><span class="n">bHeight</span><span class="o">);</span>
   <span class="o">}</span>
+  <span class="c1">//if the user is moving the slider, determine the new sliderPos</span>
   <span class="k">if</span><span class="o">(</span><span class="n">mousePressed</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&gt;</span><span class="n">xPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&lt;(</span><span class="n">xPos</span><span class="o">+</span><span class="n">bWidth</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span><span class="o">&gt;</span><span class="n">yPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span> <span class="o">&lt;</span><span class="n">yPos</span><span class="o">+</span><span class="n">bHeight</span><span class="o">){</span>
      <span class="n">sliderPos</span><span class="o">=</span><span class="n">mouseX</span><span class="o">-</span><span class="n">xPos</span><span class="o">;</span>
   <span class="o">}</span>
+  <span class="c1">//determine the color of the slider indicator at the current slider position </span>
   <span class="n">stroke</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
   <span class="n">hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>
   <span class="n">fill</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">);</span>
