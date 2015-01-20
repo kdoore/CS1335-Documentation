@@ -92,8 +92,14 @@ The modulus operator :code:`%` calculates the remainder of integer division. Mod
 Booleans
 ========
 
-Boolean variables can have the value :code:`true` or :code:`false`;  Boolean variables are useful for storing the state of a 
+Boolean variables can have the value :code:`true` or :code:`false`;  Boolean variables are useful for storing the state some program element to control some branch option within the program, often within a conditional branch, the boolean variable value is changed to indicate the state of the program has changed::.
 
+	var isActive = true;
+	if(isActive){ 
+		doSomething();	//trigger some state dependent behavior 	
+		isActive=false	//change the state variable after the state behavior has been triggered
+		}
+	
 
 Characters
 ===========
@@ -106,7 +112,11 @@ Single letters or other unicode symbol like 'a', 'b', 'A', '%' .  The :code:`cha
 Random Numbers
 ===============
 
-The random( ) function in Processing_ can be used to generate random variables. random()
+The :code:`random( )` function in Processing_ can be used to generate random variables. The :code:`random(float min, float max)` function takes 2 input parameters and returns a floating point number ranging from the first argument to the second argument.  If only 1 argument is used, then 0 is the default minimum value.::
+	
+	float randVal1 = random( 1 , 100 );   //returns a float between 1 and 100.
+	float randVal2 = random( 100 );	//returns a float between 0 and 100.
+	
 
 Questions
 ==========

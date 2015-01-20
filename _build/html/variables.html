@@ -130,7 +130,15 @@
 </div>
 <div class="section" id="booleans">
 <h2>2.7. Booleans<a class="headerlink" href="#booleans" title="Permalink to this headline">¶</a></h2>
-<p>Boolean variables can have the value <code class="code docutils literal"><span class="pre">true</span></code> or <code class="code docutils literal"><span class="pre">false</span></code>;  Boolean variables are useful for storing the state of a</p>
+<p>Boolean variables can have the value <code class="code docutils literal"><span class="pre">true</span></code> or <code class="code docutils literal"><span class="pre">false</span></code>;  Boolean variables are useful for storing the state some program element to control some branch option within the program, often within a conditional branch, the boolean variable value is changed to indicate the state of the program has changed::.</p>
+<blockquote>
+<div><p>var isActive = true;
+if(isActive){</p>
+<blockquote>
+<div>doSomething();  //trigger some state dependent behavior
+isActive=false  //change the state variable after the state behavior has been triggered
+}</div></blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="characters">
 <h2>2.8. Characters<a class="headerlink" href="#characters" title="Permalink to this headline">¶</a></h2>
@@ -142,7 +150,11 @@
 </div>
 <div class="section" id="random-numbers">
 <h2>2.9. Random Numbers<a class="headerlink" href="#random-numbers" title="Permalink to this headline">¶</a></h2>
-<p>The random( ) function in <a class="reference external" href="http://processing.org">Processing</a> can be used to generate random variables. random()</p>
+<p>The <code class="code docutils literal"><span class="pre">random(</span> <span class="pre">)</span></code> function in <a class="reference external" href="http://processing.org">Processing</a> can be used to generate random variables. The <code class="code docutils literal"><span class="pre">random(float</span> <span class="pre">min,</span> <span class="pre">float</span> <span class="pre">max)</span></code> function takes 2 input parameters and returns a floating point number ranging from the first argument to the second argument.  If only 1 argument is used, then 0 is the default minimum value.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">randVal1</span> <span class="o">=</span> <span class="n">random</span><span class="o">(</span> <span class="mi">1</span> <span class="o">,</span> <span class="mi">100</span> <span class="o">);</span>   <span class="c1">//returns a float between 1 and 100.</span>
+<span class="kt">float</span> <span class="n">randVal2</span> <span class="o">=</span> <span class="n">random</span><span class="o">(</span> <span class="mi">100</span> <span class="o">);</span> <span class="c1">//returns a float between 0 and 100.</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="questions">
 <h2>2.10. Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
