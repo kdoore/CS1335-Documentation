@@ -4,7 +4,7 @@
  Variables
 ============
 
-Variables can be considered as named containers to hold values that can be modified.  Since `Processing`_ is based on the Java language, it uses :ref:`Typed-Variables`.  Variables can hold *primitive* values like integers (*int*), decimal numbers (*float*), booleans, and characters (*char*).  P
+Variables can be considered as named containers to hold values that can be modified.  Since `Processing`_ is based on the Java language, it uses :ref:`Typed-Variables`.  Variables can hold *primitive* values like integers: :code:`int`, decimal numbers: :code:`float`, booleans: :code:`boolean`, and characters: :code:`char`.  P
 
 
 Declaration and Initialization
@@ -12,7 +12,7 @@ Declaration and Initialization
 
 In the example code below, the first line shows declaration of the int variable *num1*.   ::
 
-	println(5 + 7);  //two integer literal values are added together
+	println( 5 + 7 );  //two integer literal values are added together
 	
    	int num1;  //declare an integer variable
 
@@ -23,10 +23,10 @@ In the example code below, the first line shows declaration of the int variable 
 
 .. _typed-variables:
 
-Primitive Typed Variables
-==========================
+Typed Variables
+================
 
-When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type **var**.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific type. 
+When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type **var**.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific type such as :code:`int`, :code:`float`, :code:`boolean`, :code:`char`, etc.  
 
 Integers
 =========
@@ -39,11 +39,11 @@ Floats
 ======
 Decimal numbers like 1.0, 5.5, -1.0.  Also, whole numbers like 1, 0, 1 can be stored as floating point numbers.
 
-When initializing floating point numbers which are created using math operators, it's important to realize that integer division can still cause unexpected results.  Multiplying values by 1.0 can help insure no truncation occurs.
+When initializing floating point numbers which are created using math operators, it's important to realize that integer division can still cause unexpected results.  Multiplying values each division expression by the float value *1.0* can help insure no truncation occurs.
 
 In the code below, since both 2 and 5 are written as integer literals, then expression 5/2 is evaluated using integer division. Make sure that at least 1 value is a decimal value to insure correct division of numbers assigned to float variables::
 
-		float someFraction=5 / 2;   // integer division of 5/2 is truncated so the result is 2.0
+		float someFraction = 5 / 2;   // integer division of 5/2 is truncated so the result is 2.0
 		
 		float correctFraction = 5.0 / 2;    // 2.5  
 		

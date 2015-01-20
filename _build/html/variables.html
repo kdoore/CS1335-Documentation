@@ -52,11 +52,11 @@
             
   <div class="section" id="variables">
 <span id="id1"></span><h1>2. Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h1>
-<p>Variables can be considered as named containers to hold values that can be modified.  Since <a class="reference external" href="http://processing.org">Processing</a> is based on the Java language, it uses <a class="reference internal" href="#typed-variables"><em>Primitive Typed Variables</em></a>.  Variables can hold <em>primitive</em> values like integers (<em>int</em>), decimal numbers (<em>float</em>), booleans, and characters (<em>char</em>).  P</p>
+<p>Variables can be considered as named containers to hold values that can be modified.  Since <a class="reference external" href="http://processing.org">Processing</a> is based on the Java language, it uses <a class="reference internal" href="#typed-variables"><em>Typed Variables</em></a>.  Variables can hold <em>primitive</em> values like integers: <code class="code docutils literal"><span class="pre">int</span></code>, decimal numbers: <code class="code docutils literal"><span class="pre">float</span></code>, booleans: <code class="code docutils literal"><span class="pre">boolean</span></code>, and characters: <code class="code docutils literal"><span class="pre">char</span></code>.  P</p>
 <div class="section" id="declaration-and-initialization">
 <h2>2.1. Declaration and Initialization<a class="headerlink" href="#declaration-and-initialization" title="Permalink to this headline">¶</a></h2>
 <p>In the example code below, the first line shows declaration of the int variable <em>num1</em>.</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="n">println</span><span class="o">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">7</span><span class="o">);</span>  <span class="c1">//two integer literal values are added together</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">println</span><span class="o">(</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">);</span>  <span class="c1">//two integer literal values are added together</span>
 
 <span class="kt">int</span> <span class="n">num1</span><span class="o">;</span>  <span class="c1">//declare an integer variable</span>
 
@@ -66,9 +66,9 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="primitive-typed-variables">
-<span id="typed-variables"></span><h2>2.2. Primitive Typed Variables<a class="headerlink" href="#primitive-typed-variables" title="Permalink to this headline">¶</a></h2>
-<p>When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type <strong>var</strong>.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific type.</p>
+<div class="section" id="typed-variables">
+<span id="id2"></span><h2>2.2. Typed Variables<a class="headerlink" href="#typed-variables" title="Permalink to this headline">¶</a></h2>
+<p>When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type <strong>var</strong>.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific type such as <code class="code docutils literal"><span class="pre">int</span></code>, <code class="code docutils literal"><span class="pre">float</span></code>, <code class="code docutils literal"><span class="pre">boolean</span></code>, <code class="code docutils literal"><span class="pre">char</span></code>, etc.</p>
 </div>
 <div class="section" id="integers">
 <h2>2.3. Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h2>
@@ -80,9 +80,9 @@
 <div class="section" id="floats">
 <h2>2.4. Floats<a class="headerlink" href="#floats" title="Permalink to this headline">¶</a></h2>
 <p>Decimal numbers like 1.0, 5.5, -1.0.  Also, whole numbers like 1, 0, 1 can be stored as floating point numbers.</p>
-<p>When initializing floating point numbers which are created using math operators, it&#8217;s important to realize that integer division can still cause unexpected results.  Multiplying values by 1.0 can help insure no truncation occurs.</p>
+<p>When initializing floating point numbers which are created using math operators, it&#8217;s important to realize that integer division can still cause unexpected results.  Multiplying values each division expression by the float value <em>1.0</em> can help insure no truncation occurs.</p>
 <p>In the code below, since both 2 and 5 are written as integer literals, then expression 5/2 is evaluated using integer division. Make sure that at least 1 value is a decimal value to insure correct division of numbers assigned to float variables:</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">someFraction</span><span class="o">=</span><span class="mi">5</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>   <span class="c1">// integer division of 5/2 is truncated so the result is 2.0</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">someFraction</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>   <span class="c1">// integer division of 5/2 is truncated so the result is 2.0</span>
 
 <span class="kt">float</span> <span class="n">correctFraction</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>    <span class="c1">// 2.5</span>
 
@@ -114,7 +114,7 @@
   <ul>
 <li><a class="reference internal" href="#">2. Variables</a><ul>
 <li><a class="reference internal" href="#declaration-and-initialization">2.1. Declaration and Initialization</a></li>
-<li><a class="reference internal" href="#primitive-typed-variables">2.2. Primitive Typed Variables</a></li>
+<li><a class="reference internal" href="#typed-variables">2.2. Typed Variables</a></li>
 <li><a class="reference internal" href="#integers">2.3. Integers</a><ul>
 <li><a class="reference internal" href="#integer-division">2.3.1. Integer Division</a></li>
 </ul>
