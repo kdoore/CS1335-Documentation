@@ -52,7 +52,7 @@
             
   <div class="section" id="variables">
 <span id="id1"></span><h1>2. Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h1>
-<p>Variables can be considered as named containers to hold values that can be modified.  Since <a class="reference external" href="http://processing.org">Processing</a> is based on the Java language, it uses <a class="reference internal" href="#typed-variables"><em>Typed Variables</em></a>. Variables can hold <em>primitive</em> values like integers: <code class="code docutils literal"><span class="pre">int</span></code>, decimal numbers: <code class="code docutils literal"><span class="pre">float</span></code>, booleans: <code class="code docutils literal"><span class="pre">boolean</span></code>, and characters: <code class="code docutils literal"><span class="pre">char</span></code>.</p>
+<p>Variables can be considered as named containers to hold values that can be modified.  Since <a class="reference external" href="http://processing.org">Processing</a> is based on the Java language, it uses <a class="reference internal" href="#typed-variables"><em>Typed Variables</em></a>. Variables can hold <em>primitive</em> values which involve a single piece of information like integers: <code class="code docutils literal"><span class="pre">int</span></code>, decimal numbers: <code class="code docutils literal"><span class="pre">float</span></code>, booleans: <code class="code docutils literal"><span class="pre">boolean</span></code>, and characters: <code class="code docutils literal"><span class="pre">char</span></code>.</p>
 <div class="section" id="declaration-and-initialization">
 <h2>2.1. Declaration and Initialization<a class="headerlink" href="#declaration-and-initialization" title="Permalink to this headline">¶</a></h2>
 <p>In the example code below, the first line of code prints the sum of 2 integer literal values.  In the code that follows, <code class="code docutils literal"><span class="pre">int</span></code> and <code class="code docutils literal"><span class="pre">float</span></code> variables are declared and assigned values.</p>
@@ -68,7 +68,7 @@
 </div>
 <div class="section" id="typed-variables">
 <span id="id2"></span><h2>2.2. Typed Variables<a class="headerlink" href="#typed-variables" title="Permalink to this headline">¶</a></h2>
-<p>When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type <code class="code docutils literal"><span class="pre">var</span></code>.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific data-type such as <code class="code docutils literal"><span class="pre">int</span></code>, <code class="code docutils literal"><span class="pre">float</span></code>, <code class="code docutils literal"><span class="pre">boolean</span></code>, <code class="code docutils literal"><span class="pre">char</span></code>, etc.</p>
+<p>When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type <code class="code docutils literal"><span class="pre">var</span></code>.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific data-type such as <code class="code docutils literal"><span class="pre">int</span></code>, <code class="code docutils literal"><span class="pre">float</span></code>, <code class="code docutils literal"><span class="pre">boolean</span></code>, <code class="code docutils literal"><span class="pre">char</span></code>, etc. Typed variables allows the computer to allocate enough memory to hold the value.</p>
 </div>
 <div class="section" id="integers">
 <h2>2.3. Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h2>
@@ -76,11 +76,13 @@
 <div class="section" id="integer-division">
 <h3>2.3.1. Integer Division<a class="headerlink" href="#integer-division" title="Permalink to this headline">¶</a></h3>
 <p>When using the math division operator with integers, the resulting value is also an integer, so any fractional division remainder is truncated:</p>
-<blockquote>
-<div><p>println( 5 / 3 );     // 1</p>
-<p>int num1 = 5 / 2;   // 2   the remainder from division is truncated.</p>
-<p>int num2 = 5.0 / 2  // error cannot convert from a float to an int</p>
-</div></blockquote>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">println</span><span class="o">(</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">);</span>     <span class="c1">// 1</span>
+
+<span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>   <span class="c1">// 2   the remainder from division is truncated.</span>
+
+<span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1">// error cannot convert from a float to an int</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="floats">
@@ -98,32 +100,52 @@
 </div>
 <div class="section" id="integer-and-float-type-conversion">
 <h2>2.5. Integer and Float Type-Conversion<a class="headerlink" href="#integer-and-float-type-conversion" title="Permalink to this headline">¶</a></h2>
-<p>Care must be taken when using <code class="code docutils literal"><span class="pre">float</span></code> and <code class="code docutils literal"><span class="pre">int</span></code> variables in expressions or mathematical operations together, particularly when doing division.  In general, an error will be generated if an operation will result in truncation. Processing can automatically convert an <code class="code docutils literal"><span class="pre">int</span></code> to a <code class="code docutils literal"><span class="pre">float</span> <span class="pre">value,</span> <span class="pre">however</span> <span class="pre">an</span> <span class="pre">error</span> <span class="pre">will</span> <span class="pre">occur</span> <span class="pre">when</span> <span class="pre">trying</span> <span class="pre">to</span> <span class="pre">convert</span> <span class="pre">a</span> <span class="pre">:code:`float</span> <span class="pre">value</span></code> to an <code class="code docutils literal"><span class="pre">int</span></code> value.:</p>
+<p>Care must be taken when using <code class="code docutils literal"><span class="pre">float</span></code> and <code class="code docutils literal"><span class="pre">int</span></code> variables in expressions or mathematical operations together, particularly when doing division.  In general, an error will be generated if an operation will result in truncation. Processing can automatically convert an <code class="code docutils literal"><span class="pre">int</span></code> to a <code class="code docutils literal"><span class="pre">float</span></code> value, however an error will occur when trying to convert a <code class="code docutils literal"><span class="pre">float</span></code> value to an <code class="code docutils literal"><span class="pre">int</span></code> value.</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
-<span class="kt">float</span> <span class="n">val1</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span><span class="o">;</span>   <span class="c1">//2.0    integer division expression is evaluated then assigned to val1.</span>
-<span class="kt">int</span> <span class="n">num3</span> <span class="o">=</span> <span class="n">val1</span><span class="o">;</span>  <span class="c1">// error cannot convert from a float to an int</span>
+
+<span class="kt">float</span> <span class="n">val1</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span><span class="o">;</span>       <span class="c1">//2.0  integer division expression is evaluated then assigned to val1.</span>
+
+<span class="kt">int</span> <span class="n">num3</span> <span class="o">=</span> <span class="n">val1</span><span class="o">;</span>        <span class="c1">// error cannot convert from a float to an int</span>
+</pre></div>
+</div>
+<p>Processing provides type conversion functions to allow conversion between <code class="code docutils literal"><span class="pre">int</span></code> and <code class="code docutils literal"><span class="pre">float</span></code> variable types.  There are 2 different but equivalent syntax conventions for type conversion displayed in the example code below:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">val1</span> <span class="o">=</span> <span class="mf">5.2</span><span class="o">;</span>
+
+<span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="kt">int</span><span class="o">(</span> <span class="n">val1</span> <span class="o">);</span>  <span class="c1">// 5   With this syntax, int( ) works like a function to convert a float value to an integer.  The value is truncated.</span>
+
+<span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="o">(</span> <span class="kt">int</span> <span class="o">)</span><span class="n">val1</span><span class="o">;</span>   <span class="c1">//5   This syntax also works to convert a float to an  int, and results in truncation of the number.</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="modulus-operator">
 <h2>2.6. Modulus Operator<a class="headerlink" href="#modulus-operator" title="Permalink to this headline">¶</a></h2>
-<p>The modulus operator <code class="code docutils literal"><span class="pre">%</span></code> calculates the remainder of integer division. Modulus is often used to determine if a number is odd or even where n % 2</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="n">println</span><span class="o">(</span> <span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">);</span>   <span class="c1">// 1         2 goes into 5 two times with a remainder of 1</span>
-<span class="n">println</span><span class="o">(</span> <span class="mi">5</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">);</span>   <span class="c1">// 2         3 goes into 5 one time with a remainder of 2</span>
-<span class="n">println</span><span class="o">(</span> <span class="mi">12</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">);</span>   <span class="c1">// 0    test to determine if 12 is even, for any number n, if n % 2 = 0 then n is even.</span>
-<span class="n">println</span><span class="o">(</span> <span class="mi">2</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">);</span>    <span class="c1">// 2    5 goes into 2 zero times with a remainder of 2</span>
+<p>The modulus operator <code class="code docutils literal"><span class="pre">%</span></code> calculates the remainder of integer division. Modulus is often used to determine if a number is odd or even where n % 2 equals 0 if n is even.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">println</span><span class="o">(</span> <span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">);</span>   <span class="c1">// 1        2 goes into 5 two times with a remainder of 1</span>
+<span class="n">println</span><span class="o">(</span> <span class="mi">5</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">);</span>   <span class="c1">// 2        3 goes into 5 one time with a remainder of 2</span>
+<span class="n">println</span><span class="o">(</span> <span class="mi">12</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">);</span>  <span class="c1">// 0        test to determine if 12 is even, for any number n, if n % 2 = 0 then n is even.</span>
+<span class="n">println</span><span class="o">(</span> <span class="mi">2</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">);</span>   <span class="c1">// 2        5 goes into 2 zero times with a remainder of 2</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="booleans">
 <h2>2.7. Booleans<a class="headerlink" href="#booleans" title="Permalink to this headline">¶</a></h2>
+<p>Boolean variables can have the value <code class="code docutils literal"><span class="pre">true</span></code> or <code class="code docutils literal"><span class="pre">false</span></code>;  Boolean variables are useful for storing the state of a</p>
 </div>
 <div class="section" id="characters">
 <h2>2.8. Characters<a class="headerlink" href="#characters" title="Permalink to this headline">¶</a></h2>
+<p>Single letters or other unicode symbol like &#8216;a&#8217;, &#8216;b&#8217;, &#8216;A&#8217;, &#8216;%&#8217; .  The <code class="code docutils literal"><span class="pre">char</span></code> variable type must use single quotes around a single character.  When multiple characters are used in a single variable, then the :code: <cite>String</cite> variable type should be used.</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">char</span> <span class="n">someChar</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="o">;</span>
+<span class="kt">char</span> <span class="n">otherChar</span> <span class="o">=</span> <span class="sc">&#39;&amp;&#39;</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="random-numbers">
+<h2>2.9. Random Numbers<a class="headerlink" href="#random-numbers" title="Permalink to this headline">¶</a></h2>
+<p>The random( ) function in <a class="reference external" href="http://processing.org">Processing</a> can be used to generate random variables. random()</p>
 </div>
 <div class="section" id="questions">
-<h2>2.9. Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<h2>2.10. Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -147,7 +169,8 @@
 <li><a class="reference internal" href="#modulus-operator">2.6. Modulus Operator</a></li>
 <li><a class="reference internal" href="#booleans">2.7. Booleans</a></li>
 <li><a class="reference internal" href="#characters">2.8. Characters</a></li>
-<li><a class="reference internal" href="#questions">2.9. Questions</a></li>
+<li><a class="reference internal" href="#random-numbers">2.9. Random Numbers</a></li>
+<li><a class="reference internal" href="#questions">2.10. Questions</a></li>
 </ul>
 </li>
 </ul>
