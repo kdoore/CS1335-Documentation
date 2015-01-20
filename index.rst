@@ -16,6 +16,7 @@ Contents:
    	introduction
    	variables
 	functions
+	hsbSlider
 	game-design
 	resources
 	

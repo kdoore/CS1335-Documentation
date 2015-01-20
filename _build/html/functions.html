@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="4. Game Programming" href="game-design.html" />
+    <link rel="next" title="4. HSB Color-Slider Example" href="hsbSlider.html" />
     <link rel="prev" title="2. Variables" href="variables.html" /> 
   </head>
   <body role="document">
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="4. Game Programming"
+          <a href="hsbSlider.html" title="4. HSB Color-Slider Example"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="variables.html" title="2. Variables"
@@ -52,75 +52,38 @@
             
   <div class="section" id="functions">
 <span id="id1"></span><h1>3. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
-<p>The project below creates an interactive HSB color selector.</p>
-<img alt="_images/HSBSlider.png" src="_images/HSBSlider.png" />
-<div class="highlight-Java"><div class="highlight"><pre><span class="cm">/*Program to create an interactive HSB color picker*/</span>
-
-<span class="c1">//global values</span>
-<span class="kt">float</span> <span class="n">_barWidth</span><span class="o">=</span><span class="mf">300.0</span><span class="o">;</span>
-<span class="kt">float</span> <span class="n">_sliderPos</span><span class="o">=</span><span class="mf">100.0</span><span class="o">;</span>  <span class="c1">//initial slider position</span>
-<span class="kt">float</span> <span class="n">_hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">_sliderPos</span><span class="o">,</span><span class="n">_barWidth</span><span class="o">);</span>  <span class="c1">//initial hueValue</span>
- 
-<span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
-  <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
-  <span class="n">size</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span><span class="mi">300</span><span class="o">);</span>
-  <span class="n">colorMode</span><span class="o">(</span><span class="n">HSB</span><span class="o">);</span>
-  <span class="n">stroke</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
-  <span class="n">println</span><span class="o">(</span><span class="n">_hueVal</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
-  <span class="n">_hueVal</span><span class="o">=</span> <span class="n">drawSlider</span><span class="o">(</span><span class="mf">20.0</span><span class="o">,</span><span class="mf">20.0</span><span class="o">,</span><span class="n">_barWidth</span><span class="o">,</span><span class="mf">30.0</span><span class="o">,</span><span class="n">_hueVal</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="cm">/* Function that draws an interactive HSB color-slider bar. </span>
-<span class="cm">Input is the current value of selected hue.  </span>
-<span class="cm">Return value is the updated value of the selected hue</span>
-<span class="cm">*/</span>
-<span class="kt">float</span> <span class="nf">drawSlider</span><span class="o">(</span><span class="kt">float</span> <span class="n">xPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">bWidth</span><span class="o">,</span> <span class="kt">float</span> <span class="n">bHeight</span><span class="o">,</span><span class="kt">float</span> <span class="n">hueVal</span><span class="o">){</span>
-  <span class="n">fill</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
-  <span class="n">noStroke</span><span class="o">();</span>
-  <span class="n">rect</span><span class="o">(</span><span class="n">xPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">10</span><span class="o">,</span><span class="n">bWidth</span><span class="o">+</span><span class="mi">10</span><span class="o">,</span><span class="n">bHeight</span><span class="o">+</span><span class="mi">20</span><span class="o">);</span>  <span class="c1">//draw white background behind slider</span>
-  <span class="kt">float</span> <span class="n">sliderPos</span><span class="o">=</span><span class="n">getSliderPos</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>  <span class="c1">//find the current sliderPosition from hueVal</span>
-  
-  <span class="c1">//Create Slider background by getting sliderVal for each x position in the slider</span>
-  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">bWidth</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  <span class="c1">//draw 1 line for each hueValue from 0-255</span>
-      <span class="n">hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>  <span class="c1">//get hueVal for each position in the bar</span>
-      <span class="n">stroke</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">);</span>
-      <span class="n">line</span><span class="o">(</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">,</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">+</span><span class="n">bHeight</span><span class="o">);</span>
-  <span class="o">}</span>
-  <span class="c1">//if the user is moving the slider, determine the new sliderPos</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">mousePressed</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&gt;</span><span class="n">xPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&lt;(</span><span class="n">xPos</span><span class="o">+</span><span class="n">bWidth</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span><span class="o">&gt;</span><span class="n">yPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span> <span class="o">&lt;</span><span class="n">yPos</span><span class="o">+</span><span class="n">bHeight</span><span class="o">){</span>
-     <span class="n">sliderPos</span><span class="o">=</span><span class="n">mouseX</span><span class="o">-</span><span class="n">xPos</span><span class="o">;</span>
-  <span class="o">}</span>
-  <span class="c1">//determine the color of the slider indicator at the current slider position </span>
-  <span class="n">stroke</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-  <span class="n">hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>
-  <span class="n">fill</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">);</span>
-  <span class="n">rect</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">+</span><span class="n">xPos</span><span class="o">-</span><span class="mi">3</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="n">bHeight</span><span class="o">+</span><span class="mi">10</span><span class="o">);</span>
-  <span class="n">rect</span><span class="o">(</span><span class="n">bWidth</span><span class="o">+</span><span class="mi">40</span><span class="o">,</span> <span class="n">yPos</span><span class="o">,</span> <span class="n">bHeight</span><span class="o">,</span><span class="n">bHeight</span><span class="o">);</span>
-  <span class="k">return</span> <span class="n">hueVal</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="cm">/* function to map slider position to determine HSB value</span>
-<span class="cm">sliderPos: current value of the slider</span>
-<span class="cm">sliderWidth: width of slider bar</span>
-<span class="cm">*/</span>
-<span class="kt">float</span> <span class="nf">getHSBVal</span><span class="o">(</span><span class="kt">float</span> <span class="n">sliderPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sliderWidth</span><span class="o">){</span>
-  <span class="kt">float</span> <span class="n">val</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sliderWidth</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">);</span>
-  <span class="k">return</span> <span class="n">val</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="cm">/* function to map slider HSB value to determine slider position</span>
-<span class="cm">sliderPos: current value of the slider</span>
-<span class="cm">sliderWidth: width of slider bar</span>
-<span class="cm">*/</span>
-<span class="kt">float</span> <span class="nf">getSliderPos</span><span class="o">(</span><span class="kt">float</span> <span class="n">val</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sliderWidth</span><span class="o">){</span>
-  <span class="kt">float</span> <span class="n">sliderPos</span><span class="o">=</span><span class="mf">0.0</span><span class="o">;</span>
-  <span class="n">sliderPos</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">val</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sliderWidth</span><span class="o">);</span>
-  <span class="k">return</span> <span class="n">sliderPos</span><span class="o">;</span>
-<span class="o">}</span>
+<p>Functions allow modular design and reusability of program components. Functions should be designed to perform a well-defined and specific task. Functions should be designed so that they are not inter-dependent on code external to the function and so that they don&#8217;t cause unintended side-effects to code outside of the function.</p>
+<div class="section" id="function-syntax">
+<h2>3.1. Function Syntax<a class="headerlink" href="#function-syntax" title="Permalink to this headline">¶</a></h2>
+<p>When writing a code for function, the following components define the syntax of a function definition.</p>
+<p>For an example function that adds an int and a float values, the function syntax is</p>
+<ul>
+<li><p class="first"><strong>function name:</strong>  <code class="docutils literal"><span class="pre">addNumbers</span></code></p>
+</li>
+<li><p class="first"><strong>function return type:</strong> <code class="docutils literal"><span class="pre">int</span>&nbsp; <span class="pre">//the</span> <span class="pre">variable</span> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">function's</span> <span class="pre">return</span> <span class="pre">type</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">declared</span></code></p>
+</li>
+<li><p class="first"><strong>function arguments:</strong>  <code class="docutils literal"><span class="pre">int</span> <span class="pre">arg1,</span> <span class="pre">float</span> <span class="pre">arg2</span></code>   <code class="docutils literal"><span class="pre">//arguments</span> <span class="pre">must</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">declared</span> <span class="pre">variable</span> <span class="pre">type</span> <span class="pre">and</span> <span class="pre">a</span> <span class="pre">name</span></code>:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">addNumbers</span><span class="o">(</span> <span class="kt">int</span> <span class="n">arg1</span><span class="o">,</span> <span class="kt">float</span> <span class="n">arg2</span><span class="o">){</span>   <span class="c1">//function signature</span>
+<span class="c1">// body code of a function</span>
+        <span class="kt">int</span> <span class="n">sum</span><span class="o">=</span> <span class="n">arg1</span> <span class="o">+</span> <span class="kt">int</span><span class="o">(</span><span class="n">arg2</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+        <span class="o">}</span>
 </pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="hsb-color-slider-example">
+<h2>3.2. HSB Color-Slider Example<a class="headerlink" href="#hsb-color-slider-example" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="hsbSlider.html#hsbslider"><em>HSB Color-Slider Example</em></a> project creates an interactive HSB color selector to demonstrate the iterative design process for designing functions.  In order to create this UI-widget, first we need to figure out the required components. First, let&#8217;s plan to create a simple rectangle that is filled with the full HSB hue-range.  Then we&#8217;ll need to figure out how to let the user interact with it to select a color.  Then we&#8217;ll want provide a way to  use that selected color in another part of the program.</p>
+<ul class="simple">
+<li><strong>Input values:</strong>  position and size of the slider widget.</li>
+<li><strong>Output values:</strong>  a hueValue that has been selected.</li>
+<li><strong>Display:</strong> some  representation of a range of hues, and indication of currently selected hue value.</li>
+<li><strong>Interactivity:</strong>  a means for the user to modify and select a hue value.</li>
+</ul>
+<p>The image below shows the widget we&#8217;ll design.  Here&#8217;s a link to the project and code: <a class="reference internal" href="hsbSlider.html#hsbslider"><em>HSB Color-Slider Example</em></a></p>
+<img alt="_images/HSBSlider.png" src="_images/HSBSlider.png" />
 </div>
 </div>
 
@@ -130,12 +93,21 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3. Functions</a><ul>
+<li><a class="reference internal" href="#function-syntax">3.1. Function Syntax</a></li>
+<li><a class="reference internal" href="#hsb-color-slider-example">3.2. HSB Color-Slider Example</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="variables.html"
                         title="previous chapter">2. Variables</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="game-design.html"
-                        title="next chapter">4. Game Programming</a></p>
+  <p class="topless"><a href="hsbSlider.html"
+                        title="next chapter">4. HSB Color-Slider Example</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -160,7 +132,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="4. Game Programming"
+          <a href="hsbSlider.html" title="4. HSB Color-Slider Example"
              >next</a> |</li>
         <li class="right" >
           <a href="variables.html" title="2. Variables"
