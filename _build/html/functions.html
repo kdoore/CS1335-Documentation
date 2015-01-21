@@ -52,37 +52,73 @@
             
   <div class="section" id="functions">
 <span id="id1"></span><h1>3. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
-<p>Functions allow modular design and reusability of program components. Functions should be designed to perform a well-defined and specific task. Functions should be designed so that they are not inter-dependent on code external to the function and so that they don&#8217;t cause unintended side-effects to code outside of the function.</p>
+<p>Functions allow modular design and reusability of program components. Functions should be designed to perform a well-defined, specific task. Functions should be designed so that they are not inter-dependent on code external to the function and so that they don&#8217;t cause unintended side-effects to code outside of the function.</p>
 <div class="section" id="function-syntax">
 <h2>3.1. Function Syntax<a class="headerlink" href="#function-syntax" title="Permalink to this headline">¶</a></h2>
 <p>When writing a code for function, the following components define the syntax of a function definition.</p>
-<p>For an example function that adds an int and a float values, the function syntax is</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">returnType</span> <span class="nf">functionName</span><span class="o">(</span> <span class="kt">int</span> <span class="n">arg1</span><span class="o">,</span> <span class="kt">float</span> <span class="n">arg2</span><span class="o">){</span>  <span class="c1">// int and float parameter arguments</span>
+        <span class="c1">// body code of a function</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>For an example function that adds an <code class="docutils literal"><span class="pre">int</span></code> and a <code class="docutils literal"><span class="pre">float</span></code> values, the function syntax is</p>
 <ul>
 <li><p class="first"><strong>function name:</strong>  <code class="docutils literal"><span class="pre">addNumbers</span></code></p>
 </li>
 <li><p class="first"><strong>function return type:</strong> <code class="docutils literal"><span class="pre">int</span>&nbsp; <span class="pre">//the</span> <span class="pre">variable</span> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">function's</span> <span class="pre">return</span> <span class="pre">type</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">declared</span></code></p>
 </li>
-<li><p class="first"><strong>function arguments:</strong>  <code class="docutils literal"><span class="pre">int</span> <span class="pre">arg1,</span> <span class="pre">float</span> <span class="pre">arg2</span></code>   <code class="docutils literal"><span class="pre">//arguments</span> <span class="pre">must</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">declared</span> <span class="pre">variable</span> <span class="pre">type</span> <span class="pre">and</span> <span class="pre">a</span> <span class="pre">name</span></code>:</p>
+<li><p class="first"><strong>function arguments:</strong>  <code class="docutils literal"><span class="pre">int</span> <span class="pre">arg1,</span> <span class="pre">float</span> <span class="pre">arg2</span> <span class="pre">//arguments</span> <span class="pre">must</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">declared</span> <span class="pre">variable-type</span></code></p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">addNumbers</span><span class="o">(</span> <span class="kt">int</span> <span class="n">arg1</span><span class="o">,</span> <span class="kt">float</span> <span class="n">arg2</span><span class="o">){</span>   <span class="c1">//function signature</span>
-<span class="c1">// body code of a function</span>
         <span class="kt">int</span> <span class="n">sum</span><span class="o">=</span> <span class="n">arg1</span> <span class="o">+</span> <span class="kt">int</span><span class="o">(</span><span class="n">arg2</span><span class="o">);</span>
         <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
-        <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
+<div class="section" id="functions-and-variable-scope">
+<h2>3.2. Functions and Variable Scope<a class="headerlink" href="#functions-and-variable-scope" title="Permalink to this headline">¶</a></h2>
+<p>In <a class="reference external" href="http://processing.org">Processing</a>, variable scope is defined by code blocks which are enclosed within curly brackets: <code class="docutils literal"><span class="pre">{</span> <span class="pre">}</span></code>.
+When designing functions, it&#8217;s important to understand that function input parameters and any variables declared within the function body are local variables to the function.  When a function is executed, those variables are initialized for use within the function, but when the function execution terminates, those variables are effectively destroyed, and the memory space is returned to the computer system so it is available for use by other processes.  In contrast, global variables exist for the entire life of the program execution, they aren&#8217;t destroyed until the program terminates.</p>
+<p>When designing programs and functions, it&#8217;s important to consider which variables should be global, there should be a compelling reason why any variable has global scope, <strong>most variables should be local variables</strong>.</p>
+</div>
+<div class="section" id="function-arguments">
+<h2>3.3. Function Arguments<a class="headerlink" href="#function-arguments" title="Permalink to this headline">¶</a></h2>
+<p>When designing functions, it&#8217;s helpful to think of the input parameters as being values that you&#8217;d like to have access to modify from outside the function.  Often when designing functions, as you iterate through several design steps, you may decide to add more input parameters to your function so that you have more flexibility when calling the function.  If the Processing <code class="docutils literal"><span class="pre">rect()</span></code> function only had x,y position as input parameters, then we&#8217;d be quite limited in how we could use the function.  The addition of width and height parameters gives more flexibility. There&#8217;s also another version of the <code class="docutils literal"><span class="pre">rect()</span></code> function that takes and additional parameter to specify the radius of corners so you can create rounded rectangles, this is an example of function overloading which is explained below.</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">rect</span><span class="o">(</span><span class="kt">float</span> <span class="n">x</span><span class="o">,</span> <span class="kt">float</span> <span class="n">y</span><span class="o">,</span> <span class="kt">float</span> <span class="n">width</span><span class="o">,</span> <span class="kt">float</span> <span class="n">height</span><span class="o">,</span> <span class="kt">float</span> <span class="n">radius</span><span class="o">);</span> <span class="c1">// rounded rectangle version of the rect() function</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-overloading">
+<h2>3.4. Function Overloading<a class="headerlink" href="#function-overloading" title="Permalink to this headline">¶</a></h2>
+<p>Often when designing functions, we can design multiple versions of a function, where each version of the function takes a different number or type of input parameters.  In <a class="reference external" href="http://processing.org">Processing</a> this conveniently allows for several different versions of the fill function.</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">fill</span><span class="o">(</span><span class="kt">float</span> <span class="n">grayScale</span><span class="o">);</span>   <span class="c1">//one input parameter corresponds to grayscale colors</span>
+
+<span class="n">fill</span><span class="o">(</span><span class="kt">float</span> <span class="n">redVal</span><span class="o">,</span> <span class="kt">float</span> <span class="n">greenVal</span><span class="o">,</span> <span class="kt">float</span> <span class="n">blueVal</span><span class="o">);</span>  <span class="c1">//three input parameters corresponds to RGB.</span>
+
+<span class="cm">/* Using a global state variable, set with colorMode(), allows the same fill( ) function signature</span>
+<span class="cm">create HSB colors while still using the same function definition. */</span>
+
+<span class="n">colorMode</span><span class="o">(</span><span class="n">HSB</span><span class="o">);</span>   <span class="c1">//the the colorMode function changes a global color-state variable to control how fill() behaves</span>
+
+<span class="n">fill</span><span class="o">(</span><span class="kt">float</span> <span class="n">hueVal</span><span class="o">,</span> <span class="kt">float</span> <span class="n">saturationVal</span><span class="o">,</span> <span class="kt">float</span> <span class="n">brightnessVal</span><span class="o">);</span>  <span class="c1">// now the fill color is HSB</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="hsb-color-slider-example">
-<h2>3.2. HSB Color-Slider Example<a class="headerlink" href="#hsb-color-slider-example" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="hsbSlider.html#hsbslider"><em>HSB Color-Slider Example</em></a> project creates an interactive HSB color selector to demonstrate the iterative design process for designing functions.  In order to create this UI-widget, first we need to figure out the required components. First, let&#8217;s plan to create a simple rectangle that is filled with the full HSB hue-range.  Then we&#8217;ll need to figure out how to let the user interact with it to select a color.  Then we&#8217;ll want provide a way to  use that selected color in another part of the program.</p>
-<ul class="simple">
+<h2>3.5. HSB Color-Slider Example<a class="headerlink" href="#hsb-color-slider-example" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="hsbSlider.html#hsbslider"><em>HSB Color-Slider Example</em></a> project creates an interactive HSB color selector to demonstrate the iterative design process for designing functions.  In order to create this UI-widget, first we need to figure out the required components. First, let&#8217;s plan to create a simple rectangle that is filled with the full HSB hue-range.  Then we&#8217;ll need to figure out how to let the user interact with it to select a color.  Then we&#8217;ll want provide a way to use that selected color in another part of the program.</p>
+<blockquote>
+<div><ul class="simple">
 <li><strong>Input values:</strong>  position and size of the slider widget.</li>
 <li><strong>Output values:</strong>  a hueValue that has been selected.</li>
-<li><strong>Display:</strong> some  representation of a range of hues, and indication of currently selected hue value.</li>
+<li><strong>Display:</strong> some representation of a range of hues, and indication of currently selected hue value.</li>
 <li><strong>Interactivity:</strong>  a means for the user to modify and select a hue value.</li>
 </ul>
-<p>The image below shows the widget we&#8217;ll design.  Here&#8217;s a link to the project and code: <a class="reference internal" href="hsbSlider.html#hsbslider"><em>HSB Color-Slider Example</em></a></p>
+</div></blockquote>
+<p><strong>Project and Code:</strong> <a class="reference internal" href="hsbSlider.html#hsbslider"><em>HSB Color-Slider Example</em></a></p>
+<p>The image below shows the widget we&#8217;ll design in this code project.</p>
 <img alt="_images/HSBSlider.png" src="_images/HSBSlider.png" />
 </div>
 </div>
@@ -97,7 +133,10 @@
   <ul>
 <li><a class="reference internal" href="#">3. Functions</a><ul>
 <li><a class="reference internal" href="#function-syntax">3.1. Function Syntax</a></li>
-<li><a class="reference internal" href="#hsb-color-slider-example">3.2. HSB Color-Slider Example</a></li>
+<li><a class="reference internal" href="#functions-and-variable-scope">3.2. Functions and Variable Scope</a></li>
+<li><a class="reference internal" href="#function-arguments">3.3. Function Arguments</a></li>
+<li><a class="reference internal" href="#function-overloading">3.4. Function Overloading</a></li>
+<li><a class="reference internal" href="#hsb-color-slider-example">3.5. HSB Color-Slider Example</a></li>
 </ul>
 </li>
 </ul>

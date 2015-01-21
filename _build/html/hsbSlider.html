@@ -62,10 +62,23 @@
 <li><strong>Interactivity:</strong>  a means for the user to modify and select a hue value.</li>
 </ul>
 <p>The image below shows the widget we&#8217;ll design.</p>
-<img alt="_images/HSBSlider.png" src="_images/HSBSlider.png" />
+<blockquote>
+<div><img alt="_images/HSBSlider.png" src="_images/HSBSlider.png" />
+</div></blockquote>
+</div>
+<div class="section" id="hsb-colormode">
+<h2>4.2. HSB ColorMode<a class="headerlink" href="#hsb-colormode" title="Permalink to this headline">¶</a></h2>
+<p>HSB Color works well for a color picker because it allows for a full color spectrum to be represented by making incremental changes to a single color variable.  In <a href="#id2"><span class="problematic" id="id3">`Processing`_</span></a>, we can use the <code class="docutils literal"><span class="pre">ColorMode(HSB)</span></code> function so that the <code class="docutils literal"><span class="pre">fill()</span></code> and <code class="docutils literal"><span class="pre">stroke()</span></code> functions can use the HSB color values instead of the default RGB color values.  Whereas when using the <code class="docutils literal"><span class="pre">fill(</span> <span class="pre">redVal,</span> <span class="pre">greenVal,</span> <span class="pre">blueVal</span> <span class="pre">)</span></code>, the input values specify red, green, and blue color components.  With HSB, the 3 input parameters for <code class="docutils literal"><span class="pre">fill(hueVal,</span> <span class="pre">saturationVal,</span> <span class="pre">brightnessVal)</span></code>  specify hue, saturation and brightness values.
+For the HSB slider, we&#8217;ll keep the saturation and brightness fixed at the maximum values of 255, so the only value that changes for this widget is the hue value, which will range from 0-255. The image below shows that the top surface of the HSB color-space cone represents values where the Brightness value is maximum.  The top surface of the cone represents a color wheel with saturation varying from 0 at the middle of the cone to a maximum saturation at the outer perimeter of the wheel.  At the outer perimeter, the saturation and brightness are at the maximum values, the hue varies in values from 0 to 360 degrees.  So, the minimum value of hue = the maximum value of hue = Red.  Our color slider (above) also shows that red is at the maximum and minimum values.  The circular values for hue range from 0 to 360 degrees.  We will use the <a href="#id4"><span class="problematic" id="id5">`Processing`_</span></a> convention of having color values that range from 0 - 255, which corresponds to 8 bits of color information for each color value.  So, our function will need to do a translation between the min-max range of hue values (0-360) so that it maps to the min-max range of 8-bit color values (0-255).  This will insure that the full range of colors is represented in our slider&#8217;s hue-spectrum rectangle.</p>
+<blockquote>
+<div><div class="figure" id="id1">
+<img alt="_images/HSB_Cone.png" src="_images/HSB_Cone.png" />
+<p class="caption"><span class="caption-text">Image from:  <a class="reference external" href="http://www.tomjewett.com/colors/hsb.html">TomJewett.com</a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="function-declaration">
-<h2>4.2. Function Declaration<a class="headerlink" href="#function-declaration" title="Permalink to this headline">¶</a></h2>
+<h2>4.3. Function Declaration<a class="headerlink" href="#function-declaration" title="Permalink to this headline">¶</a></h2>
 <p>Because this will be an interactive widget, then we&#8217;ll need to use the processing <code class="docutils literal"><span class="pre">draw()</span></code> loop.  We&#8217;ll also start with the <code class="docutils literal"><span class="pre">setup()</span></code> function so we can set the canvas size.  We also know that we&#8217;re going to create a function that displays an HSB Slider so we can create the declaration that function using the information we identified above:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
 <span class="n">size</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span><span class="mi">100</span><span class="o">);</span>
@@ -81,14 +94,48 @@
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>So, now to think about what code we will write in the function. The things we need to do in the function are:</p>
+</div>
+<div class="section" id="function-design-step-1">
+<h2>4.4. Function Design - Step 1<a class="headerlink" href="#function-design-step-1" title="Permalink to this headline">¶</a></h2>
+<p>So, now we need to think about what code we will write inside of the function. The things we need to do in the function are:</p>
 <ul class="simple">
 <li>Draw an HSB hue gradient inside a rectangle to show available colors for selection.</li>
-<li>Draw another rectangle to show the selected color</li>
-<li>Draw an indicator rectangle that slides along the slider to modify the color</li>
-<li>Write code to allow changing values when the user drag the slider indicator</li>
+<li>Draw another small rectangle to show the selected color.</li>
+<li>Draw an indicator rectangle that slides along the slider to modify the color.</li>
+<li>Write code to allow changing values when the user drag the slider indicator.</li>
 </ul>
-<p>HSB Color works well for a color picker because it allows for a full color spectrum to be represented by making incremental changes to a single color variable.  In Processing, we can use the <code class="docutils literal"><span class="pre">ColorMode(HSB)</span></code> function so that the <code class="docutils literal"><span class="pre">fill()</span></code> and <code class="docutils literal"><span class="pre">stroke()</span></code> functions can use the HSB color values instead of the default RGB color values.  Whereas when using the <code class="docutils literal"><span class="pre">fill(</span> <span class="pre">redVal,</span> <span class="pre">greenVal,</span> <span class="pre">blueVal</span> <span class="pre">)</span></code>, the input values which range from 0-255 specify red, green, and blue color components.  With HSB, the 3 input parameters for <code class="docutils literal"><span class="pre">fill(hueVal,</span> <span class="pre">saturationVal,</span> <span class="pre">brightnessVal)</span></code>  specify hue, saturation and brightness values.</p>
+</div>
+<div class="section" id="hue-spectrum-rectangle">
+<h2>4.5. Hue Spectrum Rectangle<a class="headerlink" href="#hue-spectrum-rectangle" title="Permalink to this headline">¶</a></h2>
+<p>The first thing to do is to draw a basic rectangle using our function&#8217;s input values.  Then we need to figure out how to create a RoyGBiv rainbow spectrum inside the rectangle that corresponds to the full range of hue values from 0-255. One idea is that we could fill the rectangle with points of color, where we vary the hue value of each point along the x and y values of the rectangle.  However, for our needs, we can actually use lines since we don&#8217;t need to vary the color along the y-axis, all points in the rectangle that have the same y value will have the same hue value.  So, to color lines, we need to use the <code class="docutils literal"><span class="pre">stroke()</span></code> function in <a href="#id6"><span class="problematic" id="id7">`Processing`_</span></a>. We&#8217;ll want to use a loop, and for each value of x in the rectangle, we&#8217;ll want to vary the hue value.  We can do that with a for loop, where each value of i corresponds to a 1 pixel increment in the x direction. If our rectangle was 255 pixels wide, each pixel would represent 1 possible hue value. That code would be something like this:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">colorMode</span><span class="o">(</span><span class="n">HSB</span><span class="o">);</span>   <span class="c1">//set the colors to HSB</span>
+
+<span class="k">for</span><span class="o">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">255</span> <span class="o">;</span> <span class="n">i</span> <span class="o">++</span> <span class="o">){</span>
+
+        <span class="n">stroke</span><span class="o">(</span> <span class="n">i</span> <span class="o">,</span> <span class="mi">255</span><span class="o">,</span> <span class="mi">255</span> <span class="o">)</span>  <span class="c1">// i is hue value, 255 is max value for saturation and brightness</span>
+
+        <span class="n">line</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">yPos</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">yPos</span> <span class="o">+</span> <span class="n">sHeight</span> <span class="o">)</span>  <span class="c1">// the line is vertical at x=i, y values are yPos, and yPos+ sHeight</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This would work fine if we always wanted to have our slider have a width of 255 pixels, however we&#8217;d like to give ourselves more flexibility so that we can create sliders of any width, based on the input value sWidth of our function parameters.  We basically need to determine the fractional value of color that each pixel-width line will correspond to. We could write a separate function to do that calculation like below</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="nf">hueFraction</span><span class="o">(</span> <span class="kt">float</span> <span class="n">xPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sWidth</span><span class="o">){</span>
+
+        <span class="k">return</span> <span class="o">(</span> <span class="n">xPos</span> <span class="o">)*</span> <span class="o">(</span> <span class="mi">255</span> <span class="o">/</span> <span class="n">sWidth</span> <span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then we could use in the following manner:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">255</span> <span class="o">;</span> <span class="n">i</span> <span class="o">++</span> <span class="o">){</span>
+
+        <span class="kt">float</span> <span class="n">hueVal</span> <span class="o">=</span> <span class="n">hueFraction</span><span class="o">(</span> <span class="n">i</span><span class="o">,</span> <span class="n">sWidth</span><span class="o">)</span> <span class="c1">// values in the range of 0-255 for any width slider</span>
+        <span class="n">stroke</span><span class="o">(</span> <span class="n">hueVal</span> <span class="o">,</span> <span class="mi">255</span><span class="o">,</span> <span class="mi">255</span> <span class="o">)</span>  <span class="c1">// i is hue value, 255 is max value for saturation and brightness</span>
+        <span class="n">line</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">yPos</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">yPos</span> <span class="o">+</span> <span class="n">sHeight</span> <span class="o">)</span>  <span class="c1">// the line is vertical at x=i, y values are yPos, and yPos+ sHeight</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
 <div class="highlight-Java"><div class="highlight"><pre><span class="cm">/*Program to create an interactive HSB color picker*/</span>
 
 <span class="c1">//global values</span>
@@ -170,7 +217,10 @@
   <ul>
 <li><a class="reference internal" href="#">4. HSB Color-Slider Example</a><ul>
 <li><a class="reference internal" href="#overview">4.1. Overview</a></li>
-<li><a class="reference internal" href="#function-declaration">4.2. Function Declaration</a></li>
+<li><a class="reference internal" href="#hsb-colormode">4.2. HSB ColorMode</a></li>
+<li><a class="reference internal" href="#function-declaration">4.3. Function Declaration</a></li>
+<li><a class="reference internal" href="#function-design-step-1">4.4. Function Design - Step 1</a></li>
+<li><a class="reference internal" href="#hue-spectrum-rectangle">4.5. Hue Spectrum Rectangle</a></li>
 </ul>
 </li>
 </ul>
