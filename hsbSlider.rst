@@ -24,8 +24,11 @@ The image below shows the widget we'll design.
 HSB ColorMode
 ===============
 
-HSB Color works well for a color picker because it allows for a full color spectrum to be represented by making incremental changes to a single color variable.  In `Processing`_, we can use the ``ColorMode(HSB)`` function so that the ``fill()`` and ``stroke()`` functions can use the HSB color values instead of the default RGB color values.  Whereas when using the ``fill( redVal, greenVal, blueVal )``, the input values specify red, green, and blue color components.  With HSB, the 3 input parameters for ``fill(hueVal, saturationVal, brightnessVal)``  specify hue, saturation and brightness values.  
-For the HSB slider, we'll keep the saturation and brightness fixed at the maximum values of 255, so the only value that changes for this widget is the hue value, which will range from 0-255. The image below shows that the top surface of the HSB color-space cone represents values where the Brightness value is maximum.  The top surface of the cone represents a color wheel with saturation varying from 0 at the middle of the cone to a maximum saturation at the outer perimeter of the wheel.  At the outer perimeter, the saturation and brightness are at the maximum values, the hue varies in values from 0 to 360 degrees.  So, the minimum value of hue = the maximum value of hue = Red.  Our color slider (above) also shows that red is at the maximum and minimum values.  The circular values for hue range from 0 to 360 degrees.  We will use the `Processing`_ convention of having color values that range from 0 - 255, which corresponds to 8 bits of color information for each color value.  So, our function will need to do a translation between the min-max range of hue values (0-360) so that it maps to the min-max range of 8-bit color values (0-255).  This will insure that the full range of colors is represented in our slider's hue-spectrum rectangle.
+	HSB Color works well for a color picker because it allows for a full color spectrum to be represented by making incremental changes to a single color variable.  In `Processing`_, we can use the ``ColorMode(HSB)`` function so that the ``fill()`` and ``stroke()`` functions can use the HSB color values instead of the default RGB color values.  Whereas when using the ``fill(float redVal,float greenVal,float blueVal )``, the input values specify red, green, and blue color components.  With HSB, the 3 input parameters for ``fill(float hueVal,float saturationVal, float brightnessVal)``  specify hue, saturation and brightness values. 
+ 
+	For the HSB slider, we'll keep the saturation and brightness fixed at the maximum values of 255, so the only value that changes for this widget is the hue value, which will range from 0-255. The image below shows that the top surface of the HSB color-space cone represents values where the Brightness value is maximum.  The top surface of the cone represents a color wheel with saturation varying from 0 at the middle of the cone to a maximum saturation at the outer perimeter of the wheel.  At the outer perimeter, the saturation and brightness are at the maximum values, the hue varies in values from 0 to 360 degrees.  So, the minimum value of hue = the maximum value of hue = Red.  
+	
+	Our color slider (above) also shows that red occurs at the both the maximum and minimum values.  Although the circular values for hue range from 0 to 360 degrees, we will use the `Processing`_ convention of having color values that range from 0 - 255, which corresponds to 8 bits of color information for each color input parameter.  We will have to insure that our slider shows the full range of hue values, so we'll need to transform the 0-255 values to fit within the width of our rectangular slider ``sWidth`` dimensions.
 
 	.. figure:: /images/HSB_Cone.png
 
@@ -77,24 +80,35 @@ The first thing to do is to draw a basic rectangle using our function's input va
 		
 	}
 
-This would work fine if we always wanted to have our slider have a width of 255 pixels, however we'd like to give ourselves more flexibility so that we can create sliders of any width, based on the input value sWidth of our function parameters.  We basically need to determine the fractional value of color that each pixel-width line will correspond to. We could write a separate function to do that calculation like below ::
+This would work fine if we always wanted to have our slider have a width of 255 pixels, however we'd like to give ourselves more flexibility so that we can create sliders of any width, based on the input value sWidth of our function parameters.  We basically need to determine the fractional position for each location and multiply that by the max hue value of 255. We could write a separate function to do that calculation like below ::
 
-	float hueFraction( float xPos, float sWidth){
+	float hueMapping( int i, float sWidth ){  // i is the current value of 'i' in the for loop 
 		
-		return ( xPos )* ( 255 / sWidth );  
+		return ( i / sWidth ) *  255 ;  // will return values in range of 0.0 - 255.0
 	}
 
 
-Then we could use in the following manner::
+Then we could use in the following manner in the for-loop of our function ::
 
 	for( int i = 0; i <= 255 ; i ++ ){
 		
-		float hueVal = hueFraction( i, sWidth) // values in the range of 0-255 for any width slider
+		float hueVal = hueMapping( i, sWidth) // values in the range of 0-255 for any width slider
+		
 		stroke( hueVal , 255, 255 )  // i is hue value, 255 is max value for saturation and brightness
+		
 		line(i, yPos, i, yPos + sHeight )  // the line is vertical at x=i, y values are yPos, and yPos+ sHeight
 		
 	}
+	
+This type of calculation is a mapping between 2 value ranges, we have a *current* range of 0-sWidth of the rectangle and we need to map that to the *target* range of hue values which is 0-255.  This is such a common type of calculation that `Processing`_ provides us with a function to do this called:  ``map()`` with the function signature:  ``map(value, start1, stop1, start2, stop2)`` The map_ function takes 5 values:  the first parameter is the actual value you're trying to determine the mapping for and the other 4 parameters are the min-max values for the 2 different numeric ranges which are the *current* and *target* ranges; the return value is the answer for your conversion calculation, so in our case we'd use::
 
+	float hueVal = map( i, 0 , sWidth , 0 , 255 );  //current range is the 0-sWidth, target range is 0-255 possible hueValues
+	
+So we can change our conversion function 
 
 
 .. literalinclude:: /codeExamples/HSBSlider/HSBSlider.pde
+
+.. _Processing:  http://www.processing.org
+
+.. _map: https://processing.org/reference/map_.html
