@@ -144,71 +144,45 @@
 </pre></div>
 </div>
 <p>So we can change our conversion function</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="cm">/*Program to create an interactive HSB color picker*/</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//global values</span>
 
-<span class="c1">//global values</span>
-<span class="kt">float</span> <span class="n">_barWidth</span><span class="o">=</span><span class="mf">300.0</span><span class="o">;</span>
+<span class="kt">float</span> <span class="n">_barWidth</span><span class="o">=</span><span class="mf">300.0</span><span class="o">;</span>    <span class="c1">//slider-bar width;</span>
 <span class="kt">float</span> <span class="n">_sliderPos</span><span class="o">=</span><span class="mf">100.0</span><span class="o">;</span>  <span class="c1">//initial slider position</span>
-<span class="kt">float</span> <span class="n">_hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">_sliderPos</span><span class="o">,</span><span class="n">_barWidth</span><span class="o">);</span>  <span class="c1">//initial hueValue</span>
- 
+<span class="kt">float</span> <span class="n">_hueVal</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">_sliderPos</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">_barWidth</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">);;</span>  <span class="c1">//initial hueValue</span>
+  
+
 <span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
   <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
   <span class="n">size</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span><span class="mi">300</span><span class="o">);</span>
   <span class="n">colorMode</span><span class="o">(</span><span class="n">HSB</span><span class="o">);</span>
   <span class="n">stroke</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
-  <span class="n">println</span><span class="o">(</span><span class="n">_hueVal</span><span class="o">);</span>
 <span class="o">}</span>
 
 <span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
   <span class="n">_hueVal</span><span class="o">=</span> <span class="n">drawSlider</span><span class="o">(</span><span class="mf">20.0</span><span class="o">,</span><span class="mf">20.0</span><span class="o">,</span><span class="n">_barWidth</span><span class="o">,</span><span class="mf">30.0</span><span class="o">,</span><span class="n">_hueVal</span><span class="o">);</span>
 <span class="o">}</span>
 
-<span class="cm">/* Function that draws an interactive HSB color-slider bar. </span>
-<span class="cm">Input is the current value of selected hue.  </span>
-<span class="cm">Return value is the updated value of the selected hue</span>
-<span class="cm">*/</span>
-<span class="kt">float</span> <span class="nf">drawSlider</span><span class="o">(</span><span class="kt">float</span> <span class="n">xPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">bWidth</span><span class="o">,</span> <span class="kt">float</span> <span class="n">bHeight</span><span class="o">,</span><span class="kt">float</span> <span class="n">hueVal</span><span class="o">){</span>
+<span class="kt">float</span> <span class="nf">drawSlider</span><span class="o">(</span><span class="kt">float</span> <span class="n">xPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sWidth</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sHeight</span><span class="o">,</span><span class="kt">float</span> <span class="n">hueVal</span><span class="o">){</span>
   <span class="n">fill</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
   <span class="n">noStroke</span><span class="o">();</span>
-  <span class="n">rect</span><span class="o">(</span><span class="n">xPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">10</span><span class="o">,</span><span class="n">bWidth</span><span class="o">+</span><span class="mi">10</span><span class="o">,</span><span class="n">bHeight</span><span class="o">+</span><span class="mi">20</span><span class="o">);</span>  <span class="c1">//draw white background behind slider</span>
-  <span class="kt">float</span> <span class="n">sliderPos</span><span class="o">=</span><span class="n">getSliderPos</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>  <span class="c1">//find the current sliderPosition from hueVal</span>
+  <span class="n">rect</span><span class="o">(</span><span class="n">xPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">10</span><span class="o">,</span><span class="n">sWidth</span><span class="o">+</span><span class="mi">10</span><span class="o">,</span><span class="n">sHeight</span><span class="o">+</span><span class="mi">20</span><span class="o">);</span>  <span class="c1">//draw white background behind slider</span>
   
-  <span class="c1">//Create Slider background by getting sliderVal for each x position in the slider</span>
-  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">bWidth</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  <span class="c1">//draw 1 line for each hueValue from 0-255</span>
-      <span class="n">hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>  <span class="c1">//get hueVal for each position in the bar</span>
+  <span class="kt">float</span> <span class="n">sliderPos</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sWidth</span><span class="o">);</span> <span class="c1">//find the current sliderPosition from hueVal</span>
+  
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">sWidth</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>  <span class="c1">//draw 1 line for each hueValue from 0-255</span>
+      <span class="n">hueVal</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sWidth</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">);</span>  <span class="c1">//get hueVal for each position in the bar</span>
       <span class="n">stroke</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">);</span>
-      <span class="n">line</span><span class="o">(</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">,</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">+</span><span class="n">bHeight</span><span class="o">);</span>
+      <span class="n">line</span><span class="o">(</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">,</span><span class="n">xPos</span><span class="o">+</span><span class="n">i</span><span class="o">,</span><span class="n">yPos</span><span class="o">+</span><span class="n">sHeight</span><span class="o">);</span>
   <span class="o">}</span>
-  <span class="c1">//if the user is moving the slider, determine the new sliderPos</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">mousePressed</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&gt;</span><span class="n">xPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&lt;(</span><span class="n">xPos</span><span class="o">+</span><span class="n">bWidth</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span><span class="o">&gt;</span><span class="n">yPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span> <span class="o">&lt;</span><span class="n">yPos</span><span class="o">+</span><span class="n">bHeight</span><span class="o">){</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">mousePressed</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&gt;</span><span class="n">xPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span><span class="o">&lt;(</span><span class="n">xPos</span><span class="o">+</span><span class="n">sWidth</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span><span class="o">&gt;</span><span class="n">yPos</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span> <span class="o">&lt;</span><span class="n">yPos</span><span class="o">+</span><span class="n">sHeight</span><span class="o">){</span>
      <span class="n">sliderPos</span><span class="o">=</span><span class="n">mouseX</span><span class="o">-</span><span class="n">xPos</span><span class="o">;</span>
   <span class="o">}</span>
-  <span class="c1">//determine the color of the slider indicator at the current slider position </span>
   <span class="n">stroke</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-  <span class="n">hueVal</span><span class="o">=</span><span class="n">getHSBVal</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">,</span><span class="n">bWidth</span><span class="o">);</span>
+  <span class="n">hueVal</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sWidth</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">);</span>
   <span class="n">fill</span><span class="o">(</span><span class="n">hueVal</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">);</span>
-  <span class="n">rect</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">+</span><span class="n">xPos</span><span class="o">-</span><span class="mi">3</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="n">bHeight</span><span class="o">+</span><span class="mi">10</span><span class="o">);</span>
-  <span class="n">rect</span><span class="o">(</span><span class="n">bWidth</span><span class="o">+</span><span class="mi">40</span><span class="o">,</span> <span class="n">yPos</span><span class="o">,</span> <span class="n">bHeight</span><span class="o">,</span><span class="n">bHeight</span><span class="o">);</span>
+  <span class="n">rect</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">+</span><span class="n">xPos</span><span class="o">-</span><span class="mi">3</span><span class="o">,</span><span class="n">yPos</span><span class="o">-</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="n">sHeight</span><span class="o">+</span><span class="mi">10</span><span class="o">);</span>
+  <span class="n">rect</span><span class="o">(</span><span class="n">sWidth</span><span class="o">+</span><span class="mi">40</span><span class="o">,</span> <span class="n">yPos</span><span class="o">,</span> <span class="n">sHeight</span><span class="o">,</span><span class="n">sHeight</span><span class="o">);</span>
   <span class="k">return</span> <span class="n">hueVal</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="cm">/* function to map slider position to determine HSB value</span>
-<span class="cm">sliderPos: current value of the slider</span>
-<span class="cm">sliderWidth: width of slider bar</span>
-<span class="cm">*/</span>
-<span class="kt">float</span> <span class="nf">getHSBVal</span><span class="o">(</span><span class="kt">float</span> <span class="n">sliderPos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sliderWidth</span><span class="o">){</span>
-  <span class="kt">float</span> <span class="n">val</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">sliderPos</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sliderWidth</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">);</span>
-  <span class="k">return</span> <span class="n">val</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="cm">/* function to map slider HSB value to determine slider position</span>
-<span class="cm">sliderPos: current value of the slider</span>
-<span class="cm">sliderWidth: width of slider bar</span>
-<span class="cm">*/</span>
-<span class="kt">float</span> <span class="nf">getSliderPos</span><span class="o">(</span><span class="kt">float</span> <span class="n">val</span><span class="o">,</span> <span class="kt">float</span> <span class="n">sliderWidth</span><span class="o">){</span>
-  <span class="kt">float</span> <span class="n">sliderPos</span><span class="o">=</span><span class="mf">0.0</span><span class="o">;</span>
-  <span class="n">sliderPos</span><span class="o">=</span><span class="n">map</span><span class="o">(</span><span class="n">val</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="mf">255.0</span><span class="o">,</span><span class="mf">0.0</span><span class="o">,</span><span class="n">sliderWidth</span><span class="o">);</span>
-  <span class="k">return</span> <span class="n">sliderPos</span><span class="o">;</span>
 <span class="o">}</span>
 </pre></div>
 </div>

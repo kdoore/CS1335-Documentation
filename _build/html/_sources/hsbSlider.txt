@@ -107,7 +107,7 @@ This type of calculation is a mapping between 2 value ranges, we have a *current
 So we can change our conversion function 
 
 
-.. literalinclude:: /codeExamples/HSBSlider/HSBSlider.pde
+.. literalinclude:: /codeExamples/HSBSlider/HSBSlider2.pde
 
 .. _Processing:  http://www.processing.org
 
