@@ -1,10 +1,8 @@
 //global values
 
 float _barWidth=300.0;    //slider-bar width;
-float _sliderPos=100.0;  //initial slider position
-float _hueVal=map(_sliderPos,0.0,_barWidth,0.0,255.0);;  //initial hueValue
+float _hueVal=_barWidth/2;  //initial hueValue
   
-
 void setup(){
   background(255);
   size(400,300);

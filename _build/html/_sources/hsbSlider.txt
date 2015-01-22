@@ -65,8 +65,8 @@ So, now we need to think about what code we will write inside of the function. T
 
 - Write code to allow changing values when the user drag the slider indicator.
 
-Hue Spectrum Rectangle
-========================
+Hue Spectrum- Rectangle
+=======================
 
 The first thing to do is to draw a basic rectangle using our function's input values.  Then we need to figure out how to create a RoyGBiv rainbow spectrum inside the rectangle that corresponds to the full range of hue values from 0-255. One idea is that we could fill the rectangle with points of color, where we vary the hue value of each point along the x and y values of the rectangle.  However, for our needs, we can actually use lines since we don't need to vary the color along the y-axis, all points in the rectangle that have the same y value will have the same hue value.  So, to color lines, we need to use the ``stroke()`` function in `Processing`_. We'll want to use a loop, and for each value of x in the rectangle, we'll want to vary the hue value.  We can do that with a for loop, where each value of i corresponds to a 1 pixel increment in the x direction. If our rectangle was 255 pixels wide, each pixel would represent 1 possible hue value. That code would be something like this::
 
@@ -99,15 +99,59 @@ Then we could use in the following manner in the for-loop of our function ::
 		line(i, yPos, i, yPos + sHeight )  // the line is vertical at x=i, y values are yPos, and yPos+ sHeight
 		
 	}
+
+Map() Function
+===============
 	
 This type of calculation is a mapping between 2 value ranges, we have a *current* range of 0-sWidth of the rectangle and we need to map that to the *target* range of hue values which is 0-255.  This is such a common type of calculation that `Processing`_ provides us with a function to do this called:  ``map()`` with the function signature:  ``map(value, start1, stop1, start2, stop2)`` The map_ function takes 5 values:  the first parameter is the actual value you're trying to determine the mapping for and the other 4 parameters are the min-max values for the 2 different numeric ranges which are the *current* and *target* ranges; the return value is the answer for your conversion calculation, so in our case we'd use::
 
-	float hueVal = map( i, 0 , sWidth , 0 , 255 );  //current range is the 0-sWidth, target range is 0-255 possible hueValues
+	float hueVal = map( i, 0.0 , sWidth , 0.0 , 255.0 );  //current range is the 0-sWidth, target range is 0-255 possible hueValues
 	
-So we can change our conversion function 
+So we can actually just use the map function, no need to create our own function mapping function. The benefit of using a separate function for such a calculation is that we can test code to make sure it's working correctly.  
 
+Inline Calculation with Integer Values
+----------------------------------------
 
-.. literalinclude:: /codeExamples/HSBSlider/HSBSlider2.pde
+If we had simply done the conversion as an inline mathematical operation, it might be difficult to track down any math errors such as truncation issues since we had declared our sWidth to be an int variable type ::
+
+	float hueVal= ( i / sWidth ) * 255;  // hueVal=0.0  division with integers i and sWidth causes truncation
+ 
+Therefore, let's change our function signature so that the input variables are all floats, just to insure any division operations using these values results in a correct value.  So, now we should modify our drawSlider function as below::
+
+	float drawSlider( float xPos, float yPos, float sWidth, float sHeight )  //new function signature using floats for input params
+	
+Interactivity
+=================
+We have decided to provide a narrow rectangle to represent the interactive component of the slider, so we need to create this rectangle and set it's fill color to the currently selected hueValue.  Then we'll need to use a conditional statement to determine when the user is moving the slider so that we can change the hueValue.  The code below tests to see if a users mouse is within the rainbow filled rectangle and if the mouse is pressed, if this is true, then we need to store the x-location of the mouse within the rainbow filled rectangle. We will use the variable sliderPos to store the position of the pressed-mouse, and we need to subtract the rectangle's xPos so that we're recording the location within the rectangle, not the mouseX position relative to the overall canvas as seen in the image below this code example::
+	
+	
+	if(mousePressed && mouseX>xPos && mouseX<(xPos+sWidth) && mouseY>yPos && mouseY <yPos+sHeight){
+     		sliderPos=mouseX-xPos;
+  	}
+
+.. image:: /images/sliderPos.png
+
+Global Variables
+=================
+
+The ``sliderPos`` variable is used to capture the current location of the slider due to the user's interactivity, but we need to keep track of this value between each function call, so we know where to position the slider, and what the current selected hueValue is.  These 2 variables are related to each other as discussed above when using the ``map()`` function.  We have determined that we need access to the hueValue in the draw loop so we can use it to set color for other items that the user draws, but we really don't have a need for this ``sliderPos`` value outside of this function, therefore, it should be a local value to this function, it has no meaning outside of this function.  However, the _hueValue variable should be a global variable because it will be an input to our function as well as an output value from our function, yet if we created and initialized it as a local variable for the draw loop then it would be re-initialized each time the draw loop code was executed.  We'll name the global variable using an underscore at the beginning of the word so we can distinguish it from the hueValue that we're modifying within the drawSlider function itself. The sliderPos value will be created and initialized using the map() function each time our function executes, based on the current global _hueValue, it will only change if the user drags the slider.
+
+Finally, the last bit of code for this slider is that we want to draw a white rectangle behind our slider, so our animation doesn't have 'trails'.  We don't want to use a background(255) in the actual draw loop because we want to allow the user to be creating drawings when dragging the mouse. Below is the final code for this slider.  
+	
+Final Version of Code
+======================
+
+.. literalinclude:: /codeExamples/HSBSlider/HSBSlider/HSBSlider.pde
+
+Questions
+==========
+
+	1.  Can you create a Saturation Slider to let the user change the HSB saturation value.
+	2.  Can you create a Brightness Slider?
+	3.  Can you create an Alpha Slider?
+	4.  What representations can you use so the user understands how interaction with these sliders changes their selected color?
+	5.  Can you create a small random variation in these values so when the user draws artwork, the colors show very slight random variation?
+	6.  How can you incorporate these sliders into a drawing program so the user can create interesting artwork?
 
 .. _Processing:  http://www.processing.org
 
