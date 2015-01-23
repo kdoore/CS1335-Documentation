@@ -20,11 +20,6 @@ Listed below are links to some excellent online tutorials and blogs that focus o
 -----------------------------------------------------------------
 
 	This blog provides a very good overview of the problem-solving approach to designing a basic Pong game using `Processing`_. This tutorial uses functional decomposition rather than an object oriented approach so this tutorial can help students understand basic function design including basic collision detection.
-	
-`Mike Kamermans`_  Let's Make Some Games
------------------------------------------
- 	
-	This excellent set of tutorials starts with a simple object oriented game tutorial using processing and then progresses to a set of tutorials to create a Mario game.  The tutorials include embedded live versions of each tutorial component which makes it easier to understand each step of the project design and programming.  The author also has an extensive github repository of processing project tutorials explaining mathematics of curve drawing algorithms.
 
 `Cate Huston`_ Let's Make a Simplified Game of Pacman. 
 ---------------------------------------------------------

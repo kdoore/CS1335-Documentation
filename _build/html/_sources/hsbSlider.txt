@@ -92,9 +92,9 @@ Then we could use in the following manner in the for-loop of our function ::
 
 	for( int i = 0; i <= 255 ; i ++ ){
 		
-		float hueVal = hueMapping( i, sWidth) // values in the range of 0-255 for any width slider
+		float hueValue = hueMapping( i, sWidth) // local variable within for loop: values in the range of 0-255  
 		
-		stroke( hueVal , 255, 255 )  // i is hue value, 255 is max value for saturation and brightness
+		stroke( hueValue , 255, 255 )  // i is hue value, 255 is max value for saturation and brightness
 		
 		line(i, yPos, i, yPos + sHeight )  // the line is vertical at x=i, y values are yPos, and yPos+ sHeight
 		
@@ -105,7 +105,7 @@ Map() Function
 	
 This type of calculation is a mapping between 2 value ranges, we have a *current* range of 0-sWidth of the rectangle and we need to map that to the *target* range of hue values which is 0-255.  This is such a common type of calculation that `Processing`_ provides us with a function to do this called:  ``map()`` with the function signature:  ``map(value, start1, stop1, start2, stop2)`` The map_ function takes 5 values:  the first parameter is the actual value you're trying to determine the mapping for and the other 4 parameters are the min-max values for the 2 different numeric ranges which are the *current* and *target* ranges; the return value is the answer for your conversion calculation, so in our case we'd use::
 
-	float hueVal = map( i, 0.0 , sWidth , 0.0 , 255.0 );  //current range is the 0-sWidth, target range is 0-255 possible hueValues
+	float hueValue = map( i, 0.0 , sWidth , 0.0 , 255.0 );  //current range is the 0-sWidth, target range is 0-255 possible hueValues
 	
 So we can actually just use the map function, no need to create our own function mapping function. The benefit of using a separate function for such a calculation is that we can test code to make sure it's working correctly.  
 
@@ -114,7 +114,7 @@ Inline Calculation with Integer Values
 
 If we had simply done the conversion as an inline mathematical operation, it might be difficult to track down any math errors such as truncation issues since we had declared our sWidth to be an int variable type ::
 
-	float hueVal= ( i / sWidth ) * 255;  // hueVal=0.0  division with integers i and sWidth causes truncation
+	float hueValue= ( i / sWidth ) * 255;  // hueVal=0.0  division with integers i and sWidth causes truncation
  
 Therefore, let's change our function signature so that the input variables are all floats, just to insure any division operations using these values results in a correct value.  So, now we should modify our drawSlider function as below::
 
@@ -126,7 +126,7 @@ We have decided to provide a narrow rectangle to represent the interactive compo
 	
 	
 	if(mousePressed && mouseX>xPos && mouseX<(xPos+sWidth) && mouseY>yPos && mouseY <yPos+sHeight){
-     		sliderPos=mouseX-xPos;
+     		sliderPos=mouseX-xPos;  //only change sliderPos if the user is within the slider area
   	}
 
 .. image:: /images/sliderPos.png
@@ -145,7 +145,7 @@ So, we need to modify our function so that we're passing hueValue in as a parame
 		return hueVal;
 	}
 
-Finally, the last bit of code for this slider is that we want to draw a white rectangle behind our slider, so our animation doesn't have 'trails'.  We don't want to use a background(255) in the actual draw loop because we want to allow the user to be creating drawings when dragging the mouse. Below is the final code for this slider.  
+Finally, the last bit of code for this slider is that we want to draw a white rectangle behind our slider, so our animation doesn't have 'trails'.  We don't want to use a background(255) in the actual draw loop because we want to allow the user to be creating drawings when dragging the mouse. Below is the final code for this slider.  We also have put a ``fill()`` and ``rect()`` functions in the draw loop to verify that shapes drawn in our app are being updated as the slider is moved.
 	
 Final Version of Code
 ======================
