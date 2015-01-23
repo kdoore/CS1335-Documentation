@@ -150,7 +150,7 @@ Finally, the last bit of code for this slider is that we want to draw a white re
 Final Version of Code
 ======================
 
-.. literalinclude:: /codeExamples/HSBSlider/HSBSlider/HSBSlider.pde
+.. literalinclude:: /codeExamples/HSBSlider/HSBSlider2/HSBSlider2.pde
 
 Questions
 ==========
