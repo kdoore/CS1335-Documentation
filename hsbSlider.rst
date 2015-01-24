@@ -114,7 +114,7 @@ Inline Calculation with Integer Values
 
 If we had simply done the conversion as an inline mathematical operation, it might be difficult to track down any math errors such as truncation issues since we had declared our sWidth to be an int variable type ::
 
-	float hueValue= ( i / sWidth ) * 255;  // hueVal=0.0  division with integers i and sWidth causes truncation
+	float hueValue= ( i / sWidth ) * 255;  // hueValue=0.0  division with integers i and sWidth causes truncation
  
 Therefore, let's change our function signature so that the input variables are all floats, just to insure any division operations using these values results in a correct value.  So, now we should modify our drawSlider function as below::
 
@@ -127,6 +127,7 @@ We have decided to provide a narrow rectangle to represent the interactive compo
 	
 	if(mousePressed && mouseX>xPos && mouseX<(xPos+sWidth) && mouseY>yPos && mouseY <yPos+sHeight){
      		sliderPos=mouseX-xPos;  //only change sliderPos if the user is within the slider area
+			hueVal=map(sliderPos,0.0,sWidth,0.0,255.0);  // get new hueVal based on moved slider
   	}
 
 .. image:: /images/sliderPos.png
