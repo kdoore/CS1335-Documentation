@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Button States &mdash; CS1335 Documentation</title>
+    <title>5. Button States &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,7 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS1335 Documentation" href="index.html" /> 
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="6. Game Programming" href="game-design.html" />
+    <link rel="prev" title="4. HSB Color-Slider Example" href="hsbSlider.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -33,6 +35,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="game-design.html" title="6. Game Programming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hsbSlider.html" title="4. HSB Color-Slider Example"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -43,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="button-states">
-<span id="buttons"></span><h1>Button States<a class="headerlink" href="#button-states" title="Permalink to this headline">¶</a></h1>
+<span id="buttons"></span><h1>5. Button States<a class="headerlink" href="#button-states" title="Permalink to this headline">¶</a></h1>
 <p>In this project, we&#8217;ll look at button states like hover, pressed, and clicked, as well as how buttons can be used to provide users with control over states of other elements of our programs.</p>
 <p>In the code below, we create a very simple program with 2 rectangles:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span>
@@ -78,78 +86,7 @@
 </pre></div>
 </div>
 <p>The switch statement provides a variation on the conditional branching structure, we could use if(), else(), but for some situations, switch provides a cleaner, simpler structure.</p>
-<p>Here is code for a button that shows hover states and switches the color of a rectangle:</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">rectState</span><span class="o">=</span><span class="mi">5</span><span class="o">;</span>
-<span class="kt">int</span> <span class="n">btnHover</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
-        <span class="n">size</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span><span class="mi">300</span><span class="o">);</span>
-
-        <span class="o">}</span>
-
-<span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
-        <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
-        <span class="k">switch</span><span class="o">(</span><span class="n">rectState</span><span class="o">){</span>
-        <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
-                <span class="n">fill</span><span class="o">(</span><span class="mi">200</span><span class="o">);</span>
-                <span class="k">break</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
-                <span class="n">fill</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
-                <span class="k">break</span><span class="o">;</span>
-                <span class="o">}</span>
-        <span class="n">noStroke</span><span class="o">();</span>
-        <span class="n">rect</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span><span class="mi">10</span><span class="o">,</span><span class="mi">100</span><span class="o">,</span><span class="mi">100</span><span class="o">);</span>
-        <span class="n">drawButton</span><span class="o">(</span><span class="mi">200</span><span class="o">,</span><span class="mi">40</span><span class="o">,</span><span class="mi">50</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>
-</pre></div>
-</div>
-<p>}</p>
-<blockquote>
-<div><p>void drawButton(float xPos,float yPos,float bWidth,float bHeight){
-boolean hover=true;
-boolean pressed=false;
-boolean clicked=false;
-fill(100);
-stroke(20);
-strokeWeight(3);
-rect(xPos,yPos,bWidth,bHeight);
-fill(200,0,0);
-hover =mouseIsOver(xPos,yPos,bWidth,bHeight);
-if(hover){</p>
-<blockquote>
-<div>fill(255,0,0);
-btnHover=1;</div></blockquote>
-<p>}
-else{</p>
-<blockquote>
-<div>btnHover=0;</div></blockquote>
-<p>}
-if(mousePressed &amp;&amp; hover){</p>
-<blockquote>
-<div>fill(0,255,0);
-stroke(200);</div></blockquote>
-<p>}
-ellipse(xPos+25,yPos+25,bWidth-5,bHeight-5);
-}</p>
-<dl class="docutils">
-<dt>boolean mouseIsOver(float xPos, float yPos, float rWidth, float rHeight){</dt>
-<dd>if( mouseX&gt;xPos &amp;&amp; mouseX&lt;(xPos+rWidth) &amp;&amp; mouseY&gt;yPos &amp;&amp; mouseY &lt;yPos+rHeight){
-return true;
-}
-return false;</dd>
-</dl>
-<p>}</p>
-<p>void mouseClicked(){
-if(btnHover==1){
-if(rectState==4)</p>
-<blockquote>
-<div>rectState=5;</div></blockquote>
-<dl class="docutils">
-<dt>else</dt>
-<dd>rectState=4;
-}</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>End of code</p>
+<p>End of code for this section</p>
 </div>
 
 
@@ -158,6 +95,12 @@ if(rectState==4)</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="hsbSlider.html"
+                        title="previous chapter">4. HSB Color-Slider Example</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="game-design.html"
+                        title="next chapter">6. Game Programming</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -181,6 +124,12 @@ if(rectState==4)</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="game-design.html" title="6. Game Programming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="hsbSlider.html" title="4. HSB Color-Slider Example"
+             >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
     </div>

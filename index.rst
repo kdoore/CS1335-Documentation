@@ -17,6 +17,7 @@ Contents:
    	variables
 	functions
 	hsbSlider
+	buttons
 	game-design
 	resources
 	
