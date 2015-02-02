@@ -51,10 +51,10 @@
           <div class="body" role="main">
             
   <div class="section" id="drawing-application">
-<h1>6. Drawing Application<a class="headerlink" href="#drawing-application" title="Permalink to this headline">¶</a></h1>
+<span id="drawing"></span><h1>6. Drawing Application<a class="headerlink" href="#drawing-application" title="Permalink to this headline">¶</a></h1>
 <p>This project builds on the previous 2 projects where we implemented code to create a hue color slider and an interactive button.  Both of these previous projects emphasize the use of functions to simplify programs.  In this section we&#8217;ll explore some options for a creative drawing application.  As with many drawing programs, when the user drags the mouse, we&#8217;ll write a program to create a brush-type of pattern.  We&#8217;ll use functions to provide structure and organization for our code.</p>
 <p>If we imagine ourselves as the brush in a drawing application, we should consider what information we&#8217;d have available as input, each time there&#8217;s a new frame in the drawing loop.  We&#8217;ll have access to the global values: <code class="docutils literal"><span class="pre">mouseX</span></code> and <code class="docutils literal"><span class="pre">mouseY</span></code> and that will determine the location of the shapes drawn in a current time-frame.  We also have access to the global values: <code class="docutils literal"><span class="pre">pmouseX</span></code> and <code class="docutils literal"><span class="pre">pmouseY</span></code>, which represent the location of the mouse in the previous execution time-frame of the draw loop.  Using these values together can allow us to create more interactive drawing patterns.</p>
-<p>In <a class="reference external" href="http://www.learningprocessing.com/">Learning Processing</a> chapter 3, exercise 3.6, Daniel Shiffman uses the mouseX, mouseY and pmouseX, pmouseY variables to draw a line following the mouse movement:</p>
+<p>In <a class="reference external" href="http://learningprocessing.com">Learning Processing</a> chapter 3, exercise 3.6, Daniel Shiffman uses the mouseX, mouseY and pmouseX, pmouseY variables to draw a line following the mouse movement:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">line</span><span class="o">(</span> <span class="n">pmouseX</span><span class="o">,</span> <span class="n">pmouseY</span><span class="o">,</span> <span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">);</span>
 </pre></div>
 </div>

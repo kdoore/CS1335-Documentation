@@ -1,4 +1,4 @@
-.. _drawing
+.. _drawing:
 
 ======================
 Drawing Application
@@ -40,5 +40,5 @@ Processing_ provides a distance function we can use to determine the distance be
 	  _y=mouseY;  
 	  }
 
-.. _Learning Processing: http://www.learningprocessing.com/
+.. _Learning Processing:  http://learningprocessing.com
 .. _Processing:  http://processing.org
