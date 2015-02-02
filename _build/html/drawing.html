@@ -54,6 +54,8 @@
 <span id="drawing"></span><h1>6. Drawing Application<a class="headerlink" href="#drawing-application" title="Permalink to this headline">¶</a></h1>
 <p>This project builds on the previous 2 projects where we implemented code to create a hue color slider and an interactive button.  Both of these previous projects emphasize the use of functions to simplify programs.  In this section we&#8217;ll explore some options for a creative drawing application.  As with many drawing programs, when the user drags the mouse, we&#8217;ll write a program to create a brush-type of pattern.  We&#8217;ll use functions to provide structure and organization for our code.</p>
 <p>If we imagine ourselves as the brush in a drawing application, we should consider what information we&#8217;d have available as input, each time there&#8217;s a new frame in the drawing loop.  We&#8217;ll have access to the global values: <code class="docutils literal"><span class="pre">mouseX</span></code> and <code class="docutils literal"><span class="pre">mouseY</span></code> and that will determine the location of the shapes drawn in a current time-frame.  We also have access to the global values: <code class="docutils literal"><span class="pre">pmouseX</span></code> and <code class="docutils literal"><span class="pre">pmouseY</span></code>, which represent the location of the mouse in the previous execution time-frame of the draw loop.  Using these values together can allow us to create more interactive drawing patterns.</p>
+<div class="section" id="mouse-speed">
+<h2>6.1. Mouse Speed<a class="headerlink" href="#mouse-speed" title="Permalink to this headline">¶</a></h2>
 <p>In <a class="reference external" href="http://learningprocessing.com">Learning Processing</a> chapter 3, exercise 3.6, Daniel Shiffman uses the mouseX, mouseY and pmouseX, pmouseY variables to draw a line following the mouse movement:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">line</span><span class="o">(</span> <span class="n">pmouseX</span><span class="o">,</span> <span class="n">pmouseY</span><span class="o">,</span> <span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">);</span>
 </pre></div>
@@ -62,28 +64,62 @@
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">speed</span> <span class="o">=</span> <span class="n">abs</span><span class="o">(</span><span class="n">pmouseX</span><span class="o">-</span><span class="n">mouseX</span><span class="o">)</span> <span class="o">+</span> <span class="n">abs</span><span class="o">(</span><span class="n">pmouseY</span> <span class="o">-</span><span class="n">mouseY</span><span class="o">);</span>
 </pre></div>
 </div>
-<p>Then we can use that speed value to control some aspect of the elements drawn.  In Shiffman&#8217;s example, he suggests using speed to vary the value of the <code class="docutils literal"><span class="pre">strokeWeight</span></code>, below is one possible expression which could create an interesting  :</p>
-<blockquote>
-<div>strokeWeight( 1 + (.05* speed));</div></blockquote>
-<p><a class="reference external" href="http://processing.org">Processing</a> provides a distance function we can use to determine the distance between points.  It takes as input, the x,y positions of 2 points. We can use the pmouse and mouse positions to determine the distance between 2 points, or we can create some global position variables _x, _y and use those to determine distance from the mouse position.  This will allow us to control how far the mouse must move between drawing positions.  If we were to draw ellipses at the current mouse position, and only want to allow the drawing application to allow drawing another circle if the mouse has moved atleast some minimum distance between each circle before drawing the next circle, these global location values can provide more control than using pmouseX, pmouseY which are updated by the system each frame execution.</p>
+<p>Then we can use that speed value to control some aspect of the elements drawn.  In Shiffman&#8217;s example, he suggests using speed to vary the value of the <code class="docutils literal"><span class="pre">strokeWeight</span></code>, below is one possible expression which could create an interesting drawing brush.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">strokeWeight</span><span class="o">(</span> <span class="mi">1</span> <span class="o">+</span> <span class="o">(.</span><span class="mi">05</span><span class="o">*</span> <span class="n">speed</span><span class="o">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mouse-distance">
+<h2>6.2. Mouse Distance<a class="headerlink" href="#mouse-distance" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://processing.org">Processing</a> provides a distance function we can use to determine the distance between points.  It takes as input, the x,y positions of 2 points. We can use the <code class="docutils literal"><span class="pre">pmouse</span></code> and <code class="docutils literal"><span class="pre">mouse</span></code> positions to determine the distance between 2 points, or we can create some global position variables <code class="docutils literal"><span class="pre">_x</span></code>, <code class="docutils literal"><span class="pre">_y</span></code> and use those to determine distance from the mouse position.  This will allow us to control how far the mouse must move between drawing positions.  If we were to draw ellipses at the current mouse position, and only want to allow the drawing application to allow drawing another circle if the mouse has moved atleast some minimum distance between each circle before drawing the next circle, these global location values can provide more control than using <code class="docutils literal"><span class="pre">pmouseX</span></code>, <code class="docutils literal"><span class="pre">pmouseY</span></code> which are updated by the system each frame execution.</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">_x</span><span class="o">;</span>  <span class="c1">//global variables which are initialized outside of draw</span>
-  <span class="kt">float</span> <span class="n">_y</span><span class="o">;</span>
+<span class="kt">float</span> <span class="n">_y</span><span class="o">;</span>  <span class="c1">// _x, _y mark the location of the last drawn element, only updated when an element is drawn.</span>
 
   <span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
-    <span class="n">size</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span><span class="mi">400</span><span class="o">);</span>
-    <span class="n">_x</span><span class="o">=</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span>
-    <span class="n">_y</span><span class="o">=</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span>
+        <span class="n">size</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span><span class="mi">400</span><span class="o">);</span>
+        <span class="n">_x</span><span class="o">=</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span>
+        <span class="n">_y</span><span class="o">=</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span>
+                <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
   <span class="o">}</span>
   <span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
-    <span class="kt">float</span> <span class="n">distance</span><span class="o">=</span><span class="n">dist</span><span class="o">(</span><span class="n">_x</span><span class="o">,</span><span class="n">_y</span><span class="o">,</span><span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">);</span>
-    <span class="k">if</span><span class="o">((</span><span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mousePressed</span><span class="o">){</span>
-      <span class="n">ellipse</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span><span class="n">mouseY</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="mi">20</span><span class="o">);</span>
-      <span class="n">println</span><span class="o">(</span><span class="n">distance</span><span class="o">);</span>
-    <span class="o">}</span>
-  <span class="n">_x</span><span class="o">=</span><span class="n">mouseX</span><span class="o">;</span>
-  <span class="n">_y</span><span class="o">=</span><span class="n">mouseY</span><span class="o">;</span>
+        <span class="kt">float</span> <span class="n">distance</span><span class="o">=</span><span class="n">dist</span><span class="o">(</span><span class="n">_x</span><span class="o">,</span><span class="n">_y</span><span class="o">,</span><span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">((</span><span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mousePressed</span><span class="o">){</span>  <span class="c1">//make sure  mouse has moved 10 pixels between the start of each new ellipse</span>
+                <span class="n">ellipse</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span><span class="n">mouseY</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="mi">20</span><span class="o">);</span>
+                        <span class="n">_x</span><span class="o">=</span><span class="n">mouseX</span><span class="o">;</span>   <span class="c1">//update value of last draw position</span>
+                        <span class="n">_y</span><span class="o">=</span><span class="n">mouseY</span><span class="o">;</span>
+        <span class="o">}</span>
   <span class="o">}</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="creative-brushes">
+<h2>6.3. Creative Brushes<a class="headerlink" href="#creative-brushes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>One thing to consider is the range of possible values when using a parameter like speed to create variation in a drawing feature.  If no mouse motion occurs, then speed=0.  Using <code class="docutils literal"><span class="pre">println(speed)</span></code> is a good way to see the range of values for typical mouse motion.  Once that&#8217;s been determined then it&#8217;s easier to find an interesting way to integrate speed into the drawing program. We can use speed to modify values of color, alpha, shape dimensions, scale, rotation angle etc.  If we use any transformations in our drawing app, then we&#8217;ll want to use <code class="docutils literal"><span class="pre">pushMatrix()</span></code>, and <code class="docutils literal"><span class="pre">popMatrix()</span></code> to help insure that other drawn elements like our sliders which are <cite>drawn</cite> at the end of the draw loop, aren&#8217;t distorted by any transformation we&#8217;d apply for our brush effects.  Here&#8217;s an example of using speed along with some small random variations to modify a wide range of values, so that just drawing 2 ellipses creates a somewhat interesting brush.  One important goal is that we want the drawing brush to somewhat intuitive so that a user can realize, if I draw slower, then I get smaller shapes, this is essential in order for the brush to be useful for creating an interesting artwork:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
+        <span class="n">size</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span><span class="mi">400</span><span class="o">);</span>
+        <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+        <span class="n">colorMode</span><span class="o">(</span><span class="n">HSB</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
+        <span class="kt">float</span> <span class="n">speed</span><span class="o">=</span><span class="n">abs</span><span class="o">(</span><span class="n">mouseX</span><span class="o">-</span><span class="n">pmouseX</span><span class="o">)</span> <span class="o">+</span><span class="n">abs</span><span class="o">(</span><span class="n">mouseY</span><span class="o">-</span><span class="n">pmouseY</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">mousePressed</span><span class="o">){</span>  <span class="c1">//only draw if the mouse is pressed</span>
+                <span class="n">pushMatrix</span><span class="o">();</span>
+                <span class="n">translate</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">);</span>
+                <span class="n">fill</span><span class="o">(</span><span class="mi">40</span> <span class="o">+(</span><span class="n">speed</span><span class="o">*.</span><span class="mi">95</span><span class="o">),</span> <span class="mi">200</span><span class="o">+(</span><span class="n">random</span><span class="o">(-</span><span class="mi">10</span><span class="o">,</span><span class="mi">10</span><span class="o">)),</span><span class="mi">200</span><span class="o">+(</span><span class="n">random</span><span class="o">(-</span><span class="mi">10</span><span class="o">,</span><span class="mi">10</span><span class="o">)),</span><span class="mi">100</span> <span class="o">+(</span><span class="n">speed</span><span class="o">*.</span><span class="mi">55</span><span class="o">));</span>  <span class="c1">//use speed to modify fill</span>
+                <span class="n">stroke</span><span class="o">(</span><span class="mi">60</span> <span class="o">+(</span><span class="n">speed</span><span class="o">*.</span><span class="mi">95</span><span class="o">),</span> <span class="mi">200</span><span class="o">+(</span><span class="n">random</span><span class="o">(-</span><span class="mi">10</span><span class="o">,</span><span class="mi">10</span><span class="o">)),</span><span class="mi">200</span><span class="o">+(</span><span class="n">random</span><span class="o">(-</span><span class="mi">10</span><span class="o">,</span><span class="mi">10</span><span class="o">)),</span><span class="mi">100</span> <span class="o">+(</span><span class="n">speed</span><span class="o">*.</span><span class="mi">55</span><span class="o">));</span>  <span class="c1">//use speed to modify stroke</span>
+                <span class="n">ellipse</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">+(</span><span class="n">speed</span><span class="o">*.</span><span class="mi">25</span><span class="o">),</span><span class="mi">6</span><span class="o">-(</span><span class="n">speed</span><span class="o">*.</span><span class="mi">25</span><span class="o">));</span> <span class="c1">//use speed to modify width, height</span>
+                <span class="n">ellipse</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="n">random</span><span class="o">(-</span><span class="mi">5</span><span class="o">,</span><span class="mi">5</span><span class="o">),</span><span class="mi">5</span><span class="o">+</span><span class="n">random</span><span class="o">(-</span><span class="mi">5</span><span class="o">,</span><span class="mi">5</span><span class="o">),</span><span class="mi">5</span><span class="o">+(</span><span class="n">speed</span><span class="o">*.</span><span class="mi">25</span><span class="o">),</span><span class="mi">6</span><span class="o">-(</span><span class="n">speed</span><span class="o">*.</span><span class="mi">25</span><span class="o">));</span> <span class="c1">//use speed to modify width, height</span>
+                <span class="n">popMatrix</span><span class="o">();</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Below are screen-shots from the brush created above where there&#8217;s not even a color slider option for the user to modify.  These images show that there were predictable behaviors of the brush that allowed the user to create a composition based on understanding the brush behavior, in this case: drawing pattern varied with mouse speed.</p>
+<a class="reference internal image-reference" href="_images/art1.png"><img alt="_images/art1.png" src="_images/art1.png" style="height: 130px;" /></a>
+<a class="reference internal image-reference" href="_images/art2.png"><img alt="_images/art2.png" src="_images/art2.png" style="height: 130px;" /></a>
+<a class="reference internal image-reference" href="_images/art3.png"><img alt="_images/art3.png" src="_images/art3.png" style="height: 130px;" /></a>
 </div>
 </div>
 
@@ -93,6 +129,16 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">6. Drawing Application</a><ul>
+<li><a class="reference internal" href="#mouse-speed">6.1. Mouse Speed</a></li>
+<li><a class="reference internal" href="#mouse-distance">6.2. Mouse Distance</a></li>
+<li><a class="reference internal" href="#creative-brushes">6.3. Creative Brushes</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="buttons.html"
                         title="previous chapter">5. Button Behaviors</a></p>
