@@ -18,6 +18,7 @@ Contents:
 	functions
 	hsbSlider
 	buttons
+	drawing
 	game-design
 	resources
 	
