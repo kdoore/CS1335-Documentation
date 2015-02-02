@@ -50,7 +50,7 @@ Processing_ provides a distance function we can use to determine the distance be
 Creative Brushes
 =================
 
-	One thing to consider is the range of possible values when using a parameter like speed to create variation in a drawing feature.  If no mouse motion occurs, then speed=0.  Using ``println(speed)`` is a good way to see the range of values for typical mouse motion.  Once that's been determined then it's easier to find an interesting way to integrate speed into the drawing program. We can use speed to modify values of color, alpha, shape dimensions, scale, rotation angle etc.  If we use any transformations in our drawing app, then we'll want to use ``pushMatrix()``, and ``popMatrix()`` to help insure that other drawn elements like our sliders which are `drawn` at the end of the draw loop, aren't distorted by any transformation we'd apply for our brush effects.  Here's an example of using speed along with some small random variations to modify a wide range of values, so that just drawing 2 ellipses creates a somewhat interesting brush.  One important goal is that we want the drawing brush to somewhat intuitive so that a user can realize, if I draw slower, then I get smaller shapes, this is essential in order for the brush to be useful for creating an interesting artwork::
+One thing to consider is the range of possible values when using a parameter like speed to create variation in a drawing feature.  If no mouse motion occurs, then speed=0.  Using ``println(speed)`` is a good way to see the range of values for typical mouse motion.  Once that's been determined then it's easier to find an interesting way to integrate speed into the drawing program. We can use speed to modify values of color, alpha, shape dimensions, scale, rotation angle etc.  If we use any transformations in our drawing app, then we'll want to use ``pushMatrix()``, and ``popMatrix()`` to help insure that other drawn elements like our sliders which are `drawn` at the end of the draw loop, aren't distorted by any transformation we'd apply for our brush effects.  Here's an example of using speed along with some small random variations to modify a wide range of values, so that just drawing 2 ellipses creates a somewhat interesting brush.  One important goal is that we want the drawing brush to somewhat intuitive so that a user can realize, if I draw slower, then I get smaller shapes, this is essential in order for the brush to be useful for creating an interesting artwork::
 
 		void setup(){
 	   		size(400,400);
@@ -72,13 +72,9 @@ Creative Brushes
 	
 Below is a screen-shot from the brush created above where there's not even a color slider option for the user to modify.  These images show that there were predictable behaviors of the brush that allowed the user to create a composition based on understanding the brush behavior, in this case: drawing pattern varied with mouse speed.
 
+	.. image:: /images/art2.png
 
 	
-.. image:: /images/art2.png
-	:height: 130px
-	
-
-
 	
 .. _Learning Processing:  http://learningprocessing.com
 .. _Processing:  http://processing.org
