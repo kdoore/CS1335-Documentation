@@ -19,6 +19,7 @@ Contents:
 	hsbSlider
 	buttons
 	drawing
+	pVector
 	game-design
 	resources
 	

@@ -136,6 +136,14 @@ We also need to create the code to toggle the state of ``_btnActive`` when it th
 	  }
 	}
 
+Here is the processing sketch:
+
+.. raw:: html
+
+	<div class="figure">
+	<iframe width="278" height="210" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/184104/embed/?width=250&height=130&border=true"></iframe>
+	</div>	
+	
 Below is the full code to create a responsive button that controls the behavior of a separate rectangle.::
 
  

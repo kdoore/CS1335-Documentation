@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="5. Game Programming" href="game-design.html" />
+    <link rel="next" title="5. Button Behaviors" href="buttons.html" />
     <link rel="prev" title="3. Functions" href="functions.html" /> 
   </head>
   <body role="document">
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="5. Game Programming"
+          <a href="buttons.html" title="5. Button Behaviors"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="functions.html" title="3. Functions"
@@ -63,8 +63,9 @@
 </ul>
 <p>The image below shows the widget we&#8217;ll design.</p>
 <blockquote>
-<div><img alt="_images/HSBSlider.png" src="_images/HSBSlider.png" />
-</div></blockquote>
+<div><div class="figure">
+<iframe width="428" height="155" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/184101/embed/?width=400&height=75&border=true"></iframe>
+</div></div></blockquote>
 </div>
 <div class="section" id="hsb-colormode">
 <h2>4.2. HSB ColorMode<a class="headerlink" href="#hsb-colormode" title="Permalink to this headline">¶</a></h2>
@@ -168,8 +169,9 @@
 <span class="o">}</span>
 </pre></div>
 </div>
-<img alt="_images/sliderPos.png" src="_images/sliderPos.png" />
-</div>
+<div class="figure">
+<iframe width="428" height="155" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/184101/embed/?width=400&height=75&border=true"></iframe>
+</div></div>
 <div class="section" id="global-variables">
 <h2>4.8. Global Variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">sliderPos</span></code> variable is used to capture the current location of the slider due to the user&#8217;s interactivity, but we need to keep track of this value between each function call, so we know where to position the slider, and what the current selected hueValue is. We also need a means to initialize this value before it&#8217;s been moved by the user. These 2 variables are related to each other as discussed above when using the <code class="docutils literal"><span class="pre">map()</span></code> function.  We have determined that we need access to the hueValue in the draw loop so we can use it to set color for other items that the user draws, but we really don&#8217;t have a need for this <code class="docutils literal"><span class="pre">sliderPos</span></code> value outside of this function, therefore, it should be a local value to this function, it has no meaning outside of this function.</p>
@@ -274,8 +276,8 @@
   <p class="topless"><a href="functions.html"
                         title="previous chapter">3. Functions</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="game-design.html"
-                        title="next chapter">5. Game Programming</a></p>
+  <p class="topless"><a href="buttons.html"
+                        title="next chapter">5. Button Behaviors</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -300,7 +302,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="5. Game Programming"
+          <a href="buttons.html" title="5. Button Behaviors"
              >next</a> |</li>
         <li class="right" >
           <a href="functions.html" title="3. Functions"

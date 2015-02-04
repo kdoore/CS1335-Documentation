@@ -19,7 +19,12 @@ The project below creates an interactive HSB color selector as an example projec
 	
 The image below shows the widget we'll design.
 
-	.. image:: /images/HSBSlider.png
+	.. raw:: html
+
+		<div class="figure">
+		<iframe width="428" height="155" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/184101/embed/?width=400&height=75&border=true"></iframe>
+		</div>	
+	
 
 HSB ColorMode
 ===============
@@ -130,7 +135,12 @@ We have decided to provide a narrow rectangle to represent the interactive compo
 			hueVal=map(sliderPos,0.0,sWidth,0.0,255.0);  // get new hueVal based on moved slider
   	}
 
-.. image:: /images/sliderPos.png
+
+.. raw:: html
+
+	<div class="figure">
+	<iframe width="428" height="155" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/184101/embed/?width=400&height=75&border=true"></iframe>
+	</div>	
 
 Global Variables
 =================
