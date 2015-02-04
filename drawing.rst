@@ -69,6 +69,13 @@ One thing to consider is the range of possible values when using a parameter lik
 				popMatrix();
 			}
 		}
+		
+		
+.. raw:: html
+
+	<div class="figure">	
+		<iframe width="428" height="280" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/184112/embed/?width=400&height=200&border=true"></iframe>
+		</div>
 	
 Below is a screen-shot from the brush created above where there's not even a color slider option for the user to modify.  These images show that there were predictable behaviors of the brush that allowed the user to create a composition based on understanding the brush behavior, in this case: drawing pattern varied with mouse speed.
 
