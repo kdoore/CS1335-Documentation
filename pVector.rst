@@ -45,7 +45,7 @@ The code below is from the Processing.org `PVector tutorial` and it creates a si
 Bouncing Ball with PVector
 ===========================
 	
-The PVector object provides variables to hold the data of the ball's location coordinates and also provides methods that allow for easy use of vector operations for movement.  In the code above, the ball's location is updated during each loop, so the new location = location + speed, and this is calculated separately for each of our canvas's 2 dimensions: x and y.  We can instead use a PVector to hold the location and speed, and then we can use the PVector add() method to calculate the new location of the ball. Below is the same bouncing ball program using PVectors for location and velocity.::
+The PVector object provides variables to hold the data of the ball's location coordinates and also provides methods that allow for easy use of vector operations for movement.  In the code above, the ball's location is updated during each loop, so the new location = location + speed, and this is calculated separately for each of our canvas's 2 dimensions: x and y.  We can instead use a PVector to hold the location and another PVector to represent speed, and then we can use the PVector add() method to calculate the new location of the ball. Below is the same bouncing ball program using PVectors for location and velocity.::  
 	
 	PVector speed = new PVector(1 ,  3.3);  // create a new PVector object instance
 	PVector location = new PVector(100,100);  
@@ -77,14 +77,38 @@ The PVector object provides variables to hold the data of the ball's location co
 
 Below is a processing sketch for the PVector Bouncing ball. Click on the image to stop / start the animation.
 
-.. raw:: html
-
-	<div class="figure">
-	<iframe width="228" height="280" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/184103/embed/?width=200&height=200&border=true"></iframe>	
-	</div>
+	.. raw:: html
+	
+		<div class="figure">
+		<iframe width="228" height="280" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/184103/embed/?width=200&height=200&border=true"></iframe>	
+		</div>
 		
 PVector Object
 ================
+
+The PVector object allows us to explore the processing object syntax.  When we want to create an instance of an object, we use the object's constructor function.  According to the processing PVector reference, the PVector class has 3 different constructor functions. Notice that each constructor has a unique function signature, this is an important concept called function overloading.  We can have several versions of the same function, but the signature of each function must be unique. For objects, it's helpful to have different constructor functions, for the PVector, this allows it to represent both 2D or 3D vectors depending on how we initialize our instance. ::
+
+ 	PVector();
+	PVector(float x, float y);
+	PVector(float x, float y, float z);
+	
+To create a new instance of a PVector object we must use the Processing object syntax depending on which constructor we choose to use, the default constructor has no arguments, therefore the x and y properties are initialized using `dot` notation.  Dot notation the syntax for calling a class's method  or for setting a property value for a data element that belongs to the object's own object class.  We set the x value of the location PVector instance using ``location.x=100;``  Note that in the code below, the object type is PVector. ::
+
+	PVector location = new PVector();  //declare a new PVector object
+	location.x= 100;	//initialize the x data element using dot notation
+	location.y= 120;	//initialize the y data element using dot notation
+	
+	PVector speed = new PVector(3 , 4 );  //declare and initialize a new PVector object speed has x,y components
+	
+    location.add(speed)  //use add method to add vector components of speed to location.
+
+Functions:  Pass by Reference
+==============================
+
+So far, when we've created functions, we have only used primitive variable types like int, float, booleans, or literal values.  When these values are passed into a function, a copy of the value is passed into the function, so within the function, any modification to a value only affects the local variable.  We've made the distinction between local and global variables based on the understanding that variables passed into a function are a local copy of a global variable, and so any corresponding global variable isn't changed when the local function variable is modified.  
+
+This is not the case when using passing objects into a function.  For most cases, when we pass an object variable into a function, we actually want to have changes on the actual object.  Therefore, what is passed into a function is not a copy of a variable, but is a reference or pointer to the object.  
+ 
 
 
 
