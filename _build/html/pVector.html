@@ -52,7 +52,7 @@
             
   <div class="section" id="pvector">
 <span id="id1"></span><h1>7. PVector<a class="headerlink" href="#pvector" title="Permalink to this headline">¶</a></h1>
-<p>On the processing website, there is a comprehensive <a class="reference external" href="https://processing.org/tutorials/PVector/">PVector tutorial</a> about the PVector object.  The PVector object is used to represent vector objects, and provides data elements and methods for vector math operations. <cite>A vector is a collection of values that describe relative position in space.</cite>  D. Shiffman - <a class="reference external" href="https://processing.org/tutorials/PVector/">PVector Tutorial</a>. A vector represents the difference between 2 points in space.  When representing a point location, it is assumed that the 0,0 origin is one of the vector endpoints.  The simple ball bouncing animation below gives an example of using the ball&#8217;s x,y location and adding horizontal speed and vertical speed to the balls current location to animate the motion of the ball.  Location, velocity (speed), and acceleration can all be represented using the PVector object.  The PVector object has methods to add vectors which simplify working with motion in multiple dimensions.  In addition, the PVector object provides a good introduction to object oriented programming.</p>
+<p>On the processing website, there is a comprehensive <a class="reference external" href="https://processing.org/tutorials/PVector/">PVector tutorial</a> about the PVector object.  The PVector object is used to represent vector objects, and provides data elements and methods for vector math operations. We can consider a vector to be a collection of values that describe some concept that has some spatial dimension, or some properties that have directional components. A vector in mathematics represents the difference between 2 points in space.  When a vector is used to represent a single point&#8217;s location, it is assumed that the 0,0 origin is one of the vector endpoints.  The simple ball bouncing animation below gives an example of using the ball&#8217;s x,y location and adding horizontal speed and vertical speed to the balls current location to animate the motion of the ball.  Location, velocity (speed), and acceleration can all be represented using the PVector object, in addition, a PVector could also represent something like friction which might have different values along different x, y, or z dimensions.  The PVector object has methods to <code class="docutils literal"><span class="pre">add()</span></code> 2 vectors which simplifies working with motion concepts in multiple dimensions.  In addition, the PVector object provides a good introduction to object oriented programming.</p>
 <div class="section" id="bouncing-ball-no-vectors">
 <h2>7.1. Bouncing Ball - No Vectors<a class="headerlink" href="#bouncing-ball-no-vectors" title="Permalink to this headline">¶</a></h2>
 <p>In the PVector tutorial and in <a class="reference external" href="http://learningprocessing.com">Learning Processing</a> Section 5.7, the example programs create a bouncing ball. The bouncing ball programs provide a good example of how to program object motion.
@@ -129,19 +129,19 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 <div class="section" id="pvector-object">
 <h2>7.3. PVector Object<a class="headerlink" href="#pvector-object" title="Permalink to this headline">¶</a></h2>
 <p>The PVector object allows us to explore the processing object syntax.  When we want to create an instance of an object, we use the object&#8217;s constructor function.  According to the processing PVector reference, the PVector class has 3 different constructor functions. Notice that each constructor has a unique function signature, this is an important concept called function overloading.  We can have several versions of the same function, but the signature of each function must be unique. For objects, it&#8217;s helpful to have different constructor functions, for the PVector, this allows it to represent both 2D or 3D vectors depending on how we initialize our instance.</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="n">PVector</span><span class="o">();</span>
-<span class="n">PVector</span><span class="o">(</span><span class="kt">float</span> <span class="n">x</span><span class="o">,</span> <span class="kt">float</span> <span class="n">y</span><span class="o">);</span>
-<span class="n">PVector</span><span class="o">(</span><span class="kt">float</span> <span class="n">x</span><span class="o">,</span> <span class="kt">float</span> <span class="n">y</span><span class="o">,</span> <span class="kt">float</span> <span class="n">z</span><span class="o">);</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">PVector</span><span class="o">();</span>  <span class="c1">//default constructor function</span>
+<span class="n">PVector</span><span class="o">(</span><span class="kt">float</span> <span class="n">x</span><span class="o">,</span> <span class="kt">float</span> <span class="n">y</span><span class="o">);</span>  <span class="c1">// 2 dimensional constructor function</span>
+<span class="n">PVector</span><span class="o">(</span><span class="kt">float</span> <span class="n">x</span><span class="o">,</span> <span class="kt">float</span> <span class="n">y</span><span class="o">,</span> <span class="kt">float</span> <span class="n">z</span><span class="o">);</span>  <span class="c1">//3 dimensional constructor function</span>
 </pre></div>
 </div>
 <p>To create a new instance of a PVector object we must use the Processing object syntax depending on which constructor we choose to use, the default constructor has no arguments, therefore the x and y properties are initialized using <cite>dot</cite> notation.  Dot notation the syntax for calling a class&#8217;s method  or for setting a property value for a data element that belongs to the object&#8217;s own object class.  We set the x value of the location PVector instance using <code class="docutils literal"><span class="pre">location.x=100;</span></code>  Note that in the code below, the object type is PVector.</p>
-<div class="highlight-Java"><div class="highlight"><pre>    <span class="n">PVector</span> <span class="n">location</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">();</span>  <span class="c1">//declare a new PVector object</span>
-    <span class="n">location</span><span class="o">.</span><span class="na">x</span><span class="o">=</span> <span class="mi">100</span><span class="o">;</span>        <span class="c1">//initialize the x data element using dot notation</span>
-    <span class="n">location</span><span class="o">.</span><span class="na">y</span><span class="o">=</span> <span class="mi">120</span><span class="o">;</span>        <span class="c1">//initialize the y data element using dot notation</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">PVector</span> <span class="n">location</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">();</span>  <span class="c1">// declare a new PVector object</span>
+<span class="n">location</span><span class="o">.</span><span class="na">x</span><span class="o">=</span> <span class="mi">100</span><span class="o">;</span>        <span class="c1">// initialize the x data element using dot notation</span>
+<span class="n">location</span><span class="o">.</span><span class="na">y</span><span class="o">=</span> <span class="mi">120</span><span class="o">;</span>        <span class="c1">// initialize the y data element using dot notation</span>
 
-    <span class="n">PVector</span> <span class="n">speed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="mi">3</span> <span class="o">,</span> <span class="mi">4</span> <span class="o">);</span>  <span class="c1">//declare and initialize a new PVector object speed has x,y components</span>
+<span class="n">PVector</span> <span class="n">speed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="mi">3</span> <span class="o">,</span> <span class="mi">4</span> <span class="o">);</span>  <span class="c1">// declare and initialize a new PVector object speed has x,y components</span>
 
-<span class="n">location</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">speed</span><span class="o">)</span>  <span class="c1">//use add method to add vector components of speed to location.</span>
+<span class="n">location</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">speed</span><span class="o">)</span>  <span class="c1">// use add method to add vector components of speed to location.</span>
 </pre></div>
 </div>
 </div>
@@ -149,13 +149,15 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 <h2>7.4. Object Dot Notation<a class="headerlink" href="#object-dot-notation" title="Permalink to this headline">¶</a></h2>
 <p>PVector is an object and has both functions and data elements which are associated with that object.  As mentioned above, we use the <cite>dot notation</cite> when accessing and modifying properties of an object.  For PVector, x and y are properties or data elements.  Below is an example of setting a property value for an instance of a PVector object.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">PVector</span> <span class="n">location</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">();</span>
-<span class="n">location</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>   <span class="c1">//use dot notation to initialize the x property of the location PVector</span>
+<span class="n">location</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>   <span class="c1">// use dot notation to initialize the x property of the location PVector</span>
 <span class="n">location</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="mi">200</span><span class="o">;</span>
 
-<span class="n">ellipse</span><span class="o">(</span><span class="n">location</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">location</span><span class="o">.</span><span class="na">y</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>  <span class="c1">//use dot notation to access the x and y properties of the location PVector object</span>
+<span class="n">location</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">;</span> <span class="c1">// dot notation allows accessing and resetting object properties like x and y</span>
+
+<span class="n">ellipse</span><span class="o">(</span><span class="n">location</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">location</span><span class="o">.</span><span class="na">y</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>  <span class="c1">// use dot notation to access the x and y properties of the location PVector object</span>
 </pre></div>
 </div>
-<p>We also use dot notation when using methods that belong to an object / class.  Methods are functions that belong to an object so they act on that object.  We use dot notation to make it clear that we want to use the object&#8217;s method, rather than some global function that does not belong to the object&#8217;s class.  This allows the compiler to understand which function we intend to use.  A common example of this would be the function the <cite>print()</cite> function.  It is useful for debugging to be able to print some meaningful information about an object, so when we design an object class, we&#8217;ll often either create a print(), display() or a toString() method that belongs to the class so that we can easily access and view data associated with an object.  On the other hand, processing provides it&#8217;s own print() function, so if PVector had it&#8217;s own print() method, then the  compiler would need to understand whether we intend to call the processing print() function or the PVector print() method.  Dot notation syntax tells the compiler that we want to call the method associated with the object calling the function.  Actually PVector has a toString() method, so we could use dot notation to call the method in the following way:</p>
+<p>We also use dot notation when using methods that belong to an object.  Methods are functions that belong to an object so they act on that object.  We use dot notation to make it clear that we want to use the object&#8217;s method, rather than some global function that does not belong to the object&#8217;s class.  This allows the compiler to understand which function we intend to use.  A common example of this would be the function the <code class="docutils literal"><span class="pre">print()</span></code> function.  It is useful for debugging to be able to print some meaningful information about an object, so when we design an object class, we&#8217;ll often either create a <code class="docutils literal"><span class="pre">print()</span></code>, <code class="docutils literal"><span class="pre">display()</span></code> or a <code class="docutils literal"><span class="pre">toString()</span></code> method that belongs to the class so that we can easily access and view data associated with an object.  On the other hand, processing provides it&#8217;s own <code class="docutils literal"><span class="pre">print()</span></code> function, so if PVector had it&#8217;s own <code class="docutils literal"><span class="pre">print()</span></code> method, then the  compiler would need to understand whether we intend to call the processing <code class="docutils literal"><span class="pre">print()</span></code> function or the PVector <code class="docutils literal"><span class="pre">print()</span></code> method.  Dot notation syntax tells the compiler that we want to call the method associated with the object calling the function.  Actually PVector has a <code class="docutils literal"><span class="pre">toString()</span></code> method, so we could use dot notation to call the method in the following way:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">print</span><span class="o">(</span><span class="n">location</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>              <span class="c1">// prints &#39;[ 100.0 , 200.0 , 0.0 ]&#39;  which are the values for the x,y,z properties.</span>
 </pre></div>
 </div>
@@ -163,24 +165,24 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 <div class="section" id="functions-pass-by-reference">
 <h2>7.5. Functions:  Pass by Reference<a class="headerlink" href="#functions-pass-by-reference" title="Permalink to this headline">¶</a></h2>
 <p>So far, when we&#8217;ve created functions, we have only used primitive variable types like int, float, booleans, or literal values.  When these values are passed into a function, a copy of the value is passed into the function, so within the function, any modification to a value only affects the local variable.  We&#8217;ve made the distinction between local and global variables based on the understanding that variables passed into a function are a local copy of a global variable, and so any corresponding global variable isn&#8217;t changed when the local function variable is modified. Example of  primitive-type function arguments: <cite>pass-by-value</cite></p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">someVal</span><span class="o">=</span><span class="mi">20</span><span class="o">;</span>  <span class="c1">//declare global variable</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">someVal</span><span class="o">=</span><span class="mi">20</span><span class="o">;</span>  <span class="c1">// declare global variable</span>
 
 <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="kt">float</span> <span class="n">inputVal</span><span class="o">){</span>
-        <span class="n">inputVal</span> <span class="o">+=</span> <span class="mi">5</span><span class="o">;</span>  <span class="c1">//modify local variable</span>
+        <span class="n">inputVal</span> <span class="o">+=</span> <span class="mi">5</span><span class="o">;</span>  <span class="c1">// modify local variable</span>
 <span class="o">}</span>
 
 <span class="kt">void</span> <span class="nf">doSomethingElse</span><span class="o">(</span><span class="kt">float</span> <span class="n">someVal</span><span class="o">){</span>
-        <span class="n">someVal</span> <span class="o">+=</span> <span class="mi">10</span><span class="o">;</span>  <span class="c1">//modify local variable</span>
+        <span class="n">someVal</span> <span class="o">+=</span> <span class="mi">10</span><span class="o">;</span>  <span class="c1">// modify local variable</span>
 <span class="o">}</span>
 <span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
-<span class="n">doSomething</span><span class="o">(</span><span class="n">someVal</span><span class="o">);</span>   <span class="c1">//call the function using someVal as input</span>
-<span class="n">doSomethingElse</span><span class="o">(</span><span class="n">someVal</span><span class="o">);</span>     <span class="c1">//call the function using someVal as input</span>
+        <span class="n">doSomething</span><span class="o">(</span><span class="n">someVal</span><span class="o">);</span>   <span class="c1">// call the function using someVal as input</span>
+        <span class="n">doSomethingElse</span><span class="o">(</span><span class="n">someVal</span><span class="o">);</span>     <span class="c1">// call the function using someVal as input</span>
 
 <span class="n">println</span><span class="o">(</span><span class="s">&quot;someVal &quot;</span> <span class="o">+</span> <span class="n">someVal</span><span class="o">);</span>  <span class="c1">// someVal=20.0 because it is a global and a primitive-type, so pass-by-value appliees</span>
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>This is not the case when using passing objects into a function.  For most cases, when we pass an object variable into a function, we actually want to have changes on the actual object.  Therefore, what is passed into a function is not a copy of a variable, but is a reference or pointer to the object. here&#8217;s an example of &#8216;pass-by-reference&#8217; for an PVector object instance</p>
+<p><strong>This is not the case when using passing objects into a function.</strong>  For most cases, when we pass an object variable into a function, we actually want to have the changes take place on the object that we pass into the function.  Therefore, what is passed into a function is not a copy of a variable, but is a reference or a pointer to the object. here&#8217;s an example of <cite>pass-by-reference</cite> for an PVector object instance</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">PVector</span> <span class="n">location</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="mi">20</span><span class="o">,</span><span class="mi">20</span><span class="o">);</span>   <span class="c1">//create and initialize a PVector instance</span>
 
 <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="n">PVector</span> <span class="n">somePV</span><span class="o">){</span>
@@ -188,15 +190,19 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 <span class="o">}</span>
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
-<span class="n">doSomething</span><span class="o">(</span><span class="n">location</span><span class="o">);</span>
 
-<span class="n">println</span><span class="o">(</span><span class="s">&quot;location.x &quot;</span> <span class="o">+</span> <span class="n">location</span><span class="o">.</span><span class="na">x</span><span class="o">);</span>    <span class="c1">// 25.0  location.x was modified due to pass-by-reference</span>
+        <span class="n">doSomething</span><span class="o">(</span><span class="n">location</span><span class="o">);</span>
+
+        <span class="n">println</span><span class="o">(</span><span class="s">&quot;location.x &quot;</span> <span class="o">+</span> <span class="n">location</span><span class="o">.</span><span class="na">x</span><span class="o">);</span>    <span class="c1">// 25.0  location.x was modified due to pass-by-reference</span>
 <span class="o">}</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>Questions:</dt>
-<dd><ol class="first last arabic">
+<p>So now that we have had experience working with the PVector object, in the next section, let&#8217;s create a very simple ball class so we can create ball objects. Then we&#8217;ll move on to the example in chapter 8, however where the <a class="reference external" href="http://learningprocessing.com">Learning Processing</a> book creates a car class we will make a fish class.</p>
+</div>
+<div class="section" id="questions">
+<h2>7.6. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic">
 <li><p class="first">Which of the following concepts can be represented by a PVector object?  location, velocity, friction, acceleration?</p>
 </li>
 <li><p class="first">What would be the value of location.x in the code below:</p>
@@ -210,8 +216,7 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 </div>
 </li>
 </ol>
-</dd>
-</dl>
+</div></blockquote>
 </div>
 </div>
 
@@ -229,6 +234,7 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 <li><a class="reference internal" href="#pvector-object">7.3. PVector Object</a></li>
 <li><a class="reference internal" href="#object-dot-notation">7.4. Object Dot Notation</a></li>
 <li><a class="reference internal" href="#functions-pass-by-reference">7.5. Functions:  Pass by Reference</a></li>
+<li><a class="reference internal" href="#questions">7.6. Questions:</a></li>
 </ul>
 </li>
 </ul>

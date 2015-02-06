@@ -20,6 +20,7 @@ Contents:
 	buttons
 	drawing
 	pVector
+	objects
 	game-design
 	resources
 	
