@@ -15,9 +15,9 @@ In `Learning Processing`_ chapter 3, exercise 3.6, Daniel Shiffman uses the mous
 
 	line( pmouseX, pmouseY, mouseX, mouseY);
 	
-We can determine the distance that the has mouse moved since the last frame by observing that in the x direction, the mouse has moved the absolute value of (mouseX-pmouseX) and the same can be determined in the y direction. This provides a few interaction parameters that we can use to create a more interactive drawing brush than just drawing a line between successive mouse positions.  So, the speed of the mouse would be the distance traveled in a given amount of time.  We can use the fact that the time between frame execution is a measure of time, so one measure of speed would be::
+We can determine the distance that the has mouse moved since the last frame by observing that in the x direction, the mouse has moved the `absolute value` of (mouseX-pmouseX) and the same can be determined in the y direction. Absolute value gives us the positive difference between 2 points. Since ``(pmouseX-mouseX)`` might be a negative value, depending on which direction the mouse was moving, but we're just  interested in the magnitude or amount of movement, then we need to use the absolute value function. This provides a few interaction parameters that we can use to create a more interactive drawing brush than just drawing a line between successive mouse positions.  So, the speed of the mouse would be the distance traveled in a given amount of time.  We can use the fact that the time between frame execution is a measure of time, so one measure of speed would be::
 
-	float speed = abs(pmouseX-mouseX) + abs(pmouseY -mouseY);
+	float speed = abs(pmouseX-mouseX) + abs(pmouseY -mouseY); //abs is absolute value or magnitude of difference which is always positive
 	
 Then we can use that speed value to control some aspect of the elements drawn.  In Shiffman's example, he suggests using speed to vary the value of the ``strokeWeight``, below is one possible expression which could create an interesting drawing brush.::  
 	
@@ -81,6 +81,10 @@ Below is a screen-shot from the brush created above where there's not even a col
 
 	.. image:: /images/art2.png
 
+Questions
+==========
+
+	1. How can we determine some measure of the mouse speed, given the current mouse positions and the previous mouse positions?
 	
 	
 .. _Learning Processing:  http://learningprocessing.com

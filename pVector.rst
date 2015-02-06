@@ -4,7 +4,7 @@
 PVector
 ========
 
-On the processing website, there is a comprehensive `PVector tutorial`_ about the PVector object.  The PVector object is used to represent vector objects, and provides data elements and methods for vector math operations. `A vector is a collection of values that describe relative position in space.`  D. Shiffman - `PVector Tutorial`_. A vector represents the difference between 2 points in space.  When representing a point location, it is assumed that the 0,0 origin is one of the vector endpoints.  The simple ball bouncing animation below gives an example of using the ball's x,y location and adding horizontal speed and vertical speed to the balls current location to animate the motion of the ball.  Location, velocity (speed), and acceleration can all be represented using the PVector object.  The PVector object has methods to add vectors which simplify working with motion in multiple dimensions.  In addition, the PVector object provides a good introduction to object oriented programming.
+On the processing website, there is a comprehensive `PVector tutorial`_ about the PVector object.  The PVector object is used to represent vector objects, and provides data elements and methods for vector math operations. We can consider a vector to be a collection of values that describe some concept that has some spatial dimension, or some properties that have directional components. A vector in mathematics represents the difference between 2 points in space.  When a vector is used to represent a single point's location, it is assumed that the 0,0 origin is one of the vector endpoints.  The simple ball bouncing animation below gives an example of using the ball's x,y location and adding horizontal speed and vertical speed to the balls current location to animate the motion of the ball.  Location, velocity (speed), and acceleration can all be represented using the PVector object, in addition, a PVector could also represent something like friction which might have different values along different x, y, or z dimensions.  The PVector object has methods to ``add()`` 2 vectors which simplifies working with motion concepts in multiple dimensions.  In addition, the PVector object provides a good introduction to object oriented programming.
 
 Bouncing Ball - No Vectors
 ===========================
@@ -102,15 +102,69 @@ To create a new instance of a PVector object we must use the Processing object s
 	
     location.add(speed)  //use add method to add vector components of speed to location.
 
+Object Dot Notation
+===================
+
+PVector is an object and has both functions and data elements which are associated with that object.  As mentioned above, we use the `dot notation` when accessing and modifying properties of an object.  For PVector, x and y are properties or data elements.  Below is an example of setting a property value for an instance of a PVector object.::
+
+	PVector location = new PVector();
+	location.x = 100;   //use dot notation to initialize the x property of the location PVector
+	location.y = 200;   
+	
+	ellipse(location.x, location.y, 50,50);  //use dot notation to access the x and y properties of the location PVector object
+	
+We also use dot notation when using methods that belong to an object / class.  Methods are functions that belong to an object so they act on that object.  We use dot notation to make it clear that we want to use the object's method, rather than some global function that does not belong to the object's class.  This allows the compiler to understand which function we intend to use.  A common example of this would be the function the `print()` function.  It is useful for debugging to be able to print some meaningful information about an object, so when we design an object class, we'll often either create a print(), display() or a toString() method that belongs to the class so that we can easily access and view data associated with an object.  On the other hand, processing provides it's own print() function, so if PVector had it's own print() method, then the  compiler would need to understand whether we intend to call the processing print() function or the PVector print() method.  Dot notation syntax tells the compiler that we want to call the method associated with the object calling the function.  Actually PVector has a toString() method, so we could use dot notation to call the method in the following way::
+
+	print(location.toString());		 // prints '[ 100.0 , 200.0 , 0.0 ]'  which are the values for the x,y,z properties.
+
+
 Functions:  Pass by Reference
 ==============================
 
-So far, when we've created functions, we have only used primitive variable types like int, float, booleans, or literal values.  When these values are passed into a function, a copy of the value is passed into the function, so within the function, any modification to a value only affects the local variable.  We've made the distinction between local and global variables based on the understanding that variables passed into a function are a local copy of a global variable, and so any corresponding global variable isn't changed when the local function variable is modified.  
+So far, when we've created functions, we have only used primitive variable types like int, float, booleans, or literal values.  When these values are passed into a function, a copy of the value is passed into the function, so within the function, any modification to a value only affects the local variable.  We've made the distinction between local and global variables based on the understanding that variables passed into a function are a local copy of a global variable, and so any corresponding global variable isn't changed when the local function variable is modified. Example of  primitive-type function arguments: `pass-by-value` :: 
 
-This is not the case when using passing objects into a function.  For most cases, when we pass an object variable into a function, we actually want to have changes on the actual object.  Therefore, what is passed into a function is not a copy of a variable, but is a reference or pointer to the object.  
- 
+	float someVal=20;  //declare global variable
+	
+	void doSomething(float inputVal){
+		inputVal += 5;  //modify local variable
+	}
+	
+	void doSomethingElse(float someVal){
+		someVal += 10;  //modify local variable
+	}
+	void setup(){
+	doSomething(someVal);	//call the function using someVal as input
+	doSomethingElse(someVal);     //call the function using someVal as input
+	
+	println("someVal " + someVal);  // someVal=20.0 because it is a global and a primitive-type, so pass-by-value appliees 
+	}
 
+This is not the case when using passing objects into a function.  For most cases, when we pass an object variable into a function, we actually want to have changes on the actual object.  Therefore, what is passed into a function is not a copy of a variable, but is a reference or pointer to the object. here's an example of 'pass-by-reference' for an PVector object instance ::
 
+	PVector location = new PVector(20,20);   //create and initialize a PVector instance
+	
+	void doSomething(PVector somePV){
+		somePV.x += 5;  	//modify the input PVector object x attribute;
+	}
+	
+	void setup(){
+	doSomething(location);
+	
+	println("location.x " + location.x); 	// 25.0  location.x was modified due to pass-by-reference
+ 	}
+
+Questions:
+  
+	1. Which of the following concepts can be represented by a PVector object?  location, velocity, friction, acceleration?
+	
+	2. What would be the value of location.x in the code below::
+			
+			PVector location=new PVector(5/2, 20);
+			
+	3. What would be the value of location.x in the code below::
+		
+			PVector location= new PVector( 5.0/2 , 20);
+			
 
 
 

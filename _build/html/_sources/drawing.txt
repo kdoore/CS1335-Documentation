@@ -81,6 +81,10 @@ Below is a screen-shot from the brush created above where there's not even a col
 
 	.. image:: /images/art2.png
 
+Questions
+==========
+
+	1. How can we determine some measure of the mouse speed, given the current mouse positions and the previous mouse positions?
 	
 	
 .. _Learning Processing:  http://learningprocessing.com
