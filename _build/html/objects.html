@@ -52,7 +52,15 @@
             
   <div class="section" id="objects">
 <span id="id1"></span><h1>8. Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h1>
-<p>In the previous section we used the PVector object to create a bouncing ball animation and learned about dot notation used by objects to access object properties and object methods.  Now we&#8217;re ready to create our first object, and we do this by creating a <code class="docutils literal"><span class="pre">class</span></code>.  A <code class="docutils literal"><span class="pre">class</span></code> is the specification of all of the information for our object, we create a <code class="docutils literal"><span class="pre">class</span></code> to define our object&#8217;s properties and methods, so we can consider that a <code class="docutils literal"><span class="pre">class</span></code> is like a recipe to make instances of objects.</p>
+<p>In the previous section we used the PVector object to create a bouncing ball animation and learned about dot notation used by objects to access object properties and object methods.  Now we&#8217;re ready to create our first object, and we do this by creating a <code class="docutils literal"><span class="pre">class</span></code>.  A <code class="docutils literal"><span class="pre">class</span></code> is the specification of all of the information for our object, we create a <code class="docutils literal"><span class="pre">class</span></code> to define our object&#8217;s properties and methods, so we can consider that a <code class="docutils literal"><span class="pre">class</span></code> is like a recipe to make instances of objects.  In <a class="reference external" href="http://www.learningprocessing.com">Shiffman&#8217;s book</a>, he gives an analogy of the class definition as being like a cookie cutter, and a particular instance of an object being a cookie.  In the code below, the Ball class would be the cookie cutter and a single ball object that&#8217;s created using the constructor syntax would be like a cookie.</p>
+<p>For our bouncing ball, we can try to come up with a set of properties and behaviors that we will use to represent our ball in our program.  There are many other features of a ball that we&#8217;re going to ignore as we try to come up with an abstract concept of a bouncing ball&#8217;s features.  We can ignore whether the ball was made by an artist, or whether it came in a box when purchased.  We can ignore whether it&#8217;s old and dirty, or brand new and shiny.  For our simple example of a bouncing ball, we&#8217;ll limit our description to the following properties and behaviors:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Name:</strong>  Ball</li>
+<li><strong>Properties:</strong>  size, color, location x, location y, speed x, speed y</li>
+<li><strong>Behaviors:</strong>  move, display</li>
+</ul>
+</div></blockquote>
 <div class="section" id="ball-class">
 <h2>8.1. Ball Class<a class="headerlink" href="#ball-class" title="Permalink to this headline">¶</a></h2>
 <p>We&#8217;ll continue with the last example of a bouncing ball for our first class.  The syntax for a creating a class involves first naming the class, and this introduces a completely new type of syntax:</p>
@@ -63,7 +71,7 @@
 </div>
 <p>Notice there is no return type and there are no <code class="docutils literal"><span class="pre">(</span> <span class="pre">)</span></code>, so this is not like declaring a function. Next we need to declare the class outside of all other functions.  The processing environment is setup so that we can use a new tab for creating our class code, but we could create our class on the current, main tab.  It&#8217;s also a convention that we use capitalization for class names.  If we create a new tab, processing will prompt for the tab name, and we&#8217;ll name it the same as the class name.  Below we&#8217;ve created the code for the Ball property variables and we&#8217;ve also created the default constructor which has no input arguments, we have given default initialization values to the property variables:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
-  <span class="c1">// Variables</span>
+  <span class="c1">// Variables or Properties</span>
   <span class="n">color</span> <span class="n">c</span><span class="o">;</span>
   <span class="kt">float</span> <span class="n">xpos</span><span class="o">;</span>
   <span class="kt">float</span> <span class="n">ypos</span><span class="o">;</span>
@@ -105,7 +113,7 @@
   <span class="n">color</span> <span class="n">c</span><span class="o">;</span>
   <span class="n">PVector</span> <span class="n">position</span><span class="o">;</span>
   <span class="n">PVector</span> <span class="n">speed</span><span class="o">;</span>
-  <span class="kt">float</span> <span class="n">diameter</span><span class="o">=</span><span class="mi">20</span><span class="o">;</span>
+  <span class="kt">float</span> <span class="n">diameter</span><span class="o">;</span>
 
   <span class="c1">//Constructor</span>
   <span class="n">Ball</span><span class="o">(){</span>  <span class="c1">//default constructor</span>
@@ -125,7 +133,7 @@
 </div>
 <div class="section" id="class-methods">
 <h2>8.3. Class Methods<a class="headerlink" href="#class-methods" title="Permalink to this headline">¶</a></h2>
-<p>Then the final part of the class definition is that we need to define methods for the class.  As mentioned in the previous section, it&#8217;s convenient to create a method that will allow you to print out the values for the Ball Ojbect&#8217;s property values that might be changing during a program execution, one way to do that is to create a function called <code class="docutils literal"><span class="pre">toString()</span></code> as shown below, this can be called from the processing global print() function because it takes a string as an input argument. This code would be included within the Ball class tab.</p>
+<p>Then the final part of the class definition is that we need to define methods for the class, these methods are the code we&#8217;ll write to create the behaviors for our ball.  As mentioned in the previous section, it&#8217;s convenient to create a method that will allow you to print out the values for the Ball Ojbect&#8217;s property values that might be changing during a program execution, one way to do that is to create a function called <code class="docutils literal"><span class="pre">toString()</span></code> as shown below, this can be called from the processing global print() function because it takes a string as an input argument. This code would be included within the Ball class tab.</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">// class methods</span>
   <span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
      <span class="n">fill</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
@@ -174,6 +182,64 @@
 <span class="o">}</span>
 </pre></div>
 </div>
+<p>Below is the full code for the Ball class which includes 3 methods and 2 constructor functions and is called in the above main sketch code.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
+
+  <span class="c1">// Variables</span>
+  <span class="n">color</span> <span class="n">c</span><span class="o">;</span>
+  <span class="n">PVector</span> <span class="n">position</span><span class="o">;</span>
+  <span class="n">PVector</span> <span class="n">speed</span><span class="o">;</span>
+  <span class="kt">float</span> <span class="n">diameter</span><span class="o">;</span>
+
+  <span class="c1">//Constructor</span>
+  <span class="n">Ball</span><span class="o">(){</span>  <span class="c1">//default constructor</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+    <span class="n">position</span><span class="o">=</span><span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
+    <span class="n">speed</span><span class="o">=</span><span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="c1">// constructor with initialization arguments</span>
+  <span class="n">Ball</span><span class="o">(</span><span class="n">color</span> <span class="n">tempc</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tempXpos</span><span class="o">,</span><span class="kt">float</span> <span class="n">tempYpos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tempXspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tempYspeed</span><span class="o">){</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">tempc</span><span class="o">;</span>
+    <span class="n">position</span><span class="o">=</span><span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="n">tempXpos</span><span class="o">,</span><span class="n">tempYpos</span><span class="o">);</span>
+    <span class="n">speed</span><span class="o">=</span><span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="n">tempXspeed</span><span class="o">,</span><span class="n">tempYspeed</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="c1">// class methods</span>
+  <span class="c1">// this method is responsible for creating the displayed ball object</span>
+  <span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
+     <span class="n">fill</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+     <span class="n">ellipse</span><span class="o">(</span><span class="n">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span><span class="n">position</span><span class="o">.</span><span class="na">y</span><span class="o">,</span><span class="n">diameter</span><span class="o">,</span><span class="n">diameter</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="c1">//this method is responsible for determining movement of the ball</span>
+  <span class="kt">void</span> <span class="nf">move</span><span class="o">(){</span>
+    <span class="n">position</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">speed</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">position</span><span class="o">.</span><span class="na">x</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">width</span><span class="o">-</span><span class="n">diameter</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span> <span class="o">||</span> <span class="n">position</span><span class="o">.</span><span class="na">x</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mi">0</span><span class="o">+</span><span class="n">diameter</span><span class="o">/</span><span class="mi">2</span><span class="o">)){</span>
+      <span class="n">speed</span><span class="o">.</span><span class="na">x</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">position</span><span class="o">.</span><span class="na">y</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">height</span><span class="o">-</span><span class="n">diameter</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span> <span class="o">||</span> <span class="n">position</span><span class="o">.</span><span class="na">y</span> <span class="o">&lt;(</span><span class="mi">0</span><span class="o">+</span><span class="n">diameter</span><span class="o">/</span><span class="mi">2</span><span class="o">)){</span>
+      <span class="n">speed</span><span class="o">.</span><span class="na">y</span> <span class="o">*=-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="c1">// this is a convenience method to help with debugging</span>
+  <span class="n">String</span> <span class="nf">toString</span><span class="o">(){</span>
+    <span class="k">return</span> <span class="s">&quot; [ &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="s">&quot; , &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="s">&quot; ]&quot;</span><span class="o">;</span>
+  <span class="o">}</span>
+
+<span class="o">}</span> <span class="c1">//end of the Ball class definition</span>
+</pre></div>
+</div>
+<p>To review, in order to create a class, we need the following things which are all specified within a class definition:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Class Name</li>
+<li>Instance Variables - these are properties / attributes of an object</li>
+<li>Constructor functions</li>
+<li>Methods, which are functions that control behavior of an object</li>
+</ol>
+</div></blockquote>
 </div>
 </div>
 
