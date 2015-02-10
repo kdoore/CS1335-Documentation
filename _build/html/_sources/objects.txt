@@ -192,4 +192,10 @@ To review, in order to create a class, we need the following things which are al
 	4.  Methods, which are functions that control behavior of an object
 	
 .. _Shiffman's book: http://www.learningprocessing.com	
+
+Questions
+==========
+
+	1.  Can you modify the speed attribute of a ball so that it's speed is dependent on the size of the ball?  Smaller Balls move faster than bigger ones?
+	2.
 	

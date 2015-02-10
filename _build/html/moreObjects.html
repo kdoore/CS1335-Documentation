@@ -44,6 +44,58 @@
             
   <div class="section" id="more-objects">
 <span id="moreobjects"></span><h1>More Objects<a class="headerlink" href="#more-objects" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we&#8217;ll continue to explore the concepts of classes and objects using the context of the Ball class.</p>
+<div class="section" id="this-keyword">
+<h2>this Keyword<a class="headerlink" href="#this-keyword" title="Permalink to this headline">¶</a></h2>
+<p>When referring to properties and methods from within a class definition, the keyword <code class="docutils literal"><span class="pre">this</span></code> is used to refer to the actual object itself.  We can use the keyword <code class="docutils literal"><span class="pre">this</span></code> to clarify some of the code we write when creating a class definition.  For example, if we create 2 different class constructors, we can use the keyword with function notation: <code class="docutils literal"><span class="pre">this()</span></code>, as a way to call one constructor from within another constructor. For example, the default constructor can call another constructor using <code class="docutils literal"><span class="pre">this()</span></code> as a way to simplify the class code like below:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
+        <span class="n">color</span> <span class="n">c</span><span class="o">;</span>
+        <span class="n">PVector</span> <span class="n">location</span><span class="o">;</span>
+        <span class="n">PVector</span> <span class="n">speed</span><span class="o">;</span>
+        <span class="kt">float</span> <span class="n">diameter</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">active</span><span class="o">;</span>
+
+        <span class="n">Ball</span><span class="o">(){</span>
+                <span class="k">this</span><span class="o">(</span><span class="n">color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">),</span> <span class="mf">100.0</span><span class="o">,</span> <span class="mf">100.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">30.0</span><span class="o">);</span>  <span class="c1">//call the other constructor from the default constructor to initialize variables</span>
+        <span class="o">}</span>
+
+        <span class="n">Ball</span><span class="o">(</span><span class="n">color</span> <span class="n">c</span><span class="o">,</span> <span class="kt">float</span> <span class="n">x</span><span class="o">,</span> <span class="kt">float</span> <span class="n">y</span><span class="o">,</span> <span class="kt">float</span> <span class="n">xspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">diameter</span><span class="o">){</span>
+
+                <span class="k">this</span><span class="o">.</span><span class="na">location</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">x</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">location</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">y</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">speed</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">xspeed</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">speed</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">yspeed</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">diameter</span><span class="o">=</span><span class="n">diameter</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">active</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interactivity-and-events">
+<h2>Interactivity and Events<a class="headerlink" href="#interactivity-and-events" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ll look at one method to add interactivity to our ball objects, such that when they are clicked upon by the mouse, we&#8217;ll have them display a different behavior.  In order to add interactive behavior, we&#8217;ll want to re-introduce the idea of events and states.  We can say that our ball will be in an &#8216;active state&#8217; when clicked on.  We need to add a method to the Ball class that can check the mouse location when a user clicks the mouse and determine if the user is on the ball object. Here&#8217;s a starting idea:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">clicked</span><span class="o">(</span><span class="kt">float</span> <span class="n">mx</span><span class="o">,</span> <span class="kt">float</span> <span class="n">my</span><span class="o">){</span>  <span class="c1">//input values are mouseX and mouseY</span>
+        <span class="kt">float</span> <span class="n">radius</span><span class="o">=</span><span class="k">this</span><span class="o">.</span><span class="na">diameter</span><span class="o">/</span><span class="mf">2.0</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">mx</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">location</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span><span class="n">radius</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mx</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">location</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">radius</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mY</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">location</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span><span class="n">radius</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mY</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">location</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">radius</span><span class="o">){</span>
+                <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">active</span><span class="o">){</span>
+                        <span class="k">this</span><span class="o">.</span><span class="na">active</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="k">else</span><span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="na">active</span><span class="o">=</span><span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">display</span><span class="o">(){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">active</span><span class="o">){</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">c</span><span class="o">=</span>
+        <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -52,6 +104,15 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">More Objects</a><ul>
+<li><a class="reference internal" href="#this-keyword">this Keyword</a></li>
+<li><a class="reference internal" href="#interactivity-and-events">Interactivity and Events</a></li>
+</ul>
+</li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
