@@ -196,6 +196,6 @@ To review, in order to create a class, we need the following things which are al
 Questions
 ==========
 
-	1.  Can you modify the speed attribute of a ball so that it's speed is dependent on the size of the ball?  Smaller Balls move faster than bigger ones?
-	2.
+	1.  Can you modify the speed attribute of a ball so that it's speed is dependent on the diameter of the ball?  Smaller Balls move faster than bigger ones?
+	2.  How can we compare to see if 2 different ball objects are equal?  How would we define equal for Ball objects?
 	
