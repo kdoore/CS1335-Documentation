@@ -16,20 +16,20 @@ When referring to properties and methods from within a class definition, the key
 		PVector position;
 		PVector speed;
 		float diameter;
-		boolean active;
+		int hitCount;
 		
 		Ball(){
 			this(color(255,0,0), 100.0, 100.0, 2.0, 2.0, 30.0);  //call the other constructor from the default constructor to initialize variables
 		}
 		
 		Ball(color c, float x, float y, float xspeed, float yspeed, float diameter){
-		
+			
 			this.position.x=x;
 			this.position.y=y;
 			this.speed.x=xspeed;
 			this.speed.y=yspeed;
 			this.diameter=diameter;
-			this.active=false;
+			this.hitCount=0;
 		}
 	}
 
@@ -58,29 +58,132 @@ So far, the methods we've written have only concerned 1 ball object.  How can we
 	println( vector1.x )  // 5   since the variable vector1 now refers to the same objects as vector2
 	
 
-Interactivity and Events
-=========================
+So, to continue the discussion in terms of our Ball objects, let's write a method that will allow us to check whether 2 ball objects occupy the same space on the canvas.
+We can look at some of the PVector methods like add(PVector pvec) to have an idea of how one object can interact with another one using methods.  We'll need to use the keyword ``this`` in order to write our equals function.  Let's agree that 2 balls are equal if they have the same size and position. Finally, our method must take a Ball as an input parameter and return a boolean as the return value::
 
-We'll look at one method to add interactivity to our ball objects, such that when they are clicked upon by the mouse, we'll have them display a different behavior.  In order to add interactive behavior, we'll want to re-introduce the idea of events and states.  We can say that our ball will be in an 'active state' when clicked on.  We need to add a method to the Ball class that can check the mouse position when a user clicks the mouse and determine if the user is on the ball object. Here's a starting idea::
-
-	void clicked(float mx, float my){  //input values are mouseX and mouseY
-		float radius=this.diameter/2.0;
-		if(mx > (position.x -radius) && mx < (position.x + radius) && mY > (position.y -radius) && mY < (position.y + radius){
-			if(this.active){
-			 	this.active=false;
-			}
-			else{
-				this.active=true;
-			}
-		}
-	}
-	
-	display(){
-		if(active){
-			this.c=color(255,0,255);
+	boolean isEqual(Ball otherBall){
+		if(this.position.x == otherBall.position.x  && this.position.y == otherBall.position.y  && this.diameter = otherBall.diameter){
+			return true;
 		}
 		else
-			this.c=color(255,0,0);
-	
+		return false;
 	}
+	
+	
+With bouncing balls, it's unlikely that many ball objects will actually have the exact same values for position and size, so instead let's look at what collision would look like. Here we want to see if the distance between the centers of the balls is less than the sum of the 2 ball radiuses::
+	
+	boolean isIntersecting(Ball otherBall){
+		float distance=dist(this.position.x, this.position.y, otherBall.position.x, otherBall.position.y);
+		if( (distance <= this.diameter / 2) + (otherBall.diameter / 2)){
+			this.highlight();    
+			otherBall.highlight();
+		}
+	}
+	
+	void highlight(){
+		this.c = color(255,255,0,80);
+	}
+	
+	void reset(){
+	    this.c=resetColor;
+	}
+
+
+Here is the full code for the Ball class that includes a test for intersection between 2 balls::
+
+	class Ball{
+
+	  // Variables
+	  color c;
+	  color resetColor;  //store color to reset after highlighting
+	  PVector position;
+	  PVector speed;
+	  float diameter;  
+
+	  //Constructor
+	  Ball(){  //default constructor
+	    this(color(255,0,0), width/2, height/2, 3, 5 );  //call the constructor with initialization values
+	    
+	  }
+
+	  // constructor with initialization arguments
+	  Ball(color tempc, float tempXpos,float tempYpos, float tempXspeed, float tempYspeed){
+	    c=tempc;
+	    resetColor=tempc;
+	    position=new PVector(tempXpos,tempYpos);
+	    speed=new PVector(tempXspeed,tempYspeed);
+	  }
+
+	  // class methods  
+	  // this method is responsible for creating the displayed ball object
+	  void display(){
+	     fill(c);
+	     ellipse(position.x,position.y,diameter,diameter);
+	  }
+
+	  //this method is responsible for determining movement of the ball
+	  void move(){
+	    position.add(speed);
+	    if(position.x > (width-diameter/2) || position.x < (0+diameter/2)){  
+	      speed.x *= -1;
+	    }
+	    if(position.y > (height-diameter/2) || position.y <(0+diameter/2)){
+	      speed.y *=-1;
+	    }
+	  }
+
+	  // this is a convenience method to help with debugging
+	  String toString(){
+	    return " [ " + this.position.x + " , " + this.position.y + " ]";
+	  }
+
+	   boolean isIntersecting(Ball otherBall){
+	      float distance=dist(this.position.x, this.position.y, otherBall.position.x, otherBall.position.y);
+	      if( distance <= (this.diameter / 2) + (otherBall.diameter / 2)){
+	        this.highlight();    
+	        otherBall.highlight();
+			this.hitCount++;
+	        return true;
+	      }
+	      this.resetColor();
+	      otherBall.resetColor();
+	      return false;
+	  }
+
+	  void highlight(){
+	    this.c = color(255,255,0,40);
+	  }
+
+	  void resetColor(){
+	    this.c=resetColor;
+	  }
+
+	}
+
+Here is the main sketch code::
+	
+	Ball ball1;
+	Ball ball2;
+
+	void setup(){
+	  size(300,300);
+	  color ballColor=color(100,200,100);
+	  ball1=new Ball(ballColor,25,20,3,6);
+	  background(255);
+	  ball1.diameter=50;
+	  ball2=new Ball(color(255,0,0),20,20,2,4);
+	  ball2.diameter=40;
+	}
+
+	void draw(){
+	   background(255);
+	   ball1.isIntersecting(ball2);
+	   ball1.move();
+	   ball1.display();
+	   ball2.move();
+	   ball2.display();
+	}
+	
+
+
 

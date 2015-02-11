@@ -21,6 +21,7 @@ Contents:
 	drawing
 	pVector
 	objects
+	moreObjects
 	game-design
 	resources
 	
