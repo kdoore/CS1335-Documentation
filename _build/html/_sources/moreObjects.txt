@@ -16,20 +16,18 @@ When referring to properties and methods from within a class definition, the key
 		PVector position;
 		PVector speed;
 		float diameter;
-		int hitCount;
+	
 		
 		Ball(){
 			this(color(255,0,0), 100.0, 100.0, 2.0, 2.0, 30.0);  //call the other constructor from the default constructor to initialize variables
 		}
 		
-		Ball(color c, float x, float y, float xspeed, float yspeed, float diameter){
-			
-			this.position.x=x;
-			this.position.y=y;
+		Ball(color c, float xpos, float ypos, float xspeed, float yspeed, float diameter){
+			this.position.x=xpos;
+			this.position.y=ypos;
 			this.speed.x=xspeed;
 			this.speed.y=yspeed;
 			this.diameter=diameter;
-			this.hitCount=0;
 		}
 	}
 
@@ -70,32 +68,41 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
 	}
 	
 	
-With bouncing balls, it's unlikely that many ball objects will actually have the exact same values for position and size, so instead let's look at what collision would look like. Here we want to see if the distance between the centers of the balls is less than the sum of the 2 ball radiuses::
+With bouncing balls, it's unlikely that many ball objects will actually have the exact same values for position and size, so instead let's look at what collision would look like. Here we want to see if the distance between the centers of the balls is less than the sum of the 2 ball radiuses.  The image below shows how distance between circle centers can be compared with circle radius size to determine if 2 circles are intersecting
+
+.. image:: /images/intersection.png
+
+The code below shows how we can implement this in a simple function::
 	
 	boolean isIntersecting(Ball otherBall){
 		float distance=dist(this.position.x, this.position.y, otherBall.position.x, otherBall.position.y);
 		if( (distance <= this.diameter / 2) + (otherBall.diameter / 2)){
-			this.highlight();    
-			otherBall.highlight();
+			return true;   //intersecting
 		}
+		return false   //else, no intersection so return false
 	}
 	
-	void highlight(){
+	void highlight(){   //we can call the highlight function in the draw loop to show the intersection
 		this.c = color(255,255,0,80);
 	}
-	
-	void reset(){
-	    this.c=resetColor;
-	}
 
+Here is the processing sketch. 
 
+		.. raw:: html
+
+			<div class="figure">
+			<iframe width="328" height="380" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/186034/embed/?width=300&height=300&border=true"></iframe>
+			</div>
+			
+				
 Here is the full code for the Ball class that includes a test for intersection between 2 balls::
 
 	class Ball{
 
 	  // Variables
-	  color c;
-	  color resetColor;  //store color to reset after highlighting
+	  color currentColor;  //current color of the ball
+	  color ballColor;  //store color to reset after highlighting
+	  color highlightColor;  //highlight color of the ball
 	  PVector position;
 	  PVector speed;
 	  float diameter;  
@@ -107,18 +114,20 @@ Here is the full code for the Ball class that includes a test for intersection b
 	  }
 
 	  // constructor with initialization arguments
-	  Ball(color tempc, float tempXpos,float tempYpos, float tempXspeed, float tempYspeed){
-	    c=tempc;
-	    resetColor=tempc;
-	    position=new PVector(tempXpos,tempYpos);
-	    speed=new PVector(tempXspeed,tempYspeed);
+	  Ball(color _c, float _xpos,float _ypos, float _xspeed, float _yspeed){
+	    currentColor=_c;
+	    ballColor=currentColor;
+		highlightColor=color(255,255,0,40);
+	    position=new PVector(_xpos,_ypos);
+	    speed=new PVector(_xspeed,_yspeed);
 	  }
 
 	  // class methods  
 	  // this method is responsible for creating the displayed ball object
 	  void display(){
-	     fill(c);
+	     fill(currentColor);  //this may be highlighted or ballColor
 	     ellipse(position.x,position.y,diameter,diameter);
+		 currentColor=ballColor; //reset ballColor back to original color
 	  }
 
 	  //this method is responsible for determining movement of the ball
@@ -136,29 +145,25 @@ Here is the full code for the Ball class that includes a test for intersection b
 	  String toString(){
 	    return " [ " + this.position.x + " , " + this.position.y + " ]";
 	  }
-
+	
+	  //comparison method:  do comparison and return true or false
+	
 	   boolean isIntersecting(Ball otherBall){
-	      float distance=dist(this.position.x, this.position.y, otherBall.position.x, otherBall.position.y);
+	      float distance= PVector.dist(this.position, otherBall.postion);  //PVector distance between 2 points
+		 
 	      if( distance <= (this.diameter / 2) + (otherBall.diameter / 2)){
-	        this.highlight();    
-	        otherBall.highlight();
-			this.hitCount++;
 	        return true;
 	      }
-	      this.resetColor();
-	      otherBall.resetColor();
 	      return false;
 	  }
 
 	  void highlight(){
-	    this.c = color(255,255,0,40);
+	    this.currentColor = this.highlightColor;
 	  }
 
-	  void resetColor(){
-	    this.c=resetColor;
-	  }
+	} //end of Ball class
 
-	}
+	
 
 Here is the main sketch code::
 	
@@ -167,9 +172,7 @@ Here is the main sketch code::
 
 	void setup(){
 	  size(300,300);
-	  color ballColor=color(100,200,100);
-	  ball1=new Ball(ballColor,25,20,3,6);
-	  background(255);
+	  ball1=new Ball(color(100,200,100);,25,20,3,6);
 	  ball1.diameter=50;
 	  ball2=new Ball(color(255,0,0),20,20,2,4);
 	  ball2.diameter=40;
@@ -177,13 +180,21 @@ Here is the main sketch code::
 
 	void draw(){
 	   background(255);
-	   ball1.isIntersecting(ball2);
+	
+		//test to see ball1 isIntersecting ball2, highlight both if this is true:
+	   boolean isIntersect=ball1.isIntersecting(ball2);
+	
+	   if(isIntersect){
+			ball1.highlight();  
+			ball2.highlight();
+		}
 	   ball1.move();
 	   ball1.display();
 	   ball2.move();
 	   ball2.display();
 	}
 	
-
+In the code above, we
+ 
 
 

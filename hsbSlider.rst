@@ -173,7 +173,8 @@ Questions
 	5.  Can you create a small random variation in these values so when the user draws artwork, the colors show very slight random variation?
 	6.  How can you incorporate these sliders into a drawing program so the user can create interesting artwork?
 	7.  Why is it better to have hueValue as an input parameter to our function rather than modifying the global variable _hueValue within the function itself?
-	8.  How would you use the ``map()`` function to determine the xPosition for the indicator rectangle if you only know the current hueValue?  
+	8.  How would you use the ``map()`` function to determine the xPosition for the indicator rectangle if you only know the current hueValue? 
+	9.  When using i as the x-postion of our colored lines that fill the slider rectangle, what adjustments do we need to make to insure that we can draw our 		slider anywhere on the canvas.  How can i be determined, relative to the slider xPostion? 
 
 .. _Processing:  http://www.processing.org
 

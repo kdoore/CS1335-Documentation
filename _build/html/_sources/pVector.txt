@@ -6,6 +6,8 @@ PVector
 
 On the processing website, there is a comprehensive `PVector tutorial`_ about the PVector object.  The PVector object is used to represent vector objects, and provides data elements and methods for vector math operations. We can consider a vector to be a collection of values that describe some concept that has some spatial dimension, or some properties that have directional components. A vector in mathematics represents the difference between 2 points in space.  When a vector is used to represent a single point's location, it is assumed that the 0,0 origin is one of the vector endpoints.  The simple ball bouncing animation below gives an example of using the ball's x,y location and adding horizontal speed and vertical speed to the balls current location to animate the motion of the ball.  Location, velocity (speed), and acceleration can all be represented using the PVector object, in addition, a PVector could also represent something like friction which might have different values along different x, y, or z dimensions.  The PVector object has methods to ``add()`` 2 vectors which simplifies working with motion concepts in multiple dimensions.  In addition, the PVector object provides a good introduction to object oriented programming.
 
+**At its core, a PVector is just a convenient way to store two values** `Daniel Shiffman`  `PVector tutorial`_
+
 Bouncing Ball - No Vectors
 ===========================
 
@@ -175,5 +177,5 @@ Questions:
 
 
 
-.. _PVector Tutorial:  https://processing.org/tutorials/PVector/
+.. _PVector tutorial:  https://processing.org/tutorials/PVector/
 .. _Learning Processing:  http://learningprocessing.com

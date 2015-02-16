@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="8. Game Programming" href="game-design.html" />
+    <link rel="next" title="8. Objects" href="objects.html" />
     <link rel="prev" title="6. Drawing Application" href="drawing.html" /> 
   </head>
   <body role="document">
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="8. Game Programming"
+          <a href="objects.html" title="8. Objects"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="drawing.html" title="6. Drawing Application"
@@ -53,6 +53,7 @@
   <div class="section" id="pvector">
 <span id="id1"></span><h1>7. PVector<a class="headerlink" href="#pvector" title="Permalink to this headline">¶</a></h1>
 <p>On the processing website, there is a comprehensive <a class="reference external" href="https://processing.org/tutorials/PVector/">PVector tutorial</a> about the PVector object.  The PVector object is used to represent vector objects, and provides data elements and methods for vector math operations. We can consider a vector to be a collection of values that describe some concept that has some spatial dimension, or some properties that have directional components. A vector in mathematics represents the difference between 2 points in space.  When a vector is used to represent a single point&#8217;s location, it is assumed that the 0,0 origin is one of the vector endpoints.  The simple ball bouncing animation below gives an example of using the ball&#8217;s x,y location and adding horizontal speed and vertical speed to the balls current location to animate the motion of the ball.  Location, velocity (speed), and acceleration can all be represented using the PVector object, in addition, a PVector could also represent something like friction which might have different values along different x, y, or z dimensions.  The PVector object has methods to <code class="docutils literal"><span class="pre">add()</span></code> 2 vectors which simplifies working with motion concepts in multiple dimensions.  In addition, the PVector object provides a good introduction to object oriented programming.</p>
+<p><strong>At its core, a PVector is just a convenient way to store two values</strong> <cite>Daniel Shiffman</cite>  <a class="reference external" href="https://processing.org/tutorials/PVector/">PVector tutorial</a></p>
 <div class="section" id="bouncing-ball-no-vectors">
 <h2>7.1. Bouncing Ball - No Vectors<a class="headerlink" href="#bouncing-ball-no-vectors" title="Permalink to this headline">¶</a></h2>
 <p>In the PVector tutorial and in <a class="reference external" href="http://learningprocessing.com">Learning Processing</a> Section 5.7, the example programs create a bouncing ball. The bouncing ball programs provide a good example of how to program object motion.
@@ -243,8 +244,8 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
   <p class="topless"><a href="drawing.html"
                         title="previous chapter">6. Drawing Application</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="game-design.html"
-                        title="next chapter">8. Game Programming</a></p>
+  <p class="topless"><a href="objects.html"
+                        title="next chapter">8. Objects</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -269,7 +270,7 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="8. Game Programming"
+          <a href="objects.html" title="8. Objects"
              >next</a> |</li>
         <li class="right" >
           <a href="drawing.html" title="6. Drawing Application"

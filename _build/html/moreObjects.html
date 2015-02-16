@@ -61,20 +61,18 @@
         <span class="n">PVector</span> <span class="n">position</span><span class="o">;</span>
         <span class="n">PVector</span> <span class="n">speed</span><span class="o">;</span>
         <span class="kt">float</span> <span class="n">diameter</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">hitCount</span><span class="o">;</span>
+
 
         <span class="n">Ball</span><span class="o">(){</span>
                 <span class="k">this</span><span class="o">(</span><span class="n">color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">),</span> <span class="mf">100.0</span><span class="o">,</span> <span class="mf">100.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">30.0</span><span class="o">);</span>  <span class="c1">//call the other constructor from the default constructor to initialize variables</span>
         <span class="o">}</span>
 
-        <span class="n">Ball</span><span class="o">(</span><span class="n">color</span> <span class="n">c</span><span class="o">,</span> <span class="kt">float</span> <span class="n">x</span><span class="o">,</span> <span class="kt">float</span> <span class="n">y</span><span class="o">,</span> <span class="kt">float</span> <span class="n">xspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">diameter</span><span class="o">){</span>
-
-                <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">x</span><span class="o">;</span>
-                <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">y</span><span class="o">;</span>
+        <span class="n">Ball</span><span class="o">(</span><span class="n">color</span> <span class="n">c</span><span class="o">,</span> <span class="kt">float</span> <span class="n">xpos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">ypos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">xspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">diameter</span><span class="o">){</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">xpos</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">ypos</span><span class="o">;</span>
                 <span class="k">this</span><span class="o">.</span><span class="na">speed</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">xspeed</span><span class="o">;</span>
                 <span class="k">this</span><span class="o">.</span><span class="na">speed</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">yspeed</span><span class="o">;</span>
                 <span class="k">this</span><span class="o">.</span><span class="na">diameter</span><span class="o">=</span><span class="n">diameter</span><span class="o">;</span>
-                <span class="k">this</span><span class="o">.</span><span class="na">hitCount</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
         <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -114,30 +112,34 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>With bouncing balls, it&#8217;s unlikely that many ball objects will actually have the exact same values for position and size, so instead let&#8217;s look at what collision would look like. Here we want to see if the distance between the centers of the balls is less than the sum of the 2 ball radiuses:</p>
+<p>With bouncing balls, it&#8217;s unlikely that many ball objects will actually have the exact same values for position and size, so instead let&#8217;s look at what collision would look like. Here we want to see if the distance between the centers of the balls is less than the sum of the 2 ball radiuses.  The image below shows how distance between circle centers can be compared with circle radius size to determine if 2 circles are intersecting</p>
+<img alt="_images/intersection.png" src="_images/intersection.png" />
+<p>The code below shows how we can implement this in a simple function:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">boolean</span> <span class="nf">isIntersecting</span><span class="o">(</span><span class="n">Ball</span> <span class="n">otherBall</span><span class="o">){</span>
         <span class="kt">float</span> <span class="n">distance</span><span class="o">=</span><span class="n">dist</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span><span class="o">,</span> <span class="n">otherBall</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">otherBall</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
         <span class="k">if</span><span class="o">(</span> <span class="o">(</span><span class="n">distance</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="o">.</span><span class="na">diameter</span> <span class="o">/</span> <span class="mi">2</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">otherBall</span><span class="o">.</span><span class="na">diameter</span> <span class="o">/</span> <span class="mi">2</span><span class="o">)){</span>
-                <span class="k">this</span><span class="o">.</span><span class="na">highlight</span><span class="o">();</span>
-                <span class="n">otherBall</span><span class="o">.</span><span class="na">highlight</span><span class="o">();</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>   <span class="c1">//intersecting</span>
         <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span>   <span class="c1">//else, no intersection so return false</span>
 <span class="o">}</span>
 
-<span class="kt">void</span> <span class="nf">highlight</span><span class="o">(){</span>
+<span class="kt">void</span> <span class="nf">highlight</span><span class="o">(){</span>   <span class="c1">//we can call the highlight function in the draw loop to show the intersection</span>
         <span class="k">this</span><span class="o">.</span><span class="na">c</span> <span class="o">=</span> <span class="n">color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">80</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="kt">void</span> <span class="nf">reset</span><span class="o">(){</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">c</span><span class="o">=</span><span class="n">resetColor</span><span class="o">;</span>
 <span class="o">}</span>
 </pre></div>
 </div>
+<p>Here is the processing sketch.</p>
+<blockquote>
+<div><div class="figure">
+<iframe width="328" height="380" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/186034/embed/?width=300&height=300&border=true"></iframe>
+</div></div></blockquote>
 <p>Here is the full code for the Ball class that includes a test for intersection between 2 balls:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
 
   <span class="c1">// Variables</span>
-  <span class="n">color</span> <span class="n">c</span><span class="o">;</span>
-  <span class="n">color</span> <span class="n">resetColor</span><span class="o">;</span>  <span class="c1">//store color to reset after highlighting</span>
+  <span class="n">color</span> <span class="n">currentColor</span><span class="o">;</span>  <span class="c1">//current color of the ball</span>
+  <span class="n">color</span> <span class="n">ballColor</span><span class="o">;</span>  <span class="c1">//store color to reset after highlighting</span>
+  <span class="n">color</span> <span class="n">highlightColor</span><span class="o">;</span>  <span class="c1">//highlight color of the ball</span>
   <span class="n">PVector</span> <span class="n">position</span><span class="o">;</span>
   <span class="n">PVector</span> <span class="n">speed</span><span class="o">;</span>
   <span class="kt">float</span> <span class="n">diameter</span><span class="o">;</span>
@@ -149,18 +151,20 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
   <span class="o">}</span>
 
   <span class="c1">// constructor with initialization arguments</span>
-  <span class="n">Ball</span><span class="o">(</span><span class="n">color</span> <span class="n">tempc</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tempXpos</span><span class="o">,</span><span class="kt">float</span> <span class="n">tempYpos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tempXspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tempYspeed</span><span class="o">){</span>
-    <span class="n">c</span><span class="o">=</span><span class="n">tempc</span><span class="o">;</span>
-    <span class="n">resetColor</span><span class="o">=</span><span class="n">tempc</span><span class="o">;</span>
-    <span class="n">position</span><span class="o">=</span><span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="n">tempXpos</span><span class="o">,</span><span class="n">tempYpos</span><span class="o">);</span>
-    <span class="n">speed</span><span class="o">=</span><span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="n">tempXspeed</span><span class="o">,</span><span class="n">tempYspeed</span><span class="o">);</span>
+  <span class="n">Ball</span><span class="o">(</span><span class="n">color</span> <span class="n">_c</span><span class="o">,</span> <span class="kt">float</span> <span class="n">_xpos</span><span class="o">,</span><span class="kt">float</span> <span class="n">_ypos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">_xspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">_yspeed</span><span class="o">){</span>
+    <span class="n">currentColor</span><span class="o">=</span><span class="n">_c</span><span class="o">;</span>
+    <span class="n">ballColor</span><span class="o">=</span><span class="n">currentColor</span><span class="o">;</span>
+        <span class="n">highlightColor</span><span class="o">=</span><span class="n">color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">40</span><span class="o">);</span>
+    <span class="n">position</span><span class="o">=</span><span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="n">_xpos</span><span class="o">,</span><span class="n">_ypos</span><span class="o">);</span>
+    <span class="n">speed</span><span class="o">=</span><span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="n">_xspeed</span><span class="o">,</span><span class="n">_yspeed</span><span class="o">);</span>
   <span class="o">}</span>
 
   <span class="c1">// class methods</span>
   <span class="c1">// this method is responsible for creating the displayed ball object</span>
   <span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
-     <span class="n">fill</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+     <span class="n">fill</span><span class="o">(</span><span class="n">currentColor</span><span class="o">);</span>  <span class="c1">//this may be highlighted or ballColor</span>
      <span class="n">ellipse</span><span class="o">(</span><span class="n">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span><span class="n">position</span><span class="o">.</span><span class="na">y</span><span class="o">,</span><span class="n">diameter</span><span class="o">,</span><span class="n">diameter</span><span class="o">);</span>
+         <span class="n">currentColor</span><span class="o">=</span><span class="n">ballColor</span><span class="o">;</span> <span class="c1">//reset ballColor back to original color</span>
   <span class="o">}</span>
 
   <span class="c1">//this method is responsible for determining movement of the ball</span>
@@ -179,28 +183,22 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
     <span class="k">return</span> <span class="s">&quot; [ &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="s">&quot; , &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="s">&quot; ]&quot;</span><span class="o">;</span>
   <span class="o">}</span>
 
+  <span class="c1">//comparison method:  do comparison and return true or false</span>
+
    <span class="kt">boolean</span> <span class="nf">isIntersecting</span><span class="o">(</span><span class="n">Ball</span> <span class="n">otherBall</span><span class="o">){</span>
-      <span class="kt">float</span> <span class="n">distance</span><span class="o">=</span><span class="n">dist</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span><span class="o">,</span> <span class="n">otherBall</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">otherBall</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
+      <span class="kt">float</span> <span class="n">distance</span><span class="o">=</span> <span class="n">PVector</span><span class="o">.</span><span class="na">dist</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">,</span> <span class="n">otherBall</span><span class="o">.</span><span class="na">postion</span><span class="o">);</span>  <span class="c1">//PVector distance between 2 points</span>
+
       <span class="k">if</span><span class="o">(</span> <span class="n">distance</span> <span class="o">&lt;=</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">diameter</span> <span class="o">/</span> <span class="mi">2</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">otherBall</span><span class="o">.</span><span class="na">diameter</span> <span class="o">/</span> <span class="mi">2</span><span class="o">)){</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">highlight</span><span class="o">();</span>
-        <span class="n">otherBall</span><span class="o">.</span><span class="na">highlight</span><span class="o">();</span>
-                <span class="k">this</span><span class="o">.</span><span class="na">hitCount</span><span class="o">++;</span>
         <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
       <span class="o">}</span>
-      <span class="k">this</span><span class="o">.</span><span class="na">resetColor</span><span class="o">();</span>
-      <span class="n">otherBall</span><span class="o">.</span><span class="na">resetColor</span><span class="o">();</span>
       <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
   <span class="o">}</span>
 
   <span class="kt">void</span> <span class="nf">highlight</span><span class="o">(){</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">c</span> <span class="o">=</span> <span class="n">color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">40</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">currentColor</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">highlightColor</span><span class="o">;</span>
   <span class="o">}</span>
 
-  <span class="kt">void</span> <span class="nf">resetColor</span><span class="o">(){</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">c</span><span class="o">=</span><span class="n">resetColor</span><span class="o">;</span>
-  <span class="o">}</span>
-
-<span class="o">}</span>
+<span class="o">}</span> <span class="c1">//end of Ball class</span>
 </pre></div>
 </div>
 <p>Here is the main sketch code:</p>
@@ -209,9 +207,7 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
   <span class="n">size</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span><span class="mi">300</span><span class="o">);</span>
-  <span class="n">color</span> <span class="n">ballColor</span><span class="o">=</span><span class="n">color</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span><span class="mi">200</span><span class="o">,</span><span class="mi">100</span><span class="o">);</span>
-  <span class="n">ball1</span><span class="o">=</span><span class="k">new</span> <span class="n">Ball</span><span class="o">(</span><span class="n">ballColor</span><span class="o">,</span><span class="mi">25</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">6</span><span class="o">);</span>
-  <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+  <span class="n">ball1</span><span class="o">=</span><span class="k">new</span> <span class="n">Ball</span><span class="o">(</span><span class="n">color</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span><span class="mi">200</span><span class="o">,</span><span class="mi">100</span><span class="o">);,</span><span class="mi">25</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">6</span><span class="o">);</span>
   <span class="n">ball1</span><span class="o">.</span><span class="na">diameter</span><span class="o">=</span><span class="mi">50</span><span class="o">;</span>
   <span class="n">ball2</span><span class="o">=</span><span class="k">new</span> <span class="n">Ball</span><span class="o">(</span><span class="n">color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">),</span><span class="mi">20</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">4</span><span class="o">);</span>
   <span class="n">ball2</span><span class="o">.</span><span class="na">diameter</span><span class="o">=</span><span class="mi">40</span><span class="o">;</span>
@@ -219,7 +215,14 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
 
 <span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
    <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
-   <span class="n">ball1</span><span class="o">.</span><span class="na">isIntersecting</span><span class="o">(</span><span class="n">ball2</span><span class="o">);</span>
+
+        <span class="c1">//test to see ball1 isIntersecting ball2, highlight both if this is true:</span>
+   <span class="kt">boolean</span> <span class="n">isIntersect</span><span class="o">=</span><span class="n">ball1</span><span class="o">.</span><span class="na">isIntersecting</span><span class="o">(</span><span class="n">ball2</span><span class="o">);</span>
+
+   <span class="k">if</span><span class="o">(</span><span class="n">isIntersect</span><span class="o">){</span>
+                <span class="n">ball1</span><span class="o">.</span><span class="na">highlight</span><span class="o">();</span>
+                <span class="n">ball2</span><span class="o">.</span><span class="na">highlight</span><span class="o">();</span>
+        <span class="o">}</span>
    <span class="n">ball1</span><span class="o">.</span><span class="na">move</span><span class="o">();</span>
    <span class="n">ball1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
    <span class="n">ball2</span><span class="o">.</span><span class="na">move</span><span class="o">();</span>
@@ -227,6 +230,7 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
 <span class="o">}</span>
 </pre></div>
 </div>
+<p>In the code above, we</p>
 </div>
 </div>
 
