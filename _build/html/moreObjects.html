@@ -62,10 +62,13 @@
         <span class="n">PVector</span> <span class="n">speed</span><span class="o">;</span>
         <span class="kt">float</span> <span class="n">diameter</span><span class="o">;</span>
 
+        <span class="c1">//default constructor uses this( ) to call the main constructor</span>
 
         <span class="n">Ball</span><span class="o">(){</span>
                 <span class="k">this</span><span class="o">(</span><span class="n">color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">),</span> <span class="mf">100.0</span><span class="o">,</span> <span class="mf">100.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">30.0</span><span class="o">);</span>  <span class="c1">//call the other constructor from the default constructor to initialize variables</span>
         <span class="o">}</span>
+
+        <span class="c1">// constructor that accepts input parameters</span>
 
         <span class="n">Ball</span><span class="o">(</span><span class="n">color</span> <span class="n">c</span><span class="o">,</span> <span class="kt">float</span> <span class="n">xpos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">ypos</span><span class="o">,</span> <span class="kt">float</span> <span class="n">xspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">yspeed</span><span class="o">,</span> <span class="kt">float</span> <span class="n">diameter</span><span class="o">){</span>
                 <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">xpos</span><span class="o">;</span>

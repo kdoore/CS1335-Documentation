@@ -17,10 +17,13 @@ When referring to properties and methods from within a class definition, the key
 		PVector speed;
 		float diameter;
 	
+		//default constructor uses this( ) to call the main constructor
 		
 		Ball(){
 			this(color(255,0,0), 100.0, 100.0, 2.0, 2.0, 30.0);  //call the other constructor from the default constructor to initialize variables
 		}
+		
+		// constructor that accepts input parameters
 		
 		Ball(color c, float xpos, float ypos, float xspeed, float yspeed, float diameter){
 			this.position.x=xpos;

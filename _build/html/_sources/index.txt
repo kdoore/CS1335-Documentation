@@ -22,6 +22,7 @@ Contents:
 	pVector
 	objects
 	moreObjects
+	rainGame
 	game-design
 	resources
 	
