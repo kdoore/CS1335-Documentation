@@ -69,6 +69,11 @@ Here is code for the Catcher class::
         }
 	}
 	
+It's critical to note that in the constructor ``Catcher(float r)``, we are initializing the PVector object.  
+This is an important function of a constructor:  to create any objects that are instance variables of the
+class.  We can't use any of these objects until they've been initialized.
+
+	
 Ball Class Code
 =================
 Here is the code for the Ball class  Note that we're using PVector for speed and location::
@@ -106,7 +111,7 @@ Here is the code for the Ball class  Note that we're using PVector for speed and
      currentColor=ballColor; //reset ballColor back to original color
     }
 
-    //this method is responsible for determining movement of the ball
+    //this method is responsible for determining movement of the ball using the PVector function ``add()``
     void move(){
       position.add(speed);
       if(position.x > (width-diameter/2) || position.x < (0+diameter/2)){  
@@ -142,35 +147,40 @@ Timer Class Code
 Here is the code for the timer class.  It uses the processing function ``millis()`` which counts milliseconds since the sketch started::		
 			
 	class Timer{
-   int startedTime;
-   int totalTime; 
+   		int startedTime;
+   		int totalTime;
+   		 
+   				//constructors
+  		 Timer(int _totalTime){  //constructor
+     			totalTime=_totalTime;
+   			}
+   			
+   				//methods
+  	 	void start(){
+     		startedTime=millis();   //set the start time to the current millis value
+   		}
    
-   Timer(int _totalTime){
-     totalTime=_totalTime;
-   }
-   
-   void start(){
-     startedTime=millis();   //set the start time to the current millis value
-   }
-   
-   boolean isFinished(){
-     int passedTime=millis()-startedTime;
-     if(passedTime>totalTime){
-       println("timer finished");
-       return true;
-     }else{
-       return false;
-     }
-   }
+   		boolean isFinished(){
+     		int passedTime=millis()-startedTime;
+     		if(passedTime>totalTime){
+       			println("timer finished");
+       			return true;
+     		}
+     		else{
+       			return false;
+     		}
+   		}
   
-	}
+	}  //end of Timer class
 				
+Object Inheritance
+====================
 
 Here is the code for the Drop class, it is a child class of the Ball class and it inherits the instance variables
 and methods from the Ball class.  we use the ``super`` keyword to refer to methods in the parent Ball class::
  
  class Drop extends Ball{
-  boolean isActive;
+  boolean isActive;  //this is instance variable for drop class
   color dropColor;
   
   Drop(){
@@ -203,8 +213,21 @@ and methods from the Ball class.  we use the ``super`` keyword to refer to metho
     super.display();
   }
   }
-  
-Here is a start of a main program where we are testing each of our classes::
+
+In the above code, we have created a class that's a child class of the Ball class.  We have
+used the keyword ``super`` within the constructor so that we're calling the constructor for the
+``Ball`` class.  We have used the ``extends`` keyword in the first line of the class declaration
+to show that this class is a child class of the ``Ball`` class.
+
+The Main Program
+=================
+
+Here is a start of a main program where we are testing each of our classes.  It's important to 
+keep straight the fact that we're declaring our classes in separate tabs, but all of the code
+to execute the program is all contained in the first processing tab.  In that tab, we have our
+processing setup function and the draw function
+
+Here's the code for executing the beginning of our game::
 
 	//rain catcher game: main file
 	Catcher myCatcher;
@@ -225,6 +248,7 @@ Here is a start of a main program where we are testing each of our classes::
 
 	void draw(){
   		background(255);
+  		myCatcher.setPosition(mouseX, mouseY);
   		myCatcher.display();
   		drop1.move();
   		drop1.display();

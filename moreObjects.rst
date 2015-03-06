@@ -198,6 +198,10 @@ Here is the main sketch code::
 	}
 	
 In the code above, we
+
+Questions:
+==========
+	1. Can you create a class called ``Block`` which creates a square shape that moves around the canvas?
  
 
 

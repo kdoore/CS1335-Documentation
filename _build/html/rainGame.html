@@ -116,6 +116,9 @@ Display catcher</dd>
 <span class="o">}</span>
 </pre></div>
 </div>
+<p>It&#8217;s critical to note that in the constructor <code class="docutils literal"><span class="pre">Catcher(float</span> <span class="pre">r)</span></code>, we are initializing the PVector object.
+This is an important function of a constructor:  to create any objects that are instance variables of the
+class.  We can&#8217;t use any of these objects until they&#8217;ve been initialized.</p>
 </div>
 <div class="section" id="ball-class-code">
 <h2>10.4. Ball Class Code<a class="headerlink" href="#ball-class-code" title="Permalink to this headline">¶</a></h2>
@@ -153,7 +156,7 @@ Display catcher</dd>
   <span class="n">currentColor</span><span class="o">=</span><span class="n">ballColor</span><span class="o">;</span> <span class="c1">//reset ballColor back to original color</span>
  <span class="o">}</span>
 
- <span class="c1">//this method is responsible for determining movement of the ball</span>
+ <span class="c1">//this method is responsible for determining movement of the ball using the PVector function ``add()``</span>
  <span class="kt">void</span> <span class="nf">move</span><span class="o">(){</span>
    <span class="n">position</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">speed</span><span class="o">);</span>
    <span class="k">if</span><span class="o">(</span><span class="n">position</span><span class="o">.</span><span class="na">x</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">width</span><span class="o">-</span><span class="n">diameter</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span> <span class="o">||</span> <span class="n">position</span><span class="o">.</span><span class="na">x</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mi">0</span><span class="o">+</span><span class="n">diameter</span><span class="o">/</span><span class="mi">2</span><span class="o">)){</span>
@@ -187,35 +190,41 @@ Display catcher</dd>
 <div class="section" id="timer-class-code">
 <h2>10.5. Timer Class Code<a class="headerlink" href="#timer-class-code" title="Permalink to this headline">¶</a></h2>
 <p>Here is the code for the timer class.  It uses the processing function <code class="docutils literal"><span class="pre">millis()</span></code> which counts milliseconds since the sketch started:</p>
-<div class="highlight-Java"><div class="highlight"><pre>     <span class="kd">class</span> <span class="nc">Timer</span><span class="o">{</span>
-<span class="kt">int</span> <span class="n">startedTime</span><span class="o">;</span>
-<span class="kt">int</span> <span class="n">totalTime</span><span class="o">;</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Timer</span><span class="o">{</span>
+        <span class="kt">int</span> <span class="n">startedTime</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">totalTime</span><span class="o">;</span>
 
-<span class="n">Timer</span><span class="o">(</span><span class="kt">int</span> <span class="n">_totalTime</span><span class="o">){</span>
-  <span class="n">totalTime</span><span class="o">=</span><span class="n">_totalTime</span><span class="o">;</span>
-<span class="o">}</span>
+                        <span class="c1">//constructors</span>
+         <span class="n">Timer</span><span class="o">(</span><span class="kt">int</span> <span class="n">_totalTime</span><span class="o">){</span>  <span class="c1">//constructor</span>
+                <span class="n">totalTime</span><span class="o">=</span><span class="n">_totalTime</span><span class="o">;</span>
+                <span class="o">}</span>
 
-<span class="kt">void</span> <span class="nf">start</span><span class="o">(){</span>
-  <span class="n">startedTime</span><span class="o">=</span><span class="n">millis</span><span class="o">();</span>   <span class="c1">//set the start time to the current millis value</span>
-<span class="o">}</span>
+                        <span class="c1">//methods</span>
+        <span class="kt">void</span> <span class="nf">start</span><span class="o">(){</span>
+        <span class="n">startedTime</span><span class="o">=</span><span class="n">millis</span><span class="o">();</span>   <span class="c1">//set the start time to the current millis value</span>
+        <span class="o">}</span>
 
-<span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">(){</span>
-  <span class="kt">int</span> <span class="n">passedTime</span><span class="o">=</span><span class="n">millis</span><span class="o">()-</span><span class="n">startedTime</span><span class="o">;</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">passedTime</span><span class="o">&gt;</span><span class="n">totalTime</span><span class="o">){</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">&quot;timer finished&quot;</span><span class="o">);</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-  <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+        <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">(){</span>
+        <span class="kt">int</span> <span class="n">passedTime</span><span class="o">=</span><span class="n">millis</span><span class="o">()-</span><span class="n">startedTime</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">passedTime</span><span class="o">&gt;</span><span class="n">totalTime</span><span class="o">){</span>
+                <span class="n">println</span><span class="o">(</span><span class="s">&quot;timer finished&quot;</span><span class="o">);</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">else</span><span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="o">}</span>
 
-     <span class="o">}</span>
+<span class="o">}</span>  <span class="c1">//end of Timer class</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="object-inheritance">
+<h2>10.6. Object Inheritance<a class="headerlink" href="#object-inheritance" title="Permalink to this headline">¶</a></h2>
 <p>Here is the code for the Drop class, it is a child class of the Ball class and it inherits the instance variables
 and methods from the Ball class.  we use the <code class="docutils literal"><span class="pre">super</span></code> keyword to refer to methods in the parent Ball class:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Drop</span> <span class="kd">extends</span> <span class="n">Ball</span><span class="o">{</span>
- <span class="kt">boolean</span> <span class="n">isActive</span><span class="o">;</span>
+ <span class="kt">boolean</span> <span class="n">isActive</span><span class="o">;</span>  <span class="c1">//this is instance variable for drop class</span>
  <span class="n">color</span> <span class="n">dropColor</span><span class="o">;</span>
 
  <span class="n">Drop</span><span class="o">(){</span>
@@ -250,7 +259,18 @@ and methods from the Ball class.  we use the <code class="docutils literal"><spa
  <span class="o">}</span>
 </pre></div>
 </div>
-<p>Here is a start of a main program where we are testing each of our classes:</p>
+<p>In the above code, we have created a class that&#8217;s a child class of the Ball class.  We have
+used the keyword <code class="docutils literal"><span class="pre">super</span></code> within the constructor so that we&#8217;re calling the constructor for the
+<code class="docutils literal"><span class="pre">Ball</span></code> class.  We have used the <code class="docutils literal"><span class="pre">extends</span></code> keyword in the first line of the class declaration
+to show that this class is a child class of the <code class="docutils literal"><span class="pre">Ball</span></code> class.</p>
+</div>
+<div class="section" id="the-main-program">
+<h2>10.7. The Main Program<a class="headerlink" href="#the-main-program" title="Permalink to this headline">¶</a></h2>
+<p>Here is a start of a main program where we are testing each of our classes.  It&#8217;s important to
+keep straight the fact that we&#8217;re declaring our classes in separate tabs, but all of the code
+to execute the program is all contained in the first processing tab.  In that tab, we have our
+processing setup function and the draw function</p>
+<p>Here&#8217;s the code for executing the beginning of our game:</p>
 <div class="highlight-Java"><div class="highlight"><pre>      <span class="c1">//rain catcher game: main file</span>
       <span class="n">Catcher</span> <span class="n">myCatcher</span><span class="o">;</span>
       <span class="n">Ball</span> <span class="n">ball1</span><span class="o">;</span>
@@ -270,6 +290,7 @@ and methods from the Ball class.  we use the <code class="docutils literal"><spa
 
       <span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
               <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+              <span class="n">myCatcher</span><span class="o">.</span><span class="na">setPosition</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">);</span>
               <span class="n">myCatcher</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
               <span class="n">drop1</span><span class="o">.</span><span class="na">move</span><span class="o">();</span>
               <span class="n">drop1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
@@ -298,6 +319,8 @@ and methods from the Ball class.  we use the <code class="docutils literal"><spa
 <li><a class="reference internal" href="#catcher-class-code">10.3. Catcher Class Code</a></li>
 <li><a class="reference internal" href="#ball-class-code">10.4. Ball Class Code</a></li>
 <li><a class="reference internal" href="#timer-class-code">10.5. Timer Class Code</a></li>
+<li><a class="reference internal" href="#object-inheritance">10.6. Object Inheritance</a></li>
+<li><a class="reference internal" href="#the-main-program">10.7. The Main Program</a></li>
 </ul>
 </li>
 </ul>
