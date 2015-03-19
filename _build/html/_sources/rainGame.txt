@@ -277,4 +277,8 @@ based on the user's mouse position.  Then we display the myCatcher object.  Simi
 with the drop1 and ball1 objects, first we move the objects, then we display the objects.
  
 So far, we have several objects moving on the screen, but we need to re-factor this code 
-in order to make some type of a game.   
+in order to make some type of a game. We'll want to have lots of drop objects moving on the 
+canvas.  Also, let's make use a paddle object instead of Shiffman's catcher object.  The 
+paddle object will be controlled by keyboard movement, then collisions will be determined 
+based on whether a falling drop object intersects with the paddle.  We'll cover this in 
+the next section.
