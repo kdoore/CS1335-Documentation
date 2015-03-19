@@ -197,7 +197,7 @@ Here is the main sketch code::
 	   ball2.display();
 	}
 	
-In the code above, we
+
 
 Questions:
 ==========

@@ -282,3 +282,25 @@ canvas.  Also, let's make use a paddle object instead of Shiffman's catcher obje
 paddle object will be controlled by keyboard movement, then collisions will be determined 
 based on whether a falling drop object intersects with the paddle.  We'll cover this in 
 the next section.
+
+Test Driven Development
+=========================
+
+Below is an example of the program, here we're just testing the code for each object that
+we've created.  It's a good idea to create your code in an incremental manner, so that you 
+can discover errors early on.  For each section of code that you create, identify some way
+that you can test whether your code is functioning correctly before moving on to create new
+code.  This is the idea behind test-driven development (TDD), where you would create some
+series of tests for each section of code, to insure it's working correctly, and the code for the 
+tests is actually written before the code that you will be testing.   
+
+.. raw:: html
+
+	<div class="figure">
+	<iframe width="328" height="380" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/190172/embed/?width=300&height=300&border=true"></iframe>
+	</div>
+	
+Questions:
+==========
+
+	

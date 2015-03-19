@@ -192,6 +192,11 @@ about objects as being responsible for knowing how to implement their own behavi
 main program, either in the ``draw()`` or ``setup()`` functions, we want to tell objects when to implement behavior, either
 as part of a sequence of functions, or as the result of some event being triggered, but then we want to let the object
 itself be responsible for knowing how to implement it's own behavior, so that code should be contained within the 
-Class definition. 
+Class definition.
+
+Questions:
+==========
+
+1.  
 
 .. _Dr Doane: http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/
