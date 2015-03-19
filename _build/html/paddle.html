@@ -136,7 +136,7 @@ paddle1 object to call it&#8217;s pressedLeft( ) method as in the code below:</p
 <span class="kt">void</span> <span class="nf">keyPressed</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">==</span> <span class="n">CODED</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(</span><span class="n">keyCode</span> <span class="o">==</span> <span class="n">LEFT</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">paddle1</span><span class="o">.</span><span class="na">pressedLeft</span><span class="o">(</span> <span class="o">);</span>
+                        <span class="n">paddle1</span><span class="o">.</span><span class="na">pressedLeft</span><span class="o">(</span> <span class="o">);</span>
                 <span class="o">}</span>
         <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">keyCode</span> <span class="o">==</span> <span class="n">RIGHT</span> <span class="o">{</span>
                         <span class="n">paddle1</span><span class="o">.</span><span class="na">pressedRight</span><span class="o">(</span> <span class="o">);</span>
@@ -176,18 +176,18 @@ for our program logic.  In the <code class="docutils literal"><span class="pre">
 to determine which arrow method to call.  Note that we&#8217;ve created separate display functions for each arrow
 within the Paddle class, this makes our code logic easier to understand.  Below is part of the <code class="docutils literal"><span class="pre">display()</span></code> code
 for the Paddle class, showing how we&#8217;ve used switch to control which arrow is displayed:</p>
-<div class="highlight-Java"><div class="highlight"><pre> <span class="c1">// this code is in the Paddle class: display() method</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">// this code is in the Paddle class: display() method</span>
 
- <span class="k">switch</span><span class="o">(</span><span class="n">direction</span><span class="o">){</span>   <span class="c1">//test the current value of direction</span>
-<span class="k">case</span><span class="o">(</span><span class="n">pNONE</span><span class="o">):</span>       <span class="c1">//if the initial value, do nothing</span>
-        <span class="k">break</span><span class="o">;</span>
-<span class="k">case</span><span class="o">(</span><span class="n">pLEFT</span><span class="o">):</span>       <span class="c1">//if pLEFT, display left arrow</span>
-        <span class="n">displayLeftArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
-        <span class="k">break</span><span class="o">;</span>
-<span class="k">case</span><span class="o">(</span><span class="n">pRIGHT</span><span class="o">):</span>     <span class="c1">//if pRIGHT, display right arrow</span>
-        <span class="n">displayRightArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
-        <span class="k">break</span><span class="o">;</span>
- <span class="o">}</span>
+<span class="k">switch</span><span class="o">(</span><span class="n">direction</span><span class="o">){</span>   <span class="c1">//test the current value of direction</span>
+               <span class="k">case</span><span class="o">(</span><span class="n">pNONE</span><span class="o">):</span>       <span class="c1">//if the initial value, do nothing</span>
+               <span class="k">break</span><span class="o">;</span>
+       <span class="k">case</span><span class="o">(</span><span class="n">pLEFT</span><span class="o">):</span>       <span class="c1">//if pLEFT, display left arrow</span>
+               <span class="k">this</span><span class="o">.</span><span class="na">displayLeftArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
+               <span class="k">break</span><span class="o">;</span>
+       <span class="k">case</span><span class="o">(</span><span class="n">pRIGHT</span><span class="o">):</span>     <span class="c1">//if pRIGHT, display right arrow</span>
+               <span class="k">this</span><span class="o">.</span><span class="na">displayRightArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
+               <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 </div>
@@ -229,8 +229,15 @@ Class definition.</p>
 </div>
 <div class="section" id="questions">
 <h2>11.9. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li></li>
+<ol class="arabic">
+<li><p class="first">Why have we decided to use <code class="docutils literal"><span class="pre">int</span></code> as the type for the state variable <code class="docutils literal"><span class="pre">direction</span></code>?</p>
+</li>
+<li><dl class="first docutils">
+<dt>What is the benefit of creating simple methods like displayLeftArrow( ) which do one specific task</dt>
+<dd><p class="first last">instead of just writing that additional code within the pressedLeft( ) method?</p>
+</dd>
+</dl>
+</li>
 </ol>
 </div>
 </div>

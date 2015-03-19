@@ -96,7 +96,7 @@ paddle1 object to call it's pressedLeft( ) method as in the code below::
 	void keyPressed() {
   		if (key == CODED) {
   			if (keyCode == LEFT) {
-      			paddle1.pressedLeft( );
+      				paddle1.pressedLeft( );
       			} 
       		else if (keyCode == RIGHT {
       				paddle1.pressedRight( );
@@ -146,14 +146,14 @@ for the Paddle class, showing how we've used switch to control which arrow is di
 	 // this code is in the Paddle class: display() method
 	 
 	 switch(direction){   //test the current value of direction
-       	case(pNONE):       //if the initial value, do nothing
-         	break;
-       	case(pLEFT):       //if pLEFT, display left arrow
-         	displayLeftArrow();   // call this Paddle method
-         	break;
-       	case(pRIGHT):     //if pRIGHT, display right arrow
-         	displayRightArrow();   // call this Paddle method
-         	break;
+	 		case(pNONE):       //if the initial value, do nothing
+         		break;
+       		case(pLEFT):       //if pLEFT, display left arrow
+         		this.displayLeftArrow();   // call this Paddle method
+         		break;
+       		case(pRIGHT):     //if pRIGHT, display right arrow
+         		this.displayRightArrow();   // call this Paddle method
+         		break;
          }
  
 Set the State Variable
@@ -197,6 +197,8 @@ Class definition.
 Questions:
 ==========
 
-1.  
+1.  Why have we decided to use ``int`` as the type for the state variable ``direction``?  
+2.  What is the benefit of creating simple methods like displayLeftArrow( ) which do one specific task 
+	instead of just writing that additional code within the pressedLeft( ) method?  
 
 .. _Dr Doane: http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/
