@@ -1,7 +1,7 @@
-.. _moreRainGame:
+.. _paddle:
 
 ======================
-Rain Game - Extended
+Paddle Object
 ======================
 
 In the previous section, we reviewed Daniel Shiffman's Rain Game, Object-Oriented Game.  Now, we want
@@ -35,9 +35,9 @@ code::
       			paddleY = paddleY – 30;
     		} else if (keyCode == DOWN) {
       			paddleY = paddleY + 30;
-    		}
-  		}
-	}
+      			}
+      		}
+      	}
 
 In the code above, the first thing is to note that we want to know if the user has interacted with
 our program using the keyboard.  If that's happened, then a keyPressed event is triggered.
@@ -61,13 +61,13 @@ move() method, we'll have  pressedLeft() and  pressedRight() methods::
 	void pressedLeft(){
        if(x>0){   //check to make sure that the paddle doesn't move off the left edge
           x=x-speed;  // decrease x position to move the paddle left
-       }
+        }
       }
       void pressedRight(){
      	if(x+pWidth<width){  //make sure paddle stays within the right canvas border
-       	x=x+speed;
+       		x=x+speed;
      	}
-   	}
+     }
 
 The other methods and constructors are basically just like the Ball object, where we have 
 paddle position coordinates: x,y and paddle dimensions pWidth, pHeight.  We also have a speed
@@ -83,11 +83,22 @@ paddle1 object to call it's pressedLeft( ) method as in the code below::
   		if (key == CODED) {
   			if (keyCode == LEFT) {
       			paddle1.pressedLeft( );
-    		} else if (keyCode == RIGHT {
-      			paddle1.pressedRight( );
-    		}
-  		}
-		}
+      			} 
+      			else if (keyCode == RIGHT {
+      				paddle1.pressedRight( );
+      			}
+      		}
+      	}
+
+The example below displays left and right arrows when the user presses the arrow keys.  This
+also moves the paddle left or right. Click inside the sketch to activate, then use the right and
+left arrows to move the paddle.  This sketch code uses int 
+
+.. raw:: html
+
+	<div class="figure">
+		<iframe width="228" height="180" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/190143/embed/?width=200&height=100&border=true"></iframe>
+	</div>
 
 
 .. _Dr Doane: http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/

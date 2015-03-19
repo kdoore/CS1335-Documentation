@@ -23,7 +23,7 @@ Contents:
 	objects
 	moreObjects
 	rainGame
-	moreRainGame
+	paddle
 	game-design
 	resources
 	

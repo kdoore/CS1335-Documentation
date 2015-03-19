@@ -1,7 +1,7 @@
-.. _moreRainGame:
+.. _paddle:
 
 ======================
-Rain Game - Extended
+Paddle Object
 ======================
 
 In the previous section, we reviewed Daniel Shiffman's Rain Game, Object-Oriented Game.  Now, we want
@@ -91,7 +91,8 @@ paddle1 object to call it's pressedLeft( ) method as in the code below::
       	}
 
 The example below displays left and right arrows when the user presses the arrow keys.  This
-also moves the paddle left or right.
+also moves the paddle left or right. Click inside the sketch to activate, then use the right and
+left arrows to move the paddle.  This sketch code uses int 
 
 .. raw:: html
 
