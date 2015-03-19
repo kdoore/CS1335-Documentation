@@ -24,6 +24,9 @@ edges of the canvas.  The main idea is that there are boundaries of the canvas w
 to test to see if the ball has reached those boundries and if it has, then we need to change 
 the direction of the ball object's speed.  
 
+KeyPressed Event
+=================
+
 Dr. Doane then refers to the processing reference code in order to determine how to move the
 paddle object in response to a user's keyboard interaction.  Below is the processing example 
 code::
@@ -53,6 +56,9 @@ For our project, we'll be using a paddle that moves horizontally, so we'll look 
 keyCode == LEFT, or KeyCode == RIGHT, and then we'll need to create code that changes the
 behavior of our paddle's movement based on these keyCode comparisons.
 
+KeyPressed Event Handlers
+===========================
+
 First we need to create a Paddle class:  This will be simliar to the Ball class, but we'll have
 a rectangular object that moves based on the users keyboard interactions.  So, instead of the
 move() method, we'll have  pressedLeft() and  pressedRight() methods::
@@ -74,6 +80,9 @@ The other methods and constructors are basically just like the Ball object, wher
 paddle position coordinates: x,y and paddle dimensions pWidth, pHeight.  We also have a speed
 variable that controls how fast the paddle moves.
 
+KeyPressed Paddle Method Calls
+================================
+
 For our program, we'll actually want to use these pressedLeft() and pressedRight() methods
 within the keyPressed event.  The pressedLeft( ) method is an event handler.  It's code that
 we want to be executed when the keyPressed event occurs.  So, in the main program, we would
@@ -93,6 +102,9 @@ paddle1 object to call it's pressedLeft( ) method as in the code below::
       		}
       	}
 
+Arrows: State Indicators
+=========================
+
 The example below displays left and right arrows when the user presses the arrow keys.  In order to 
 display the correct arrow, I've created some additional variables as part of the paddle class, these
 are `state` variables that keep track of the last keyPress event.  I'm using ``int`` variables, since
@@ -106,8 +118,11 @@ Click inside the sketch to activate, then use the right and left arrows to move 
 		<iframe width="228" height="180" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/190143/embed/?width=200&height=100&border=true"></iframe>
 	</div>
 
+Final Keyword - Constant Values
+=================================
+
 This introduces 4 new instance variables in order to keep track of and display the red arrows
-which indicate direction::
+which indicate direction, Note the use of the ``final`` keyword::
 
    // new instance variables for the Paddle class
    
@@ -137,7 +152,9 @@ for the Paddle class, showing how we've used switch to control which arrow is di
          displayRightArrow();   // call this Paddle method
          break;
      }
-     
+ 
+Set the State Variable
+========================    
 So, next we need to figure out `where` to change the value of direction.  We have already created
 the Paddle methods: ``pressedLeft()`` and ``pressedRight()``, and we know these methods are
 executed when the user presses the left or right keyboard arrows, these Paddle methods are `event handlers`
@@ -154,8 +171,9 @@ behaviors need to occur when the Paddle method: ``pressedLeft()`` event handler 
           direction=pLEFT;  //here we set the direction state value to pLEFT
           }
     }
+    
+    
 
-
-
+So, in the Paddle class, we've created a methodpressedLeft()
 
 .. _Dr Doane: http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/

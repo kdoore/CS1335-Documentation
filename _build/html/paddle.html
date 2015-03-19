@@ -68,6 +68,9 @@ when a user presses a key, we can use that input to allow interaction with our p
 edges of the canvas.  The main idea is that there are boundaries of the canvas where we need
 to test to see if the ball has reached those boundries and if it has, then we need to change
 the direction of the ball object&#8217;s speed.</p>
+</div>
+<div class="section" id="keypressed-event">
+<h2>11.2. KeyPressed Event<a class="headerlink" href="#keypressed-event" title="Permalink to this headline">¶</a></h2>
 <p>Dr. Doane then refers to the processing reference code in order to determine how to move the
 paddle object in response to a user&#8217;s keyboard interaction.  Below is the processing example
 code:</p>
@@ -95,6 +98,9 @@ keyCode == UP, is used to determine whether to move the paddle upwards.</p>
 <p>For our project, we&#8217;ll be using a paddle that moves horizontally, so we&#8217;ll look at whether
 keyCode == LEFT, or KeyCode == RIGHT, and then we&#8217;ll need to create code that changes the
 behavior of our paddle&#8217;s movement based on these keyCode comparisons.</p>
+</div>
+<div class="section" id="keypressed-event-handlers">
+<h2>11.3. KeyPressed Event Handlers<a class="headerlink" href="#keypressed-event-handlers" title="Permalink to this headline">¶</a></h2>
 <p>First we need to create a Paddle class:  This will be simliar to the Ball class, but we&#8217;ll have
 a rectangular object that moves based on the users keyboard interactions.  So, instead of the
 move() method, we&#8217;ll have  pressedLeft() and  pressedRight() methods:</p>
@@ -115,6 +121,9 @@ move() method, we&#8217;ll have  pressedLeft() and  pressedRight() methods:</p>
 <p>The other methods and constructors are basically just like the Ball object, where we have
 paddle position coordinates: x,y and paddle dimensions pWidth, pHeight.  We also have a speed
 variable that controls how fast the paddle moves.</p>
+</div>
+<div class="section" id="keypressed-paddle-method-calls">
+<h2>11.4. KeyPressed Paddle Method Calls<a class="headerlink" href="#keypressed-paddle-method-calls" title="Permalink to this headline">¶</a></h2>
 <p>For our program, we&#8217;ll actually want to use these pressedLeft() and pressedRight() methods
 within the keyPressed event.  The pressedLeft( ) method is an event handler.  It&#8217;s code that
 we want to be executed when the keyPressed event occurs.  So, in the main program, we would
@@ -134,6 +143,9 @@ paddle1 object to call it&#8217;s pressedLeft( ) method as in the code below:</p
 <span class="o">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="arrows-state-indicators">
+<h2>11.5. Arrows: State Indicators<a class="headerlink" href="#arrows-state-indicators" title="Permalink to this headline">¶</a></h2>
 <p>The example below displays left and right arrows when the user presses the arrow keys.  In order to
 display the correct arrow, I&#8217;ve created some additional variables as part of the paddle class, these
 are <cite>state</cite> variables that keep track of the last keyPress event.  I&#8217;m using <code class="docutils literal"><span class="pre">int</span></code> variables, since
@@ -141,8 +153,11 @@ I want to have 3 possible values:  pLEFT, pRIGHT, pNONE (which is the starting p
 <p>Click inside the sketch to activate, then use the right and left arrows to move the paddle.</p>
 <div class="figure">
         <iframe width="228" height="180" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/190143/embed/?width=200&height=100&border=true"></iframe>
-</div><p>This introduces 4 new instance variables in order to keep track of and display the red arrows
-which indicate direction:</p>
+</div></div>
+<div class="section" id="final-keyword-constant-values">
+<h2>11.6. Final Keyword - Constant Values<a class="headerlink" href="#final-keyword-constant-values" title="Permalink to this headline">¶</a></h2>
+<p>This introduces 4 new instance variables in order to keep track of and display the red arrows
+which indicate direction, Note the use of the <code class="docutils literal"><span class="pre">final</span></code> keyword:</p>
 <div class="highlight-Java"><div class="highlight"><pre> <span class="c1">// new instance variables for the Paddle class</span>
 
 <span class="kt">int</span> <span class="n">direction</span><span class="o">;</span>  <span class="c1">//this variable stores the current direction</span>
@@ -173,6 +188,9 @@ for the Paddle class, showing how we&#8217;ve used switch to control which arrow
 <span class="o">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="set-the-state-variable">
+<h2>11.7. Set the State Variable<a class="headerlink" href="#set-the-state-variable" title="Permalink to this headline">¶</a></h2>
 <p>So, next we need to figure out <cite>where</cite> to change the value of direction.  We have already created
 the Paddle methods: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> and <code class="docutils literal"><span class="pre">pressedRight()</span></code>, and we know these methods are
 executed when the user presses the left or right keyboard arrows, these Paddle methods are <cite>event handlers</cite>
@@ -190,6 +208,7 @@ behaviors need to occur when the Paddle method: <code class="docutils literal"><
 <span class="o">}</span>
 </pre></div>
 </div>
+<p>So, in the Paddle class, we&#8217;ve created a methodpressedLeft()</p>
 </div>
 </div>
 
@@ -203,6 +222,12 @@ behaviors need to occur when the Paddle method: <code class="docutils literal"><
   <ul>
 <li><a class="reference internal" href="#">11. Paddle Object</a><ul>
 <li><a class="reference internal" href="#pong-game">11.1. Pong Game</a></li>
+<li><a class="reference internal" href="#keypressed-event">11.2. KeyPressed Event</a></li>
+<li><a class="reference internal" href="#keypressed-event-handlers">11.3. KeyPressed Event Handlers</a></li>
+<li><a class="reference internal" href="#keypressed-paddle-method-calls">11.4. KeyPressed Paddle Method Calls</a></li>
+<li><a class="reference internal" href="#arrows-state-indicators">11.5. Arrows: State Indicators</a></li>
+<li><a class="reference internal" href="#final-keyword-constant-values">11.6. Final Keyword - Constant Values</a></li>
+<li><a class="reference internal" href="#set-the-state-variable">11.7. Set the State Variable</a></li>
 </ul>
 </li>
 </ul>
