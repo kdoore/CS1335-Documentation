@@ -22,7 +22,8 @@ when a user presses a key, we can use that input to allow interaction with our p
 The initial code in Dr Doane's tutorial describes the motion of a ball as it bounces against the
 edges of the canvas.  The main idea is that there are boundaries of the canvas where we need
 to test to see if the ball has reached those boundries and if it has, then we need to change 
-the direction of the ball object's speed.  
+the direction of the ball object's speed.  In an object oriented approach, this behavior would
+be implemented in the Ball class definition, in the ``move( )`` method.
 
 KeyPressed Event
 =================
@@ -32,6 +33,7 @@ paddle object in response to a user's keyboard interaction.  Below is the proces
 code::
 	
 	// based on code from http://processing.org/reference/keyCode.html
+	
 	void keyPressed() {
   		if (key == CODED) {
   			if (keyCode == UP) {
@@ -63,8 +65,8 @@ First we need to create a Paddle class:  This will be simliar to the Ball class,
 a rectangular object that moves based on the users keyboard interactions.  So, instead of the
 move() method, we'll have  pressedLeft() and  pressedRight() methods::
 	
-	//this code is part of the Paddle class definintion
-
+	//this code is part of the Paddle class definition
+	
 	void pressedLeft(){
        if(x>0){   //check to make sure that the paddle doesn't move off the left edge
           x=x-speed;  // decrease x position to move the paddle left
@@ -96,7 +98,7 @@ paddle1 object to call it's pressedLeft( ) method as in the code below::
   			if (keyCode == LEFT) {
       			paddle1.pressedLeft( );
       			} 
-      			else if (keyCode == RIGHT {
+      		else if (keyCode == RIGHT {
       				paddle1.pressedRight( );
       			}
       		}
@@ -127,9 +129,10 @@ which indicate direction, Note the use of the ``final`` keyword::
    // new instance variables for the Paddle class
    
   int direction;  //this variable stores the current direction 
+  final int pNONE=0;   //initial direction state variable
   final int pLEFT=1;   // left direction state variable
   final int pRIGHT=2;  //right direction state variable
-  final int pNONE=0;   //initial direction state variable
+ 
   
 The ``final`` keyword is used to indicate that this value should not be ever be changed, these
 values are used as 'constants' within the program. The use of capital letters also indicates that
@@ -143,15 +146,15 @@ for the Paddle class, showing how we've used switch to control which arrow is di
 	 // this code is in the Paddle class: display() method
 	 
 	 switch(direction){   //test the current value of direction
-       case(pNONE):       //if the initial value, do nothing
-         break;
-       case(pLEFT):       //if pLEFT, display left arrow
-         displayLeftArrow();   // call this Paddle method
-         break;
-       case(pRIGHT):     //if pRIGHT, display right arrow
-         displayRightArrow();   // call this Paddle method
-         break;
-     }
+       	case(pNONE):       //if the initial value, do nothing
+         	break;
+       	case(pLEFT):       //if pLEFT, display left arrow
+         	displayLeftArrow();   // call this Paddle method
+         	break;
+       	case(pRIGHT):     //if pRIGHT, display right arrow
+         	displayRightArrow();   // call this Paddle method
+         	break;
+         }
  
 Set the State Variable
 ========================    
@@ -161,19 +164,34 @@ executed when the user presses the left or right keyboard arrows, these Paddle m
 that we have created, and they are executed in the global ``keyPressed( )`` event by a Paddle object. 
 So, it makes sense that we would want to change the direction state variable when this event occurs, and we'll want to 
 do that within the Paddle class itself, because a paddle object should be responsible for knowing what
-behaviors need to occur when the Paddle method: ``pressedLeft()`` event handler is executed.  Below is the new code::
+behaviors need to occur when the Paddle method: ``pressedLeft()`` event handler is executed.  
+Below is the new code::
 
 	 // this code is in the Paddle class: pressedLeft() method
 	 
 	 void pressedLeft(){
-       if(x>0){
-          x=x-speed;
-          direction=pLEFT;  //here we set the direction state value to pLEFT
+	 	if(x>0){
+	 		x=x-speed;
+          	direction=pLEFT;  //here we set the direction state value to pLEFT
           }
     }
     
     
+Summary
+==========
 
-So, in the Paddle class, we've created a methodpressedLeft()
+So, in the Paddle class, we have created event handler methods: ``pressedLeft()`` and ``pressedRight()``
+When we create a Paddle object, paddle1, then we'll have that object call these event handler methods
+within the global ``keyPressed( )`` event.  The event handler methods are used to trigger object behavior 
+code that we'll need to create within the Paddle class itself, one example of this behavior is the
+``displayLeftArrow()`` method.
+
+Using Object-oriented programming means that we provide more structure to our code.  It can be a little confusing
+to figure out how to organize code when initially learning object-oriented programming.  It can be helpful to think
+about objects as being responsible for knowing how to implement their own behavior.  From this perspective, within the 
+main program, either in the ``draw()`` or ``setup()`` functions, we want to tell objects when to implement behavior, either
+as part of a sequence of functions, or as the result of some event being triggered, but then we want to let the object
+itself be responsible for knowing how to implement it's own behavior, so that code should be contained within the 
+Class definition. 
 
 .. _Dr Doane: http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/

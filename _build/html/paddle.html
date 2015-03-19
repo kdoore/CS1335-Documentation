@@ -67,7 +67,8 @@ when a user presses a key, we can use that input to allow interaction with our p
 <p>The initial code in Dr Doane&#8217;s tutorial describes the motion of a ball as it bounces against the
 edges of the canvas.  The main idea is that there are boundaries of the canvas where we need
 to test to see if the ball has reached those boundries and if it has, then we need to change
-the direction of the ball object&#8217;s speed.</p>
+the direction of the ball object&#8217;s speed.  In an object oriented approach, this behavior would
+be implemented in the Ball class definition, in the <code class="docutils literal"><span class="pre">move(</span> <span class="pre">)</span></code> method.</p>
 </div>
 <div class="section" id="keypressed-event">
 <h2>11.2. KeyPressed Event<a class="headerlink" href="#keypressed-event" title="Permalink to this headline">¶</a></h2>
@@ -75,6 +76,7 @@ the direction of the ball object&#8217;s speed.</p>
 paddle object in response to a user&#8217;s keyboard interaction.  Below is the processing example
 code:</p>
 <div class="highlight-Java"><div class="highlight"><pre>// based on code from http://processing.org/reference/keyCode.html
+
 void keyPressed() {
         if (key == CODED) {
                 if (keyCode == UP) {
@@ -104,7 +106,7 @@ behavior of our paddle&#8217;s movement based on these keyCode comparisons.</p>
 <p>First we need to create a Paddle class:  This will be simliar to the Ball class, but we&#8217;ll have
 a rectangular object that moves based on the users keyboard interactions.  So, instead of the
 move() method, we&#8217;ll have  pressedLeft() and  pressedRight() methods:</p>
-<div class="highlight-Java"><div class="highlight"><pre>   <span class="c1">//this code is part of the Paddle class definintion</span>
+<div class="highlight-Java"><div class="highlight"><pre>   <span class="c1">//this code is part of the Paddle class definition</span>
 
    <span class="kt">void</span> <span class="nf">pressedLeft</span><span class="o">(){</span>
   <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">){</span>   <span class="c1">//check to make sure that the paddle doesn&#39;t move off the left edge</span>
@@ -136,7 +138,7 @@ paddle1 object to call it&#8217;s pressedLeft( ) method as in the code below:</p
                 <span class="k">if</span> <span class="o">(</span><span class="n">keyCode</span> <span class="o">==</span> <span class="n">LEFT</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">paddle1</span><span class="o">.</span><span class="na">pressedLeft</span><span class="o">(</span> <span class="o">);</span>
                 <span class="o">}</span>
-                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">keyCode</span> <span class="o">==</span> <span class="n">RIGHT</span> <span class="o">{</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">keyCode</span> <span class="o">==</span> <span class="n">RIGHT</span> <span class="o">{</span>
                         <span class="n">paddle1</span><span class="o">.</span><span class="na">pressedRight</span><span class="o">(</span> <span class="o">);</span>
                 <span class="o">}</span>
         <span class="o">}</span>
@@ -161,9 +163,9 @@ which indicate direction, Note the use of the <code class="docutils literal"><sp
 <div class="highlight-Java"><div class="highlight"><pre> <span class="c1">// new instance variables for the Paddle class</span>
 
 <span class="kt">int</span> <span class="n">direction</span><span class="o">;</span>  <span class="c1">//this variable stores the current direction</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">pNONE</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>   <span class="c1">//initial direction state variable</span>
 <span class="kd">final</span> <span class="kt">int</span> <span class="n">pLEFT</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span>   <span class="c1">// left direction state variable</span>
 <span class="kd">final</span> <span class="kt">int</span> <span class="n">pRIGHT</span><span class="o">=</span><span class="mi">2</span><span class="o">;</span>  <span class="c1">//right direction state variable</span>
-<span class="kd">final</span> <span class="kt">int</span> <span class="n">pNONE</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>   <span class="c1">//initial direction state variable</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">final</span></code> keyword is used to indicate that this value should not be ever be changed, these
@@ -174,18 +176,18 @@ for our program logic.  In the <code class="docutils literal"><span class="pre">
 to determine which arrow method to call.  Note that we&#8217;ve created separate display functions for each arrow
 within the Paddle class, this makes our code logic easier to understand.  Below is part of the <code class="docutils literal"><span class="pre">display()</span></code> code
 for the Paddle class, showing how we&#8217;ve used switch to control which arrow is displayed:</p>
-<div class="highlight-Java"><div class="highlight"><pre>    <span class="c1">// this code is in the Paddle class: display() method</span>
+<div class="highlight-Java"><div class="highlight"><pre> <span class="c1">// this code is in the Paddle class: display() method</span>
 
-    <span class="k">switch</span><span class="o">(</span><span class="n">direction</span><span class="o">){</span>   <span class="c1">//test the current value of direction</span>
-  <span class="k">case</span><span class="o">(</span><span class="n">pNONE</span><span class="o">):</span>       <span class="c1">//if the initial value, do nothing</span>
-    <span class="k">break</span><span class="o">;</span>
-  <span class="k">case</span><span class="o">(</span><span class="n">pLEFT</span><span class="o">):</span>       <span class="c1">//if pLEFT, display left arrow</span>
-    <span class="n">displayLeftArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
-    <span class="k">break</span><span class="o">;</span>
-  <span class="k">case</span><span class="o">(</span><span class="n">pRIGHT</span><span class="o">):</span>     <span class="c1">//if pRIGHT, display right arrow</span>
-    <span class="n">displayRightArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
-    <span class="k">break</span><span class="o">;</span>
-<span class="o">}</span>
+ <span class="k">switch</span><span class="o">(</span><span class="n">direction</span><span class="o">){</span>   <span class="c1">//test the current value of direction</span>
+<span class="k">case</span><span class="o">(</span><span class="n">pNONE</span><span class="o">):</span>       <span class="c1">//if the initial value, do nothing</span>
+        <span class="k">break</span><span class="o">;</span>
+<span class="k">case</span><span class="o">(</span><span class="n">pLEFT</span><span class="o">):</span>       <span class="c1">//if pLEFT, display left arrow</span>
+        <span class="n">displayLeftArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
+        <span class="k">break</span><span class="o">;</span>
+<span class="k">case</span><span class="o">(</span><span class="n">pRIGHT</span><span class="o">):</span>     <span class="c1">//if pRIGHT, display right arrow</span>
+        <span class="n">displayRightArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
+        <span class="k">break</span><span class="o">;</span>
+ <span class="o">}</span>
 </pre></div>
 </div>
 </div>
@@ -197,18 +199,33 @@ executed when the user presses the left or right keyboard arrows, these Paddle m
 that we have created, and they are executed in the global <code class="docutils literal"><span class="pre">keyPressed(</span> <span class="pre">)</span></code> event by a Paddle object.
 So, it makes sense that we would want to change the direction state variable when this event occurs, and we&#8217;ll want to
 do that within the Paddle class itself, because a paddle object should be responsible for knowing what
-behaviors need to occur when the Paddle method: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> event handler is executed.  Below is the new code:</p>
+behaviors need to occur when the Paddle method: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> event handler is executed.
+Below is the new code:</p>
 <div class="highlight-Java"><div class="highlight"><pre>     <span class="c1">// this code is in the Paddle class: pressedLeft() method</span>
 
      <span class="kt">void</span> <span class="nf">pressedLeft</span><span class="o">(){</span>
-   <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">){</span>
-      <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">speed</span><span class="o">;</span>
-      <span class="n">direction</span><span class="o">=</span><span class="n">pLEFT</span><span class="o">;</span>  <span class="c1">//here we set the direction state value to pLEFT</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">){</span>
+                    <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">speed</span><span class="o">;</span>
+            <span class="n">direction</span><span class="o">=</span><span class="n">pLEFT</span><span class="o">;</span>  <span class="c1">//here we set the direction state value to pLEFT</span>
       <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>So, in the Paddle class, we&#8217;ve created a methodpressedLeft()</p>
+</div>
+<div class="section" id="summary">
+<h2>11.8. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>So, in the Paddle class, we have created event handler methods: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> and <code class="docutils literal"><span class="pre">pressedRight()</span></code>
+When we create a Paddle object, paddle1, then we&#8217;ll have that object call these event handler methods
+within the global <code class="docutils literal"><span class="pre">keyPressed(</span> <span class="pre">)</span></code> event.  The event handler methods are used to trigger object behavior
+code that we&#8217;ll need to create within the Paddle class itself, one example of this behavior is the
+<code class="docutils literal"><span class="pre">displayLeftArrow()</span></code> method.</p>
+<p>Using Object-oriented programming means that we provide more structure to our code.  It can be a little confusing
+to figure out how to organize code when initially learning object-oriented programming.  It can be helpful to think
+about objects as being responsible for knowing how to implement their own behavior.  From this perspective, within the
+main program, either in the <code class="docutils literal"><span class="pre">draw()</span></code> or <code class="docutils literal"><span class="pre">setup()</span></code> functions, we want to tell objects when to implement behavior, either
+as part of a sequence of functions, or as the result of some event being triggered, but then we want to let the object
+itself be responsible for knowing how to implement it&#8217;s own behavior, so that code should be contained within the
+Class definition.</p>
 </div>
 </div>
 
@@ -228,6 +245,7 @@ behaviors need to occur when the Paddle method: <code class="docutils literal"><
 <li><a class="reference internal" href="#arrows-state-indicators">11.5. Arrows: State Indicators</a></li>
 <li><a class="reference internal" href="#final-keyword-constant-values">11.6. Final Keyword - Constant Values</a></li>
 <li><a class="reference internal" href="#set-the-state-variable">11.7. Set the State Variable</a></li>
+<li><a class="reference internal" href="#summary">11.8. Summary</a></li>
 </ul>
 </li>
 </ul>
