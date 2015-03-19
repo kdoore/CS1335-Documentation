@@ -98,7 +98,9 @@ behavior of our paddle&#8217;s movement based on these keyCode comparisons.</p>
 <p>First we need to create a Paddle class:  This will be simliar to the Ball class, but we&#8217;ll have
 a rectangular object that moves based on the users keyboard interactions.  So, instead of the
 move() method, we&#8217;ll have  pressedLeft() and  pressedRight() methods:</p>
-<div class="highlight-Java"><div class="highlight"><pre>   <span class="kt">void</span> <span class="nf">pressedLeft</span><span class="o">(){</span>
+<div class="highlight-Java"><div class="highlight"><pre>   <span class="c1">//this code is part of the Paddle class definintion</span>
+
+   <span class="kt">void</span> <span class="nf">pressedLeft</span><span class="o">(){</span>
   <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">){</span>   <span class="c1">//check to make sure that the paddle doesn&#39;t move off the left edge</span>
      <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">speed</span><span class="o">;</span>  <span class="c1">// decrease x position to move the paddle left</span>
    <span class="o">}</span>
@@ -118,7 +120,9 @@ within the keyPressed event.  The pressedLeft( ) method is an event handler.  It
 we want to be executed when the keyPressed event occurs.  So, in the main program, we would
 create a Paddle object, for example paddle1.  Then in the keyPressed event, we&#8217;d use the
 paddle1 object to call it&#8217;s pressedLeft( ) method as in the code below:</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">keyPressed</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">// This code is in the main program, below the draw() function</span>
+
+<span class="kt">void</span> <span class="nf">keyPressed</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">==</span> <span class="n">CODED</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(</span><span class="n">keyCode</span> <span class="o">==</span> <span class="n">LEFT</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">paddle1</span><span class="o">.</span><span class="na">pressedLeft</span><span class="o">(</span> <span class="o">);</span>
@@ -130,12 +134,63 @@ paddle1 object to call it&#8217;s pressedLeft( ) method as in the code below:</p
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>The example below displays left and right arrows when the user presses the arrow keys.  This
-also moves the paddle left or right. Click inside the sketch to activate, then use the right and
-left arrows to move the paddle.  This sketch code uses int</p>
+<p>The example below displays left and right arrows when the user presses the arrow keys.  In order to
+display the correct arrow, I&#8217;ve created some additional variables as part of the paddle class, these
+are <cite>state</cite> variables that keep track of the last keyPress event.  I&#8217;m using <code class="docutils literal"><span class="pre">int</span></code> variables, since
+I want to have 3 possible values:  pLEFT, pRIGHT, pNONE (which is the starting position).</p>
+<p>Click inside the sketch to activate, then use the right and left arrows to move the paddle.</p>
 <div class="figure">
         <iframe width="228" height="180" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/190143/embed/?width=200&height=100&border=true"></iframe>
-</div></div>
+</div><p>This introduces 4 new instance variables in order to keep track of and display the red arrows
+which indicate direction:</p>
+<div class="highlight-Java"><div class="highlight"><pre> <span class="c1">// new instance variables for the Paddle class</span>
+
+<span class="kt">int</span> <span class="n">direction</span><span class="o">;</span>  <span class="c1">//this variable stores the current direction</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">pLEFT</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span>   <span class="c1">// left direction state variable</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">pRIGHT</span><span class="o">=</span><span class="mi">2</span><span class="o">;</span>  <span class="c1">//right direction state variable</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">pNONE</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>   <span class="c1">//initial direction state variable</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">final</span></code> keyword is used to indicate that this value should not be ever be changed, these
+values are used as &#8216;constants&#8217; within the program. The use of capital letters also indicates that
+these are special values which are constants and shouldn&#8217;t be modified in the program.  The constants
+are used to set the value of direction, the use of <code class="docutils literal"><span class="pre">int</span></code> makes it easy to use a switch statement
+for our program logic.  In the <code class="docutils literal"><span class="pre">display()</span></code> method of the Paddle class, we use the switch statement
+to determine which arrow method to call.  Note that we&#8217;ve created separate display functions for each arrow
+within the Paddle class, this makes our code logic easier to understand.  Below is part of the <code class="docutils literal"><span class="pre">display()</span></code> code
+for the Paddle class, showing how we&#8217;ve used switch to control which arrow is displayed:</p>
+<div class="highlight-Java"><div class="highlight"><pre>    <span class="c1">// this code is in the Paddle class: display() method</span>
+
+    <span class="k">switch</span><span class="o">(</span><span class="n">direction</span><span class="o">){</span>   <span class="c1">//test the current value of direction</span>
+  <span class="k">case</span><span class="o">(</span><span class="n">pNONE</span><span class="o">):</span>       <span class="c1">//if the initial value, do nothing</span>
+    <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span><span class="o">(</span><span class="n">pLEFT</span><span class="o">):</span>       <span class="c1">//if pLEFT, display left arrow</span>
+    <span class="n">displayLeftArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
+    <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span><span class="o">(</span><span class="n">pRIGHT</span><span class="o">):</span>     <span class="c1">//if pRIGHT, display right arrow</span>
+    <span class="n">displayRightArrow</span><span class="o">();</span>   <span class="c1">// call this Paddle method</span>
+    <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>So, next we need to figure out <cite>where</cite> to change the value of direction.  We have already created
+the Paddle methods: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> and <code class="docutils literal"><span class="pre">pressedRight()</span></code>, and we know these methods are
+executed when the user presses the left or right keyboard arrows, these Paddle methods are <cite>event handlers</cite>
+that we have created, and they are executed in the global <code class="docutils literal"><span class="pre">keyPressed(</span> <span class="pre">)</span></code> event by a Paddle object.
+So, it makes sense that we would want to change the direction state variable when this event occurs, and we&#8217;ll want to
+do that within the Paddle class itself, because a paddle object should be responsible for knowing what
+behaviors need to occur when the Paddle method: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> event handler is executed.  Below is the new code:</p>
+<div class="highlight-Java"><div class="highlight"><pre>     <span class="c1">// this code is in the Paddle class: pressedLeft() method</span>
+
+     <span class="kt">void</span> <span class="nf">pressedLeft</span><span class="o">(){</span>
+   <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">){</span>
+      <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">speed</span><span class="o">;</span>
+      <span class="n">direction</span><span class="o">=</span><span class="n">pLEFT</span><span class="o">;</span>  <span class="c1">//here we set the direction state value to pLEFT</span>
+      <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
