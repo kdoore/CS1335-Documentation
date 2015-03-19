@@ -24,10 +24,11 @@ Rain Game Code
  the bottom of the screen
  
  He breaks down the game program design into 4 steps:
- 1. Develop code for a circle object that is controlled by the mouse.  This is the 'rain catcher'
- 2. Write a program to see if the 2 circles intersect
- 3. Write a timer program that executes a function every N seconds
- 4. Write a program with circles falling from the top of the screen.
+ 
+ 	1. Develop code for a circle object that is controlled by the mouse.  This is the 'rain catcher'
+ 	2. Write a program to see if the 2 circles intersect
+ 	3. Write a timer program that executes a function every N seconds
+	4. Write a program with circles falling from the top of the screen.
  
  
 Psudocode
@@ -71,7 +72,7 @@ Here is code for the Catcher class::
 	
 It's critical to note that in the constructor ``Catcher(float r)``, we are initializing the PVector object.  
 This is an important function of a constructor:  to create any objects that are instance variables of the
-class.  We can't use any of these objects until they've been initialized.
+class.  We can't use any of these objects until they've been initialized.  
 
 	
 Ball Class Code
@@ -80,7 +81,7 @@ Here is the code for the Ball class  Note that we're using PVector for speed and
 	
 	class Ball{
 
-    // Variables
+    // instance variables
     color currentColor;  //current color of the ball
     color ballColor;  //store color to reset after highlighting
     color highlightColor;  //highlight color of the ball
@@ -108,7 +109,7 @@ Here is the code for the Ball class  Note that we're using PVector for speed and
     void display(){
        fill(currentColor);  //this may be highlighted or ballColor
        ellipse(position.x,position.y,diameter,diameter);
-     currentColor=ballColor; //reset ballColor back to original color
+       currentColor=ballColor; //reset ballColor back to original color
     }
 
     //this method is responsible for determining movement of the ball using the PVector function ``add()``
@@ -139,7 +140,9 @@ Here is the code for the Ball class  Note that we're using PVector for speed and
 
 	} //end of Ball class
 	
-This is the end of the code for the ball class
+This is the end of the code for the Ball class.  This class has 4 different methods.  Each of these methods does a simple task. It is best to 
+have your object methods designed to perform one well defined task.  If we have a more complex task, we can break that down into simpler methods 
+we can also call methods from within other methods if it makes our code easier to understand.
 			
 Timer Class Code
 =================
@@ -217,7 +220,10 @@ and methods from the Ball class.  we use the ``super`` keyword to refer to metho
 In the above code, we have created a class that's a child class of the Ball class.  We have
 used the keyword ``super`` within the constructor so that we're calling the constructor for the
 ``Ball`` class.  We have used the ``extends`` keyword in the first line of the class declaration
-to show that this class is a child class of the ``Ball`` class.
+to show that this class is a child class of the ``Ball`` class.  Any Drop object has access to the 
+methods and instance parameters of the ``Ball`` class.  Since the ``Drop`` class has it's own
+``move()`` method, then when a Drop object calls the ``move()`` method, it is this version that
+will be executed.  
 
 The Main Program
 =================
@@ -225,30 +231,36 @@ The Main Program
 Here is a start of a main program where we are testing each of our classes.  It's important to 
 keep straight the fact that we're declaring our classes in separate tabs, but all of the code
 to execute the program is all contained in the first processing tab.  In that tab, we have our
-processing setup function and the draw function
+processing setup function and the draw function.  As we've done before, we declare any global variables
+above and outside of the ``setup()`` and ``draw()`` functions.  These are object variables so 
+we use the Class name, then the name of the object instance to declare the global object
+
+	`class name:`  ``Catcher``   
+	    
+	`object instance name:`  ``myCatcher``
 
 Here's the code for executing the beginning of our game::
 
 	//rain catcher game: main file
-	Catcher myCatcher;
+	Catcher myCatcher;   //declare a Catcher object named myCatcher
 	Ball ball1;
 	Timer timer1;
 	Drop drop1;
 
 	void setup(){
  		size(300,300);
- 		myCatcher=new Catcher();
- 		timer1=new Timer(2000);  //2 seconds 
- 		timer1.start();
+ 		myCatcher=new Catcher();  // initialize using the Catcher default constructor
+ 		timer1=new Timer(2000);  // initialize a Timer object 
+ 		timer1.start();    //call the start( ) method
  		ball1=new Ball(color(0,255,100),15,25,20,3,8);
  		smooth();
- 		drop1=new Drop(14,5);
+ 		drop1=new Drop(14,5);   //initialize drop1 using the Drop constructor
   
 	}
 
 	void draw(){
   		background(255);
-  		myCatcher.setPosition(mouseX, mouseY);
+  		myCatcher.setposition(mouseX, mouseY);  //
   		myCatcher.display();
   		drop1.move();
   		drop1.display();
@@ -258,6 +270,11 @@ Here's the code for executing the beginning of our game::
     		timer1.start();  //reset the timer when it is finished
   		}
   }
+  
+
+In the code above, the first thing we determine is the location of the catcher object
+based on the user's mouse position.  Then we display the myCatcher object.  Similarly, 
+with the drop1 and ball1 objects, first we move the objects, then we display the objects.
  
- 
- 
+So far, we have several objects moving on the screen, but we need to re-factor this code 
+in order to make some type of a game.   

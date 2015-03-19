@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="11. Game Programming" href="game-design.html" />
+    <link rel="next" title="11. Rain Game - Extended" href="moreRainGame.html" />
     <link rel="prev" title="9. More Objects" href="moreObjects.html" /> 
   </head>
   <body role="document">
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="11. Game Programming"
+          <a href="moreRainGame.html" title="11. Rain Game - Extended"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="moreObjects.html" title="9. More Objects"
@@ -69,11 +69,15 @@ Every so often (depending on the level of difficulty), a new drop falls from the
 of the screen at a random horizontal location with a random vertical speed. The player
 must catch the raindrops with the mouse with the goal of not letting any raindrops reach
 the bottom of the screen</p>
-<p>He breaks down the game program design into 4 steps:
-1. Develop code for a circle object that is controlled by the mouse.  This is the &#8216;rain catcher&#8217;
-2. Write a program to see if the 2 circles intersect
-3. Write a timer program that executes a function every N seconds
-4. Write a program with circles falling from the top of the screen.</p>
+<p>He breaks down the game program design into 4 steps:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Develop code for a circle object that is controlled by the mouse.  This is the &#8216;rain catcher&#8217;</li>
+<li>Write a program to see if the 2 circles intersect</li>
+<li>Write a timer program that executes a function every N seconds</li>
+<li>Write a program with circles falling from the top of the screen.</li>
+</ol>
+</div></blockquote>
 </div></blockquote>
 </div>
 <div class="section" id="psudocode">
@@ -125,7 +129,7 @@ class.  We can&#8217;t use any of these objects until they&#8217;ve been initial
 <p>Here is the code for the Ball class  Note that we&#8217;re using PVector for speed and location:</p>
 <div class="highlight-Java"><div class="highlight"><pre>     <span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
 
- <span class="c1">// Variables</span>
+ <span class="c1">// instance variables</span>
  <span class="n">color</span> <span class="n">currentColor</span><span class="o">;</span>  <span class="c1">//current color of the ball</span>
  <span class="n">color</span> <span class="n">ballColor</span><span class="o">;</span>  <span class="c1">//store color to reset after highlighting</span>
  <span class="n">color</span> <span class="n">highlightColor</span><span class="o">;</span>  <span class="c1">//highlight color of the ball</span>
@@ -153,7 +157,7 @@ class.  We can&#8217;t use any of these objects until they&#8217;ve been initial
  <span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
     <span class="n">fill</span><span class="o">(</span><span class="n">currentColor</span><span class="o">);</span>  <span class="c1">//this may be highlighted or ballColor</span>
     <span class="n">ellipse</span><span class="o">(</span><span class="n">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span><span class="n">position</span><span class="o">.</span><span class="na">y</span><span class="o">,</span><span class="n">diameter</span><span class="o">,</span><span class="n">diameter</span><span class="o">);</span>
-  <span class="n">currentColor</span><span class="o">=</span><span class="n">ballColor</span><span class="o">;</span> <span class="c1">//reset ballColor back to original color</span>
+    <span class="n">currentColor</span><span class="o">=</span><span class="n">ballColor</span><span class="o">;</span> <span class="c1">//reset ballColor back to original color</span>
  <span class="o">}</span>
 
  <span class="c1">//this method is responsible for determining movement of the ball using the PVector function ``add()``</span>
@@ -185,7 +189,9 @@ class.  We can&#8217;t use any of these objects until they&#8217;ve been initial
      <span class="o">}</span> <span class="c1">//end of Ball class</span>
 </pre></div>
 </div>
-<p>This is the end of the code for the ball class</p>
+<p>This is the end of the code for the Ball class.  This class has 4 different methods.  Each of these methods does a simple task. It is best to
+have your object methods designed to perform one well defined task.  If we have a more complex task, we can break that down into simpler methods
+we can also call methods from within other methods if it makes our code easier to understand.</p>
 </div>
 <div class="section" id="timer-class-code">
 <h2>10.5. Timer Class Code<a class="headerlink" href="#timer-class-code" title="Permalink to this headline">¶</a></h2>
@@ -262,35 +268,44 @@ and methods from the Ball class.  we use the <code class="docutils literal"><spa
 <p>In the above code, we have created a class that&#8217;s a child class of the Ball class.  We have
 used the keyword <code class="docutils literal"><span class="pre">super</span></code> within the constructor so that we&#8217;re calling the constructor for the
 <code class="docutils literal"><span class="pre">Ball</span></code> class.  We have used the <code class="docutils literal"><span class="pre">extends</span></code> keyword in the first line of the class declaration
-to show that this class is a child class of the <code class="docutils literal"><span class="pre">Ball</span></code> class.</p>
+to show that this class is a child class of the <code class="docutils literal"><span class="pre">Ball</span></code> class.  Any Drop object has access to the
+methods and instance parameters of the <code class="docutils literal"><span class="pre">Ball</span></code> class.  Since the <code class="docutils literal"><span class="pre">Drop</span></code> class has it&#8217;s own
+<code class="docutils literal"><span class="pre">move()</span></code> method, then when a Drop object calls the <code class="docutils literal"><span class="pre">move()</span></code> method, it is this version that
+will be executed.</p>
 </div>
 <div class="section" id="the-main-program">
 <h2>10.7. The Main Program<a class="headerlink" href="#the-main-program" title="Permalink to this headline">¶</a></h2>
 <p>Here is a start of a main program where we are testing each of our classes.  It&#8217;s important to
 keep straight the fact that we&#8217;re declaring our classes in separate tabs, but all of the code
 to execute the program is all contained in the first processing tab.  In that tab, we have our
-processing setup function and the draw function</p>
+processing setup function and the draw function.  As we&#8217;ve done before, we declare any global variables
+above and outside of the <code class="docutils literal"><span class="pre">setup()</span></code> and <code class="docutils literal"><span class="pre">draw()</span></code> functions.  These are object variables so
+we use the Class name, then the name of the object instance to declare the global object</p>
+<blockquote>
+<div><p><cite>class name:</cite>  <code class="docutils literal"><span class="pre">Catcher</span></code></p>
+<p><cite>object instance name:</cite>  <code class="docutils literal"><span class="pre">myCatcher</span></code></p>
+</div></blockquote>
 <p>Here&#8217;s the code for executing the beginning of our game:</p>
 <div class="highlight-Java"><div class="highlight"><pre>      <span class="c1">//rain catcher game: main file</span>
-      <span class="n">Catcher</span> <span class="n">myCatcher</span><span class="o">;</span>
+      <span class="n">Catcher</span> <span class="n">myCatcher</span><span class="o">;</span>   <span class="c1">//declare a Catcher object named myCatcher</span>
       <span class="n">Ball</span> <span class="n">ball1</span><span class="o">;</span>
       <span class="n">Timer</span> <span class="n">timer1</span><span class="o">;</span>
       <span class="n">Drop</span> <span class="n">drop1</span><span class="o">;</span>
 
       <span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
               <span class="n">size</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span><span class="mi">300</span><span class="o">);</span>
-              <span class="n">myCatcher</span><span class="o">=</span><span class="k">new</span> <span class="n">Catcher</span><span class="o">();</span>
-              <span class="n">timer1</span><span class="o">=</span><span class="k">new</span> <span class="n">Timer</span><span class="o">(</span><span class="mi">2000</span><span class="o">);</span>  <span class="c1">//2 seconds</span>
-              <span class="n">timer1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+              <span class="n">myCatcher</span><span class="o">=</span><span class="k">new</span> <span class="n">Catcher</span><span class="o">();</span>  <span class="c1">// initialize using the Catcher default constructor</span>
+              <span class="n">timer1</span><span class="o">=</span><span class="k">new</span> <span class="n">Timer</span><span class="o">(</span><span class="mi">2000</span><span class="o">);</span>  <span class="c1">// initialize a Timer object</span>
+              <span class="n">timer1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>    <span class="c1">//call the start( ) method</span>
               <span class="n">ball1</span><span class="o">=</span><span class="k">new</span> <span class="n">Ball</span><span class="o">(</span><span class="n">color</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">255</span><span class="o">,</span><span class="mi">100</span><span class="o">),</span><span class="mi">15</span><span class="o">,</span><span class="mi">25</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">8</span><span class="o">);</span>
               <span class="n">smooth</span><span class="o">();</span>
-              <span class="n">drop1</span><span class="o">=</span><span class="k">new</span> <span class="n">Drop</span><span class="o">(</span><span class="mi">14</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+              <span class="n">drop1</span><span class="o">=</span><span class="k">new</span> <span class="n">Drop</span><span class="o">(</span><span class="mi">14</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>   <span class="c1">//initialize drop1 using the Drop constructor</span>
 
       <span class="o">}</span>
 
       <span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
               <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
-              <span class="n">myCatcher</span><span class="o">.</span><span class="na">setPosition</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">);</span>
+              <span class="n">myCatcher</span><span class="o">.</span><span class="na">setposition</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">);</span>  <span class="c1">//</span>
               <span class="n">myCatcher</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
               <span class="n">drop1</span><span class="o">.</span><span class="na">move</span><span class="o">();</span>
               <span class="n">drop1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
@@ -302,6 +317,11 @@ processing setup function and the draw function</p>
 <span class="o">}</span>
 </pre></div>
 </div>
+<p>In the code above, the first thing we determine is the location of the catcher object
+based on the user&#8217;s mouse position.  Then we display the myCatcher object.  Similarly,
+with the drop1 and ball1 objects, first we move the objects, then we display the objects.</p>
+<p>So far, we have several objects moving on the screen, but we need to re-factor this code
+in order to make some type of a game.</p>
 </div>
 </div>
 
@@ -329,8 +349,8 @@ processing setup function and the draw function</p>
   <p class="topless"><a href="moreObjects.html"
                         title="previous chapter">9. More Objects</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="game-design.html"
-                        title="next chapter">11. Game Programming</a></p>
+  <p class="topless"><a href="moreRainGame.html"
+                        title="next chapter">11. Rain Game - Extended</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -355,7 +375,7 @@ processing setup function and the draw function</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="11. Game Programming"
+          <a href="moreRainGame.html" title="11. Rain Game - Extended"
              >next</a> |</li>
         <li class="right" >
           <a href="moreObjects.html" title="9. More Objects"

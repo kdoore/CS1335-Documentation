@@ -23,6 +23,7 @@ Contents:
 	objects
 	moreObjects
 	rainGame
+	moreRainGame
 	game-design
 	resources
 	

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>13. Resources &mdash; CS1335 Documentation</title>
+    <title>Rain Game - Extended &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,8 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="prev" title="12. Game Programming" href="game-design.html" /> 
+    <link rel="top" title="CS1335 Documentation" href="index.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,9 +33,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="game-design.html" title="12. Game Programming"
-             accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -46,28 +42,20 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="resources">
-<span id="id1"></span><h1>13. Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="books">
-<h2>13.1. Books<a class="headerlink" href="#books" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.learningprocessing.com/">Learning Processing</a> by Daniel Shiffman</p>
-<blockquote>
-<div>The Learning Processing website provides supplementary information to support the textbook including example code and answers to exercises.</div></blockquote>
-<p><a class="reference external" href="http://www.NatureofCode.com">The Nature of Code</a> by Daniel Shiffman</p>
-<blockquote>
-<div>The Nature of Code website provides full access to the entire contents of this book and includes interactive code for most code examples.</div></blockquote>
-</div>
-<div class="section" id="websites">
-<h2>13.2. Websites<a class="headerlink" href="#websites" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.processing.org">Processing.org</a></p>
-<blockquote>
-<div>The Processing website provides code examples, tutorials, reference documentation and other supplementary resources.</div></blockquote>
-<p><a class="reference external" href="http://www.learningprocessing.com/">Learning Processing</a></p>
-<blockquote>
-<div>Website to accompany Daniel Shiffman&#8217;s book which we&#8217;ll use as the course textbook.</div></blockquote>
-<p><a class="reference external" href="http://www.openprocessing.org">Open Processing</a></p>
-<blockquote>
-<div>The Open Processing website provides an online code editor and cloud based storage to allow sharing of code examples.  There are many searchable code examples which are interactive using either the java applet or they are embedded using processing.js. This website is designed to  support and sustain the processing community.</div></blockquote>
+  <div class="section" id="rain-game-extended">
+<span id="moreraingame"></span><h1>Rain Game - Extended<a class="headerlink" href="#rain-game-extended" title="Permalink to this headline">¶</a></h1>
+<p>In the previous section, we reviewed Daniel Shiffman&#8217;s Rain Game, Object-Oriented Game.  Now, we want
+to customize the game to make it a bit more interesting.   The first change we&#8217;ll make is to add a
+paddle that can catch or hit the falling objects.  If we allow the objects to bounce, then that could
+provide a user with extra scoring opportunities.  For now, let&#8217;s just look at how we can implement
+a paddle that moves left and right in response to keyboard input.</p>
+<div class="section" id="pong-game">
+<h2>Pong Game<a class="headerlink" href="#pong-game" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/">Dr Doane</a>, in his online article: <cite>Thinking Through a Basic Pong Game in Processing</cite> provides a nice tutorial
+on how to create a pong game using processing.  While it&#8217;s not an object-oriented approach, it still provides
+a very good overview and details of ideas we&#8217;ll want to implement. To start with, he discusses how we can use
+the processing keyboard functions to control movement of the paddle.  Just as with mouseEvents,
+when a user presses a key, we can use that input to allow interaction with our program.</p>
 </div>
 </div>
 
@@ -79,16 +67,12 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">13. Resources</a><ul>
-<li><a class="reference internal" href="#books">13.1. Books</a></li>
-<li><a class="reference internal" href="#websites">13.2. Websites</a></li>
+<li><a class="reference internal" href="#">Rain Game - Extended</a><ul>
+<li><a class="reference internal" href="#pong-game">Pong Game</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="game-design.html"
-                        title="previous chapter">12. Game Programming</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -112,9 +96,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="game-design.html" title="12. Game Programming"
-             >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
     </div>
