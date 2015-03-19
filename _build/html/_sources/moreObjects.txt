@@ -34,8 +34,8 @@ When referring to properties and methods from within a class definition, the key
 		}
 	}
 
-Comparing Objects
-==================
+Comparing Objects isEqual
+==========================
 
 So far, the methods we've written have only concerned 1 ball object.  How can we write a method to allow comparison between 2 Ball objects?  What would it mean for 2 unique Ball objects to be *equal*.  If we try to use the same syntax that we've used to compare primitive variable values, we will have problems!  With primitive variables, we can directly compare their values.  We may need to use type-casting if we try to compare an integer with a float but the syntax would be as follows::
 
@@ -75,6 +75,9 @@ With bouncing balls, it's unlikely that many ball objects will actually have the
 
 .. image:: /images/intersection.png
 
+Comparing Objects isIntersecting
+==================================
+
 The code below shows how we can implement this in a simple function::
 	
 	boolean isIntersecting(Ball otherBall){
@@ -97,6 +100,8 @@ Here is the processing sketch.
 			<iframe width="328" height="380" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/186034/embed/?width=300&height=300&border=true"></iframe>
 			</div>
 			
+Ball Class
+=========================
 				
 Here is the full code for the Ball class that includes a test for intersection between 2 balls::
 
@@ -144,11 +149,6 @@ Here is the full code for the Ball class that includes a test for intersection b
 	    }
 	  }
 
-	  // this is a convenience method to help with debugging
-	  String toString(){
-	    return " [ " + this.position.x + " , " + this.position.y + " ]";
-	  }
-	
 	  //comparison method:  do comparison and return true or false
 	
 	   boolean isIntersecting(Ball otherBall){
@@ -161,12 +161,14 @@ Here is the full code for the Ball class that includes a test for intersection b
 	  }
 
 	  void highlight(){
-	    this.currentColor = this.highlightColor;
+	    this.currentColor = this.highlightColor;  //change the currentColor to be highlighted
 	  }
 
 	} //end of Ball class
 
 	
+Main Program Highlight Intersection
+=====================================
 
 Here is the main sketch code::
 	

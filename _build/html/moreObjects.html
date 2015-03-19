@@ -81,8 +81,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="comparing-objects">
-<h2>9.2. Comparing Objects<a class="headerlink" href="#comparing-objects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="comparing-objects-isequal">
+<h2>9.2. Comparing Objects isEqual<a class="headerlink" href="#comparing-objects-isequal" title="Permalink to this headline">¶</a></h2>
 <p>So far, the methods we&#8217;ve written have only concerned 1 ball object.  How can we write a method to allow comparison between 2 Ball objects?  What would it mean for 2 unique Ball objects to be <em>equal</em>.  If we try to use the same syntax that we&#8217;ve used to compare primitive variable values, we will have problems!  With primitive variables, we can directly compare their values.  We may need to use type-casting if we try to compare an integer with a float but the syntax would be as follows:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">//Compare Primitive types</span>
 <span class="kt">float</span> <span class="n">float1</span> <span class="o">=</span> <span class="mf">5.0</span><span class="o">;</span>
@@ -117,6 +117,9 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
 </div>
 <p>With bouncing balls, it&#8217;s unlikely that many ball objects will actually have the exact same values for position and size, so instead let&#8217;s look at what collision would look like. Here we want to see if the distance between the centers of the balls is less than the sum of the 2 ball radiuses.  The image below shows how distance between circle centers can be compared with circle radius size to determine if 2 circles are intersecting</p>
 <img alt="_images/intersection.png" src="_images/intersection.png" />
+</div>
+<div class="section" id="comparing-objects-isintersecting">
+<h2>9.3. Comparing Objects isIntersecting<a class="headerlink" href="#comparing-objects-isintersecting" title="Permalink to this headline">¶</a></h2>
 <p>The code below shows how we can implement this in a simple function:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">boolean</span> <span class="nf">isIntersecting</span><span class="o">(</span><span class="n">Ball</span> <span class="n">otherBall</span><span class="o">){</span>
         <span class="kt">float</span> <span class="n">distance</span><span class="o">=</span><span class="n">dist</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span><span class="o">,</span> <span class="n">otherBall</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span><span class="o">,</span> <span class="n">otherBall</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
@@ -136,6 +139,9 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
 <div><div class="figure">
 <iframe width="328" height="380" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/186034/embed/?width=300&height=300&border=true"></iframe>
 </div></div></blockquote>
+</div>
+<div class="section" id="ball-class">
+<h2>9.4. Ball Class<a class="headerlink" href="#ball-class" title="Permalink to this headline">¶</a></h2>
 <p>Here is the full code for the Ball class that includes a test for intersection between 2 balls:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
 
@@ -181,11 +187,6 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
     <span class="o">}</span>
   <span class="o">}</span>
 
-  <span class="c1">// this is a convenience method to help with debugging</span>
-  <span class="n">String</span> <span class="nf">toString</span><span class="o">(){</span>
-    <span class="k">return</span> <span class="s">&quot; [ &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="s">&quot; , &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">position</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="s">&quot; ]&quot;</span><span class="o">;</span>
-  <span class="o">}</span>
-
   <span class="c1">//comparison method:  do comparison and return true or false</span>
 
    <span class="kt">boolean</span> <span class="nf">isIntersecting</span><span class="o">(</span><span class="n">Ball</span> <span class="n">otherBall</span><span class="o">){</span>
@@ -198,12 +199,15 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
   <span class="o">}</span>
 
   <span class="kt">void</span> <span class="nf">highlight</span><span class="o">(){</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">currentColor</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">highlightColor</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">currentColor</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">highlightColor</span><span class="o">;</span>  <span class="c1">//change the currentColor to be highlighted</span>
   <span class="o">}</span>
 
 <span class="o">}</span> <span class="c1">//end of Ball class</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="main-program-highlight-intersection">
+<h2>9.5. Main Program Highlight Intersection<a class="headerlink" href="#main-program-highlight-intersection" title="Permalink to this headline">¶</a></h2>
 <p>Here is the main sketch code:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">Ball</span> <span class="n">ball1</span><span class="o">;</span>
 <span class="n">Ball</span> <span class="n">ball2</span><span class="o">;</span>
@@ -235,7 +239,7 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
 </div>
 </div>
 <div class="section" id="questions">
-<h2>9.3. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<h2>9.6. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ol class="arabic simple">
 <li>Can you create a class called <code class="docutils literal"><span class="pre">Block</span></code> which creates a square shape that moves around the canvas?</li>
@@ -254,8 +258,11 @@ We can look at some of the PVector methods like add(PVector pvec) to have an ide
   <ul>
 <li><a class="reference internal" href="#">9. More Objects</a><ul>
 <li><a class="reference internal" href="#this-keyword">9.1. this Keyword</a></li>
-<li><a class="reference internal" href="#comparing-objects">9.2. Comparing Objects</a></li>
-<li><a class="reference internal" href="#questions">9.3. Questions:</a></li>
+<li><a class="reference internal" href="#comparing-objects-isequal">9.2. Comparing Objects isEqual</a></li>
+<li><a class="reference internal" href="#comparing-objects-isintersecting">9.3. Comparing Objects isIntersecting</a></li>
+<li><a class="reference internal" href="#ball-class">9.4. Ball Class</a></li>
+<li><a class="reference internal" href="#main-program-highlight-intersection">9.5. Main Program Highlight Intersection</a></li>
+<li><a class="reference internal" href="#questions">9.6. Questions:</a></li>
 </ul>
 </li>
 </ul>

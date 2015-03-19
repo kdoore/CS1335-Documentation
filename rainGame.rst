@@ -303,4 +303,5 @@ tests is actually written before the code that you will be testing.
 Questions:
 ==========
 
-	
+	1.  How can we test whether the method ``isIntersecting( )`` works correctly? 
+	2.  How can we test whether the timer object is working correctly?

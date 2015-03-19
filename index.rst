@@ -24,6 +24,7 @@ Contents:
 	moreObjects
 	rainGame
 	paddle
+	arrayObjects
 	game-design
 	resources
 	
