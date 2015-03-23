@@ -25,6 +25,7 @@ Contents:
 	rainGame
 	paddle
 	arrayObjects
+	pshapeObjects
 	game-design
 	resources
 	

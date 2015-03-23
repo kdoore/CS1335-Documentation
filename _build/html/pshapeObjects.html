@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>PShape Objects &mdash; CS1335 Documentation</title>
+    <title>13. PShape Objects &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,7 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS1335 Documentation" href="index.html" /> 
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="14. Game Programming" href="game-design.html" />
+    <link rel="prev" title="12. Arrays of Objects" href="arrayObjects.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -33,6 +35,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="game-design.html" title="14. Game Programming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="arrayObjects.html" title="12. Arrays of Objects"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -43,7 +51,60 @@
           <div class="body" role="main">
             
   <div class="section" id="pshape-objects">
-<h1>PShape Objects<a class="headerlink" href="#pshape-objects" title="Permalink to this headline">¶</a></h1>
+<span id="pshapeobjects"></span><h1>13. PShape Objects<a class="headerlink" href="#pshape-objects" title="Permalink to this headline">¶</a></h1>
+<p>The Processing website has a good tutorial about <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> objects, so it&#8217;s advisable that you
+review that tutorial in order to have a basic understanding of <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> objects.  The idea is
+that <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> allows us to create geometric primitives that we can use as objects.  There are
+a variety of ways to use PShape, let&#8217;s start by creating a Star class.</p>
+<div class="section" id="stars">
+<h2>13.1. Stars<a class="headerlink" href="#stars" title="Permalink to this headline">¶</a></h2>
+<p>In the Processing <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> tutorial, the authors create a Star class, and they use the createShape(), beginShape()
+and endShape() functions, along with a list of vertices in the Star constructor to create the geometry for the
+Star object.</p>
+<p>However, they go on to describe a subtle concept; the idea of creating the star geometry one time in
+the main setup() function, and then passing that PShape object as an input parameter to the Star constructor.  This
+can cut down on rendering costs, where Processing can essentially &#8216;memorize&#8217; the geometry of the single PShape object,
+rather than having to render the geometry for each one.  For now, let&#8217;s ignore these suggestions, and we&#8217;ll create
+the geometry in the Star constructor function.  Below are snippets of code for the Star class, where it inherits
+from the Drop class.  For our current version of the RainDrop game, the Drop class does not inherit from any other class:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Star</span> <span class="kd">extends</span> <span class="n">Drop</span><span class="o">{</span>
+        <span class="n">PShape</span> <span class="n">s</span><span class="o">;</span>
+
+        <span class="n">Star</span><span class="o">(){</span>  <span class="c1">// default constructor</span>
+                <span class="kd">super</span><span class="o">();</span>  <span class="c1">// call the Drop default constructor as the first line of code</span>
+        <span class="c1">// First create the shape</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">createShape</span><span class="o">();</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">beginShape</span><span class="o">();</span>
+                <span class="c1">// You can set fill and stroke</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="mi">102</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">stroke</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">strokeWeight</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+                <span class="c1">// Here, we are hardcoding a series of vertices</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">50</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(</span><span class="mi">14</span><span class="o">,</span> <span class="o">-</span><span class="mi">20</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(</span><span class="mi">47</span><span class="o">,</span> <span class="o">-</span><span class="mi">15</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(</span><span class="mi">29</span><span class="o">,</span> <span class="mi">40</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">25</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(-</span><span class="mi">29</span><span class="o">,</span> <span class="mi">40</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(-</span><span class="mi">23</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(-</span><span class="mi">47</span><span class="o">,</span> <span class="o">-</span><span class="mi">15</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">vertex</span><span class="o">(-</span><span class="mi">14</span><span class="o">,</span> <span class="o">-</span><span class="mi">20</span><span class="o">);</span>
+                <span class="n">s</span><span class="o">.</span><span class="na">endShape</span><span class="o">(</span><span class="n">CLOSE</span><span class="o">);</span>
+                <span class="o">}</span>
+        <span class="o">}</span>
+</pre></div>
+</div>
+<p>The code above is taken directly from the Processing <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> Tutorial, except that we&#8217;ve made the
+Star class a child class of the Drop class.</p>
+<p>Because the Star class inherits from the Drop class, we don&#8217;t need to explicitly
+declare most of the instance variables.  However, notice that in the first line of
+code in the constructor that we&#8217;re calling <code class="docutils literal"><span class="pre">super()</span></code>, this is the Drop class default constructor.</p>
+<p>Shiffman notes in the <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> Tutorial that by default, a PShape geometry is defined relative to the canvas origin (0,0).
+Therefore, he notes that it&#8217;s we&#8217;ll almost always use <code class="docutils literal"><span class="pre">pushMatrix()</span></code>, <code class="docutils literal"><span class="pre">popMatrix()</span></code>, and <code class="docutils literal"><span class="pre">translate()</span></code> in order to locate
+our PShape objects on the canvas.</p>
+<p>So, to write a <code class="docutils literal"><span class="pre">display()</span></code> method for our</p>
+</div>
 </div>
 
 
@@ -52,6 +113,20 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">13. PShape Objects</a><ul>
+<li><a class="reference internal" href="#stars">13.1. Stars</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="arrayObjects.html"
+                        title="previous chapter">12. Arrays of Objects</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="game-design.html"
+                        title="next chapter">14. Game Programming</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -75,6 +150,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="game-design.html" title="14. Game Programming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="arrayObjects.html" title="12. Arrays of Objects"
+             >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
     </div>

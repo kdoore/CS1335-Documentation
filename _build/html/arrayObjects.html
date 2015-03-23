@@ -52,11 +52,12 @@
             
   <div class="section" id="arrays-of-objects">
 <span id="arrayobjects"></span><h1>12. Arrays of Objects<a class="headerlink" href="#arrays-of-objects" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDrop Game uses an array to store Drop objects, so let&#8217;s look at how to use <code class="docutils literal"><span class="pre">arrays</span></code> to
-store objects.</p>
+<p><a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDrop Game uses an Array to store Drop objects, so let&#8217;s look at how to use <code class="docutils literal"><span class="pre">Arrays</span></code> to
+store objects. Shiffman&#8217;s <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4/">Exercise 10.4</a> provides the code that we&#8217;ll review here.</p>
 <p>On the processing website, the <a class="reference external" href="https://processing.org/reference/Array.html">Array</a> reference provides several examples of how to create an Array and how
 to initialize the values within an array.  It&#8217;s important to note that Arrays can only contain one type of
-object.</p>
+object, the <code class="docutils literal"><span class="pre">type</span></code> they are declared with. However, we&#8217;ll see how Object Inheritance will provide a convenient
+way to work with different object types in a single array.</p>
 <p>Let&#8217;s create an Array of Drop objects, first we need to declare the Array, then we need to initialize
 the Array and set the size of the array.  Then we need to create a Drop object for each Array element:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">//Main Program</span>
@@ -81,12 +82,73 @@ than creating a new object each time a RainDrop falls below the bottom edge of t
 identifies it as <cite>finished</cite> so that he can re-use it at a future time.  This is common in game
 programming.  So, we need to add a boolean state variable to the Drop class that will let us indicate
 that a raindrop is not actively showing on the canvas.  In addition, we also want to make a method called
-isFinished() that will determine if a Drop object is no longer visible on the canvas.  This is another example
-of creating a simple method( ) that does 1 simple task.  We can call it from another method like <code class="docutils literal"><span class="pre">move(</span> <span class="pre">)</span></code>. So,
-some methods are helper methods that are only called from within the class, in Java, we would make this method
-private so it couldn&#8217;t be accessed outside of the class.</p>
-<blockquote>
-<div>//Drop</div></blockquote>
+finished() that set the state of a drop to <code class="docutils literal"><span class="pre">finished==true</span></code>.  This is another example of creating a simple method that does 1 simple task.
+We&#8217;ll have another method called <code class="docutils literal"><span class="pre">reachedBottom(</span> <span class="pre">)</span></code> which we can also use to test for inactive drops:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//Drop Class Definition</span>
+<span class="c1">// New variable to keep track of whether drop is still being used</span>
+
+<span class="kt">boolean</span> <span class="n">finished</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+<span class="c1">//Drop Methods</span>
+ <span class="c1">// If the drop is caught</span>
+
+<span class="kt">void</span> <span class="nf">finished</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">finished</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>   <span class="c1">//sets the finished state to true so the drop can be reused</span>
+<span class="o">}</span>
+<span class="c1">// Check if it hits the bottom</span>
+
+<span class="kt">boolean</span> <span class="nf">reachedBottom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">height</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span> <span class="o">{</span>  <span class="c1">// If we go a little beyond the bottom</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+        <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In the main program these methods, and the boolean <code class="docutils literal"><span class="pre">finished</span></code>  variable are used to control the game.
+The <code class="docutils literal"><span class="pre">finished</span></code> variable is used to filter the Drop objects so that the methods are only called on
+active objects.  This type of optimization is common in games.  It&#8217;s much less <code class="docutils literal"><span class="pre">expensive</span></code> to check the
+value of a variable than to call a method or function, so the drop methods are only called on active drops.
+The code below shows that within the main game <code class="docutils literal"><span class="pre">draw()</span></code> loop, the entire game is based on calling methods
+of game objects like Drop, Timer, and Catcher.  Below is a code snippet where a for loop is used to iterate over
+the Array of Drop objects and then to call the appropriate Drop methods and increment game variables as needed:</p>
+<div class="highlight-Java"><div class="highlight"><pre>       <span class="c1">// Move and display all drops</span>
+   <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">totalDrops</span><span class="o">;</span> <span class="n">i</span><span class="o">++</span> <span class="o">)</span> <span class="o">{</span>
+     <span class="k">if</span> <span class="o">(!</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">finished</span><span class="o">)</span> <span class="o">{</span>
+       <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">move</span><span class="o">();</span>
+       <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">display</span><span class="o">();</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">reachedBottom</span><span class="o">())</span> <span class="o">{</span>
+         <span class="n">levelCounter</span><span class="o">++;</span>
+         <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">finished</span><span class="o">();</span>
+         <span class="c1">// If the drop reaches the bottom a live is lost</span>
+         <span class="n">lives</span><span class="o">--;</span>
+         <span class="c1">// If lives reach 0 the game is over</span>
+         <span class="k">if</span> <span class="o">(</span><span class="n">lives</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+           <span class="n">gameOver</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+         <span class="o">}</span>
+       <span class="o">}</span>
+
+       <span class="c1">// Everytime you catch a drop, the score goes up</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">catcher</span><span class="o">.</span><span class="na">intersect</span><span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="o">{</span>
+         <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">finished</span><span class="o">();</span>
+         <span class="n">levelCounter</span><span class="o">++;</span>
+         <span class="n">score</span><span class="o">++;</span>
+       <span class="o">}</span>
+     <span class="o">}</span>
+   <span class="o">}</span>
+
+<span class="n">Summary</span>
+<span class="o">========</span>
+</pre></div>
+</div>
+<p>In this section we have looked at how to use an Array to hold objects and then to allow
+looping through the array to check an object&#8217;s instance variables like <code class="docutils literal"><span class="pre">finished</span></code> which
+can act as a filter to minimize the number of method calls that are exectued by the program.
+In addition, we discussed how the <code class="docutils literal"><span class="pre">finished</span></code> instance variable lets us indentify objects that
+are un-used so we can re-use them at a later time.  These types of optimizations are important
+in game development so the game can execute at a fast speed.</p>
 </div>
 </div>
 

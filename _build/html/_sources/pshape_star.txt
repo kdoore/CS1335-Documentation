@@ -11,7 +11,7 @@ a variety of ways to use PShape, let's start by creating a Star class.
 
 Stars
 =======
-In the Processing `PShape`_ tutorial, the authors create a Star class, and they use the createShape(), beginShape()
+In the Processing PShape tutorial, the authors create a Star class, and they use the createShape(), beginShape()
 and endShape() functions, along with a list of vertices in the Star constructor to create the geometry for the
 Star object.  
 
@@ -22,44 +22,33 @@ rather than having to render the geometry for each one.  For now, let's ignore t
 the geometry in the Star constructor function.  Below are snippets of code for the Star class, where it inherits
 from the Drop class.  For our current version of the RainDrop game, the Drop class does not inherit from any other class::
 
-	class Star extends Drop{  
+	class Star extends Drop{
 		PShape s;
 		
 		Star(){  // default constructor
-			super();  // call the Drop default constructor as the first line of code
 		// First create the shape
-			s = createShape();
-			s.beginShape();
-			// You can set fill and stroke
-			s.fill(102);
-			s.stroke(255);
-			s.strokeWeight(2);
-			// Here, we are hardcoding a series of vertices
-			s.vertex(0, -50);
-			s.vertex(14, -20);
-			s.vertex(47, -15);
-			s.vertex(23, 7);
-			s.vertex(29, 40);
-			s.vertex(0, 25);
-			s.vertex(-29, 40);
-			s.vertex(-23, 7);
-			s.vertex(-47, -15);
-			s.vertex(-14, -20);
-			s.endShape(CLOSE);
-			}
-		}
+    	s = createShape();
+    	s.beginShape();
+    	// You can set fill and stroke
+    	s.fill(102);
+    	s.stroke(255);
+    	s.strokeWeight(2);
+    	// Here, we are hardcoding a series of vertices
+    	s.vertex(0, -50);
+    	s.vertex(14, -20);
+    	s.vertex(47, -15);
+    	s.vertex(23, 7);
+    	s.vertex(29, 40);
+    	s.vertex(0, 25);
+    	s.vertex(-29, 40);
+    	s.vertex(-23, 7);
+    	s.vertex(-47, -15);
+    	s.vertex(-14, -20);
+    	s.endShape(CLOSE);
+  		}
 	
-The code above is taken directly from the Processing `PShape`_ Tutorial, except that we've made the
-Star class a child class of the Drop class. 
+	}
 
-Because the Star class inherits from the Drop class, we don't need to explicitly
-declare most of the instance variables.  However, notice that in the first line of 
-code in the constructor that we're calling ``super()``, this is the Drop class default constructor. 
 
-Shiffman notes in the `PShape`_ Tutorial that by default, a PShape geometry is defined relative to the canvas origin (0,0). 
-Therefore, he notes that it's we'll almost always use ``pushMatrix()``, ``popMatrix()``, and ``translate()`` in order to locate
-our PShape objects on the canvas.
-
-So, to write a ``display()`` method for our 
 
 .. _PShape:  https://processing.org/tutorials/pshape/

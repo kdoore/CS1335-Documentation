@@ -4,7 +4,7 @@
 Paddle Object
 ======================
 
-In the previous section, we reviewed Daniel Shiffman's Rain Game, Object-Oriented Game.  Now, we want
+In the previous section, we reviewed Daniel `Shiffman's`_ Rain Game, Object-Oriented Game.  Now, we want
 to customize the game to make it a bit more interesting.   The first change we'll make is to add a
 paddle that can catch or hit the falling objects.  If we allow the objects to bounce, then that could
 provide a user with extra scoring opportunities.  For now, let's just look at how we can implement
@@ -202,3 +202,5 @@ Questions:
 	instead of just writing that additional code within the pressedLeft( ) method?  
 
 .. _Dr Doane: http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/
+
+.. _Shiffman's: http://learningprocessing.com
