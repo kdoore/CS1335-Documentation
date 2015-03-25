@@ -49,6 +49,8 @@ Game: Methods
 - reset( )   : ``void``
 - isGameOver( ) : ``boolean``
 
+Game Button Objects
+=====================
 If we want to include some Button objects in our game, like a startButton and a resetButton,
 then we'll need to look at what a Button object would look like.  Shiffman provides an example of
 a Button object in `Exercise 9.8`_  To integrate the a start button in the Game class, it's 
@@ -61,11 +63,13 @@ important to remember to initialize the button in the Game constructor::
 		resetBtn=new Button(width/2, height/2,70,50);
 		}
 
+Game Display - Buttons
+========================
 Then, in the Display method for the game, we can display the buttons depending on what 
 the gameState is::
 
 	void display(){
-    	switch(state){
+		switch(gameState){
 		  case 0:  //Game is in 'Start' mode - show start button
 			fill(255);
 			rect(0,0,width,height);

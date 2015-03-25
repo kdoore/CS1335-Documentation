@@ -96,6 +96,10 @@ imagine we&#8217;ll need the following methods:</p>
 <li>reset( )   : <code class="docutils literal"><span class="pre">void</span></code></li>
 <li>isGameOver( ) : <code class="docutils literal"><span class="pre">boolean</span></code></li>
 </ul>
+</div>
+</div>
+<div class="section" id="game-button-objects">
+<h2>11.2. Game Button Objects<a class="headerlink" href="#game-button-objects" title="Permalink to this headline">¶</a></h2>
 <p>If we want to include some Button objects in our game, like a startButton and a resetButton,
 then we&#8217;ll need to look at what a Button object would look like.  Shiffman provides an example of
 a Button object in <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-9/excercise-9-8">Exercise 9.8</a>  To integrate the a start button in the Game class, it&#8217;s
@@ -108,10 +112,13 @@ important to remember to initialize the button in the Game constructor:</p>
         <span class="o">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="game-display-buttons">
+<h2>11.3. Game Display - Buttons<a class="headerlink" href="#game-display-buttons" title="Permalink to this headline">¶</a></h2>
 <p>Then, in the Display method for the game, we can display the buttons depending on what
 the gameState is:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
-<span class="k">switch</span><span class="o">(</span><span class="n">state</span><span class="o">){</span>
+        <span class="k">switch</span><span class="o">(</span><span class="n">gameState</span><span class="o">){</span>
           <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>  <span class="c1">//Game is in &#39;Start&#39; mode - show start button</span>
                 <span class="n">fill</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
                 <span class="n">rect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">width</span><span class="o">,</span><span class="n">height</span><span class="o">);</span>
@@ -136,16 +143,15 @@ the gameState is:</p>
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="child-classes-of-the-drop-class">
-<h2>11.2. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h2>
+<h2>11.4. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h2>
 <p>The next modification for our game is that we&#8217;re going to use several different drop types.
 So, we&#8217;ll have 2 different classes that inherit from the Drop class.  Let&#8217;s say we&#8217;ll have SeaHorses
 and Stars.  Since the behavior of these objects will be almost identical to <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> Drop class,
 it makes sense for us to use object inheritance when defining these objects.</p>
 </div>
 <div class="section" id="method-override">
-<h2>11.3. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h2>
+<h2>11.5. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h2>
 <p>It&#8217;s obvious that these objects will have unique display() methods which display their unique
 shapes.  Other methods like move() might be identical to the Drop method: move( ).</p>
 <p>When one class inherits from another class, any method that is not specified in the child
@@ -189,8 +195,10 @@ code class code below:</p>
 <li><a class="reference internal" href="#game-methods">11.1.2. Game: Methods</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.2. Child classes of the Drop Class</a></li>
-<li><a class="reference internal" href="#method-override">11.3. Method Override</a></li>
+<li><a class="reference internal" href="#game-button-objects">11.2. Game Button Objects</a></li>
+<li><a class="reference internal" href="#game-display-buttons">11.3. Game Display - Buttons</a></li>
+<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.4. Child classes of the Drop Class</a></li>
+<li><a class="reference internal" href="#method-override">11.5. Method Override</a></li>
 </ul>
 </li>
 </ul>
