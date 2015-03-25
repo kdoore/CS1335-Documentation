@@ -118,7 +118,37 @@ also lets us set the color of the PShape object:</p>
 <p>If we want to determine where the center of the PShape is, what code can we write?
 The easiest thing to do is to note that we&#8217;ve translated the origin to the x,y position, so
 if we create an ellipse at (0,0) then we&#8217;ll be able to observe where the center is.</p>
-<p>Another way that we can use PShape is to load an .svg file.</p>
+</div>
+<div class="section" id="pshape-using-svg-image-file">
+<h2>14.2. PShape using SVG Image File<a class="headerlink" href="#pshape-using-svg-image-file" title="Permalink to this headline">¶</a></h2>
+<p>Another way that we can use PShape is to load an .svg file.  There are may sources for .svg files, for
+this project, I&#8217;m using an svg file from <cite>The Noun Project</cite>.  This site has lots of .svg icon files
+that are free for use if you provide proper attribution for the designer of the .svg file.  I&#8217;m using
+an .svg file designed by: Agne Alesiute at <a class="reference external" href="http://thenounproject.com/">http://thenounproject.com/</a> .</p>
+<p>In order to use an svg file for a PShape object, it&#8217;s necessary to use the following syntax in
+order to load the image.
+1.  The .svg file must be put inside a folder named: data, inside your sketch folder
+2.   PShape s= loadShape(&#8220;seaHorse2.svg&#8221;);  // this loads the image
+3.   shape(s, x, y, width, height) ;  //this is used to display the svg.</p>
+<p>With SVG files, the x,y position refers to the top left corner of the svg file.  If you open the
+svg file in a text editor, you can read the width and height dimensions of the svg.  Those can help us
+when we try to determine the bounding box for collision detection.  Below is the display function
+that is overriding the default style of the svg to allow us to reset the fill color.  Below that I&#8217;ve
+added a rectangle to show the bounding box.  Since we&#8217;re using translate(x,y) so that we&#8217;ve moved the
+canvas origin to the svg corner point, then we&#8217;ll draw the rectangle at (0,0).:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
+        <span class="n">pushMatrix</span><span class="o">();</span>
+        <span class="n">translate</span><span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">);</span>
+        <span class="n">s</span><span class="o">.</span><span class="na">disableStyle</span><span class="o">();</span>  <span class="c1">// Ignore the colors in the SVG</span>
+        <span class="n">fill</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>    <span class="c1">// Set the SVG fill to myColor</span>
+        <span class="n">stroke</span><span class="o">(</span><span class="mi">55</span><span class="o">);</span>          <span class="c1">// Set the SVG fill to gray</span>
+        <span class="n">shape</span><span class="o">(</span><span class="n">s</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">sWidth</span><span class="o">,</span><span class="n">sHeight</span><span class="o">);</span>
+        <span class="n">noFill</span><span class="o">();</span>
+        <span class="n">rect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">sWidth</span><span class="o">,</span><span class="n">sHeight</span><span class="o">);</span>  <span class="c1">//bounding box</span>
+        <span class="n">popMatrix</span><span class="o">();</span>
+        <span class="o">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -132,6 +162,7 @@ if we create an ellipse at (0,0) then we&#8217;ll be able to observe where the c
   <ul>
 <li><a class="reference internal" href="#">14. PShape Objects</a><ul>
 <li><a class="reference internal" href="#stars">14.1. Stars</a></li>
+<li><a class="reference internal" href="#pshape-using-svg-image-file">14.2. PShape using SVG Image File</a></li>
 </ul>
 </li>
 </ul>

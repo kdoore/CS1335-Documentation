@@ -25,22 +25,68 @@ instance variables, we will probably expand on these at some point:
 
 Game: Instance Variables
 -------------------------
-- score: int                 
-- gameState: int			  
-- missedCount: int  		  
-- maxAllowedMisses: int       
-- startButton: button		  
-- resetButton: button 
+- score: ``int``                 
+- gameState: ``int``			  
+- missedCount: ``int``  		  
+- maxAllowedMisses: ``int``       
+- startBtn: ``button``		  
+- resetBtn: ``button`` 
 
+We can use integer values to indicate the possible gameState values, this will allow
+us to use a switch(gameState)  structure. We can use the keyword ``final`` to make it clear that
+these are values that shouldn't be changed within the program ::
+
+	final int START=0;
+  	final int ACTIVE=1;
+  	final int END=2; 
 
 Next, we'll want a few methods, we may add more methods later, but we can immediately 
 imagine we'll need the following methods:
 
 Game: Methods
 --------------
-- display( )
-- reset( )
-- isGameOver( )
+- display( ) : ``void``
+- reset( )   : ``void``
+- isGameOver( ) : ``boolean``
+
+If we want to include some Button objects in our game, like a startButton and a resetButton,
+then we'll need to look at what a Button object would look like.  Shiffman provides an example of
+a Button object in `Exercise 9.8`_  To integrate the a start button in the Game class, it's 
+important to remember to initialize the button in the Game constructor::
+
+	Game(){
+		int gameState=START;
+		int score=0;
+		startBtn=new Button(width/2, height/2,70,50);
+		resetBtn=new Button(width/2, height/2,70,50);
+		}
+
+Then, in the Display method for the game, we can display the buttons depending on what 
+the gameState is::
+
+	void display(){
+    	switch(state){
+		  case 0:  //Game is in 'Start' mode - show start button
+			fill(255);
+			rect(0,0,width,height);
+			startBtn.display();
+			fill(0);
+			text("Push to Start",width/2,height/2-10);
+			break;
+		 case 1:  //game is in 'ACTIVE' mode 
+			fill(100,150,200);
+			rect(0,0,width,height);
+			fill(0);
+			stroke(0);
+			text("Score: " + score,20,20);
+			break; 
+		  case 2:   //game is in 'END' mode
+		  	resetBtn.display();   //
+		  	fill(0);
+			text("Push to Restart",width/2,height/2-10);
+			break;
+			}
+		} 
 
 Child classes of the Drop Class
 ================================
@@ -84,6 +130,8 @@ code class code below::
 Questions: 
 
 
-.. _Exercise 10.4:  http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4/
+.. _Exercise 10.4:  http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4
+
+.. _Exercise 9.8:  http://www.learningprocessing.com/exercises/chapter-9/excercise-9-8
 
 .. _Shiffman's: http://learningprocessing.com

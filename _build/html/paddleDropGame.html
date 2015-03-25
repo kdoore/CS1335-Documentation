@@ -52,7 +52,7 @@
             
   <div class="section" id="paddle-drop-game">
 <span id="paddledropgame"></span><h1>11. Paddle Drop Game<a class="headerlink" href="#paddle-drop-game" title="Permalink to this headline">¶</a></h1>
-<p>Based on <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDropGame, and on the program code for Learning Processing: <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4/">exercise 10.4</a>,
+<p>Based on <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDropGame, and on the program code for Learning Processing: <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4">exercise 10.4</a>,
 we want to build a slightly more complicated game based on this program.  Our game will use a paddle
 object to try and catch the falling drops.  We&#8217;ll also use object inheritance to have several different
 objects that fall during our game, and we&#8217;ll use the PShape object to allow the use of .svg images for
@@ -71,23 +71,70 @@ instance variables, we will probably expand on these at some point:</p>
 <div class="section" id="game-instance-variables">
 <h3>11.1.1. Game: Instance Variables<a class="headerlink" href="#game-instance-variables" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>score: int</li>
-<li>gameState: int</li>
-<li>missedCount: int</li>
-<li>maxAllowedMisses: int</li>
-<li>startButton: button</li>
-<li>resetButton: button</li>
+<li>score: <code class="docutils literal"><span class="pre">int</span></code></li>
+<li>gameState: <code class="docutils literal"><span class="pre">int</span></code></li>
+<li>missedCount: <code class="docutils literal"><span class="pre">int</span></code></li>
+<li>maxAllowedMisses: <code class="docutils literal"><span class="pre">int</span></code></li>
+<li>startBtn: <code class="docutils literal"><span class="pre">button</span></code></li>
+<li>resetBtn: <code class="docutils literal"><span class="pre">button</span></code></li>
 </ul>
+<p>We can use integer values to indicate the possible gameState values, this will allow
+us to use a switch(gameState)  structure. We can use the keyword <code class="docutils literal"><span class="pre">final</span></code> to make it clear that
+these are values that shouldn&#8217;t be changed within the program</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">final</span> <span class="kt">int</span> <span class="n">START</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">ACTIVE</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">END</span><span class="o">=</span><span class="mi">2</span><span class="o">;</span>
+</pre></div>
+</div>
 <p>Next, we&#8217;ll want a few methods, we may add more methods later, but we can immediately
 imagine we&#8217;ll need the following methods:</p>
 </div>
 <div class="section" id="game-methods">
 <h3>11.1.2. Game: Methods<a class="headerlink" href="#game-methods" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>display( )</li>
-<li>reset( )</li>
-<li>isGameOver( )</li>
+<li>display( ) : <code class="docutils literal"><span class="pre">void</span></code></li>
+<li>reset( )   : <code class="docutils literal"><span class="pre">void</span></code></li>
+<li>isGameOver( ) : <code class="docutils literal"><span class="pre">boolean</span></code></li>
 </ul>
+<p>If we want to include some Button objects in our game, like a startButton and a resetButton,
+then we&#8217;ll need to look at what a Button object would look like.  Shiffman provides an example of
+a Button object in <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-9/excercise-9-8">Exercise 9.8</a>  To integrate the a start button in the Game class, it&#8217;s
+important to remember to initialize the button in the Game constructor:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">Game</span><span class="o">(){</span>
+        <span class="kt">int</span> <span class="n">gameState</span><span class="o">=</span><span class="n">START</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">score</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+        <span class="n">startBtn</span><span class="o">=</span><span class="k">new</span> <span class="n">Button</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="mi">70</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>
+        <span class="n">resetBtn</span><span class="o">=</span><span class="k">new</span> <span class="n">Button</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="mi">70</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>
+        <span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, in the Display method for the game, we can display the buttons depending on what
+the gameState is:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
+<span class="k">switch</span><span class="o">(</span><span class="n">state</span><span class="o">){</span>
+          <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>  <span class="c1">//Game is in &#39;Start&#39; mode - show start button</span>
+                <span class="n">fill</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+                <span class="n">rect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">width</span><span class="o">,</span><span class="n">height</span><span class="o">);</span>
+                <span class="n">startBtn</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+                <span class="n">fill</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+                <span class="n">text</span><span class="o">(</span><span class="s">&quot;Push to Start&quot;</span><span class="o">,</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">10</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+         <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>  <span class="c1">//game is in &#39;ACTIVE&#39; mode</span>
+                <span class="n">fill</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span><span class="mi">150</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span>
+                <span class="n">rect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">width</span><span class="o">,</span><span class="n">height</span><span class="o">);</span>
+                <span class="n">fill</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+                <span class="n">stroke</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+                <span class="n">text</span><span class="o">(</span><span class="s">&quot;Score: &quot;</span> <span class="o">+</span> <span class="n">score</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="mi">20</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>   <span class="c1">//game is in &#39;END&#39; mode</span>
+                <span class="n">resetBtn</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>   <span class="c1">//</span>
+                <span class="n">fill</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+                <span class="n">text</span><span class="o">(</span><span class="s">&quot;Push to Restart&quot;</span><span class="o">,</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">10</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+                <span class="o">}</span>
+        <span class="o">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="child-classes-of-the-drop-class">

@@ -76,7 +76,37 @@ If we want to determine where the center of the PShape is, what code can we writ
 The easiest thing to do is to note that we've translated the origin to the x,y position, so
 if we create an ellipse at (0,0) then we'll be able to observe where the center is. 
 
+PShape using SVG Image File
+============================
 
-Another way that we can use PShape is to load an .svg file.  
+Another way that we can use PShape is to load an .svg file.  There are may sources for .svg files, for
+this project, I'm using an svg file from `The Noun Project`.  This site has lots of .svg icon files
+that are free for use if you provide proper attribution for the designer of the .svg file.  I'm using
+an .svg file designed by: Agne Alesiute at http://thenounproject.com/ .
+
+In order to use an svg file for a PShape object, it's necessary to use the following syntax in 
+order to load the image.  
+1.  The .svg file must be put inside a folder named: data, inside your sketch folder
+2.   PShape s= loadShape("seaHorse2.svg");  // this loads the image 
+3.   shape(s, x, y, width, height) ;  //this is used to display the svg.
+
+With SVG files, the x,y position refers to the top left corner of the svg file.  If you open the
+svg file in a text editor, you can read the width and height dimensions of the svg.  Those can help us
+when we try to determine the bounding box for collision detection.  Below is the display function 
+that is overriding the default style of the svg to allow us to reset the fill color.  Below that I've
+added a rectangle to show the bounding box.  Since we're using translate(x,y) so that we've moved the 
+canvas origin to the svg corner point, then we'll draw the rectangle at (0,0).::
+
+	void display(){
+		pushMatrix();
+		translate(x,y);
+		s.disableStyle();  // Ignore the colors in the SVG
+		fill(c);    // Set the SVG fill to myColor
+		stroke(55);          // Set the SVG fill to gray
+		shape(s,0,0,sWidth,sHeight);
+		noFill();
+		rect(0,0,sWidth,sHeight);  //bounding box 
+		popMatrix();
+		}
 
 .. _PShape:  https://processing.org/tutorials/pshape/
