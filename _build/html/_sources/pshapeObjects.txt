@@ -86,9 +86,10 @@ an .svg file designed by: Agne Alesiute at http://thenounproject.com/ .
 
 In order to use an svg file for a PShape object, it's necessary to use the following syntax in 
 order to load the image.  
-1.  The .svg file must be put inside a folder named: data, inside your sketch folder
-2.   PShape s= loadShape("seaHorse2.svg");  // this loads the image 
-3.   shape(s, x, y, width, height) ;  //this is used to display the svg.
+
+	1.  The .svg file must be put inside a folder named: data, inside your sketch folder
+	2.  PShape s= loadShape("seaHorse2.svg");  // this loads the image 
+	3.  shape(s, x, y, width, height) ;  //this is used to display the svg.
 
 With SVG files, the x,y position refers to the top left corner of the svg file.  If you open the
 svg file in a text editor, you can read the width and height dimensions of the svg.  Those can help us

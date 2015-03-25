@@ -126,10 +126,14 @@ this project, I&#8217;m using an svg file from <cite>The Noun Project</cite>.  T
 that are free for use if you provide proper attribution for the designer of the .svg file.  I&#8217;m using
 an .svg file designed by: Agne Alesiute at <a class="reference external" href="http://thenounproject.com/">http://thenounproject.com/</a> .</p>
 <p>In order to use an svg file for a PShape object, it&#8217;s necessary to use the following syntax in
-order to load the image.
-1.  The .svg file must be put inside a folder named: data, inside your sketch folder
-2.   PShape s= loadShape(&#8220;seaHorse2.svg&#8221;);  // this loads the image
-3.   shape(s, x, y, width, height) ;  //this is used to display the svg.</p>
+order to load the image.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>The .svg file must be put inside a folder named: data, inside your sketch folder</li>
+<li>PShape s= loadShape(&#8220;seaHorse2.svg&#8221;);  // this loads the image</li>
+<li>shape(s, x, y, width, height) ;  //this is used to display the svg.</li>
+</ol>
+</div></blockquote>
 <p>With SVG files, the x,y position refers to the top left corner of the svg file.  If you open the
 svg file in a text editor, you can read the width and height dimensions of the svg.  Those can help us
 when we try to determine the bounding box for collision detection.  Below is the display function
