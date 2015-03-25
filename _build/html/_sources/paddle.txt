@@ -197,8 +197,8 @@ Questions:
 ==========
 
 1.  Why have we decided to use ``int`` as the type for the state variable ``direction``?  
-2.  What is the benefit of creating simple methods like displayLeftArrow( ) which do one specific task 
-	instead of just writing that additional code within the pressedLeft( ) method?  
+2.  What is the benefit of creating simple methods like displayLeftArrow( ) which do one 
+	specific task instead of just writing that additional code within the pressedLeft( ) method?  
 
 .. _Dr Doane: http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/
 
