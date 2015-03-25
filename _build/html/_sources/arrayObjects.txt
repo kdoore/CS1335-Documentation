@@ -73,7 +73,7 @@ the Array of Drop objects and then to call the appropriate Drop methods and incr
 
 	// Move and display all drops
     for (int i = 0; i < totalDrops; i++ ) {
-      if (!drops[i].finished) {
+      if (!drops[i].finished) {   //this is a filter so we only process drops which are active
         drops[i].move();
         drops[i].display();
         if (drops[i].reachedBottom()) {
@@ -101,8 +101,8 @@ the Array of Drop objects and then to call the appropriate Drop methods and incr
  
 In this section we have looked at how to use an Array to hold objects and then to allow 
 looping through the array to check an object's instance variables like ``finished`` which 
-can act as a filter to minimize the number of method calls that are exectued by the program.
-In addition, we discussed how the ``finished`` instance variable lets us indentify objects that
+can act as a filter to minimize the number of method calls that are executed by the program.
+In addition, we discussed how the ``finished`` instance variable lets us identify objects that
 are un-used so we can re-use them at a later time.  These types of optimizations are important
 in game development so the game can execute at a fast speed. 
   

@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>11. Paddle Drop Game &mdash; CS1335 Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="12. Paddle Object" href="paddle.html" />
+    <link rel="prev" title="10. Rain Catcher Game" href="rainGame.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="paddle.html" title="12. Paddle Object"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rainGame.html" title="10. Rain Catcher Game"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="paddle-drop-game">
+<span id="paddledropgame"></span><h1>11. Paddle Drop Game<a class="headerlink" href="#paddle-drop-game" title="Permalink to this headline">¶</a></h1>
+<p>Based on <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDropGame, and on the program code for Learning Processing: <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4/">exercise 10.4</a>,
+we want to build a slightly more complicated game based on this program.  Our game will use a paddle
+object to try and catch the falling drops.  We&#8217;ll also use object inheritance to have several different
+objects that fall during our game, and we&#8217;ll use the PShape object to allow the use of .svg images for
+interesting drop objects.  Also, we&#8217;ll use a Game class for methods and variables related to the game state,
+this will include Button class to start the game and to allow the game to be reset.  A more advanced
+version of the game could also include gameLevels and other more advanced features</p>
+<div class="section" id="planning">
+<h2>11.1. Planning<a class="headerlink" href="#planning" title="Permalink to this headline">¶</a></h2>
+<p>To begin design of our game, let&#8217;s look at the changes we&#8217;ll need to make, to modify
+<a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> exercise 10.4 project code. In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> project, he has all of the game type
+code simply implemented within the processing draw loop.  We&#8217;d like to re-factor his program and
+make a separate Game class in order to make it easier to organize and understand our program code.
+If we look at his Draw loop code, we can see that he&#8217;s incrementing a score-type variable, he&#8217;s
+keeping track of misses, etc.  So, let&#8217;s create a Game Class, initially we can begin with the following
+instance variables, we will probably expand on these at some point:</p>
+<div class="section" id="game-instance-variables">
+<h3>11.1.1. Game: Instance Variables<a class="headerlink" href="#game-instance-variables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>score: int</li>
+<li>gameState: int</li>
+<li>missedCount: int</li>
+<li>maxAllowedMisses: int</li>
+<li>startButton: button</li>
+<li>resetButton: button</li>
+</ul>
+<p>Next, we&#8217;ll want a few methods, we may add more methods later, but we can immediately
+imagine we&#8217;ll need the following methods:</p>
+</div>
+<div class="section" id="game-methods">
+<h3>11.1.2. Game: Methods<a class="headerlink" href="#game-methods" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>display( )</li>
+<li>reset( )</li>
+<li>isGameOver( )</li>
+</ul>
+</div>
+</div>
+<div class="section" id="child-classes-of-the-drop-class">
+<h2>11.2. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h2>
+<p>The next modification for our game is that we&#8217;re going to use several different drop types.
+So, we&#8217;ll have 2 different classes that inherit from the Drop class.  Let&#8217;s say we&#8217;ll have SeaHorses
+and Stars.  Since the behavior of these objects will be almost identical to <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> Drop class,
+it makes sense for us to use object inheritance when defining these objects.</p>
+</div>
+<div class="section" id="method-override">
+<h2>11.3. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h2>
+<p>It&#8217;s obvious that these objects will have unique display() methods which display their unique
+shapes.  Other methods like move() might be identical to the Drop method: move( ).</p>
+<p>When one class inherits from another class, any method that is not specified in the child
+class, will be implemented using the method in the parent class.  This a major benefit
+of using inheritance, we only need to make changes to methods or features that are different
+in the child class.</p>
+<p>For now we can simply create a Seahorse class that inherits from the Drop class using the
+code class code below:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Seahorse</span> <span class="kd">extends</span> <span class="n">Drop</span><span class="o">{</span>
+                <span class="n">PShape</span> <span class="n">s</span><span class="o">;</span>
+                <span class="kt">float</span> <span class="n">sWidth</span><span class="o">;</span>
+                <span class="kt">float</span> <span class="n">sHeight</span><span class="o">;</span>
+                <span class="kt">float</span> <span class="n">bottomY</span><span class="o">;</span>
+                <span class="kt">float</span> <span class="n">bottomX</span><span class="o">;</span>
+
+                <span class="n">Seahorse</span><span class="o">(){</span>
+                        <span class="kd">super</span><span class="o">();</span>   <span class="c1">//call the Drop constructor</span>
+                <span class="o">}</span>
+
+                <span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
+                    <span class="c1">//some code to display the seahorse which is different than a drop</span>
+                <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Questions:</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">11. Paddle Drop Game</a><ul>
+<li><a class="reference internal" href="#planning">11.1. Planning</a><ul>
+<li><a class="reference internal" href="#game-instance-variables">11.1.1. Game: Instance Variables</a></li>
+<li><a class="reference internal" href="#game-methods">11.1.2. Game: Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.2. Child classes of the Drop Class</a></li>
+<li><a class="reference internal" href="#method-override">11.3. Method Override</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rainGame.html"
+                        title="previous chapter">10. Rain Catcher Game</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="paddle.html"
+                        title="next chapter">12. Paddle Object</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="paddle.html" title="12. Paddle Object"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rainGame.html" title="10. Rain Catcher Game"
+             >previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Karen Doore.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

@@ -5,7 +5,7 @@ Paddle Object
 ======================
 
 In the previous section, we reviewed Daniel `Shiffman's`_ Rain Game, Object-Oriented Game.  Now, we want
-to customize the game to make it a bit more interesting.   The first change we'll make is to add a
+to customize the game to make it a bit more interesting.   The next change we'll make is to add a
 paddle that can catch or hit the falling objects.  If we allow the objects to bounce, then that could
 provide a user with extra scoring opportunities.  For now, let's just look at how we can implement
 a paddle that moves left and right in response to keyboard input.  
@@ -133,7 +133,6 @@ which indicate direction, Note the use of the ``final`` keyword::
   final int pLEFT=1;   // left direction state variable
   final int pRIGHT=2;  //right direction state variable
  
-  
 The ``final`` keyword is used to indicate that this value should not be ever be changed, these
 values are used as 'constants' within the program. The use of capital letters also indicates that
 these are special values which are constants and shouldn't be modified in the program.  The constants

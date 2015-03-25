@@ -25,8 +25,8 @@ from the Drop class.  For our current version of the RainDrop game, the Drop cla
 	class Star extends Drop{  
 		PShape s;
 		
-		Star(){  // default constructor
-			super();  // call the Drop default constructor as the first line of code
+		Star(float _x){  // constructor lets us set the x-position
+			super(_x);  // call the Drop constructor as the first line of code
 		// First create the shape
 			s = createShape();
 			s.beginShape();
@@ -60,6 +60,23 @@ Shiffman notes in the `PShape`_ Tutorial that by default, a PShape geometry is d
 Therefore, he notes that it's we'll almost always use ``pushMatrix()``, ``popMatrix()``, and ``translate()`` in order to locate
 our PShape objects on the canvas.
 
-So, to write a ``display()`` method for our 
+So, to write a ``display()`` method for our Star, we need to remember to translate the origin of the canvas
+to the x,y coordinates of our shape before displaying using the `shape()` function.  Here's a display method that
+also lets us set the color of the PShape object::
+
+	 void display(){
+		pushMatrix();
+		translate(x,y);    //x,y were given default settings
+  		s.setFill(color(0,200,127));   //we can change the fill color here if we want
+		shape(s,0,0);
+		popMatrix();
+  }
+  
+If we want to determine where the center of the PShape is, what code can we write?
+The easiest thing to do is to note that we've translated the origin to the x,y position, so
+if we create an ellipse at (0,0) then we'll be able to observe where the center is. 
+
+
+Another way that we can use PShape is to load an .svg file.  
 
 .. _PShape:  https://processing.org/tutorials/pshape/

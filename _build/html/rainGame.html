@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="11. Paddle Object" href="paddle.html" />
+    <link rel="next" title="11. Paddle Drop Game" href="paddleDropGame.html" />
     <link rel="prev" title="9. More Objects" href="moreObjects.html" /> 
   </head>
   <body role="document">
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="paddle.html" title="11. Paddle Object"
+          <a href="paddleDropGame.html" title="11. Paddle Drop Game"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="moreObjects.html" title="9. More Objects"
@@ -195,7 +195,8 @@ we can also call methods from within other methods if it makes our code easier t
 </div>
 <div class="section" id="timer-class-code">
 <h2>10.5. Timer Class Code<a class="headerlink" href="#timer-class-code" title="Permalink to this headline">¶</a></h2>
-<p>Here is the code for the timer class.  It uses the processing function <code class="docutils literal"><span class="pre">millis()</span></code> which counts milliseconds since the sketch started:</p>
+<p>Here is the code for the timer class.  It uses the processing function <code class="docutils literal"><span class="pre">millis()</span></code> which counts milliseconds since the sketch started.  Shiffman uses
+the timer to generate an event to create a new Drop that can fall from the top of the canvas.</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Timer</span><span class="o">{</span>
         <span class="kt">int</span> <span class="n">startedTime</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">totalTime</span><span class="o">;</span>
@@ -210,7 +211,7 @@ we can also call methods from within other methods if it makes our code easier t
         <span class="n">startedTime</span><span class="o">=</span><span class="n">millis</span><span class="o">();</span>   <span class="c1">//set the start time to the current millis value</span>
         <span class="o">}</span>
 
-        <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">(){</span>
+        <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">(){</span>  <span class="c1">//this timer determines if the timer has completed the timed interval</span>
         <span class="kt">int</span> <span class="n">passedTime</span><span class="o">=</span><span class="n">millis</span><span class="o">()-</span><span class="n">startedTime</span><span class="o">;</span>
         <span class="k">if</span><span class="o">(</span><span class="n">passedTime</span><span class="o">&gt;</span><span class="n">totalTime</span><span class="o">){</span>
                 <span class="n">println</span><span class="o">(</span><span class="s">&quot;timer finished&quot;</span><span class="o">);</span>
@@ -376,8 +377,8 @@ tests is actually written before the code that you will be testing.</p>
   <p class="topless"><a href="moreObjects.html"
                         title="previous chapter">9. More Objects</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="paddle.html"
-                        title="next chapter">11. Paddle Object</a></p>
+  <p class="topless"><a href="paddleDropGame.html"
+                        title="next chapter">11. Paddle Drop Game</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -402,7 +403,7 @@ tests is actually written before the code that you will be testing.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="paddle.html" title="11. Paddle Object"
+          <a href="paddleDropGame.html" title="11. Paddle Drop Game"
              >next</a> |</li>
         <li class="right" >
           <a href="moreObjects.html" title="9. More Objects"

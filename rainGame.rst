@@ -147,7 +147,8 @@ we can also call methods from within other methods if it makes our code easier t
 Timer Class Code
 =================
 
-Here is the code for the timer class.  It uses the processing function ``millis()`` which counts milliseconds since the sketch started::		
+Here is the code for the timer class.  It uses the processing function ``millis()`` which counts milliseconds since the sketch started.  Shiffman uses
+the timer to generate an event to create a new Drop that can fall from the top of the canvas.  ::		
 			
 	class Timer{
    		int startedTime;
@@ -163,7 +164,7 @@ Here is the code for the timer class.  It uses the processing function ``millis(
      		startedTime=millis();   //set the start time to the current millis value
    		}
    
-   		boolean isFinished(){
+   		boolean isFinished(){  //this timer determines if the timer has completed the timed interval
      		int passedTime=millis()-startedTime;
      		if(passedTime>totalTime){
        			println("timer finished");

@@ -23,6 +23,7 @@ Contents:
 	objects
 	moreObjects
 	rainGame
+	paddleDropGame
 	paddle
 	arrayObjects
 	pshapeObjects
