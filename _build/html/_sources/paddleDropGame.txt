@@ -171,7 +171,7 @@ in the child class.
 For now we can simply create a Seahorse class that inherits from the Drop class using the 
 code class code below::
 
-	//this code is in the Seahorse Class tab
+	//this code is in the Seahorse Class tab   
 
 	class Seahorse extends Drop{
 			PShape s;
