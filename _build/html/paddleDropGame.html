@@ -103,12 +103,14 @@ imagine we&#8217;ll need the following methods:</p>
 <p>If we want to include some Button objects in our game, like a startButton and a resetButton,
 then we&#8217;ll need to look at what a Button object would look like.  Shiffman provides an example of
 a Button object in <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-9/excercise-9-8">Exercise 9.8</a>  To integrate the a start button in the Game class, it&#8217;s
-important to remember to initialize the button in the Game constructor:</p>
+important to remember to initialize the button in the Game constructor, aslo, for the simple button
+class and click methods that we&#8217;ve created, we want to make sure out buttons don&#8217;t have the same position
+values because we are using the position to determine if the button has been clicked:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">Game</span><span class="o">(){</span>
         <span class="kt">int</span> <span class="n">gameState</span><span class="o">=</span><span class="n">START</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">score</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
-        <span class="n">startBtn</span><span class="o">=</span><span class="k">new</span> <span class="n">Button</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="mi">70</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>
-        <span class="n">resetBtn</span><span class="o">=</span><span class="k">new</span> <span class="n">Button</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="mi">70</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>
+        <span class="n">startBtn</span><span class="o">=</span><span class="k">new</span> <span class="n">Button</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">20</span><span class="o">,</span><span class="mi">70</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>  <span class="c1">//make sure buttons aren&#39;t in the same location</span>
+        <span class="n">resetBtn</span><span class="o">=</span><span class="k">new</span> <span class="n">Button</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">50</span><span class="o">,</span><span class="mi">70</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>
         <span class="o">}</span>
 </pre></div>
 </div>
@@ -117,12 +119,14 @@ important to remember to initialize the button in the Game constructor:</p>
 <h2>11.3. Game Display - Buttons<a class="headerlink" href="#game-display-buttons" title="Permalink to this headline">¶</a></h2>
 <p>Then, in the Display method for the game, we can display the buttons depending on what
 the gameState is:</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the Game class tab</span>
+
+<span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
         <span class="k">switch</span><span class="o">(</span><span class="n">gameState</span><span class="o">){</span>
           <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>  <span class="c1">//Game is in &#39;Start&#39; mode - show start button</span>
                 <span class="n">fill</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
                 <span class="n">rect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">width</span><span class="o">,</span><span class="n">height</span><span class="o">);</span>
-                <span class="n">startBtn</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+                <span class="n">startBtn</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>   <span class="c1">//here&#39;s where we display the start button</span>
                 <span class="n">fill</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
                 <span class="n">text</span><span class="o">(</span><span class="s">&quot;Push to Start&quot;</span><span class="o">,</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">10</span><span class="o">);</span>
                 <span class="k">break</span><span class="o">;</span>
@@ -134,7 +138,7 @@ the gameState is:</p>
                 <span class="n">text</span><span class="o">(</span><span class="s">&quot;Score: &quot;</span> <span class="o">+</span> <span class="n">score</span><span class="o">,</span><span class="mi">20</span><span class="o">,</span><span class="mi">20</span><span class="o">);</span>
                 <span class="k">break</span><span class="o">;</span>
           <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>   <span class="c1">//game is in &#39;END&#39; mode</span>
-                <span class="n">resetBtn</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>   <span class="c1">//</span>
+                <span class="n">resetBtn</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>   <span class="c1">//here&#39;s where we display the reset button</span>
                 <span class="n">fill</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
                 <span class="n">text</span><span class="o">(</span><span class="s">&quot;Push to Restart&quot;</span><span class="o">,</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">10</span><span class="o">);</span>
                 <span class="k">break</span><span class="o">;</span>
@@ -143,15 +147,70 @@ the gameState is:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="button-state">
+<h2>11.4. Button State<a class="headerlink" href="#button-state" title="Permalink to this headline">¶</a></h2>
+<p>The button objects have a display method which we&#8217;ve called above in the game.display( ) method. So, the
+button knows what to look like based on it&#8217;s internal state.  That is the button&#8217;s responsibility.  However
+the main reason that we want to use a button is so we can change something in the program whenever someone
+clicks on the button and changes the button&#8217;s internal state.  So, the Button objects have an internal state
+that is boolean: on, which is either true or false.  This state is changed when the button.click() method is called:</p>
+<div class="highlight-Java"><div class="highlight"><pre>      <span class="c1">/// this code is in the Button Class:: notice that we&#39;ll have a problem if the buttons have the same position</span>
+      <span class="c1">/// which might not be obvious if they&#39;re displayed at different times.</span>
+
+      <span class="kt">void</span> <span class="nf">click</span><span class="o">(</span><span class="kt">int</span> <span class="n">mx</span><span class="o">,</span> <span class="kt">int</span> <span class="n">my</span><span class="o">)</span> <span class="o">{</span>  <span class="c1">//input is mouseX, mouseY</span>
+              <span class="c1">// Check to see if a point is inside the rectangle</span>
+              <span class="k">if</span> <span class="o">(</span><span class="n">mx</span> <span class="o">&gt;</span> <span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">mx</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">w</span> <span class="o">&amp;&amp;</span> <span class="n">my</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">my</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">on</span> <span class="o">=</span> <span class="o">!</span><span class="n">on</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="game-button-integration">
+<h2>11.5. Game Button Integration<a class="headerlink" href="#game-button-integration" title="Permalink to this headline">¶</a></h2>
+<p>Now we need to figure out how to integrate the button event handler into the game.  So, if we look
+back at the main program code, we have a MouseClicked( ) event and this is where the game.startButton.click()
+code must be located so it&#8217;s executed when the user clicks the mouse.  There are 2 different types of game
+methods called here, first is the Button click() method for each button.  The second is game1.checkState( ).
+It might not be obvious that we would want to have this type of method, but it makes it easier within the Game
+objects to determine what the impact of the button clicks has on the game:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the main program tab</span>
+
+<span class="kt">void</span> <span class="nf">mouseClicked</span><span class="o">(){</span>
+          <span class="n">game1</span><span class="o">.</span><span class="na">resetBtn</span><span class="o">.</span><span class="na">click</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span><span class="n">mouseY</span><span class="o">);</span>
+          <span class="n">game1</span><span class="o">.</span><span class="na">startBtn</span><span class="o">.</span><span class="na">click</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span><span class="n">mouseY</span><span class="o">);</span>
+          <span class="n">game1</span><span class="o">.</span><span class="na">checkState</span><span class="o">();</span>    <span class="c1">/// this helps us determine what to do when there are multiple buttons in the Game</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>So, now we need to write the code for this checkState( ) method  within the Game Class. So, first thing we
+do is see if the button states have been activated so that &#8216;on&#8217; == true.  If so, then we want to use this
+as a trigger to change the game state.  However, it&#8217;s important to remember to set the button  <code class="docutils literal"><span class="pre">on</span></code> state
+back to false. See the code below:</p>
+<div class="highlight-Java"><div class="highlight"><pre>  <span class="c1">//this code is in the Game class tab</span>
+
+      <span class="kt">void</span> <span class="nf">checkState</span><span class="o">(){</span>
+              <span class="k">if</span><span class="o">(</span><span class="n">startBtn</span><span class="o">.</span><span class="na">on</span><span class="o">==</span><span class="kc">true</span><span class="o">){</span>
+                      <span class="n">state</span><span class="o">=</span><span class="n">ACTIVE</span><span class="o">;</span>   <span class="c1">//change game to active state</span>
+                      <span class="n">startBtn</span><span class="o">.</span><span class="na">on</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+              <span class="o">}</span>
+              <span class="k">if</span><span class="o">(</span><span class="n">resetBtn</span><span class="o">.</span><span class="na">on</span><span class="o">==</span><span class="kc">true</span><span class="o">){</span>
+                      <span class="n">state</span><span class="o">=</span><span class="n">START</span><span class="o">;</span>   <span class="c1">//change game to start screen</span>
+                      <span class="n">resetBtn</span><span class="o">.</span><span class="na">on</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+              <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="child-classes-of-the-drop-class">
-<h2>11.4. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h2>
+<h2>11.6. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h2>
 <p>The next modification for our game is that we&#8217;re going to use several different drop types.
 So, we&#8217;ll have 2 different classes that inherit from the Drop class.  Let&#8217;s say we&#8217;ll have SeaHorses
 and Stars.  Since the behavior of these objects will be almost identical to <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> Drop class,
 it makes sense for us to use object inheritance when defining these objects.</p>
 </div>
 <div class="section" id="method-override">
-<h2>11.5. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h2>
+<h2>11.7. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h2>
 <p>It&#8217;s obvious that these objects will have unique display() methods which display their unique
 shapes.  Other methods like move() might be identical to the Drop method: move( ).</p>
 <p>When one class inherits from another class, any method that is not specified in the child
@@ -160,7 +219,9 @@ of using inheritance, we only need to make changes to methods or features that a
 in the child class.</p>
 <p>For now we can simply create a Seahorse class that inherits from the Drop class using the
 code class code below:</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Seahorse</span> <span class="kd">extends</span> <span class="n">Drop</span><span class="o">{</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the Seahorse Class tab</span>
+
+<span class="kd">class</span> <span class="nc">Seahorse</span> <span class="kd">extends</span> <span class="n">Drop</span><span class="o">{</span>
                 <span class="n">PShape</span> <span class="n">s</span><span class="o">;</span>
                 <span class="kt">float</span> <span class="n">sWidth</span><span class="o">;</span>
                 <span class="kt">float</span> <span class="n">sHeight</span><span class="o">;</span>
@@ -197,8 +258,10 @@ code class code below:</p>
 </li>
 <li><a class="reference internal" href="#game-button-objects">11.2. Game Button Objects</a></li>
 <li><a class="reference internal" href="#game-display-buttons">11.3. Game Display - Buttons</a></li>
-<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.4. Child classes of the Drop Class</a></li>
-<li><a class="reference internal" href="#method-override">11.5. Method Override</a></li>
+<li><a class="reference internal" href="#button-state">11.4. Button State</a></li>
+<li><a class="reference internal" href="#game-button-integration">11.5. Game Button Integration</a></li>
+<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.6. Child classes of the Drop Class</a></li>
+<li><a class="reference internal" href="#method-override">11.7. Method Override</a></li>
 </ul>
 </li>
 </ul>
