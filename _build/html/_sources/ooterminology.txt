@@ -1,0 +1,17 @@
+.. _ooterminology:
+
+Object Oriented Terminology
+============================
+
+We have discussed various concepts related to Object Oriented programming and now we should 
+clarify the terminology for many of these concepts.  Let's define the terms:  Polymorphism, 
+Function / Method Overloading, and Function / Method Overriding. 
+
+Method / Function Overloading
+=============================
+
+We have seen examples of `overloading` when we've used the processing fill() and stroke() functions,
+where there are several different versions of these functions, where the function signatures are
+unique for each different version.
+
+ 

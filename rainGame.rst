@@ -176,11 +176,13 @@ the timer to generate an event to create a new Drop that can fall from the top o
    		}
   
 	}  //end of Timer class
+
+
 				
 Object Inheritance
 ====================
 
-Here is the code for the Drop class, it is a child class of the Ball class and it inherits the instance variables
+Here, we are going to use :ref:`Object Inheritance` is the code for the Drop class, it is a child class of the Ball class and it inherits the instance variables
 and methods from the Ball class.  we use the ``super`` keyword to refer to methods in the parent Ball class::
  
  class Drop extends Ball{

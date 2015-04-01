@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Inheritance &mdash; CS1335 Documentation</title>
+    <title>Object Oriented Terminology &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -42,17 +42,17 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="inheritance">
-<span id="id1"></span><h1>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h1>
-<p>For our game, we want to have a variety of Drop objects.  The easiest way to do this is to
-create new Classes that inherit from the Drop Class.  In Processing, there can only be 1 level of
-class inheritance.  In an earlier example, we had the Drop class inherit from the Ball class, let&#8217;s
-eliminate the Ball class and create the Drop class as a top level class.  Then we&#8217;ll create
-several different child classes that inherit from the Drop class.  One huge benefit of having
-child class objects is that we can still refer to all of these objects as Drop objects.  This
-will allow us to loop through an array of Drop objects, to manage the game code more easily.</p>
-<p>Let&#8217;s create 2 child Classes:  Star and Seahorse  These objects will use the PShape object
-for their visual display.  Let&#8217;s start with the Star Class.</p>
+  <div class="section" id="object-oriented-terminology">
+<span id="ooterminology"></span><h1>Object Oriented Terminology<a class="headerlink" href="#object-oriented-terminology" title="Permalink to this headline">¶</a></h1>
+<p>We have discussed various concepts related to Object Oriented programming and now we should
+clarify the terminology for many of these concepts.  Let&#8217;s define the terms:  Polymorphism,
+Function / Method Overloading, and Function / Method Overriding.</p>
+</div>
+<div class="section" id="method-function-overloading">
+<h1>Method / Function Overloading<a class="headerlink" href="#method-function-overloading" title="Permalink to this headline">¶</a></h1>
+<p>We have seen examples of <cite>overloading</cite> when we&#8217;ve used the processing fill() and stroke() functions,
+where there are several different versions of these functions, where the function signatures are
+unique for each different version.</p>
 </div>
 
 
@@ -61,6 +61,12 @@ for their visual display.  Let&#8217;s start with the Star Class.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Object Oriented Terminology</a></li>
+<li><a class="reference internal" href="#method-function-overloading">Method / Function Overloading</a></li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">

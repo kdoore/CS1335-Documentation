@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>18. Glossary &mdash; CS1335 Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="prev" title="17. Resources" href="resources.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="resources.html" title="17. Resources"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="glossary">
+<span id="glossary-rst"></span><h1>18. Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="abstract-class">
+<span id="id1"></span><h2>18.1. Abstract Class<a class="headerlink" href="#abstract-class" title="Permalink to this headline">¶</a></h2>
+<p>An abstract class is a class</p>
+</div>
+<div class="section" id="function-overloading">
+<span id="id2"></span><h2>18.2. Function Overloading<a class="headerlink" href="#function-overloading" title="Permalink to this headline">¶</a></h2>
+<p>Function overloading occurs when there are several different variations of a single function.
+Each version of a function must have a unique function signature, specifically, the arguments
+for a function must be unique between function versions, the compiler must be able to determine
+which version of the function is being called, the compiler can distinguish between versions based
+on the argument types used when a function is executed.  A common example of this in Processing
+is seen with the color-type functions like <code class="docutils literal"><span class="pre">fill()</span></code>.  There are several versions of the fill() function;
+if there is only 1 input parameter such as: fill(float grayVal), then the function interprets that to set the grayscale value.
+If there are 2 input parameters, then the second argument is used to set the alpha value.
+fill( float grayVal, float alphaVal).  Function overloading is a powerful way to implement
+slightly different behaviors depending on the number and type of input parameters for a function.
+Another example of overloading occurs with class constructors, a default constructor takes no
+input parameters, while other constructors for an object take input parameters to set some default
+values for initialization of instance variables.</p>
+</div>
+<div class="section" id="method-overriding">
+<span id="method-override"></span><h2>18.3. Method Overriding<a class="headerlink" href="#method-overriding" title="Permalink to this headline">¶</a></h2>
+<p>Method overriding is a feature of Inheritance in many Object-Oriented languages; where both the parent and child class
+implement identical versions of a specific method.  In the Processing language, many of our custom classes
+have implemented a  `` display()`` method, since many of our programs create visual designs, animations,
+or games.  The parent class and child class both implement displqy() methods that have identical
+method signatures, so the compiler follows a specific protocol to determine which method should be
+executed when a child object calls a method.  When a parent class object executes a method, then the
+parent class&#8217;s method code is executed.  However, when a child class executes a method, the compiler first
+looks at the child class definition to see if the method has been implemented within the child class definition,
+if it has been implemented in the child class, then that child version of the class method is executed.</p>
+</div>
+<div class="section" id="object-inheritance">
+<span id="id3"></span><h2>18.4. Object Inheritance<a class="headerlink" href="#object-inheritance" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance is an important feature in most Object-Oriented languages.  Inheritance in programming reflects
+the idea that the concepts that we&#8217;re trying to represent in our code often have natural hierarchical relationships,
+where objects can be categorized as belonging to a broader type of object.  These object hierarchies can be useful for
+organizing our program code and is one of the main benefits of Object-Oriented languages.  We easily understand that
+<cite>animal</cite> is a broad category of creatures, where there are many different types of</p>
+</div>
+<div class="section" id="polymorphism">
+<span id="id4"></span><h2>18.5. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<p>Polymorphism is one of the main benefits of using the Object-Oriented concept of Inheritance, where a child
+class is designed as an extension of the base or parent class.  Polymorphism means &#8216;many-shaped`, and in Object-
+Oriented programming, it means that we can create a child object, using a reference variable of the parent
+base class.  In our paddle game, we created an array of Drop objects, where <cite>polymoprhism</cite> allows us to have
+Star and SeaHorse objects contained within the array of Drop objects.  For a single element, the code below
+uses a Drop object reference which we then assign a SeaHorse object, then we can re-assign a Star object. It is
+important to note that this is a directional, or one-way relationship, we can&#8217;t use a reference from a child class
+to point to a base or parent class object as shown in the last line of code below:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">Drop</span> <span class="n">drop1</span><span class="o">;</span>      <span class="c1">//Drop object reference can point to Drop objects and objects which extend the Drop Class</span>
+<span class="n">Star</span> <span class="n">star1</span><span class="o">;</span>
+<span class="n">drop1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SeaHorse</span><span class="o">();</span>    <span class="c1">//SeaHorse is a child class of the Drop class</span>
+<span class="n">drop1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Star</span><span class="o">();</span>                     <span class="c1">//Star is a child class of the Drop class</span>
+
+<span class="n">star1</span><span class="o">=</span> <span class="k">new</span> <span class="n">Drop</span><span class="o">();</span>    <span class="c1">///ERROR</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="static-variables">
+<span id="id5"></span><h2>18.6. Static Variables<a class="headerlink" href="#static-variables" title="Permalink to this headline">¶</a></h2>
+<p>Processing does not support traditional static variables, the only way to have static variables
+is to have the entire class declared as a static class.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">18. Glossary</a><ul>
+<li><a class="reference internal" href="#abstract-class">18.1. Abstract Class</a></li>
+<li><a class="reference internal" href="#function-overloading">18.2. Function Overloading</a></li>
+<li><a class="reference internal" href="#method-overriding">18.3. Method Overriding</a></li>
+<li><a class="reference internal" href="#object-inheritance">18.4. Object Inheritance</a></li>
+<li><a class="reference internal" href="#polymorphism">18.5. Polymorphism</a></li>
+<li><a class="reference internal" href="#static-variables">18.6. Static Variables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="resources.html"
+                        title="previous chapter">17. Resources</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="resources.html" title="17. Resources"
+             >previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Karen Doore.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

@@ -25,11 +25,12 @@ Contents:
 	rainGame
 	paddleDropGame
 	paddle
+	inheritance
 	arrayObjects
 	pshapeObjects
 	game-design
 	resources
-	
+	glossary
 
 
 

@@ -97,6 +97,8 @@ the Array of Drop objects and then to call the appropriate Drop methods and incr
     }
 
 
+
+
  Summary
  ========
  
@@ -105,7 +107,9 @@ looping through the array to check an object's instance variables like ``finishe
 can act as a filter to minimize the number of method calls that are executed by the program.
 In addition, we discussed how the ``finished`` instance variable lets us identify objects that
 are un-used so we can re-use them at a later time.  These types of optimizations are important
-in game development so the game can execute at a fast speed. 
+in game development so the game can execute at a fast speed.
+
+ 
   
 .. _Array: https://processing.org/reference/Array.html
 
