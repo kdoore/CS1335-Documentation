@@ -50,7 +50,7 @@
 <span id="glossary-rst"></span><h1>18. Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="abstract-class">
 <span id="id1"></span><h2>18.1. Abstract Class<a class="headerlink" href="#abstract-class" title="Permalink to this headline">¶</a></h2>
-<p>An abstract class is a class</p>
+<p>An abstract class is a class that</p>
 </div>
 <div class="section" id="function-overloading">
 <span id="id2"></span><h2>18.2. Function Overloading<a class="headerlink" href="#function-overloading" title="Permalink to this headline">¶</a></h2>
@@ -86,7 +86,13 @@ if it has been implemented in the child class, then that child version of the cl
 the idea that the concepts that we&#8217;re trying to represent in our code often have natural hierarchical relationships,
 where objects can be categorized as belonging to a broader type of object.  These object hierarchies can be useful for
 organizing our program code and is one of the main benefits of Object-Oriented languages.  We easily understand that
-<cite>animal</cite> is a broad category of creatures, where there are many different types of</p>
+<cite>animal</cite> is a broad category of creatures, where there are many different types of animals such as dogs and cats.  We
+are comfortable with the concept of Animals being a broader category things than the categories of dogs or cats.  If we
+were to create a program about an animal shelter, it would be nice for us to be able to make use of these relationships
+between these types of objects in our program.  We can do this by using the specific syntax keyword <code class="docutils literal"><span class="pre">extends</span></code> when
+we define the Dog and Cat classes, where we would need to first define the Animal class.  The benefit of using inheritance
+in our programs is that we can eliminate duplicate code, and we can also use polymorphism as defined below to allow the
+use of the base class as a way to reference sub-class objects.</p>
 </div>
 <div class="section" id="polymorphism">
 <span id="id4"></span><h2>18.5. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>

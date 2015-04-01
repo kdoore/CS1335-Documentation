@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>13. Inheritance &mdash; CS1335 Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="14. Arrays of Objects" href="arrayObjects.html" />
+    <link rel="prev" title="12. Paddle Object" href="paddle.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="arrayObjects.html" title="14. Arrays of Objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="paddle.html" title="12. Paddle Object"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="inheritance">
+<span id="id1"></span><h1>13. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h1>
+<p>For our game, we want to have a variety of Drop objects.  The easiest way to do this is to
+create new Classes that inherit from the Drop Class. Inheritance represents a hierarchical
+relationship between object classes, which we can think of as being an <cite>is-a</cite> relationship.
+In Processing, there can only be 1 level of class inheritance. Other languages allow for deeper
+object hierarchies.  For our example, we&#8217;ll say that a Seahorse <cite>is-a</cite> Drop, and a Star <cite>is-a</cite>
+Drop object.</p>
+<div class="section" id="polymorphism">
+<h2>13.1. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<p>One huge benefit of having  child class objects is that we can still refer to all of these objects as Drop objects,
+this is referred to as <cite>polymorphism</cite>.  This will allow us to have an array of Drop objects where
+we can loop through an array of Drop objects, with the actual objects in the array being child objects
+such as Stars or SeaHorse objects. When we define the Star and SeaHorse classes of objects, we
+must <code class="docutils literal"><span class="pre">extend</span></code> the Drop class, the child classes will inherit all instance variables and methods
+from the Drop class. This will allow us to manage multiple types of dropping objects in the game code,
+while still referring to these objects as Drop objects.</p>
+<p>Let&#8217;s create 2 child Classes:  Star and Seahorse  These objects will use the PShape object
+for their visual display.  Let&#8217;s start with the Seahorse class.  We need to use the `` extends``
+keyword to indicate that the SeaHorse class is a child class of the Drop class.  As noted above,
+they will implement PShape for their display, in-fact we&#8217;ll use an .svg file to create the shape
+for these objects, so the display() method will need to be implemented in these child classes, so
+it will over-ride the Drop class display method:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//class definition for the SeaHorse class</span>
+
+<span class="kd">class</span> <span class="nc">SeaHorse</span> <span class="kd">extends</span> <span class="n">Drop</span><span class="o">{</span>
+        <span class="n">PShape</span> <span class="n">s</span><span class="o">;</span>
+
+        <span class="n">SeaHorse</span><span class="o">(){</span>
+                <span class="kd">super</span><span class="o">();</span>
+                <span class="n">s</span><span class="o">=</span><span class="n">loadShape</span><span class="o">(</span><span class="s">&quot;seahorse.svg&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+<span class="n">display</span><span class="o">(){</span>
+                <span class="c1">//code in here to display the .svg file</span>
+                <span class="n">println</span><span class="o">(</span><span class="s">&quot;seaHorse method&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+<span class="o">}</span> <span class="c1">//end of SeaHorse class</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="method-over-ride">
+<h2>13.2. Method Over-ride<a class="headerlink" href="#method-over-ride" title="Permalink to this headline">¶</a></h2>
+<p>So, both the Drop class and the SeaHorse class have code that implements the display() method.
+So, the compiler must determine which display() method to use if a SeaHorse object calls the
+display() method.  The compiler first checks the child, SeaHorse class, if it has code implemented for
+a method, when a method has been called by a child object, then the child method code is implemented.
+Let&#8217;s clarify this concept of method over-ride. In the main program tab, we&#8217;ll have a SeaHorse object, and
+then it will call the display() method.  We&#8217;ll expect that it&#8217;ll print the text &#8220;seaHorse method&#8221;
+to the console since that&#8217;s the code we&#8217;ve written above in the Seahorse display() method.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the main program tab</span>
+
+<span class="n">Drop</span> <span class="n">shorse</span><span class="o">=</span><span class="k">new</span> <span class="n">Seahorse</span><span class="o">();</span>
+
+<span class="n">draw</span><span class="o">(){</span>
+        <span class="n">shorse</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="arrays-of-multiple-types-of-objects">
+<h2>13.3. Arrays of Multiple Types of Objects<a class="headerlink" href="#arrays-of-multiple-types-of-objects" title="Permalink to this headline">¶</a></h2>
+<p>An array must be declared to contain a specific type of element.  Above we&#8217;ve looked at an
+array that&#8217;s been declared to hold Drop elements: <code class="docutils literal"><span class="pre">Drop[]</span> <span class="pre">drops</span></code>.  However using the Object
+concept of Inheritance will allow us to use this <code class="docutils literal"><span class="pre">drops</span></code> array to hold several different
+types of Drop objects, as long as these other objects are from a class that is a child class
+of the Drop class.  We</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">13. Inheritance</a><ul>
+<li><a class="reference internal" href="#polymorphism">13.1. Polymorphism</a></li>
+<li><a class="reference internal" href="#method-over-ride">13.2. Method Over-ride</a></li>
+<li><a class="reference internal" href="#arrays-of-multiple-types-of-objects">13.3. Arrays of Multiple Types of Objects</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="paddle.html"
+                        title="previous chapter">12. Paddle Object</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="arrayObjects.html"
+                        title="next chapter">14. Arrays of Objects</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="arrayObjects.html" title="14. Arrays of Objects"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="paddle.html" title="12. Paddle Object"
+             >previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Karen Doore.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

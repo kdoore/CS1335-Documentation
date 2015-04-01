@@ -9,7 +9,7 @@ Glossary
 Abstract Class
 --------------------
 
-An abstract class is a class 
+An abstract class is a class that 
 
 
 .. _Function Overloading:
@@ -54,7 +54,13 @@ Inheritance is an important feature in most Object-Oriented languages.  Inherita
 the idea that the concepts that we're trying to represent in our code often have natural hierarchical relationships, 
 where objects can be categorized as belonging to a broader type of object.  These object hierarchies can be useful for
 organizing our program code and is one of the main benefits of Object-Oriented languages.  We easily understand that 
-`animal` is a broad category of creatures, where there are many different types of 
+`animal` is a broad category of creatures, where there are many different types of animals such as dogs and cats.  We
+are comfortable with the concept of Animals being a broader category things than the categories of dogs or cats.  If we
+were to create a program about an animal shelter, it would be nice for us to be able to make use of these relationships
+between these types of objects in our program.  We can do this by using the specific syntax keyword ``extends`` when
+we define the Dog and Cat classes, where we would need to first define the Animal class.  The benefit of using inheritance
+in our programs is that we can eliminate duplicate code, and we can also use polymorphism as defined below to allow the 
+use of the base class as a way to reference sub-class objects.
 
 
 
