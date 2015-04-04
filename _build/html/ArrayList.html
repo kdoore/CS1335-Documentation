@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>15. ArrayList &mdash; CS1335 Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="16. PShape Objects" href="pshapeObjects.html" />
+    <link rel="prev" title="14. Arrays of Objects" href="arrayObjects.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pshapeObjects.html" title="16. PShape Objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="arrayObjects.html" title="14. Arrays of Objects"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="arraylist">
+<span id="id1"></span><h1>15. ArrayList<a class="headerlink" href="#arraylist" title="Permalink to this headline">¶</a></h1>
+<p>An ArrayList is a <cite>data structure</cite> that allows us to store objects in our programs, and is
+similar to Arrays in many ways.  An ArrayList can be considered a resizable array, we can
+add and remove elements to an ArrayList using ArrayList methods.</p>
+<div class="section" id="declaration">
+<h2>15.1. Declaration<a class="headerlink" href="#declaration" title="Permalink to this headline">¶</a></h2>
+<p>Here is how we can declare an ArrayList, we need to use a special <cite>type</cite> syntax to specify
+what <cite>type</cite> of objects we&#8217;ll use the ArrayList for. This syntax is a <cite>type parameter</cite>.</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">ArrayList&lt;Drop&gt;</span> <span class="pre">dropList</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">ArrayList&lt;Drop&gt;();</span></code></div></blockquote>
+<p>For an Array, we would have specified this way:</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">Drop[]</span> <span class="pre">dropArray</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">Drop[</span> <span class="pre">50</span> <span class="pre">];</span></code></div></blockquote>
+<p>Notice that we use the angle brackets to specify the type of object <code class="docutils literal"><span class="pre">&lt;Drop&gt;</span></code></p>
+</div>
+<div class="section" id="initialize-an-element">
+<h2>15.2. Initialize an Element<a class="headerlink" href="#initialize-an-element" title="Permalink to this headline">¶</a></h2>
+<p>With an array, we use the array name and bracket with index value to initialize an element</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">dropArray[1]=</span> <span class="pre">new</span> <span class="pre">Drop();</span></code></div></blockquote>
+<p>For an ArrayList we use the <code class="docutils literal"><span class="pre">add()</span></code> method of the ArrayList object</p>
+<blockquote>
+<div><a href="#id2"><span class="problematic" id="id3">``</span></a>dropList.add(new Drop());</div></blockquote>
+</div>
+<div class="section" id="access-elements">
+<h2>15.3. Access Elements<a class="headerlink" href="#access-elements" title="Permalink to this headline">¶</a></h2>
+<p>ArrayList give us the ability to access items by their reference name:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">Drop</span> <span class="n">drop1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Drop</span><span class="o">();</span>
+
+<span class="n">DropList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">drop1</span><span class="o">);</span>
+
+<span class="kt">int</span> <span class="n">theSize</span><span class="o">=</span><span class="n">dropList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">15. ArrayList</a><ul>
+<li><a class="reference internal" href="#declaration">15.1. Declaration</a></li>
+<li><a class="reference internal" href="#initialize-an-element">15.2. Initialize an Element</a></li>
+<li><a class="reference internal" href="#access-elements">15.3. Access Elements</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="arrayObjects.html"
+                        title="previous chapter">14. Arrays of Objects</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pshapeObjects.html"
+                        title="next chapter">16. PShape Objects</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pshapeObjects.html" title="16. PShape Objects"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="arrayObjects.html" title="14. Arrays of Objects"
+             >previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Karen Doore.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

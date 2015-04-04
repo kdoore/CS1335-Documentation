@@ -27,6 +27,7 @@ Contents:
 	paddle
 	inheritance
 	arrayObjects
+	arrayList
 	pshapeObjects
 	game-design
 	resources

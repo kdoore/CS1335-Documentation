@@ -54,7 +54,7 @@
 <span id="paddledropgame"></span><h1>11. Paddle Drop Game<a class="headerlink" href="#paddle-drop-game" title="Permalink to this headline">¶</a></h1>
 <p>Based on <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDropGame, and on the program code for Learning Processing: <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4">exercise 10.4</a>,
 we want to build a slightly more complicated game based on this program.  Our game will use a paddle
-object to try and catch the falling drops.  We&#8217;ll also use <a class="reference internal" href="rainGame.html#object-inheritance"><em>Object Inheritance</em></a> to have several different
+object to try and catch the falling drops.  We&#8217;ll also use <a class="reference internal" href="glossary.html#object-inheritance"><em>Object Inheritance</em></a> to have several different
 objects that fall during our game, and we&#8217;ll use the PShape object to allow the use of .svg images for
 interesting drop objects.  Also, we&#8217;ll use a Game class for methods and variables related to the game state,
 this will include Button class to start the game and to allow the game to be reset.  A more advanced
@@ -202,15 +202,17 @@ back to false. See the code below:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="inheritance">
+<h2>11.6. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="child-classes-of-the-drop-class">
-<h2>11.6. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h2>
+<h3>11.6.1. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h3>
 <p>The next modification for our game is that we&#8217;re going to use several different drop types.
 So, we&#8217;ll have 2 different classes that inherit from the Drop class.  Let&#8217;s say we&#8217;ll have SeaHorses
 and Stars.  Since the behavior of these objects will be almost identical to <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> Drop class,
 it makes sense for us to use object inheritance when defining these objects.</p>
 </div>
 <div class="section" id="method-override">
-<h2>11.7. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h2>
+<h3>11.6.2. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s obvious that these objects will have unique display() methods which display their unique
 shapes.  Other methods like move() might be identical to the Drop method: move( ).</p>
 <p>When one class inherits from another class, any method that is not specified in the child
@@ -245,6 +247,114 @@ code class code below:</p>
 <span class="o">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="making-drops">
+<h3>11.6.3. Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
+<p>In Shiffman&#8217;s game, there are several important distinctions we need to think about, which control
+the structure and behavior of our game, in Shiffman&#8217;s game, this structure is created in the main
+program tab.  The general idea is that he has an array:  drops[] that stores the Drop objects,
+we&#8217;ll modify this so that it can also contain Drop sub-class objects like Stars or Seahorses.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first"><code class="docutils literal"><span class="pre">Drop[]</span> <span class="pre">drops;</span></code>    //declares an array of Drop objects</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">drops</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">Drop[50];</span></code>  //initializes the array to a size of 50 elements</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">if(timer.isFinished()){</span>&nbsp;&nbsp;&nbsp; <span class="pre">....</span>&nbsp;&nbsp;&nbsp; <span class="pre">}</span></code>   //inside this block of code is where new drops are</dt>
+<dd><p class="first last">actually created each time the timer goes off.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>inside the block:  <code class="docutils literal"><span class="pre">if(timer.isFinished()){</span> <span class="pre">...</span> <span class="pre">}</span></code>  is where we need to figure out how</dt>
+<dd><p class="first last">to create different types of drops</p>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<p>So, Let&#8217;s start by focusing inside the block of code where the <code class="docutils literal"><span class="pre">timer.isFinished()</span></code> has evaluated to true:</p>
+<div class="highlight-Java"><div class="highlight"><pre>        <span class="k">if</span> <span class="o">(</span><span class="n">timer</span><span class="o">.</span><span class="na">isFinished</span><span class="o">())</span> <span class="o">{</span>
+  <span class="c1">// Deal with raindrops</span>
+  <span class="c1">// Initialize one drop</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">totalDrops</span> <span class="o">&lt;</span> <span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Drop</span><span class="o">();</span><span class="c1">//(game.levels[game.currentLevel].dropSpeed);</span>
+                <span class="c1">// Increment totalDrops</span>
+                <span class="n">totalDrops</span><span class="o">++;</span>
+  <span class="o">}</span>
+  <span class="n">timer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In the above code, only 1 drop is created each time the timer goes off.  This drop is created in the
+array location:  drops[totalDrops].  The first time a drop is created, it&#8217;s in the first array positon:  drops[0].
+After the drop is created, totalDrops is incremented:  totalDrops++.  So, the next time the timer.isFinished() is true,
+then the next drop will be created.   For our game, we want to create different types of drops so we&#8217;ll use :ref:_Polymorphism.</p>
+</div>
+</div>
+<div class="section" id="polymorphism">
+<h2>11.7. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<p>As discussed above, we used inheritance to extend the Drop class, we created a child class: Seahorse.
+So, the beauty of this is that we can now put Seahorse objects in an array of that has been declared to contain Drop objects.
+This is polymorphism, it means that a parent class &#8216;reference&#8217; can be used to refer to a sub-class object.  So, we can do the
+following:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">Drop</span> <span class="n">someDrop</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Seahorse</span><span class="o">();</span>    <span class="c1">//someDrop is a Drop reference, it points to a Seahorse object.</span>
+</pre></div>
+</div>
+<p>This might not seem like a very important feature on initial inspection, however, it is one of the powerful
+features that result from the Object-Oriented concept of Class Inheritance.  So, now we can change the
+game code so that when the timer goes off, we can create Seahorse objects instead of Drop objects:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Seahorse</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>This is a start, but in addition, to make our game interesting, we want to have a variety of drop type objects
+falling in the game, yet we only want to create 1 drop each time the timer goes off.  So we need some way
+to control this.   We&#8217;re looking for random behavior, like flipping a coin.  Also, using a switch statement will
+allow us to easily add more types of dropping objects without making big changes to the code.  The switch statement
+can&#8217;t use a randomly generated float value, it needs an integer. So, first thing we need to generate a random integer
+and we can do this by type casting the random number to an integer.  This will result in truncation of the integer value, so
+if we used Random(0,1), we&#8217;d only ever get the integer <code class="docutils literal"><span class="pre">0</span></code> as a generated value.  So, the code below generates 2 different
+values, 0 and 1, then we can use that to randomly generate different types of drops.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">choice</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">random</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>  <span class="c1">//  gives 0,1 vaules</span>
+
+<span class="k">switch</span><span class="o">(</span><span class="n">choice</span><span class="o">){</span>
+
+<span class="k">case</span> <span class="mi">0</span><span class="o">:</span>  <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]=</span> <span class="k">new</span> <span class="n">Seahorse</span><span class="o">();</span>
+                <span class="k">break</span><span class="o">;</span>
+
+<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>  <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Star</span><span class="o">();</span>
+                <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>The code as Shiffman has written it, means that there will never be more than 50 drops created, in other words,
+once totalDrops&gt;=50, no new drops will be created.  It would not be much more difficult to have additional logic
+to have an else{ } block where, once we know the entire array has been filled with drops, to continue the game,
+we could just loop through the array and find inActive drops and then create new drops in those spots.  Below I have
+just pasted in the duplicated code from above, this would not be the most elegant or efficient way to do this but it
+should at least convey the idea of how this might be implemented:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="k">if</span><span class="o">(</span><span class="n">totalDrops</span><span class="o">&lt;=</span><span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">){</span>
+     <span class="c1">//code from above to make a single drop at array positon: drops[totalDrops];</span>
+
+<span class="o">}</span>
+<span class="k">else</span><span class="o">{</span>  <span class="c1">//the array is already full of drops, some are not active, find one isFinished and create a new drop.</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">i</span><span class="o">++){</span>
+               <span class="k">if</span><span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">isFinished</span><span class="o">){</span>   <span class="c1">//or !drops[i].isActive</span>
+                              <span class="kt">int</span> <span class="n">choice</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">random</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>  <span class="c1">//  gives 0,1 vaules</span>
+                              <span class="k">switch</span><span class="o">(</span><span class="n">choice</span><span class="o">){</span>
+                              <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+                                              <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]=</span> <span class="k">new</span> <span class="n">Seahorse</span><span class="o">();</span>
+                                              <span class="k">break</span><span class="o">;</span>
+                              <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+                                              <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Star</span><span class="o">();</span>
+                                              <span class="k">break</span><span class="o">;</span>
+                                              <span class="o">}</span>   <span class="c1">//end switch</span>
+               <span class="o">}</span>  <span class="c1">//end if</span>
+      <span class="o">}</span>  <span class="c1">//end for</span>
+<span class="o">}</span>  <span class="c1">//end else</span>
+</pre></div>
+</div>
 <p>Questions:</p>
 </div>
 </div>
@@ -267,8 +377,13 @@ code class code below:</p>
 <li><a class="reference internal" href="#game-display-buttons">11.3. Game Display - Buttons</a></li>
 <li><a class="reference internal" href="#button-state">11.4. Button State</a></li>
 <li><a class="reference internal" href="#game-button-integration">11.5. Game Button Integration</a></li>
-<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.6. Child classes of the Drop Class</a></li>
-<li><a class="reference internal" href="#method-override">11.7. Method Override</a></li>
+<li><a class="reference internal" href="#inheritance">11.6. Inheritance</a><ul>
+<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.6.1. Child classes of the Drop Class</a></li>
+<li><a class="reference internal" href="#method-override">11.6.2. Method Override</a></li>
+<li><a class="reference internal" href="#making-drops">11.6.3. Making Drops</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polymorphism">11.7. Polymorphism</a></li>
 </ul>
 </li>
 </ul>

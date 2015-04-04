@@ -149,9 +149,11 @@ back to false. See the code below::
 		}
   }
 
+Inheritance
+============
 
 Child classes of the Drop Class
-================================
+--------------------------------
 
 The next modification for our game is that we're going to use several different drop types.  
 So, we'll have 2 different classes that inherit from the Drop class.  Let's say we'll have SeaHorses
@@ -159,7 +161,7 @@ and Stars.  Since the behavior of these objects will be almost identical to `Shi
 it makes sense for us to use object inheritance when defining these objects.  
 
 Method Override
-===================
+-----------------
 It's obvious that these objects will have unique display() methods which display their unique 
 shapes.  Other methods like move() might be identical to the Drop method: move( ).
 
@@ -195,7 +197,103 @@ code class code below::
 			    //some code to display the seahorse which is different than a drop
 			}
 	}
+	
+Making Drops
+-------------
 
+In Shiffman's game, there are several important distinctions we need to think about, which control
+the structure and behavior of our game, in Shiffman's game, this structure is created in the main 
+program tab.  The general idea is that he has an array:  drops[] that stores the Drop objects,
+we'll modify this so that it can also contain Drop sub-class objects like Stars or Seahorses.
+
+
+	1.  ``Drop[] drops;``    //declares an array of Drop objects
+	2.  ``drops = new Drop[50];``  //initializes the array to a size of 50 elements
+	3.  ``if(timer.isFinished()){    ....    }``   //inside this block of code is where new drops are
+		actually created each time the timer goes off.
+	4.  inside the block:  ``if(timer.isFinished()){ ... }``  is where we need to figure out how
+		to create different types of drops
+		
+So, Let's start by focusing inside the block of code where the ``timer.isFinished()`` has evaluated to true::
+
+		if (timer.isFinished()) {
+	  // Deal with raindrops
+	  // Initialize one drop
+	  if (totalDrops < drops.length) {
+			drops[totalDrops] = new Drop();//(game.levels[game.currentLevel].dropSpeed);
+			// Increment totalDrops
+			totalDrops++;
+	  }
+	  timer.start();
+	}
+	
+In the above code, only 1 drop is created each time the timer goes off.  This drop is created in the
+array location:  drops[totalDrops].  The first time a drop is created, it's in the first array positon:  drops[0].
+After the drop is created, totalDrops is incremented:  totalDrops++.  So, the next time the timer.isFinished() is true,
+then the next drop will be created.   For our game, we want to create different types of drops so we'll use :ref:_Polymorphism.
+	
+Polymorphism
+=============
+
+As discussed above, we used inheritance to extend the Drop class, we created a child class: Seahorse.
+So, the beauty of this is that we can now put Seahorse objects in an array of that has been declared to contain Drop objects.
+This is polymorphism, it means that a parent class 'reference' can be used to refer to a sub-class object.  So, we can do the 
+following::
+	
+	Drop someDrop = new Seahorse();    //someDrop is a Drop reference, it points to a Seahorse object.
+	
+This might not seem like a very important feature on initial inspection, however, it is one of the powerful
+features that result from the Object-Oriented concept of Class Inheritance.  So, now we can change the
+game code so that when the timer goes off, we can create Seahorse objects instead of Drop objects::
+
+			drops[totalDrops] = new Seahorse();
+			
+This is a start, but in addition, to make our game interesting, we want to have a variety of drop type objects
+falling in the game, yet we only want to create 1 drop each time the timer goes off.  So we need some way
+to control this.   We're looking for random behavior, like flipping a coin.  Also, using a switch statement will 
+allow us to easily add more types of dropping objects without making big changes to the code.  The switch statement
+can't use a randomly generated float value, it needs an integer. So, first thing we need to generate a random integer 
+and we can do this by type casting the random number to an integer.  This will result in truncation of the integer value, so
+if we used Random(0,1), we'd only ever get the integer ``0`` as a generated value.  So, the code below generates 2 different
+values, 0 and 1, then we can use that to randomly generate different types of drops.::
+
+		int choice = (int) random(0,2);  //  gives 0,1 vaules
+		
+		switch(choice){
+		
+		case 0:  drops[totalDrops]= new Seahorse();
+				break;
+		
+		case 1:  drops[totalDrops] = new Star();
+				break;
+		}
+		
+The code as Shiffman has written it, means that there will never be more than 50 drops created, in other words,
+once totalDrops>=50, no new drops will be created.  It would not be much more difficult to have additional logic
+to have an else{ } block where, once we know the entire array has been filled with drops, to continue the game, 
+we could just loop through the array and find inActive drops and then create new drops in those spots.  Below I have
+just pasted in the duplicated code from above, this would not be the most elegant or efficient way to do this but it
+should at least convey the idea of how this might be implemented::
+
+	  if(totalDrops<=drops.length){   
+	       //code from above to make a single drop at array positon: drops[totalDrops];
+	  
+	  }
+	  else{  //the array is already full of drops, some are not active, find one isFinished and create a new drop.
+	  	for(int i=0; i< drops.length, i++){
+	  		 if(drops[i].isFinished){   //or !drops[i].isActive
+	  		 		int choice = (int) random(0,2);  //  gives 0,1 vaules
+					switch(choice){
+					case 0:  
+							drops[totalDrops]= new Seahorse();
+							break;
+					case 1:  
+							drops[totalDrops] = new Star();
+							break;
+							}   //end switch
+	  		 }  //end if
+	  	}  //end for
+	  }  //end else
 
 
 Questions: 
