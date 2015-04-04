@@ -166,7 +166,7 @@ It's obvious that these objects will have unique display() methods which display
 shapes.  Other methods like move() might be identical to the Drop method: move( ).
 
 When one class inherits from another class, any method that is not specified in the child 
-class, will be implemented using the method in the parent class.  This is called Method Override, 
+class, will be implemented using the method in the parent class.  This is called :ref: `Method Override`, 
 and it means that when a child class has code that implements the same method that's also in
 parent class, then it is the child method code which is executed, if a child object calls that method.  
 In essence, we end up with 2 different versions of one method, each with the same function signature, 
@@ -201,8 +201,8 @@ code class code below::
 Making Drops
 -------------
 
-In Shiffman's game, there are several important distinctions we need to think about, which control
-the structure and behavior of our game, in Shiffman's game, this structure is created in the main 
+In `Shiffman's`_ game, there are several important distinctions we need to think about, which control
+the structure and behavior of our game, in `Shiffman's`_ game, this structure is created in the main 
 program tab.  The general idea is that he has an array:  drops[] that stores the Drop objects,
 we'll modify this so that it can also contain Drop sub-class objects like Stars or Seahorses.
 
@@ -227,10 +227,11 @@ So, Let's start by focusing inside the block of code where the ``timer.isFinishe
 	  timer.start();
 	}
 	
-In the above code, only 1 drop is created each time the timer goes off.  This drop is created in the
-array location:  drops[totalDrops].  The first time a drop is created, it's in the first array positon:  drops[0].
-After the drop is created, totalDrops is incremented:  totalDrops++.  So, the next time the timer.isFinished() is true,
-then the next drop will be created.   For our game, we want to create different types of drops so we'll use :ref:_Polymorphism.
+In the above code, only 1 drop is created each time the timer goes off!  This drop is created in the
+array location:  ``drops[totalDrops]``  The first time a drop is created, it's in the first array positon:  ``drops[0]``
+After the drop is created, totalDrops is incremented to ``1``:  ``totalDrops++``  So, the next time the ``timer.isFinished()`` is true,
+then the next drop will be created in the array location: drops[1].   For our game, we want to create different 
+types of drops so we'll take advantage of the idea that inheritance allows us to use :ref:`Polymorphism`
 	
 Polymorphism
 =============

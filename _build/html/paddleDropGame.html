@@ -216,7 +216,7 @@ it makes sense for us to use object inheritance when defining these objects.</p>
 <p>It&#8217;s obvious that these objects will have unique display() methods which display their unique
 shapes.  Other methods like move() might be identical to the Drop method: move( ).</p>
 <p>When one class inherits from another class, any method that is not specified in the child
-class, will be implemented using the method in the parent class.  This is called Method Override,
+class, will be implemented using the method in the parent class.  This is called :ref: <cite>Method Override</cite>,
 and it means that when a child class has code that implements the same method that&#8217;s also in
 parent class, then it is the child method code which is executed, if a child object calls that method.
 In essence, we end up with 2 different versions of one method, each with the same function signature,
@@ -250,8 +250,8 @@ code class code below:</p>
 </div>
 <div class="section" id="making-drops">
 <h3>11.6.3. Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
-<p>In Shiffman&#8217;s game, there are several important distinctions we need to think about, which control
-the structure and behavior of our game, in Shiffman&#8217;s game, this structure is created in the main
+<p>In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, there are several important distinctions we need to think about, which control
+the structure and behavior of our game, in <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, this structure is created in the main
 program tab.  The general idea is that he has an array:  drops[] that stores the Drop objects,
 we&#8217;ll modify this so that it can also contain Drop sub-class objects like Stars or Seahorses.</p>
 <blockquote>
@@ -287,10 +287,11 @@ we&#8217;ll modify this so that it can also contain Drop sub-class objects like 
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>In the above code, only 1 drop is created each time the timer goes off.  This drop is created in the
-array location:  drops[totalDrops].  The first time a drop is created, it&#8217;s in the first array positon:  drops[0].
-After the drop is created, totalDrops is incremented:  totalDrops++.  So, the next time the timer.isFinished() is true,
-then the next drop will be created.   For our game, we want to create different types of drops so we&#8217;ll use :ref:_Polymorphism.</p>
+<p>In the above code, only 1 drop is created each time the timer goes off!  This drop is created in the
+array location:  <code class="docutils literal"><span class="pre">drops[totalDrops]</span></code>  The first time a drop is created, it&#8217;s in the first array positon:  <code class="docutils literal"><span class="pre">drops[0]</span></code>
+After the drop is created, totalDrops is incremented to <code class="docutils literal"><span class="pre">1</span></code>:  <code class="docutils literal"><span class="pre">totalDrops++</span></code>  So, the next time the <code class="docutils literal"><span class="pre">timer.isFinished()</span></code> is true,
+then the next drop will be created in the array location: drops[1].   For our game, we want to create different
+types of drops so we&#8217;ll take advantage of the idea that inheritance allows us to use <a class="reference internal" href="glossary.html#polymorphism"><em>Polymorphism</em></a></p>
 </div>
 </div>
 <div class="section" id="polymorphism">
