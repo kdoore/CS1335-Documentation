@@ -182,10 +182,12 @@ In `Shiffman's`_ game, both of his objects are circular so that has made testing
 much easier.  In our game, we're going to use a rectangular paddle and .svg PShape objects.  Both 
 of these elements have their x,y locations at the upper left corner of the object, whereas circles
 have x,y defined at the center.  However, our paddle can't move in the y direction, so that makes
-it a little easier to check for intersection.  In addition, we are also free to define the intersection
-method in either our Paddle class, our Drop class, or even our Game class.  To keep things similar
-to `Shiffman's`_ game, we'll keep the intersection method inside our Paddle class, and we'll use
-a Drop object as an input parameter for the method.::
+it a little easier to check for intersection.  
+
+After noticing some weird behavior when implementing the isIntersecting within the Paddle class, I 
+have decided to move the code to the Drop classes.  So, we'll pass in a Paddle object, and call the
+method using the drop[i] object instance 
+::
 
  	// assume that in the Drop class we have an instance variable sWidth, sHeight that define 
  	// the bounding box for our drop's shape
@@ -193,17 +195,17 @@ a Drop object as an input parameter for the method.::
    
    //this code is in the Paddle Class definition
  	
- 	boolean isIntersecting( Drop d){ 
- 	    if(d.y + d.sHeight >= y){     //check the bottom point of our drop shape to see if it's hitting the top of the paddle
- 	    	if((d.x + d.sWidth) >= x){   //compare the right edge of our shape with the left edge of the paddle
- 	    		return true;
- 	    	}   //end if
- 	    	if(d.x  <=  ( x + pWidth)){  //compare the left edge of the drop with the right edge of the paddle
- 	    		return true;    
- 	    	}  //end if
- 		}   //end if
- 	return false;        //there is no intersection
- 	}  //end of method
+ 	boolean isIntersecting(Paddle p){
+     if(this.y + this.sHeight >= p.y){     //check the bottom point of our drop shape to see if it's hitting the top of the paddle
+             println("y > pY");
+             if(((this.x + this.sWidth) >= p.x) && (this.x  <=  ( p.x + p.pWidth))) {   
+                     println("hit ");
+                     this.isActive=false;
+                     return true;
+             }   //end if
+        }   //end if
+    return false;
+  }  //end method
  
  
 When we use this intersection method, we'll use it in the main tab, and if the method returns `true`,

@@ -4,13 +4,17 @@
  Variables
 ============
 
-Variables can be considered as named containers to hold values that can be modified.  Since `Processing`_ is based on the Java language, it uses :ref:`Typed-Variables`. Variables can hold *primitive* values which involve a single piece of information like integers: :code:`int`, decimal numbers: :code:`float`, booleans: :code:`boolean`, and characters: :code:`char`.  
+Variables can be considered as named containers to hold values that can be modified.  
+Since `Processing`_ is based on the Java language, it uses :ref:`Typed-Variables`. 
+Variables can hold *primitive* values which involve a single piece of information like 
+integers: :code:`int`, decimal numbers: :code:`float`, booleans: :code:`boolean`, and characters: :code:`char`.  
 
 
 Declaration and Initialization
 ===============================
 
-In the example code below, the first line of code prints the sum of 2 integer literal values.  In the code that follows, :code:`int` and :code:`float` variables are declared and assigned values.   ::
+In the example code below, the first line of code prints the sum of 2 integer literal values.  
+In the code that follows, :code:`int` and :code:`float` variables are declared and assigned values.   ::
 
 	println( 5 + 7 );  //two integer literal values are added together
 	
@@ -26,7 +30,10 @@ In the example code below, the first line of code prints the sum of 2 integer li
 Typed Variables
 ================
 
-When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type :code:`var`.  There was no distinction between different types of variables. However, with Processing, all variables must be declared as a specific data-type such as :code:`int`, :code:`float`, :code:`boolean`, :code:`char`, etc. Typed variables allows the computer to allocate enough memory to hold the value.  
+When using P5js and the Khan-Academy Javascript Tutorials, variables were all of the type :code:`var`.  
+There was no distinction between different types of variables. However, with Processing, all 
+variables must be declared as a specific data-type such as :code:`int`, :code:`float`, 
+:code:`boolean`, :code:`char`, etc. Typed variables allows the computer to allocate enough memory to hold the value.  
 
 Integers
 =========
@@ -36,7 +43,8 @@ Whole numbers like -1, 0, 1, 2.
 Integer Division
 -----------------
 
-When using the math division operator with integers, the resulting value is also an integer, so any fractional division remainder is truncated::
+When using the math division operator with integers, the resulting value is also an integer, 
+so any fractional division remainder is truncated::
 
  	println( 5 / 3 );     // 1 
 	
@@ -49,9 +57,13 @@ Floats
 
 Decimal numbers like 1.0, 5.5, -1.0.  Also, whole numbers like 1, 0, 1 can be stored as floating point numbers.
 
-When initializing floating point numbers which are created using math operators, it's important to realize that integer division can cause unexpected results.  Multiplying each division expression by the :code:`float` value *1.0* can help insure no truncation occurs.
+When initializing floating point numbers which are created using math operators, it's important 
+to realize that integer division can cause unexpected results.  Multiplying each division expression by 
+the :code:`float` value *1.0* can help insure no truncation occurs.
 
-In the code below, since both 2 and 5 are written as integer literals, then expression 5/2 is evaluated using integer division. Make sure that at least 1 value is a decimal value to insure correct division of numbers assigned to :code:`float` variables::
+In the code below, since both 2 and 5 are written as integer literals, then expression 5/2 
+is evaluated using integer division. Make sure that at least 1 value is a decimal value to 
+insure correct division of numbers assigned to :code:`float` variables::
 
 	float someFraction = 5 / 2;   // 2.0   integer division of 5/2 is truncated so the result is 2.0
 		
@@ -62,7 +74,11 @@ In the code below, since both 2 and 5 are written as integer literals, then expr
 Integer and Float Type-Conversion
 ==================================
 
-Care must be taken when using :code:`float` and :code:`int` variables in expressions or mathematical operations together, particularly when doing division.  In general, an error will be generated if an operation will result in truncation. Processing can automatically convert an :code:`int` to a :code:`float` value, however an error will occur when trying to convert a :code:`float` value to an :code:`int` value. ::
+Care must be taken when using :code:`float` and :code:`int` variables in expressions or 
+mathematical operations together, particularly when doing division.  In general, an error 
+will be generated if an operation will result in truncation. Processing can automatically 
+convert an :code:`int` to a :code:`float` value, however an error will occur when trying to 
+convert a :code:`float` value to an :code:`int` value. ::
 
 	int num1 = 5; 
 	int num2 = 2;
