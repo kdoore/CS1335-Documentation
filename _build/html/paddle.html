@@ -201,50 +201,51 @@ So, it makes sense that we would want to change the direction state variable whe
 do that within the Paddle class itself, because a paddle object should be responsible for knowing what
 behaviors need to occur when the Paddle method: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> event handler is executed.
 Below is the new code:</p>
-<div class="highlight-Java"><div class="highlight"><pre>        // this code is in the Paddle class: pressedLeft() method
+<div class="highlight-Java"><div class="highlight"><pre>     <span class="c1">// this code is in the Paddle class: pressedLeft() method</span>
 
-        void pressedLeft(){
-               if(x&gt;0){
-                       x=x-speed;
-               direction=pLEFT;  //here we set the direction state value to pLEFT
-         }
-   }
-
-Intersection
-=============
-
-In `Shiffman&#39;s`_ game, both of his objects are circular so that has made testing for intersection
-much easier.  In our game, we&#39;re going to use a rectangular paddle and .svg PShape objects.  Both
+     <span class="kt">void</span> <span class="nf">pressedLeft</span><span class="o">(){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">){</span>
+                    <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">speed</span><span class="o">;</span>
+            <span class="n">direction</span><span class="o">=</span><span class="n">pLEFT</span><span class="o">;</span>  <span class="c1">//here we set the direction state value to pLEFT</span>
+      <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="intersection">
+<h2>12.8. Intersection<a class="headerlink" href="#intersection" title="Permalink to this headline">¶</a></h2>
+<p>In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, both of his objects are circular so that has made testing for intersection
+much easier.  In our game, we&#8217;re going to use a rectangular paddle and .svg PShape objects.  Both
 of these elements have their x,y locations at the upper left corner of the object, whereas circles
-have x,y defined at the center.  However, our paddle can&#39;t move in the y direction, so that makes
+have x,y defined at the center.  However, our paddle can&#8217;t move in the y direction, so that makes
 it a little easier to check for intersection.  In addition, we are also free to define the intersection
 method in either our Paddle class, our Drop class, or even our Game class.  To keep things similar
-to `Shiffman&#39;s`_ game, we&#39;ll keep the intersection method inside our Paddle class, and we&#39;ll use
-a Drop object as an input parameter for the method.::
-       // assume that in the Drop class we have an instance variable sWidth, sHeight that define
-       // the bounding box for our drop&#39;s shape
-  //assuming the Paddle has x,y,pWidth, pHeight
+to <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, we&#8217;ll keep the intersection method inside our Paddle class, and we&#8217;ll use
+a Drop object as an input parameter for the method.:</p>
+<div class="highlight-Java"><div class="highlight"><pre>     <span class="c1">// assume that in the Drop class we have an instance variable sWidth, sHeight that define</span>
+     <span class="c1">// the bounding box for our drop&#39;s shape</span>
+<span class="c1">//assuming the Paddle has x,y,pWidth, pHeight</span>
 
-  //this code is in the Paddle Class definition
+<span class="c1">//this code is in the Paddle Class definition</span>
 
-       boolean isIntersecting( Drop d){
-           if(d.y + d.sHeight&gt;= y){     //check the bottom point of our drop shape to see if it&#39;s hitting the top of the paddle
-               if((d.x + d.sWidth) &lt;= x){   //compare the right edge of our shape with the left edge of the paddle
-                       return true;
-               }   //end if
-               if(d.x  &lt;=  ( x + pWidth)){  //compare the left edge of the drop with the right edge of the paddle
-                       return true;
-               }  //end if
-               }   //end if
-       return false;        //there is no intersection
-       }  //end of method
+     <span class="kt">boolean</span> <span class="nf">isIntersecting</span><span class="o">(</span> <span class="n">Drop</span> <span class="n">d</span><span class="o">){</span>
+         <span class="k">if</span><span class="o">(</span><span class="n">d</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="na">sHeight</span><span class="o">&gt;=</span> <span class="n">y</span><span class="o">){</span>     <span class="c1">//check the bottom point of our drop shape to see if it&#39;s hitting the top of the paddle</span>
+             <span class="k">if</span><span class="o">((</span><span class="n">d</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="na">sWidth</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">){</span>   <span class="c1">//compare the right edge of our shape with the left edge of the paddle</span>
+                     <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+             <span class="o">}</span>   <span class="c1">//end if</span>
+             <span class="k">if</span><span class="o">(</span><span class="n">d</span><span class="o">.</span><span class="na">x</span>  <span class="o">&lt;=</span>  <span class="o">(</span> <span class="n">x</span> <span class="o">+</span> <span class="n">pWidth</span><span class="o">)){</span>  <span class="c1">//compare the left edge of the drop with the right edge of the paddle</span>
+                     <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+             <span class="o">}</span>  <span class="c1">//end if</span>
+             <span class="o">}</span>   <span class="c1">//end if</span>
+     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>        <span class="c1">//there is no intersection</span>
+     <span class="o">}</span>  <span class="c1">//end of method</span>
 </pre></div>
 </div>
 <p>When we use this intersection method, we&#8217;ll use it in the main tab, and if the method returns <cite>true</cite>,
 then we&#8217;ll want to increment the game score, and set the drop to be inactive.</p>
 </div>
 <div class="section" id="summary">
-<h2>12.8. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2>12.9. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>So, in the Paddle class, we have created event handler methods: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> and <code class="docutils literal"><span class="pre">pressedRight()</span></code>
 When we create a Paddle object, paddle1, then we&#8217;ll have that object call these event handler methods
 within the global <code class="docutils literal"><span class="pre">keyPressed(</span> <span class="pre">)</span></code> event.  The event handler methods are used to trigger object behavior
@@ -259,7 +260,7 @@ itself be responsible for knowing how to implement it&#8217;s own behavior, so t
 Class definition.</p>
 </div>
 <div class="section" id="questions">
-<h2>12.9. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<h2>12.10. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Why have we decided to use <code class="docutils literal"><span class="pre">int</span></code> as the type for the state variable <code class="docutils literal"><span class="pre">direction</span></code>?</p>
 </li>
@@ -289,8 +290,9 @@ Class definition.</p>
 <li><a class="reference internal" href="#arrows-state-indicators">12.5. Arrows: State Indicators</a></li>
 <li><a class="reference internal" href="#final-keyword-constant-values">12.6. Final Keyword - Constant Values</a></li>
 <li><a class="reference internal" href="#set-the-state-variable">12.7. Set the State Variable</a></li>
-<li><a class="reference internal" href="#summary">12.8. Summary</a></li>
-<li><a class="reference internal" href="#questions">12.9. Questions:</a></li>
+<li><a class="reference internal" href="#intersection">12.8. Intersection</a></li>
+<li><a class="reference internal" href="#summary">12.9. Summary</a></li>
+<li><a class="reference internal" href="#questions">12.10. Questions:</a></li>
 </ul>
 </li>
 </ul>

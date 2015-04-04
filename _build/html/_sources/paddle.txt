@@ -175,17 +175,18 @@ Below is the new code::
           }
     }
     
- Intersection
- =============
- 
- In `Shiffman's`_ game, both of his objects are circular so that has made testing for intersection 
- much easier.  In our game, we're going to use a rectangular paddle and .svg PShape objects.  Both 
- of these elements have their x,y locations at the upper left corner of the object, whereas circles
- have x,y defined at the center.  However, our paddle can't move in the y direction, so that makes
- it a little easier to check for intersection.  In addition, we are also free to define the intersection
- method in either our Paddle class, our Drop class, or even our Game class.  To keep things similar
- to `Shiffman's`_ game, we'll keep the intersection method inside our Paddle class, and we'll use
- a Drop object as an input parameter for the method.::
+Intersection
+=============
+
+In `Shiffman's`_ game, both of his objects are circular so that has made testing for intersection 
+much easier.  In our game, we're going to use a rectangular paddle and .svg PShape objects.  Both 
+of these elements have their x,y locations at the upper left corner of the object, whereas circles
+have x,y defined at the center.  However, our paddle can't move in the y direction, so that makes
+it a little easier to check for intersection.  In addition, we are also free to define the intersection
+method in either our Paddle class, our Drop class, or even our Game class.  To keep things similar
+to `Shiffman's`_ game, we'll keep the intersection method inside our Paddle class, and we'll use
+a Drop object as an input parameter for the method.::
+
  	// assume that in the Drop class we have an instance variable sWidth, sHeight that define 
  	// the bounding box for our drop's shape
    //assuming the Paddle has x,y,pWidth, pHeight
