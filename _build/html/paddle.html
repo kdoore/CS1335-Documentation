@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="13. Arrays of Objects" href="arrayObjects.html" />
+    <link rel="next" title="13. Inheritance" href="inheritance.html" />
     <link rel="prev" title="11. Paddle Drop Game" href="paddleDropGame.html" /> 
   </head>
   <body role="document">
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="arrayObjects.html" title="13. Arrays of Objects"
+          <a href="inheritance.html" title="13. Inheritance"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="paddleDropGame.html" title="11. Paddle Drop Game"
@@ -201,16 +201,47 @@ So, it makes sense that we would want to change the direction state variable whe
 do that within the Paddle class itself, because a paddle object should be responsible for knowing what
 behaviors need to occur when the Paddle method: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> event handler is executed.
 Below is the new code:</p>
-<div class="highlight-Java"><div class="highlight"><pre>     <span class="c1">// this code is in the Paddle class: pressedLeft() method</span>
+<div class="highlight-Java"><div class="highlight"><pre>        // this code is in the Paddle class: pressedLeft() method
 
-     <span class="kt">void</span> <span class="nf">pressedLeft</span><span class="o">(){</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">){</span>
-                    <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">speed</span><span class="o">;</span>
-            <span class="n">direction</span><span class="o">=</span><span class="n">pLEFT</span><span class="o">;</span>  <span class="c1">//here we set the direction state value to pLEFT</span>
-      <span class="o">}</span>
-<span class="o">}</span>
+        void pressedLeft(){
+               if(x&gt;0){
+                       x=x-speed;
+               direction=pLEFT;  //here we set the direction state value to pLEFT
+         }
+   }
+
+Intersection
+=============
+
+In `Shiffman&#39;s`_ game, both of his objects are circular so that has made testing for intersection
+much easier.  In our game, we&#39;re going to use a rectangular paddle and .svg PShape objects.  Both
+of these elements have their x,y locations at the upper left corner of the object, whereas circles
+have x,y defined at the center.  However, our paddle can&#39;t move in the y direction, so that makes
+it a little easier to check for intersection.  In addition, we are also free to define the intersection
+method in either our Paddle class, our Drop class, or even our Game class.  To keep things similar
+to `Shiffman&#39;s`_ game, we&#39;ll keep the intersection method inside our Paddle class, and we&#39;ll use
+a Drop object as an input parameter for the method.::
+       // assume that in the Drop class we have an instance variable sWidth, sHeight that define
+       // the bounding box for our drop&#39;s shape
+  //assuming the Paddle has x,y,pWidth, pHeight
+
+  //this code is in the Paddle Class definition
+
+       boolean isIntersecting( Drop d){
+           if(d.y + d.sHeight&gt;= y){     //check the bottom point of our drop shape to see if it&#39;s hitting the top of the paddle
+               if((d.x + d.sWidth) &lt;= x){   //compare the right edge of our shape with the left edge of the paddle
+                       return true;
+               }   //end if
+               if(d.x  &lt;=  ( x + pWidth)){  //compare the left edge of the drop with the right edge of the paddle
+                       return true;
+               }  //end if
+               }   //end if
+       return false;        //there is no intersection
+       }  //end of method
 </pre></div>
 </div>
+<p>When we use this intersection method, we&#8217;ll use it in the main tab, and if the method returns <cite>true</cite>,
+then we&#8217;ll want to increment the game score, and set the drop to be inactive.</p>
 </div>
 <div class="section" id="summary">
 <h2>12.8. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
@@ -268,8 +299,8 @@ Class definition.</p>
   <p class="topless"><a href="paddleDropGame.html"
                         title="previous chapter">11. Paddle Drop Game</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="arrayObjects.html"
-                        title="next chapter">13. Arrays of Objects</a></p>
+  <p class="topless"><a href="inheritance.html"
+                        title="next chapter">13. Inheritance</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -294,7 +325,7 @@ Class definition.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="arrayObjects.html" title="13. Arrays of Objects"
+          <a href="inheritance.html" title="13. Inheritance"
              >next</a> |</li>
         <li class="right" >
           <a href="paddleDropGame.html" title="11. Paddle Drop Game"
