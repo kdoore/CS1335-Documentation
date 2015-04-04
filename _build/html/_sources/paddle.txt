@@ -186,14 +186,14 @@ it a little easier to check for intersection.
 
 After noticing some weird behavior when implementing the isIntersecting within the Paddle class, I 
 have decided to move the code to the Drop classes.  So, we'll pass in a Paddle object, and call the
-method using the drop[i] object instance 
-::
+method using the drop[i] object instance ::
 
  	// assume that in the Drop class we have an instance variable sWidth, sHeight that define 
  	// the bounding box for our drop's shape
    //assuming the Paddle has x,y,pWidth, pHeight
    
-   //this code is in the Paddle Class definition
+   //this code is in the Drop Class definition
+   //   this is called as:   drops[i].isIntersecting(paddle1);
  	
  	boolean isIntersecting(Paddle p){
      if(this.y + this.sHeight >= p.y){     //check the bottom point of our drop shape to see if it's hitting the top of the paddle

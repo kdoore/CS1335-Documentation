@@ -226,7 +226,8 @@ method using the drop[i] object instance</p>
       <span class="c1">// the bounding box for our drop&#39;s shape</span>
  <span class="c1">//assuming the Paddle has x,y,pWidth, pHeight</span>
 
- <span class="c1">//this code is in the Paddle Class definition</span>
+ <span class="c1">//this code is in the Drop Class definition</span>
+ <span class="c1">//   this is called as:   drops[i].isIntersecting(paddle1);</span>
 
       <span class="kt">boolean</span> <span class="nf">isIntersecting</span><span class="o">(</span><span class="n">Paddle</span> <span class="n">p</span><span class="o">){</span>
    <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">sHeight</span> <span class="o">&gt;=</span> <span class="n">p</span><span class="o">.</span><span class="na">y</span><span class="o">){</span>     <span class="c1">//check the bottom point of our drop shape to see if it&#39;s hitting the top of the paddle</span>
