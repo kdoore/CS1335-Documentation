@@ -194,8 +194,8 @@ a Drop object as an input parameter for the method.::
    //this code is in the Paddle Class definition
  	
  	boolean isIntersecting( Drop d){ 
- 	    if(d.y + d.sHeight>= y){     //check the bottom point of our drop shape to see if it's hitting the top of the paddle
- 	    	if((d.x + d.sWidth) <= x){   //compare the right edge of our shape with the left edge of the paddle
+ 	    if(d.y + d.sHeight >= y){     //check the bottom point of our drop shape to see if it's hitting the top of the paddle
+ 	    	if((d.x + d.sWidth) >= x){   //compare the right edge of our shape with the left edge of the paddle
  	    		return true;
  	    	}   //end if
  	    	if(d.x  <=  ( x + pWidth)){  //compare the left edge of the drop with the right edge of the paddle
