@@ -193,13 +193,14 @@ method using the drop[i] object instance ::
    //assuming the Paddle has x,y,pWidth, pHeight
    
    //this code is in the Drop Class definition
-   //   this is called as:   drops[i].isIntersecting(paddle1);
+   //   this is called in the main tab as:   drops[i].isIntersecting(paddle1);
  	
  	boolean isIntersecting(Paddle p){
      if(this.y + this.sHeight >= p.y){     //check the bottom point of our drop shape to see if it's hitting the top of the paddle
              println("y > pY");
              if(((this.x + this.sWidth) >= p.x) && (this.x  <=  ( p.x + p.pWidth))) {   
                      println("hit ");
+                     this.y=height + 100; // move the drop below the bottom of the visible canvas
                      this.isActive=false;
                      return true;
              }   //end if
@@ -209,7 +210,8 @@ method using the drop[i] object instance ::
  
  
 When we use this intersection method, we'll use it in the main tab, and if the method returns `true`,
-then we'll want to increment the game score, and set the drop to be inactive.	
+then we'll want to increment the game score, and set the drop to be inactive.	In addition, it's also a good idea to just change
+the y position of the drop if it's been hit, so that it's off the screen, that prevents display issues. 
     
     
 Summary
