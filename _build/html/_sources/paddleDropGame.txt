@@ -140,14 +140,62 @@ back to false. See the code below::
     
  	void checkState(){
 		if(startBtn.on==true){
-			state=ACTIVE;   //change game to active state
+			gameState=ACTIVE;   //change game to active state
 			startBtn.on=false;
 		}
 		if(resetBtn.on==true){
-			state=START;   //change game to start screen
+			gameState=START;   //change game to start screen
 			resetBtn.on=false;
 		}
   }
+  
+Game Instance
+==============
+All of the above code assumes that we will define, initialize and utilize a Game object in 
+the main program tab. Since we need access in the draw loop, as usual, we'll declare the object
+above the setup function, initialize in the setup function, and then use in the draw loop::
+
+	//this code is in the main tab
+	 
+	//other global variables
+	Game game1;
+	
+	void setup(){
+	//other initializations
+	
+	game1= new Game();   //call the Game constructor, here we call the default constructor
+	}  //end setup
+	
+	void draw(){   //here is how we might use this code
+	
+		game1.display();
+		
+		if(game1.gameState==game1.ACTIVE){ // put most active game code in here
+			if (timer.isFinished()) {
+      			if (totalDrops < drops.length) {
+        		drops[totalDrops] = new Drop();
+        		totalDrops++;
+      			}  // end if
+     	 		timer.start();
+    			}  //end timer
+			for(int i=0;i<totalDrops;i++){
+			if(drops[i].isActive==true){  //only look at active drops
+			   boolean isHit=false;
+			   drops[i].move();
+			   isHit= drops[i].isIntersecting(paddle1);
+			  	if(isHit){
+					println("isHit");
+					drops[i].isActive=false;
+					drops[i].y= height + drops[i].getBottomY();  //move off screen
+					game1.score++;  
+			   } 
+			drops[i].display();  
+       			}  //end isActive
+       		}//end drop[] loop
+   		paddle1.display();
+   		}  //end game1.Active
+   		
+	}  //end draw
 
 Inheritance
 ============

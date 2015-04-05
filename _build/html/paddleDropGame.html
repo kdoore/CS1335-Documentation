@@ -191,28 +191,77 @@ back to false. See the code below:</p>
 
       <span class="kt">void</span> <span class="nf">checkState</span><span class="o">(){</span>
               <span class="k">if</span><span class="o">(</span><span class="n">startBtn</span><span class="o">.</span><span class="na">on</span><span class="o">==</span><span class="kc">true</span><span class="o">){</span>
-                      <span class="n">state</span><span class="o">=</span><span class="n">ACTIVE</span><span class="o">;</span>   <span class="c1">//change game to active state</span>
+                      <span class="n">gameState</span><span class="o">=</span><span class="n">ACTIVE</span><span class="o">;</span>   <span class="c1">//change game to active state</span>
                       <span class="n">startBtn</span><span class="o">.</span><span class="na">on</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
               <span class="o">}</span>
               <span class="k">if</span><span class="o">(</span><span class="n">resetBtn</span><span class="o">.</span><span class="na">on</span><span class="o">==</span><span class="kc">true</span><span class="o">){</span>
-                      <span class="n">state</span><span class="o">=</span><span class="n">START</span><span class="o">;</span>   <span class="c1">//change game to start screen</span>
+                      <span class="n">gameState</span><span class="o">=</span><span class="n">START</span><span class="o">;</span>   <span class="c1">//change game to start screen</span>
                       <span class="n">resetBtn</span><span class="o">.</span><span class="na">on</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
               <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
 </div>
 </div>
+<div class="section" id="game-instance">
+<h2>11.6. Game Instance<a class="headerlink" href="#game-instance" title="Permalink to this headline">¶</a></h2>
+<p>All of the above code assumes that we will define, initialize and utilize a Game object in
+the main program tab. Since we need access in the draw loop, as usual, we&#8217;ll declare the object
+above the setup function, initialize in the setup function, and then use in the draw loop:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the main tab</span>
+
+<span class="c1">//other global variables</span>
+<span class="n">Game</span> <span class="n">game1</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
+<span class="c1">//other initializations</span>
+
+<span class="n">game1</span><span class="o">=</span> <span class="k">new</span> <span class="n">Game</span><span class="o">();</span>   <span class="c1">//call the Game constructor, here we call the default constructor</span>
+<span class="o">}</span>  <span class="c1">//end setup</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>   <span class="c1">//here is how we might use this code</span>
+
+        <span class="n">game1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+
+        <span class="k">if</span><span class="o">(</span><span class="n">game1</span><span class="o">.</span><span class="na">gameState</span><span class="o">==</span><span class="n">game1</span><span class="o">.</span><span class="na">ACTIVE</span><span class="o">){</span> <span class="c1">// put most active game code in here</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">timer</span><span class="o">.</span><span class="na">isFinished</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">totalDrops</span> <span class="o">&lt;</span> <span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Drop</span><span class="o">();</span>
+                <span class="n">totalDrops</span><span class="o">++;</span>
+                <span class="o">}</span>  <span class="c1">// end if</span>
+                <span class="n">timer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+                <span class="o">}</span>  <span class="c1">//end timer</span>
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">totalDrops</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">isActive</span><span class="o">==</span><span class="kc">true</span><span class="o">){</span>  <span class="c1">//only look at active drops</span>
+                   <span class="kt">boolean</span> <span class="n">isHit</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+                   <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">move</span><span class="o">();</span>
+                   <span class="n">isHit</span><span class="o">=</span> <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">isIntersecting</span><span class="o">(</span><span class="n">paddle1</span><span class="o">);</span>
+                        <span class="k">if</span><span class="o">(</span><span class="n">isHit</span><span class="o">){</span>
+                                <span class="n">println</span><span class="o">(</span><span class="s">&quot;isHit&quot;</span><span class="o">);</span>
+                                <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">isActive</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+                                <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">y</span><span class="o">=</span> <span class="n">height</span> <span class="o">+</span> <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">getBottomY</span><span class="o">();</span>  <span class="c1">//move off screen</span>
+                                <span class="n">game1</span><span class="o">.</span><span class="na">score</span><span class="o">++;</span>
+                   <span class="o">}</span>
+                <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">display</span><span class="o">();</span>
+                <span class="o">}</span>  <span class="c1">//end isActive</span>
+        <span class="o">}</span><span class="c1">//end drop[] loop</span>
+        <span class="n">paddle1</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+        <span class="o">}</span>  <span class="c1">//end game1.Active</span>
+
+<span class="o">}</span>  <span class="c1">//end draw</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="inheritance">
-<h2>11.6. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
+<h2>11.7. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="child-classes-of-the-drop-class">
-<h3>11.6.1. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h3>
+<h3>11.7.1. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h3>
 <p>The next modification for our game is that we&#8217;re going to use several different drop types.
 So, we&#8217;ll have 2 different classes that inherit from the Drop class.  Let&#8217;s say we&#8217;ll have SeaHorses
 and Stars.  Since the behavior of these objects will be almost identical to <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> Drop class,
 it makes sense for us to use object inheritance when defining these objects.</p>
 </div>
 <div class="section" id="method-override">
-<h3>11.6.2. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h3>
+<h3>11.7.2. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s obvious that these objects will have unique display() methods which display their unique
 shapes.  Other methods like move() might be identical to the Drop method: move( ).</p>
 <p>When one class inherits from another class, any method that is not specified in the child
@@ -249,7 +298,7 @@ code class code below:</p>
 </div>
 </div>
 <div class="section" id="making-drops">
-<h3>11.6.3. Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
+<h3>11.7.3. Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
 <p>In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, there are several important distinctions we need to think about, which control
 the structure and behavior of our game, in <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, this structure is created in the main
 program tab.  The general idea is that he has an array:  drops[] that stores the Drop objects,
@@ -295,7 +344,7 @@ types of drops so we&#8217;ll take advantage of the idea that inheritance allows
 </div>
 </div>
 <div class="section" id="polymorphism">
-<h2>11.7. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<h2>11.8. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>As discussed above, we used inheritance to extend the Drop class, we created a child class: Seahorse.
 So, the beauty of this is that we can now put Seahorse objects in an array of that has been declared to contain Drop objects.
 This is polymorphism, it means that a parent class &#8216;reference&#8217; can be used to refer to a sub-class object.  So, we can do the
@@ -378,13 +427,14 @@ should at least convey the idea of how this might be implemented:</p>
 <li><a class="reference internal" href="#game-display-buttons">11.3. Game Display - Buttons</a></li>
 <li><a class="reference internal" href="#button-state">11.4. Button State</a></li>
 <li><a class="reference internal" href="#game-button-integration">11.5. Game Button Integration</a></li>
-<li><a class="reference internal" href="#inheritance">11.6. Inheritance</a><ul>
-<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.6.1. Child classes of the Drop Class</a></li>
-<li><a class="reference internal" href="#method-override">11.6.2. Method Override</a></li>
-<li><a class="reference internal" href="#making-drops">11.6.3. Making Drops</a></li>
+<li><a class="reference internal" href="#game-instance">11.6. Game Instance</a></li>
+<li><a class="reference internal" href="#inheritance">11.7. Inheritance</a><ul>
+<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.7.1. Child classes of the Drop Class</a></li>
+<li><a class="reference internal" href="#method-override">11.7.2. Method Override</a></li>
+<li><a class="reference internal" href="#making-drops">11.7.3. Making Drops</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#polymorphism">11.7. Polymorphism</a></li>
+<li><a class="reference internal" href="#polymorphism">11.8. Polymorphism</a></li>
 </ul>
 </li>
 </ul>
