@@ -384,25 +384,39 @@ to have an else{ } block where, once we know the entire array has been filled wi
 we could just loop through the array and find inActive drops and then create new drops in those spots.  Below I have
 just pasted in the duplicated code from above, this would not be the most elegant or efficient way to do this but it
 should at least convey the idea of how this might be implemented:</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="k">if</span><span class="o">(</span><span class="n">totalDrops</span><span class="o">&lt;=</span><span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">){</span>
-     <span class="c1">//code from above to make a single drop at array positon: drops[totalDrops];</span>
+<div class="highlight-Java"><div class="highlight"><pre>   <span class="k">if</span><span class="o">(</span><span class="n">game1</span><span class="o">.</span><span class="na">state</span><span class="o">==</span><span class="n">game1</span><span class="o">.</span><span class="na">ACTIVE</span><span class="o">){</span>
+           <span class="k">if</span><span class="o">(</span><span class="n">totalDrops</span><span class="o">&lt;=</span><span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">){</span>
+     <span class="kt">int</span> <span class="n">choice</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">random</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>  <span class="c1">//  gives 0,1 vaules</span>
+        <span class="n">println</span><span class="o">(</span><span class="s">&quot;choice &quot;</span> <span class="o">+</span> <span class="n">choice</span><span class="o">);</span>
+        <span class="k">switch</span><span class="o">(</span><span class="n">choice</span><span class="o">){</span>
+           <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>  <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]=</span> <span class="k">new</span> <span class="n">Seahorse</span><span class="o">();</span>
+                     <span class="k">break</span><span class="o">;</span>
+           <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>  <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Drop</span><span class="o">();</span>
+                     <span class="k">break</span><span class="o">;</span>
+         <span class="o">}</span>    <span class="c1">//end switch</span>
+<span class="n">totalDrops</span><span class="o">++;</span>
+    <span class="o">}</span>  <span class="c1">//end if</span>
+     <span class="k">else</span><span class="o">{</span>  <span class="c1">//the array is already full of drops, some are not active, find one isFinished and create a new drop.</span>
+           <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">i</span><span class="o">++){</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">isFinished</span><span class="o">){</span>   <span class="c1">//or !drops[i].isActive</span>
+                                   <span class="kt">int</span> <span class="n">choice</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">random</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>  <span class="c1">//  gives 0,1 vaules</span>
+                                   <span class="k">switch</span><span class="o">(</span><span class="n">choice</span><span class="o">){</span>
+                                   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+                                                   <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span> <span class="k">new</span> <span class="n">Seahorse</span><span class="o">();</span>
+                                                   <span class="n">i</span><span class="o">=</span><span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="c1">//  since we&#39;ve found one, drop out of the loop by resetting i to the max value</span>
+                                                   <span class="k">break</span><span class="o">;</span>
+                                   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+                                                   <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Star</span><span class="o">();</span>
+                                                   <span class="n">i</span><span class="o">=</span><span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+                                                   <span class="k">break</span><span class="o">;</span>
+                                                   <span class="o">}</span>   <span class="c1">//end switch</span>
+                    <span class="o">}</span>  <span class="c1">//end if</span>
+           <span class="o">}</span>  <span class="c1">//end for</span>
+     <span class="o">}</span>  <span class="c1">//end else</span>
 
-<span class="o">}</span>
-<span class="k">else</span><span class="o">{</span>  <span class="c1">//the array is already full of drops, some are not active, find one isFinished and create a new drop.</span>
-      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">i</span><span class="o">++){</span>
-               <span class="k">if</span><span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">isFinished</span><span class="o">){</span>   <span class="c1">//or !drops[i].isActive</span>
-                              <span class="kt">int</span> <span class="n">choice</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">random</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>  <span class="c1">//  gives 0,1 vaules</span>
-                              <span class="k">switch</span><span class="o">(</span><span class="n">choice</span><span class="o">){</span>
-                              <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-                                              <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]=</span> <span class="k">new</span> <span class="n">Seahorse</span><span class="o">();</span>
-                                              <span class="k">break</span><span class="o">;</span>
-                              <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-                                              <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Star</span><span class="o">();</span>
-                                              <span class="k">break</span><span class="o">;</span>
-                                              <span class="o">}</span>   <span class="c1">//end switch</span>
-               <span class="o">}</span>  <span class="c1">//end if</span>
-      <span class="o">}</span>  <span class="c1">//end for</span>
-<span class="o">}</span>  <span class="c1">//end else</span>
+           <span class="c1">///the rest of the game1.ACTIVE code</span>
+
+           <span class="o">}</span>
 </pre></div>
 </div>
 <p>Questions:</p>

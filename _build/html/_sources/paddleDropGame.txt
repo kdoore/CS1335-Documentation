@@ -324,26 +324,39 @@ we could just loop through the array and find inActive drops and then create new
 just pasted in the duplicated code from above, this would not be the most elegant or efficient way to do this but it
 should at least convey the idea of how this might be implemented::
 
-	  if(totalDrops<=drops.length){   
-	       //code from above to make a single drop at array positon: drops[totalDrops];
-	  
-	  }
+	if(game1.state==game1.ACTIVE){
+	  	if(totalDrops<=drops.length){   
+          int choice = (int) random(0,2);  //  gives 0,1 vaules
+             println("choice " + choice);
+             switch(choice){
+                case 0:  drops[totalDrops]= new Seahorse();
+                          break;
+                case 1:  drops[totalDrops] = new Drop();
+                          break;
+              }    //end switch
+     totalDrops++;
+   	 }  //end if
 	  else{  //the array is already full of drops, some are not active, find one isFinished and create a new drop.
 	  	for(int i=0; i< drops.length, i++){
 	  		 if(drops[i].isFinished){   //or !drops[i].isActive
 	  		 		int choice = (int) random(0,2);  //  gives 0,1 vaules
 					switch(choice){
 					case 0:  
-							drops[totalDrops]= new Seahorse();
+							drops[i]= new Seahorse();
+							i=drops.length; //  since we've found one, drop out of the loop by resetting i to the max value
 							break;
 					case 1:  
-							drops[totalDrops] = new Star();
+							drops[i] = new Star();
+							i=drops.length;
 							break;
 							}   //end switch
 	  		 }  //end if
 	  	}  //end for
 	  }  //end else
+	  
+		///the rest of the game1.ACTIVE code
 
+		}
 
 Questions: 
 
