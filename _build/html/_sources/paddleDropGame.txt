@@ -325,8 +325,8 @@ just pasted in the duplicated code from above, this would not be the most elegan
 should at least convey the idea of how this might be implemented::
 
 	if(game1.state==game1.ACTIVE){
-	  	if(totalDrops<=drops.length){   
-          int choice = (int) random(0,2);  //  gives 0,1 vaules
+	  	if(totalDrops < drops.length){   
+          int choice = (int)random(0,2);  //  gives 0,1 vaules
              println("choice " + choice);
              switch(choice){
                 case 0:  drops[totalDrops]= new Seahorse();
