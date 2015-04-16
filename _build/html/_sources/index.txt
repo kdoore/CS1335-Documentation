@@ -29,6 +29,7 @@ Contents:
 	arrayObjects
 	arrayList
 	pshapeObjects
+	simpleAudio
 	game-design
 	resources
 	glossary

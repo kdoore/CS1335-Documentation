@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>17. Simple Audio &mdash; CS1335 Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="18. Game Programming" href="game-design.html" />
+    <link rel="prev" title="16. PShape Objects" href="pshapeObjects.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="game-design.html" title="18. Game Programming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pshapeObjects.html" title="16. PShape Objects"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="simple-audio">
+<span id="simpleaudio"></span><h1>17. Simple Audio<a class="headerlink" href="#simple-audio" title="Permalink to this headline">¶</a></h1>
+<p>The Minim library in processing can be used to add sound to programs.  Look in the processing
+examples from the edit menu.  Then go to the Minim Library and select the example: PlayAFile.
+The code in this project will play a .mp3 audio fole that is contained in the data folder
+in your sketch folder.</p>
+<p>Below is an extremely simple code example demonstrating how to create a sound based on
+whether the user&#8217;s mouse is pressed and is on the red ellipse.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//Main project code</span>
+<span class="c1">///you must include the sound file in a data folder inside your sketch folder</span>
+
+<span class="c1">//import the Mimin library</span>
+<span class="kn">import</span> <span class="nn">ddf.minim.*</span><span class="o">;</span>
+
+<span class="c1">//declare minim object and AudiPlayer objects</span>
+
+<span class="n">Minim</span> <span class="n">minim</span><span class="o">;</span>
+<span class="n">AudioPlayer</span> <span class="n">sound_hit</span><span class="o">;</span>
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
+  <span class="n">size</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span><span class="mi">300</span><span class="o">);</span>
+  <span class="c1">//you must call the Minim constructor so it can find the audio file in the data folder</span>
+   <span class="n">minim</span><span class="o">=</span><span class="k">new</span> <span class="n">Minim</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>  <span class="c1">//pass a reference to the current &#39;sketch&#39; to the constructor</span>
+   <span class="n">sound_hit</span><span class="o">=</span> <span class="n">minim</span><span class="o">.</span><span class="na">loadFile</span><span class="o">(</span><span class="s">&quot;missile.mp3&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
+  <span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+  <span class="n">fill</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+  <span class="n">ellipse</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="mi">40</span><span class="o">,</span><span class="mi">40</span><span class="o">);</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">mousePressed</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">20</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mouseX</span> <span class="o">&gt;(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">20</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span> <span class="o">&lt;(</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">20</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">mouseY</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">20</span><span class="o">)){</span>
+                <span class="c1">///rewind and play each time through the draw loop if mousePressed is true</span>
+                <span class="n">sound_hit</span><span class="o">.</span><span class="na">rewind</span><span class="o">();</span>
+                <span class="n">sound_hit</span><span class="o">.</span><span class="na">play</span><span class="o">();</span>
+        <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Here is a link to a zip file of the code so you can see how to create a data folder to hold
+your mp3 file.</p>
+<p><a class="reference external" href="https://utdallas.box.com/simpleAudio">https://utdallas.box.com/simpleAudio</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pshapeObjects.html"
+                        title="previous chapter">16. PShape Objects</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="game-design.html"
+                        title="next chapter">18. Game Programming</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="game-design.html" title="18. Game Programming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pshapeObjects.html" title="16. PShape Objects"
+             >previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Karen Doore.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>
