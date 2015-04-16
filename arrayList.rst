@@ -244,8 +244,9 @@ the level:  if(game1.levelCounter >= drops.length). As a first step let's compar
 	4.  drops.length was an Array instance value, it gave the fixed size of the array.
 	
 	5.  drops.size() is an ArrayList method that gives the current size of the ArrayList
-	6.  We need to compare a changing value (levelCounter), with a fixed value:  totalDrops.  Otherwise our game will 
-		continue to make and remove drops from the game forever.
+	
+	6.  We need to compare a changing value (levelCounter), with a fixed value:  totalDrops.  
+		Otherwise our game will continue to make and remove drops from the game forever.
 	
 Here is the old code version::
 
