@@ -50,3 +50,21 @@ your mp3 file.
 
 https://utdallas.box.com/simpleAudio
 
+Mimim Library Reference:  http://code.compartmental.net/minim/
+
+For Minim, you will use:
+
+loadFile()
+
+For the AudioPlayer, you might use:
+
+loop()
+isLooping()
+play()
+isPlaying()
+pause()
+rewind()
+
+There are lots of other methods, these are just a small sample, but they are the ones you'll probably
+end up using.
+
