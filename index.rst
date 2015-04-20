@@ -28,6 +28,7 @@ Contents:
 	inheritance
 	arrayObjects
 	arrayList
+	abstractClass
 	pshapeObjects
 	simpleAudio
 	game-design

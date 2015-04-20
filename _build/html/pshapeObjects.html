@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>16. PShape Objects &mdash; CS1335 Documentation</title>
+    <title>17. PShape Objects &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="17. Game Programming" href="game-design.html" />
-    <link rel="prev" title="15. ArrayList" href="arrayList.html" /> 
+    <link rel="next" title="18. Simple Audio" href="simpleAudio.html" />
+    <link rel="prev" title="16. Abstract Classes" href="abstractClass.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="17. Game Programming"
+          <a href="simpleAudio.html" title="18. Simple Audio"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="arrayList.html" title="15. ArrayList"
+          <a href="abstractClass.html" title="16. Abstract Classes"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,13 +51,13 @@
           <div class="body" role="main">
             
   <div class="section" id="pshape-objects">
-<span id="pshapeobjects"></span><h1>16. PShape Objects<a class="headerlink" href="#pshape-objects" title="Permalink to this headline">¶</a></h1>
+<span id="pshapeobjects"></span><h1>17. PShape Objects<a class="headerlink" href="#pshape-objects" title="Permalink to this headline">¶</a></h1>
 <p>The Processing website has a good tutorial about <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> objects, so it&#8217;s advisable that you
 review that tutorial in order to have a basic understanding of <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> objects.  The idea is
 that <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> allows us to create geometric primitives that we can use as objects.  There are
 a variety of ways to use PShape, let&#8217;s start by creating a Star class.</p>
 <div class="section" id="stars">
-<h2>16.1. Stars<a class="headerlink" href="#stars" title="Permalink to this headline">¶</a></h2>
+<h2>17.1. Stars<a class="headerlink" href="#stars" title="Permalink to this headline">¶</a></h2>
 <p>In the Processing <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> tutorial, the authors create a Star class, and they use the createShape(), beginShape()
 and endShape() functions, along with a list of vertices in the Star constructor to create the geometry for the
 Star object.</p>
@@ -120,7 +120,7 @@ The easiest thing to do is to note that we&#8217;ve translated the origin to the
 if we create an ellipse at (0,0) then we&#8217;ll be able to observe where the center is.</p>
 </div>
 <div class="section" id="pshape-using-svg-image-file">
-<h2>16.2. PShape using SVG Image File<a class="headerlink" href="#pshape-using-svg-image-file" title="Permalink to this headline">¶</a></h2>
+<h2>17.2. PShape using SVG Image File<a class="headerlink" href="#pshape-using-svg-image-file" title="Permalink to this headline">¶</a></h2>
 <p>Another way that we can use PShape is to load an .svg file.  There are may sources for .svg files, for
 this project, I&#8217;m using an svg file from <cite>The Noun Project</cite>.  This site has lots of .svg icon files
 that are free for use if you provide proper attribution for the designer of the .svg file.  I&#8217;m using
@@ -134,7 +134,7 @@ programs.</p>
 </div>
 </div>
 <div class="section" id="edit-svg-files">
-<h2>16.3. Edit SVG Files<a class="headerlink" href="#edit-svg-files" title="Permalink to this headline">¶</a></h2>
+<h2>17.3. Edit SVG Files<a class="headerlink" href="#edit-svg-files" title="Permalink to this headline">¶</a></h2>
 <p>There are 2 ways that we can edit .svg files.  Since .svg files are a standardized data format file
 that list vertices for geometry and font elements, we can open the files in either a vector software
 system like Adobe Illustrator, or Inkscape.  We can also open the files in any text editor like notePad
@@ -195,20 +195,20 @@ canvas origin to the svg corner point, then we&#8217;ll draw the rectangle at (0
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">16. PShape Objects</a><ul>
-<li><a class="reference internal" href="#stars">16.1. Stars</a></li>
-<li><a class="reference internal" href="#pshape-using-svg-image-file">16.2. PShape using SVG Image File</a></li>
-<li><a class="reference internal" href="#edit-svg-files">16.3. Edit SVG Files</a></li>
+<li><a class="reference internal" href="#">17. PShape Objects</a><ul>
+<li><a class="reference internal" href="#stars">17.1. Stars</a></li>
+<li><a class="reference internal" href="#pshape-using-svg-image-file">17.2. PShape using SVG Image File</a></li>
+<li><a class="reference internal" href="#edit-svg-files">17.3. Edit SVG Files</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="arrayList.html"
-                        title="previous chapter">15. ArrayList</a></p>
+  <p class="topless"><a href="abstractClass.html"
+                        title="previous chapter">16. Abstract Classes</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="game-design.html"
-                        title="next chapter">17. Game Programming</a></p>
+  <p class="topless"><a href="simpleAudio.html"
+                        title="next chapter">18. Simple Audio</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -233,10 +233,10 @@ canvas origin to the svg corner point, then we&#8217;ll draw the rectangle at (0
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="17. Game Programming"
+          <a href="simpleAudio.html" title="18. Simple Audio"
              >next</a> |</li>
         <li class="right" >
-          <a href="arrayList.html" title="15. ArrayList"
+          <a href="abstractClass.html" title="16. Abstract Classes"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
