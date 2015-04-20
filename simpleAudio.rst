@@ -43,8 +43,6 @@ whether the user's mouse is pressed and is on the red ellipse.::
    
 	}  
 
-
-
 Here is a link to a zip file of the code so you can see how to create a data folder to hold
 your mp3 file.
 
@@ -54,16 +52,16 @@ Mimim Library Reference:  http://code.compartmental.net/minim/
 
 For Minim, you will use:
 
-loadFile()
+	- loadFile()
 
 For the AudioPlayer, you might use:
 
-loop()
-isLooping()
-play()
-isPlaying()
-pause()
-rewind()
+	- loop()
+	- isLooping()
+	- play()
+	- isPlaying()
+	- pause()
+	- rewind()
 
 There are lots of other methods, these are just a small sample, but they are the ones you'll probably
 end up using.
