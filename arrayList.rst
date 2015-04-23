@@ -268,7 +268,7 @@ Here is the old code version::
            
 In the new code version, we'll replace that if-condition with::
 
-	if(game1.levelCounter >= totalDrops){ 
+	if(game1.levelCounter >= game1.totalDrops){ 
 		// code in here 
 	}
 

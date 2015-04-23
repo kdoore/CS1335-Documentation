@@ -121,6 +121,9 @@ order to load the image.
 	1.  The .svg file must be put inside a folder named: ``data``, inside your sketch folder
 	2.  PShape s= loadShape("seaHorse2.svg");  // this loads the image 
 	3.  shape(s, x, y, width, height) ;  //this is used to display the svg.
+	
+SVG Origin
+===========
 
 With SVG files, the x,y position refers to the top left corner of the svg file.  If you open the
 svg file in a text editor, you can read the width and height dimensions of the svg.  Those can help us
@@ -140,5 +143,15 @@ canvas origin to the svg corner point, then we'll draw the rectangle at (0,0).::
 		rect(0,0,sWidth,sHeight);  //bounding box 
 		popMatrix();
 		}
+		
+
+Bounding Box
+=============
+
+In order to determine if we have a collision with the paddle, we need to define a bounding box
+for our PShape object that we'll use to determine contact with the Paddle object.  Shiffman's
+game used circular objects, and determining intersection with circular objects is a bit easier than
+it is with rectangular objects.  As noted above, we've translated the origin to the x,y position
+of our .svg file, this corresponds to the upper-upper left corner of the shape.  
 
 .. _PShape:  https://processing.org/tutorials/pshape/
