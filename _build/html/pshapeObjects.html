@@ -165,6 +165,9 @@ order to load the image.</p>
 <li>shape(s, x, y, width, height) ;  //this is used to display the svg.</li>
 </ol>
 </div></blockquote>
+</div>
+<div class="section" id="svg-origin">
+<h2>17.4. SVG Origin<a class="headerlink" href="#svg-origin" title="Permalink to this headline">¶</a></h2>
 <p>With SVG files, the x,y position refers to the top left corner of the svg file.  If you open the
 svg file in a text editor, you can read the width and height dimensions of the svg.  Those can help us
 when we try to determine the bounding box for collision detection.  Below is the display function
@@ -185,6 +188,14 @@ canvas origin to the svg corner point, then we&#8217;ll draw the rectangle at (0
 </pre></div>
 </div>
 </div>
+<div class="section" id="bounding-box">
+<h2>17.5. Bounding Box<a class="headerlink" href="#bounding-box" title="Permalink to this headline">¶</a></h2>
+<p>In order to determine if we have a collision with the paddle, we need to define a bounding box
+for our PShape object that we&#8217;ll use to determine contact with the Paddle object.  Shiffman&#8217;s
+game used circular objects, and determining intersection with circular objects is a bit easier than
+it is with rectangular objects.  As noted above, we&#8217;ve translated the origin to the x,y position
+of our .svg file, this corresponds to the upper-upper left corner of the shape.</p>
+</div>
 </div>
 
 
@@ -199,6 +210,8 @@ canvas origin to the svg corner point, then we&#8217;ll draw the rectangle at (0
 <li><a class="reference internal" href="#stars">17.1. Stars</a></li>
 <li><a class="reference internal" href="#pshape-using-svg-image-file">17.2. PShape using SVG Image File</a></li>
 <li><a class="reference internal" href="#edit-svg-files">17.3. Edit SVG Files</a></li>
+<li><a class="reference internal" href="#svg-origin">17.4. SVG Origin</a></li>
+<li><a class="reference internal" href="#bounding-box">17.5. Bounding Box</a></li>
 </ul>
 </li>
 </ul>
