@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>15. ArrayList &mdash; CS1335 Documentation</title>
+    <title>16. ArrayList &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="16. Abstract Classes" href="abstractClass.html" />
-    <link rel="prev" title="14. Arrays of Objects" href="arrayObjects.html" /> 
+    <link rel="next" title="17. Abstract Classes" href="abstractClass.html" />
+    <link rel="prev" title="15. PShape Objects" href="pshapeObjects.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="abstractClass.html" title="16. Abstract Classes"
+          <a href="abstractClass.html" title="17. Abstract Classes"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="arrayObjects.html" title="14. Arrays of Objects"
+          <a href="pshapeObjects.html" title="15. PShape Objects"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="arraylist">
-<span id="id1"></span><h1>15. ArrayList<a class="headerlink" href="#arraylist" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>16. ArrayList<a class="headerlink" href="#arraylist" title="Permalink to this headline">¶</a></h1>
 <p>An ArrayList is a <cite>data structure</cite> that allows us to store objects in our programs, and is
 similar to Arrays in many ways, in-fact, the ArrayList Class uses Arrays, but provides convenience
 methods to allow us to dynamically resize by adding or removing elements during our program&#8217;s execution.
@@ -60,7 +60,7 @@ example of how we&#8217;ll want to build our own classes because it provides acc
 using a method: size().  That is different than Array because when we use Arrays, we could
 access the size using dot notation to access the <code class="docutils literal"><span class="pre">length</span></code> instance variable.</p>
 <div class="section" id="declaration">
-<h2>15.1. Declaration<a class="headerlink" href="#declaration" title="Permalink to this headline">¶</a></h2>
+<h2>16.1. Declaration<a class="headerlink" href="#declaration" title="Permalink to this headline">¶</a></h2>
 <p>So, we&#8217;ll create an ArrayList object by calling the ArrayList constructor., however it&#8217;s slightly
 different than what we&#8217;ve seen when creating objects because we also need a way to tell the compiler what type
 of objects we&#8217;ll store in our ArrayList.  For this, we&#8217;ll use a special syntax <code class="docutils literal"><span class="pre">&lt;</span> <span class="pre">Type</span> <span class="pre">&gt;</span></code>, where we&#8217;ll
@@ -77,7 +77,7 @@ what <cite>type</cite> of objects we&#8217;ll use the ArrayList for. This syntax
 <p>Notice that we use the angle brackets to specify the type of object <code class="docutils literal"><span class="pre">&lt;Drop&gt;</span></code></p>
 </div>
 <div class="section" id="initialization">
-<h2>15.2. Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
+<h2>16.2. Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
 <p>Since we will normally do initialization separate from the declaration, below is the syntax for
 initializing an ArrayList compared to how to initialize an Array.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Drop</span><span class="o">&gt;</span> <span class="n">dropList</span><span class="o">;</span>  <span class="c1">//declare</span>
@@ -93,7 +93,7 @@ with, it has it&#8217;s own unique syntax whereas the ArrayList is similar to ot
 </div>
 </div>
 <div class="section" id="add-an-element">
-<h2>15.3. Add an element<a class="headerlink" href="#add-an-element" title="Permalink to this headline">¶</a></h2>
+<h2>16.3. Add an element<a class="headerlink" href="#add-an-element" title="Permalink to this headline">¶</a></h2>
 <p>Below we&#8217;ll add an element to an array, we use the array name and bracket with index value to initialize an element:</p>
 <div class="highlight-Java"><div class="highlight"><pre>``dropArray[1]= new Drop();    //standard Array notation``
 </pre></div>
@@ -113,7 +113,7 @@ input argument to the add() method as below:</p>
 </div>
 </div>
 <div class="section" id="access-elements">
-<h2>15.4. Access Elements<a class="headerlink" href="#access-elements" title="Permalink to this headline">¶</a></h2>
+<h2>16.4. Access Elements<a class="headerlink" href="#access-elements" title="Permalink to this headline">¶</a></h2>
 <p>One common method to access and use an element in the ArrayList is to use a <code class="docutils literal"><span class="pre">for</span> <span class="pre">loop</span></code> and an iterator
 variable, <code class="docutils literal"><span class="pre">i</span></code> , and loop through the ArrayList using the ArrayList size() method to control the for loop.
 If you are not making any modifications such as adding or removing elements, a normal for loop syntax works
@@ -126,7 +126,7 @@ fine as shown below, however this syntax won&#8217;t work if you&#8217;re adding
 </div>
 </div>
 <div class="section" id="remove-elements-caution-when-looping">
-<h2>15.5. Remove Elements - Caution when Looping<a class="headerlink" href="#remove-elements-caution-when-looping" title="Permalink to this headline">¶</a></h2>
+<h2>16.5. Remove Elements - Caution when Looping<a class="headerlink" href="#remove-elements-caution-when-looping" title="Permalink to this headline">¶</a></h2>
 <p>In order to use a for loop to access ArrayList elements when we know we&#8217;ll be removing some elements,
 we need to remember that the ArrayList is actually using an Array, so we need to be careful to stay within
 the bounds of the array, and to make sure we&#8217;re able to access each element as we expect.</p>
@@ -144,7 +144,7 @@ use get(i) to retrieve the first element.:</p>
 still check to make sure that i &lt; droplist.size(), and now the size() is 1.  So, we don&#8217;t enter the for loop,
 and we haven&#8217;t actually examined the remaining element in the list.  Let&#8217;s look at another way to do this.</p>
 <div class="section" id="reverse-for-loops">
-<h3>15.5.1. Reverse For Loops<a class="headerlink" href="#reverse-for-loops" title="Permalink to this headline">¶</a></h3>
+<h3>16.5.1. Reverse For Loops<a class="headerlink" href="#reverse-for-loops" title="Permalink to this headline">¶</a></h3>
 <p>A simple syntax change so that we go through the loop in reverse will prevent the problems from above.
 So, we need to restructure the for loop:  We&#8217;ll start at the largest value:  droplist.size(),
 then we&#8217;ll stop once we&#8217;ve reached the first element and it has an index of 0.  Each time, we&#8217;ll subtract 1 from i.
@@ -165,7 +165,7 @@ eliminate some of the book-keeping variables and simplify the code.</p>
 </div>
 </div>
 <div class="section" id="paddle-drop-game-using-arraylist">
-<h2>15.6. Paddle Drop Game using ArrayList<a class="headerlink" href="#paddle-drop-game-using-arraylist" title="Permalink to this headline">¶</a></h2>
+<h2>16.6. Paddle Drop Game using ArrayList<a class="headerlink" href="#paddle-drop-game-using-arraylist" title="Permalink to this headline">¶</a></h2>
 <p>In the Paddle Drop Game, there are 2 main sections where we need to change the code if we want to
 implement using ArrayLists instead of Arrays:</p>
 <blockquote>
@@ -176,7 +176,7 @@ implement using ArrayLists instead of Arrays:</p>
 </div></blockquote>
 </div>
 <div class="section" id="creating-drop-in-drops-arraylist">
-<h2>15.7. Creating Drop in drops ArrayList<a class="headerlink" href="#creating-drop-in-drops-arraylist" title="Permalink to this headline">¶</a></h2>
+<h2>16.7. Creating Drop in drops ArrayList<a class="headerlink" href="#creating-drop-in-drops-arraylist" title="Permalink to this headline">¶</a></h2>
 <p>For the part where we create new drops, we still want to use random( ) so that we randomize the type of
 child drops created at each step. We had used the variable totalDrops to limit the total number of drops created
 for a level, we actually still need to do that in order to know when to increase the game level.
@@ -217,7 +217,7 @@ the maximum number of drops that we&#8217;ll let the game create.  We never incr
 but we&#8217;ll use it again to check whether we need to advance the game to the next level.</p>
 </div>
 <div class="section" id="iterating-through-drops-arraylist">
-<h2>15.8. Iterating through drops ArrayList<a class="headerlink" href="#iterating-through-drops-arraylist" title="Permalink to this headline">¶</a></h2>
+<h2>16.8. Iterating through drops ArrayList<a class="headerlink" href="#iterating-through-drops-arraylist" title="Permalink to this headline">¶</a></h2>
 <p>Now let&#8217;s look at how we&#8217;ll access a single drop and process each of the drop steps, first
 let&#8217;s look at how the code was written when we used arrays:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">///loop through array and deal with each drop[i]</span>
@@ -325,28 +325,28 @@ ArrayLists to hold our drops instead of using Arrays.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">15. ArrayList</a><ul>
-<li><a class="reference internal" href="#declaration">15.1. Declaration</a></li>
-<li><a class="reference internal" href="#initialization">15.2. Initialization</a></li>
-<li><a class="reference internal" href="#add-an-element">15.3. Add an element</a></li>
-<li><a class="reference internal" href="#access-elements">15.4. Access Elements</a></li>
-<li><a class="reference internal" href="#remove-elements-caution-when-looping">15.5. Remove Elements - Caution when Looping</a><ul>
-<li><a class="reference internal" href="#reverse-for-loops">15.5.1. Reverse For Loops</a></li>
+<li><a class="reference internal" href="#">16. ArrayList</a><ul>
+<li><a class="reference internal" href="#declaration">16.1. Declaration</a></li>
+<li><a class="reference internal" href="#initialization">16.2. Initialization</a></li>
+<li><a class="reference internal" href="#add-an-element">16.3. Add an element</a></li>
+<li><a class="reference internal" href="#access-elements">16.4. Access Elements</a></li>
+<li><a class="reference internal" href="#remove-elements-caution-when-looping">16.5. Remove Elements - Caution when Looping</a><ul>
+<li><a class="reference internal" href="#reverse-for-loops">16.5.1. Reverse For Loops</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#paddle-drop-game-using-arraylist">15.6. Paddle Drop Game using ArrayList</a></li>
-<li><a class="reference internal" href="#creating-drop-in-drops-arraylist">15.7. Creating Drop in drops ArrayList</a></li>
-<li><a class="reference internal" href="#iterating-through-drops-arraylist">15.8. Iterating through drops ArrayList</a></li>
+<li><a class="reference internal" href="#paddle-drop-game-using-arraylist">16.6. Paddle Drop Game using ArrayList</a></li>
+<li><a class="reference internal" href="#creating-drop-in-drops-arraylist">16.7. Creating Drop in drops ArrayList</a></li>
+<li><a class="reference internal" href="#iterating-through-drops-arraylist">16.8. Iterating through drops ArrayList</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="arrayObjects.html"
-                        title="previous chapter">14. Arrays of Objects</a></p>
+  <p class="topless"><a href="pshapeObjects.html"
+                        title="previous chapter">15. PShape Objects</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="abstractClass.html"
-                        title="next chapter">16. Abstract Classes</a></p>
+                        title="next chapter">17. Abstract Classes</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -371,10 +371,10 @@ ArrayLists to hold our drops instead of using Arrays.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="abstractClass.html" title="16. Abstract Classes"
+          <a href="abstractClass.html" title="17. Abstract Classes"
              >next</a> |</li>
         <li class="right" >
-          <a href="arrayObjects.html" title="14. Arrays of Objects"
+          <a href="pshapeObjects.html" title="15. PShape Objects"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>

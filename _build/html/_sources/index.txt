@@ -27,9 +27,10 @@ Contents:
 	paddle
 	inheritance
 	arrayObjects
+	pshapeObjects
 	arrayList
 	abstractClass
-	pshapeObjects
+	interface
 	simpleAudio
 	game-design
 	resources

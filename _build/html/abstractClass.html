@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>16. Abstract Classes &mdash; CS1335 Documentation</title>
+    <title>17. Abstract Classes &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="17. PShape Objects" href="pshapeObjects.html" />
-    <link rel="prev" title="15. ArrayList" href="arrayList.html" /> 
+    <link rel="next" title="&lt;no title&gt;" href="interface.html" />
+    <link rel="prev" title="16. ArrayList" href="arrayList.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="pshapeObjects.html" title="17. PShape Objects"
+          <a href="interface.html" title="&lt;no title&gt;"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="arrayList.html" title="15. ArrayList"
+          <a href="arrayList.html" title="16. ArrayList"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="abstract-classes">
-<span id="abstractclass"></span><h1>16. Abstract Classes<a class="headerlink" href="#abstract-classes" title="Permalink to this headline">¶</a></h1>
+<span id="abstractclass"></span><h1>17. Abstract Classes<a class="headerlink" href="#abstract-classes" title="Permalink to this headline">¶</a></h1>
 <p>An Abstract class cannot be used to create objects.  Instead, Abstract classes function to
 provide a base class for sub-classes to inherit; the idea is that we can define a generic class
 that has common instance variables and methods that will be shared by all sub-classes so they
@@ -75,7 +75,7 @@ make objects directly from that class.:</p>
 </pre></div>
 </div>
 <div class="section" id="no-abstract-objects">
-<h2>16.1. No Abstract Objects<a class="headerlink" href="#no-abstract-objects" title="Permalink to this headline">¶</a></h2>
+<h2>17.1. No Abstract Objects<a class="headerlink" href="#no-abstract-objects" title="Permalink to this headline">¶</a></h2>
 <p>Once we&#8217;ve made this decision to never create &#8216;plain old&#8217; Drop objects, do we still even need
 the Drop class?  The answer is YES!  The Drop class is helpful because it allows us to define a common
 set of properties or instance variables, and a common set of behaviors, called methods.
@@ -84,7 +84,7 @@ like <code class="docutils literal"><span class="pre">display()</span></code>, w
 These required method over-rides are called &#8216;abstract methods&#8217;.</p>
 </div>
 <div class="section" id="abstract-methods">
-<h2>16.2. Abstract Methods<a class="headerlink" href="#abstract-methods" title="Permalink to this headline">¶</a></h2>
+<h2>17.2. Abstract Methods<a class="headerlink" href="#abstract-methods" title="Permalink to this headline">¶</a></h2>
 <p>Abstract Methods are methods that we require to be implemented within each inheriting sub-class.  For
 our programs, <code class="docutils literal"><span class="pre">display()</span></code> is a method that would probably be abstract because we know that each different type
 of child object will have some unique type of object display.  For some sub-class objects, their display may
@@ -111,7 +111,7 @@ so it can be used by all sub-classes. Below is the syntax for creating an abstra
 </div>
 </div>
 <div class="section" id="abstract-method-sub-class-implementation">
-<h2>16.3. Abstract Method - Sub-class Implementation<a class="headerlink" href="#abstract-method-sub-class-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>17.3. Abstract Method - Sub-class Implementation<a class="headerlink" href="#abstract-method-sub-class-implementation" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">display()</span></code> method was declared as <code class="docutils literal"><span class="pre">abstract</span></code> in the Drop base-class.  So any class which
 extends Drop must now implement <code class="docutils literal"><span class="pre">display()</span></code> or there will be a compiler error. In the SeaHorse
 class, we have already written code to implement this method, so no changes are required.</p>
@@ -128,20 +128,20 @@ however these added structures makes our programs easier to extend and easier to
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">16. Abstract Classes</a><ul>
-<li><a class="reference internal" href="#no-abstract-objects">16.1. No Abstract Objects</a></li>
-<li><a class="reference internal" href="#abstract-methods">16.2. Abstract Methods</a></li>
-<li><a class="reference internal" href="#abstract-method-sub-class-implementation">16.3. Abstract Method - Sub-class Implementation</a></li>
+<li><a class="reference internal" href="#">17. Abstract Classes</a><ul>
+<li><a class="reference internal" href="#no-abstract-objects">17.1. No Abstract Objects</a></li>
+<li><a class="reference internal" href="#abstract-methods">17.2. Abstract Methods</a></li>
+<li><a class="reference internal" href="#abstract-method-sub-class-implementation">17.3. Abstract Method - Sub-class Implementation</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="arrayList.html"
-                        title="previous chapter">15. ArrayList</a></p>
+                        title="previous chapter">16. ArrayList</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="pshapeObjects.html"
-                        title="next chapter">17. PShape Objects</a></p>
+  <p class="topless"><a href="interface.html"
+                        title="next chapter">&lt;no title&gt;</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -166,10 +166,10 @@ however these added structures makes our programs easier to extend and easier to
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="pshapeObjects.html" title="17. PShape Objects"
+          <a href="interface.html" title="&lt;no title&gt;"
              >next</a> |</li>
         <li class="right" >
-          <a href="arrayList.html" title="15. ArrayList"
+          <a href="arrayList.html" title="16. ArrayList"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>

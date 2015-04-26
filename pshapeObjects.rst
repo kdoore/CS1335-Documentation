@@ -18,15 +18,18 @@ Star object.
 However, they go on to describe a subtle concept; the idea of creating the star geometry one time in
 the main setup() function, and then passing that PShape object as an input parameter to the Star constructor.  This 
 can cut down on rendering costs, where Processing can essentially 'memorize' the geometry of the single PShape object, 
-rather than having to render the geometry for each one.  For now, let's ignore these suggestions, and we'll create
-the geometry in the Star constructor function.  Below are snippets of code for the Star class, where it inherits
-from the Drop class.  For our current version of the RainDrop game, the Drop class does not inherit from any other class::
+rather than having to render the geometry for each one.  
+
+For now, let's ignore these suggestions, and we'll create the geometry in the Star constructor function.  
+Below are snippets of code for the Star class, where it inherits from the Drop class.  For our current 
+version of the RainDrop game, the Drop class does not inherit from any other class::
 
 	class Star extends Drop{  
 		PShape s;
 		
 		Star(float _x){  // constructor lets us set the x-position
 			super(_x);  // call the Drop constructor as the first line of code
+		
 		// First create the shape
 			s = createShape();
 			s.beginShape();
