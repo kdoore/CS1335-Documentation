@@ -169,23 +169,28 @@ are iterating through the list in reverse order in case we want to remove an ele
 <blockquote>
 <div><ul class="simple">
 <li>Check to see <code class="docutils literal"><span class="pre">if(d</span> <span class="pre">instanceof</span> <span class="pre">Explodable)</span></code></li>
-<li>Create an Explodable reference <cite>e</cite></li>
-<li>Use <cite>typeCasting</cite> to create an object that we can use to execute  explode()</li>
+<li>Create an reference variable of type <code class="docutils literal"><span class="pre">Explodable</span> <span class="pre">e</span></code></li>
+<li>Use <cite>typeCasting</cite> to convert <code class="docutils literal"><span class="pre">d</span></code> to an object that can call <code class="docutils literal"><span class="pre">explode()</span></code></li>
 </ul>
 </div></blockquote>
 <p>Below is the code for this:</p>
 <div class="highlight-Java"><div class="highlight"><pre>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">dropList</span><span class="o">.</span><span class="na">size</span><span class="o">()-</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+
     <span class="n">Drop</span> <span class="n">d</span><span class="o">=</span><span class="n">dropList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 <span class="c1">//test to see if the object instance implements the explodable interface</span>
+
 <span class="k">if</span><span class="o">(</span><span class="n">d</span> <span class="k">instanceof</span> <span class="n">Explodable</span><span class="o">){</span>
    <span class="n">Explodable</span> <span class="n">e</span><span class="o">=(</span><span class="n">Explodable</span><span class="o">)</span><span class="n">d</span><span class="o">;</span>   <span class="c1">//type cast</span>
    <span class="n">e</span><span class="o">.</span><span class="na">explode</span><span class="o">();</span>   <span class="c1">//call explode() on the objects that implement Explodable</span>
-   <span class="k">if</span><span class="o">((</span><span class="n">e</span><span class="o">.</span><span class="na">getRadius</span><span class="o">())&gt;</span><span class="mf">80.0</span><span class="o">){</span>
+
+   <span class="k">if</span><span class="o">((</span><span class="n">e</span><span class="o">.</span><span class="na">getExDimension</span><span class="o">())&gt;</span><span class="mf">80.0</span><span class="o">){</span>  <span class="c1">//check size limit</span>
        <span class="n">dropList</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
    <span class="o">}</span>
  <span class="o">}</span>
 </pre></div>
 </div>
+<p>Below is a link to the example program.</p>
+<p><a class="reference external" href="https://utdallas.box.com/instanceExample">https://utdallas.box.com/instanceExample</a></p>
 </div>
 </div>
 

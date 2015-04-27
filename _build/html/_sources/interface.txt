@@ -126,18 +126,25 @@ implements Explodable. Here we have an ArrayList: droplist of Drop sub-class obj
 are iterating through the list in reverse order in case we want to remove an element from the list
 
 	- Check to see ``if(d instanceof Explodable)``
-	- Create an Explodable reference `e`
-	- Use `typeCasting` to create an object that we can use to execute  explode()
+	- Create an reference variable of type ``Explodable e``
+	- Use `typeCasting` to convert ``d`` to an object that can call ``explode()``
 	 
 Below is the code for this::
 
 	for (int i = dropList.size()-1; i >= 0; i--) { 
+	
 	Drop d=dropList.get(i);
     //test to see if the object instance implements the explodable interface
+    
     if(d instanceof Explodable){
        Explodable e=(Explodable)d;   //type cast
        e.explode();   //call explode() on the objects that implement Explodable
-       if((e.getRadius())>80.0){
+       
+       if((e.getExDimension())>80.0){  //check size limit 
            dropList.remove(i);
        }
      }
+     
+Below is a link to the example program.
+
+https://utdallas.box.com/instanceExample

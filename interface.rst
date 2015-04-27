@@ -126,8 +126,8 @@ implements Explodable. Here we have an ArrayList: droplist of Drop sub-class obj
 are iterating through the list in reverse order in case we want to remove an element from the list
 
 	- Check to see ``if(d instanceof Explodable)``
-	- Create an Explodable reference `e`
-	- Use `typeCasting` to create an object that we can use to execute  explode()
+	- Create an reference variable of type ``Explodable e``
+	- Use `typeCasting` to convert ``d`` to an object that can call ``explode()``
 	 
 Below is the code for this::
 
@@ -144,3 +144,7 @@ Below is the code for this::
            dropList.remove(i);
        }
      }
+     
+Below is a link to the example program.
+
+https://utdallas.box.com/instanceExample
