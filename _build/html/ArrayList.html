@@ -322,15 +322,15 @@ the level:  if(game1.levelCounter &gt;= drops.length). As a first step let&#8217
       <span class="n">paddle1</span><span class="o">.</span><span class="na">pWidth</span><span class="o">=</span><span class="n">currentLevel</span><span class="o">.</span><span class="na">paddleWidth</span><span class="o">;</span>
   <span class="o">}</span>
 
-    <span class="c1">//Reset all game elements We should put this in a game method: resetLevel( )</span>
+                <span class="c1">//Reset all game elements We should put this in a game method: resetLevel( )</span>
 
-                 <span class="n">game1</span><span class="o">.</span><span class="na">levelCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-                 <span class="n">game1</span><span class="o">.</span><span class="na">lives</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+        <span class="n">game1</span><span class="o">.</span><span class="na">levelCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">game1</span><span class="o">.</span><span class="na">lives</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 
-                <span class="c1">// We don&#39;t want to reset totalDrops to 0!</span>
-                <span class="c1">// game1.totalDrops = 0;   //Don&#39;t reset totalDrops</span>
+        <span class="c1">// We don&#39;t want to reset totalDrops to 0!</span>
+        <span class="c1">// game1.totalDrops = 0;   //Don&#39;t reset totalDrops</span>
 
-                <span class="c1">// clear the arraylist of any remaining elements</span>
+        <span class="c1">// clear the arraylist of any remaining elements</span>
         <span class="n">drops</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
 
         <span class="n">timer</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">constrain</span><span class="o">(</span><span class="mi">300</span><span class="o">-</span><span class="n">game1</span><span class="o">.</span><span class="na">levelIndex</span><span class="o">*</span><span class="mi">25</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">300</span><span class="o">));</span>

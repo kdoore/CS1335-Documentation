@@ -283,15 +283,15 @@ In the new code version, we'll replace that if-condition with::
               paddle1.pWidth=currentLevel.paddleWidth;
           }
 		
-	    //Reset all game elements We should put this in a game method: resetLevel( ) 
+			//Reset all game elements We should put this in a game method: resetLevel( ) 
 		
-			 game1.levelCounter = 0;
-			 game1.lives = 10;
+		game1.levelCounter = 0;
+		game1.lives = 10;
 			 
-         		// We don't want to reset totalDrops to 0!
-         		// game1.totalDrops = 0;   //Don't reset totalDrops
+        	// We don't want to reset totalDrops to 0!
+         	// game1.totalDrops = 0;   //Don't reset totalDrops
          
-         		// clear the arraylist of any remaining elements
+      		// clear the arraylist of any remaining elements
          	drops.clear();
                   
           	timer.setTime(constrain(300-game1.levelIndex*25,0,300));
