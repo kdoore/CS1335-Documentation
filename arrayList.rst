@@ -228,7 +228,7 @@ variable to act as a pointer for each element we retrieve from the ArrayList::
 		         // REMEMBER:  we should remove a drop if it's been hit or is finished, we need to use the current
 		         //index
 		         
-		          drops.remove(i);	
+		          	drops.remove(i);	
 		         	
 		       } 
 		       
@@ -288,13 +288,13 @@ In the new code version, we'll replace that if-condition with::
 			 game1.levelCounter = 0;
 			 game1.lives = 10;
 			 
-         	// We don't want to reset totalDrops to 0!
-         	// game1.totalDrops = 0;   //Don't reset totalDrops
+         		// We don't want to reset totalDrops to 0!
+         		// game1.totalDrops = 0;   //Don't reset totalDrops
          
-         	// clear the arraylist of any remaining elements
+         		// clear the arraylist of any remaining elements
          	drops.clear();
                   
-          timer.setTime(constrain(300-game1.levelIndex*25,0,300));
+          	timer.setTime(constrain(300-game1.levelIndex*25,0,300));
 		
 	} // end if
 
