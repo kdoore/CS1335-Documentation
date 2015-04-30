@@ -223,7 +223,12 @@ variable to act as a pointer for each element we retrieve from the ArrayList::
 		         for(int i=(drops.size()-1 ); i > 0 ; i--){
 		         	Drop d = drops.get(i);
 		         
-		         //change all of the following code so we're using d instead of drops[i]	
+		         //change all of the following code so we're using d instead of drops[i]
+		         
+		         // REMEMBER:  we should remove a drop if it's been hit or is finished, we need to use the current
+		         //index
+		         
+		          drops.remove(i);	
 		         	
 		       } 
 		       
@@ -237,7 +242,7 @@ the level:  if(game1.levelCounter >= drops.length). As a first step let's compar
 	
 	1.  levelCounter and totalDrops are now part of the game class, they control how many drops are created for each level
 	
-	2.  totalDrops is set to some max value like 30, and never changes.
+	2.  totalDrops is set to some max value like 30, and never changes. //Infact, we should consider this a constant and capitalize it!
 	
 	3.  levelCounter is incremented each time a drop is removed from the screen, either isHit or isFinished
 	
@@ -268,12 +273,36 @@ Here is the old code version::
            
 In the new code version, we'll replace that if-condition with::
 
-	if(game1.levelCounter >= game1.totalDrops){ 
-		// code in here 
-	}
+	//set totalDrops to some constant value like 30
+	if(game1.levelCounter >= game1.totalDrops){
+	 
+		//Can we increase the level?
+		if(game1.levelIndex<levels.length-1){
+              game1.levelIndex++;
+              currentLevel=levels[game1.levelIndex];
+              paddle1.pWidth=currentLevel.paddleWidth;
+          }
+		
+	    //Reset all game elements We should put this in a game method: resetLevel( ) 
+		
+			 game1.levelCounter = 0;
+			 game1.lives = 10;
+			 
+         	// We don't want to reset totalDrops to 0!
+         	// game1.totalDrops = 0;   //Don't reset totalDrops
+         
+         	// clear the arraylist of any remaining elements
+         	drops.clear();
+                  
+          timer.setTime(constrain(300-game1.levelIndex*25,0,300));
+		
+	} // end if
 
 This should provide a good start for how we can change our game so that we're using
-ArrayLists to hold our drops instead of using Arrays.  
+ArrayLists to hold our drops instead of using Arrays. 
+
+Make sure that you understand that you need to modify the game logic when you switch
+to using ArrayLists instead of Arrays, the logic should be simplified. 
            
 
 		        

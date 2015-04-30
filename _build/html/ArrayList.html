@@ -259,6 +259,11 @@ variable to act as a pointer for each element we retrieve from the ArrayList:</p
 
   <span class="c1">//change all of the following code so we&#39;re using d instead of drops[i]</span>
 
+  <span class="c1">// REMEMBER:  we should remove a drop if it&#39;s been hit or is finished, we need to use the current</span>
+  <span class="c1">//index</span>
+
+   <span class="n">drops</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -272,7 +277,7 @@ the level:  if(game1.levelCounter &gt;= drops.length). As a first step let&#8217
 <ol class="arabic">
 <li><p class="first">levelCounter and totalDrops are now part of the game class, they control how many drops are created for each level</p>
 </li>
-<li><p class="first">totalDrops is set to some max value like 30, and never changes.</p>
+<li><p class="first">totalDrops is set to some max value like 30, and never changes. //Infact, we should consider this a constant and capitalize it!</p>
 </li>
 <li><p class="first">levelCounter is incremented each time a drop is removed from the screen, either isHit or isFinished</p>
 </li>
@@ -307,13 +312,36 @@ the level:  if(game1.levelCounter &gt;= drops.length). As a first step let&#8217
 </pre></div>
 </div>
 <p>In the new code version, we&#8217;ll replace that if-condition with:</p>
-<div class="highlight-Java"><div class="highlight"><pre><span class="k">if</span><span class="o">(</span><span class="n">game1</span><span class="o">.</span><span class="na">levelCounter</span> <span class="o">&gt;=</span> <span class="n">game1</span><span class="o">.</span><span class="na">totalDrops</span><span class="o">){</span>
-        <span class="c1">// code in here</span>
-<span class="o">}</span>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//set totalDrops to some constant value like 30</span>
+<span class="k">if</span><span class="o">(</span><span class="n">game1</span><span class="o">.</span><span class="na">levelCounter</span> <span class="o">&gt;=</span> <span class="n">game1</span><span class="o">.</span><span class="na">totalDrops</span><span class="o">){</span>
+
+        <span class="c1">//Can we increase the level?</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">game1</span><span class="o">.</span><span class="na">levelIndex</span><span class="o">&lt;</span><span class="n">levels</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+      <span class="n">game1</span><span class="o">.</span><span class="na">levelIndex</span><span class="o">++;</span>
+      <span class="n">currentLevel</span><span class="o">=</span><span class="n">levels</span><span class="o">[</span><span class="n">game1</span><span class="o">.</span><span class="na">levelIndex</span><span class="o">];</span>
+      <span class="n">paddle1</span><span class="o">.</span><span class="na">pWidth</span><span class="o">=</span><span class="n">currentLevel</span><span class="o">.</span><span class="na">paddleWidth</span><span class="o">;</span>
+  <span class="o">}</span>
+
+    <span class="c1">//Reset all game elements We should put this in a game method: resetLevel( )</span>
+
+                 <span class="n">game1</span><span class="o">.</span><span class="na">levelCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+                 <span class="n">game1</span><span class="o">.</span><span class="na">lives</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+
+        <span class="c1">// We don&#39;t want to reset totalDrops to 0!</span>
+        <span class="c1">// game1.totalDrops = 0;   //Don&#39;t reset totalDrops</span>
+
+        <span class="c1">// clear the arraylist of any remaining elements</span>
+        <span class="n">drops</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+
+  <span class="n">timer</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">constrain</span><span class="o">(</span><span class="mi">300</span><span class="o">-</span><span class="n">game1</span><span class="o">.</span><span class="na">levelIndex</span><span class="o">*</span><span class="mi">25</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">300</span><span class="o">));</span>
+
+<span class="o">}</span> <span class="c1">// end if</span>
 </pre></div>
 </div>
 <p>This should provide a good start for how we can change our game so that we&#8217;re using
 ArrayLists to hold our drops instead of using Arrays.</p>
+<p>Make sure that you understand that you need to modify the game logic when you switch
+to using ArrayLists instead of Arrays, the logic should be simplified.</p>
 </div>
 </div>
 
