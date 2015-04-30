@@ -28,7 +28,7 @@ we can define it one time, in the base-class: Drop.  This prevents duplicated co
 program's organization, and makes it easier to extend our program by simplifying the process of
 adding new sub-class objects.
 
-.. _Interface:
+.. _Interface-Def:
 
 Interface:
 -----------
@@ -48,7 +48,8 @@ in any class that implements `Explodable`.
 .. _Function Overloading:
 
 Function Overloading
-------------------
+---------------------
+
 Function overloading occurs when there are several different variations of a single function. 
 Each version of a function must have a unique function signature, specifically, the arguments
 for a function must be unique between function versions, the compiler must be able to determine
