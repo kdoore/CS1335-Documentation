@@ -14,19 +14,19 @@ the interface.
 For our game, we might want to have some of our game drops explode if they hit our paddle. 
 However, if we don't want all of the drops to explode, how can we take advantage of polymorphism, 
 where we have an ArrayList of Drop objects, where some of these objects can explode and 
-some don't explode.  We have defined the Drop class to be an ``abstract class``,  where the
+some don't explode?  We have defined the Drop class to be an ``abstract class``,  where the
 display() method is an abstract method that must be implemented by all child classes.  
 
-We'll have 2 sub-classes, CircleDrop and SquareDrops, where we only want the CircleDrop objects
-to be Explodable; to do this,  we'll have it implement the explode() method from the Explodable
-interface.   
+For the example code below, we have 2 sub-classes, CircleDrop and SquareDrops, where we only want 
+the CircleDrop objectsto be Explodable. To do this,  we'll have it implement the explode() method from
+the Explodable interface.   
 
 To use an interface, first we must define the interface, this is similar to the syntax for defining a class.
 Since an interface is similar to an abstract class, we will only provide method signatures, and no method
-body code for the methods that we are defining for the class. The methods are abstract by default, so the abstract keyword is not required,
-however only the method signature can be part of the interface definition. The second thing we need is a class that will
-implement the interface, and that class must provide method definition code for each method defined in the
-interface that it is implementing. 
+body code for the methods that we are defining for the class. The methods are abstract by default, so the abstract 
+keyword is not required, however only the method signature can be part of the interface definition. The second 
+thing we need is a class that will implement the interface, and that class must provide method definition code 
+for each method defined in the interface that it is implementing. 
 
 Part 1:  Define the interface
 ===============================
@@ -39,8 +39,8 @@ Interface Definition::
 	
 	void explode();  //  method signature only
 	
-	float getExDimension();  // method signature only, provides access to child class attribure
-	
+	float getExDimension();  // method signature only, provides access to child class attribute 
+							 //this is the dimension that we'll expand for explosion display
 	}
 	
 
@@ -81,7 +81,7 @@ using the keyword syntax below:
 	- Interface: implements
 
 The use of Inheritance and Interfaces can be combined, for our project this allows us
-to create a child class that extends Drop, and implements explodable::
+to create a child class that extends Drop, and implements Explodable::
 
     class CircleDrop extends Drop implements Explodable{
     		

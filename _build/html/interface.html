@@ -61,17 +61,17 @@ the interface.</p>
 <p>For our game, we might want to have some of our game drops explode if they hit our paddle.
 However, if we don&#8217;t want all of the drops to explode, how can we take advantage of polymorphism,
 where we have an ArrayList of Drop objects, where some of these objects can explode and
-some don&#8217;t explode.  We have defined the Drop class to be an <code class="docutils literal"><span class="pre">abstract</span> <span class="pre">class</span></code>,  where the
+some don&#8217;t explode?  We have defined the Drop class to be an <code class="docutils literal"><span class="pre">abstract</span> <span class="pre">class</span></code>,  where the
 display() method is an abstract method that must be implemented by all child classes.</p>
-<p>We&#8217;ll have 2 sub-classes, CircleDrop and SquareDrops, where we only want the CircleDrop objects
-to be Explodable; to do this,  we&#8217;ll have it implement the explode() method from the Explodable
-interface.</p>
+<p>For the example code below, we have 2 sub-classes, CircleDrop and SquareDrops, where we only want
+the CircleDrop objectsto be Explodable. To do this,  we&#8217;ll have it implement the explode() method from
+the Explodable interface.</p>
 <p>To use an interface, first we must define the interface, this is similar to the syntax for defining a class.
 Since an interface is similar to an abstract class, we will only provide method signatures, and no method
-body code for the methods that we are defining for the class. The methods are abstract by default, so the abstract keyword is not required,
-however only the method signature can be part of the interface definition. The second thing we need is a class that will
-implement the interface, and that class must provide method definition code for each method defined in the
-interface that it is implementing.</p>
+body code for the methods that we are defining for the class. The methods are abstract by default, so the abstract
+keyword is not required, however only the method signature can be part of the interface definition. The second
+thing we need is a class that will implement the interface, and that class must provide method definition code
+for each method defined in the interface that it is implementing.</p>
 <div class="section" id="part-1-define-the-interface">
 <h2>18.1. Part 1:  Define the interface<a class="headerlink" href="#part-1-define-the-interface" title="Permalink to this headline">¶</a></h2>
 <p>Interface Definition:</p>
@@ -81,8 +81,8 @@ interface that it is implementing.</p>
 
 <span class="kt">void</span> <span class="nf">explode</span><span class="o">();</span>  <span class="c1">//  method signature only</span>
 
-<span class="kt">float</span> <span class="nf">getExDimension</span><span class="o">();</span>  <span class="c1">// method signature only, provides access to child class attribure</span>
-
+<span class="kt">float</span> <span class="nf">getExDimension</span><span class="o">();</span>  <span class="c1">// method signature only, provides access to child class attribute</span>
+                                                 <span class="c1">//this is the dimension that we&#39;ll expand for explosion display</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -124,7 +124,7 @@ using the keyword syntax below:</p>
 </ul>
 </div></blockquote>
 <p>The use of Inheritance and Interfaces can be combined, for our project this allows us
-to create a child class that extends Drop, and implements explodable:</p>
+to create a child class that extends Drop, and implements Explodable:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">CircleDrop</span> <span class="kd">extends</span> <span class="n">Drop</span> <span class="kd">implements</span> <span class="n">Explodable</span><span class="o">{</span>
 
             <span class="kt">float</span> <span class="n">radius</span><span class="o">;</span>

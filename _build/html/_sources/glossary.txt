@@ -9,7 +9,40 @@ Glossary
 Abstract Class
 --------------------
 
-An abstract class is a class that 
+An abstract class is a class that cannot be used to instantiate objects, it is designed specifically
+to be used as a base-class for sub-class inheritance.  Abstract classes provide structure: 
+instance variables and methods, that sub-classes will inherit.  Abstract classes must be extended by base classes,
+they are explicitly designed to function as a base-class.
+
+In addition, abstract classes can have abstract methods, these methods define a contract that 
+child classes must enforce, any child class that extends an abstract class must implement code
+for any abstract methods defined in that class.  Abstract methods allow us to use polymorphism, 
+for our game, we have defined Drop as an abstract class.  This means that we can never create 
+Drop instances.  However, we can create Drop-type references, we can think of these as pointers
+that are of type: Drop.  These reference-pointers can point to any object instances that are from
+a child class of the Drop class, in our game, these would be starfish, stars, jellyfish, etc.  
+The benefit of having Drop as an abstract class is that we can define all common instance variables
+within the Drop class, and we can also define any common methods, where all sub-classes use the
+base-class method.  move( ) is an example of a method that is the same for all sub-classes, so 
+we can define it one time, in the base-class: Drop.  This prevents duplicated code, improves our 
+program's organization, and makes it easier to extend our program by simplifying the process of
+adding new sub-class objects.
+
+.. _Interface:
+
+Interface:
+-----------
+
+An interface is very similar to an abstract class.  Similar to abstract classes, interfaces can't be used to
+create object instances.  In fact, by default, methods of an interface are abstract.  This means that there's 
+only method declaration in an interface. Typically, interfaces don't have variables, however constant variables
+can be defined for use in an interface.  A class must ``implement`` an interface, whereas, a class
+``extends`` other classes when using inheritance.  The important feature of interfaces is that a class
+can implement any number of interfaces, whereas a class can only extend 1 base-class.  Therefore, interfaces
+are used to provide an abstract structure for common concepts such as `comparable`, `clickable`.  For our game
+we developed an `Explodable` interface, and determined that only some of the Drop child classes will
+implement this interface.  The `Explodable` interface has an ``explode()`` method that must be defined
+in any class that implements `Explodable`.
 
 
 .. _Function Overloading:
@@ -90,4 +123,5 @@ to point to a base or parent class object as shown in the last line of code belo
 Static Variables
 -----------------
 Processing does not support traditional static variables, the only way to have static variables
-is to have the entire class declared as a static class.  
+is to have the entire class declared as a static class.  We aren't going to cover Static methods, classes
+or variables in this class, however this is an important concept that will be covered in the next course.
