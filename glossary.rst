@@ -28,6 +28,25 @@ we can define it one time, in the base-class: Drop.  This prevents duplicated co
 program's organization, and makes it easier to extend our program by simplifying the process of
 adding new sub-class objects.
 
+.. _Abstract Methods:
+
+Abstract Methods:
+------------------
+Abstract methods are used in abstract classes and interfaces.  These methods define a contract that 
+child classes must enforce, any child class that extends an abstract class must implement code
+for any abstract methods defined in that class. Similarly, any class that implements an interface
+must provide code to define the methods that are declared in the interface.  Method declaration 
+consists of the signature of a method,  this includes the return type, the method name, and the 
+input parameters for the method.  Abstract methods are methods that have unique meaning for each
+class, such that it makes sense for them to have their detail specified at the sub-class level. The
+use of abstract methods provides a means to define a structure and require that it's enforced by 
+all classes that implement or extend that defined parent-class or interface construct.  In contract,
+there are many methods that will be identical across sub-classes, these should not be abstract
+and should be defined at the base-class level.  There is a defined syntax to specify non-abstract
+methods for interfaces, however this is not supported in Processing, and all interface methods
+are abstract by default in Processing.
+
+
 .. _Interface-Def:
 
 Interface:
@@ -36,7 +55,7 @@ Interface:
 An interface is very similar to an abstract class.  Similar to abstract classes, interfaces can't be used to
 create object instances.  In fact, by default, methods of an interface are abstract.  This means that there's 
 only method declaration in an interface. Typically, interfaces don't have variables, however constant variables
-can be defined for use in an interface.  A class must ``implement`` an interface, whereas, a class
+can be defined for use in an interface.  A class can ``implement`` an interface, whereas, a class can
 ``extends`` other classes when using inheritance.  The important feature of interfaces is that a class
 can implement any number of interfaces, whereas a class can only extend 1 base-class.  Therefore, interfaces
 are used to provide an abstract structure for common concepts such as `comparable`, `clickable`.  For our game
