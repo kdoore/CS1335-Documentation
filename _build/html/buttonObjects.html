@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. Buttons As Objects &mdash; CS1335 Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="8. PVector" href="pVector.html" />
+    <link rel="prev" title="6. Drawing Application" href="drawing.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pVector.html" title="8. PVector"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="drawing.html" title="6. Drawing Application"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="buttons-as-objects">
+<span id="buttonobjects"></span><h1>7. Buttons As Objects<a class="headerlink" href="#buttons-as-objects" title="Permalink to this headline">¶</a></h1>
+<p>In the previous section, we discussed buttons in terms of features like: structure, function, and behaviors.  Then
+we wrote code to implement these features, and this code is what turned a simple geometric shape into a user-interface
+element.  How is a button different than a rectangle?  A button is different than a rectangle only when we write the code
+to make it different.
+It is not difficult to imagine our program&#8217;s buttons as objects because we all have experience using physical buttons
+in our daily routines, and we have an intuitive understanding of how buttons operate.</p>
+<div class="section" id="physical-objects">
+<h2>7.1. Physical Objects<a class="headerlink" href="#physical-objects" title="Permalink to this headline">¶</a></h2>
+<p>When we use a physical button, like the on-off button of a light-switch, we understand that the button has a physical
+configuration that controls electrical current to the bulb.  The physical movement of the switch itself is responsible for controlling
+the state of the lightbulb as well as controlling the state of the switch itself, so we can look at the switch and understand if it&#8217;s
+in the on or off position. However, when we think about a virtual button on a device such as our mobile phone, there is not a tangible,
+physical configuration of the button that controls these behaviors.  To be intuitive for a user, the virtual button should behave analogously
+to the physical version, so it is helpful for us to think of buttons that we create as if they were physical objects.</p>
+</div>
+<div class="section" id="object-responsibilities">
+<h2>7.2. Object Responsibilities<a class="headerlink" href="#object-responsibilities" title="Permalink to this headline">¶</a></h2>
+<p>If we think of our button as a physical object, then it makes sense for our button object to be responsible for it&#8217;s own behaviors and states.
+A physical button has a configuration that controls and indicates if it&#8217;s on or off. For our button, we need to create a <em>state variable</em>, <code class="docutils literal"><span class="pre">on</span></code>,
+so the button object can remember whether it is currently on or off.  Similarly, we want the button to be responsible for responding to user-events
+whether it is  and it&#8217;s display (behavior), and for knowing it&#8217;s current state, size, position and orientation (state and configuration).  Then we
+can have many button instances, each responsible for is own object properties, and the object behaviors (methods) will be consistent across all instances.</p>
+</div>
+<div class="section" id="objects-and-classes">
+<h2>7.3. Objects and Classes<a class="headerlink" href="#objects-and-classes" title="Permalink to this headline">¶</a></h2>
+<p>To create objects, we write code to define a <strong>class</strong>, which we can think of as the <strong>blueprint</strong> for creating objects. When creating objects in code,
+it&#8217;s helpful to think of object responsibilities in terms of what information an object knows about itself, and the behaviors an object can do.
+In our code, we will use <strong>instance variables</strong> to store an object&#8217;s state and configuration information.
+To implement an object&#8217;s behaviors, we&#8217;ll write functions, these are referred to as the object&#8217;s <strong>methods</strong>.  Once we write code to define
+the Button class, then we can create an unlimited number of button objects.  When our code is executed, then the button objects are
+created where the compiler uses the class code as the blueprint.</p>
+</div>
+<div class="section" id="object-class-structure">
+<h2>7.4. Object - Class Structure<a class="headerlink" href="#object-class-structure" title="Permalink to this headline">¶</a></h2>
+<p>The image below is a <strong>UML Class Diagram</strong>.  <a class="reference external" href="http://www.omg.org/gettingstarted/what_is_uml.htm">UML</a> <em>Unified Modeling Language</em> is modeling language specification that provides formal structures
+for designing models of systems.  The <a class="reference external" href="http://www.omg.org/gettingstarted/what_is_uml.htm">UML</a> website states that &#8216;modeling is the designing of software applications before coding.&#8217;</p>
+<img alt="_images/buttonClass2.png" src="_images/buttonClass2.png" />
+<p>The class diagram shows the name of the class, the instance variables, and the methods.  In UML, we can use class diagrams to show relationships between
+several different classes.  There are a wide variety of UML diagrams, some are designed to show structure like this class diagram, while other UML diagrams are
+designed to model behavior and interaction of systems.</p>
+</div>
+<div class="section" id="processing-tabs">
+<h2>7.5. Processing Tabs<a class="headerlink" href="#processing-tabs" title="Permalink to this headline">¶</a></h2>
+<p>Processing provides tabs to allow us to organize our code when using classes, the main tab is the name of the sketch, while each other
+tab should be the name of the class, such as <cite>Button</cite>.  The image below shows the Button tab with the basic code elements which define the
+class.</p>
+<img alt="_images/buttonTab.png" src="_images/buttonTab.png" />
+<p>When looking at the code in a Class definition, we can see a similarity with the structure of code that we&#8217;ve been writing in our previous examples.
+The table below shows these similarities, in the left column, we can see that the code we write in the main tab can be though of as having 3
+sections, the top of our programs is where we declare global variables, then the setup() function is executed once, while the draw() function is where
+the main behavior of our program is typically executed.  When we write code for a class definition, we are required to write our instance variables at
+the top, then we must write the constructor functions, these are similar to setup() in that the constructor for an object is a function that is only executed
+once, when the object is first created and it&#8217;s used to initialize all of the instance variables for our object. Finally, the bottom of the tab contains
+all of the functions / methods that we write for our object&#8217;s behaviors.  Within these methods, we can also have local variables, but they will only exist
+for the duration of that method&#8217;s execution.  The instance variables exist for the life of the object instance, store all of the information about the state and
+configuration of our object instances throughout the duration of an object&#8217;s lifetime.</p>
+<img alt="_images/MainVsClass.png" src="_images/MainVsClass.png" />
+</div>
+<div class="section" id="questions">
+<h2>7.6. Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>What is the difference between a class and an object?</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">7. Buttons As Objects</a><ul>
+<li><a class="reference internal" href="#physical-objects">7.1. Physical Objects</a></li>
+<li><a class="reference internal" href="#object-responsibilities">7.2. Object Responsibilities</a></li>
+<li><a class="reference internal" href="#objects-and-classes">7.3. Objects and Classes</a></li>
+<li><a class="reference internal" href="#object-class-structure">7.4. Object - Class Structure</a></li>
+<li><a class="reference internal" href="#processing-tabs">7.5. Processing Tabs</a></li>
+<li><a class="reference internal" href="#questions">7.6. Questions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="drawing.html"
+                        title="previous chapter">6. Drawing Application</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pVector.html"
+                        title="next chapter">8. PVector</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pVector.html" title="8. PVector"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="drawing.html" title="6. Drawing Application"
+             >previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Karen Doore.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

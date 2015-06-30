@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7. PVector &mdash; CS1335 Documentation</title>
+    <title>8. PVector &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="8. Objects" href="objects.html" />
-    <link rel="prev" title="6. Drawing Application" href="drawing.html" /> 
+    <link rel="next" title="9. Objects" href="objects.html" />
+    <link rel="prev" title="7. Buttons As Objects" href="buttonObjects.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="objects.html" title="8. Objects"
+          <a href="objects.html" title="9. Objects"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="drawing.html" title="6. Drawing Application"
+          <a href="buttonObjects.html" title="7. Buttons As Objects"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,11 +51,11 @@
           <div class="body" role="main">
             
   <div class="section" id="pvector">
-<span id="id1"></span><h1>7. PVector<a class="headerlink" href="#pvector" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>8. PVector<a class="headerlink" href="#pvector" title="Permalink to this headline">¶</a></h1>
 <p>On the processing website, there is a comprehensive <a class="reference external" href="https://processing.org/tutorials/PVector/">PVector tutorial</a> about the PVector object.  The PVector object is used to represent vector objects, and provides data elements and methods for vector math operations. We can consider a vector to be a collection of values that describe some concept that has some spatial dimension, or some properties that have directional components. A vector in mathematics represents the difference between 2 points in space.  When a vector is used to represent a single point&#8217;s location, it is assumed that the 0,0 origin is one of the vector endpoints.  The simple ball bouncing animation below gives an example of using the ball&#8217;s x,y location and adding horizontal speed and vertical speed to the balls current location to animate the motion of the ball.  Location, velocity (speed), and acceleration can all be represented using the PVector object, in addition, a PVector could also represent something like friction which might have different values along different x, y, or z dimensions.  The PVector object has methods to <code class="docutils literal"><span class="pre">add()</span></code> 2 vectors which simplifies working with motion concepts in multiple dimensions.  In addition, the PVector object provides a good introduction to object oriented programming.</p>
 <p><strong>At its core, a PVector is just a convenient way to store two values</strong> <cite>Daniel Shiffman</cite>  <a class="reference external" href="https://processing.org/tutorials/PVector/">PVector tutorial</a></p>
 <div class="section" id="bouncing-ball-no-vectors">
-<h2>7.1. Bouncing Ball - No Vectors<a class="headerlink" href="#bouncing-ball-no-vectors" title="Permalink to this headline">¶</a></h2>
+<h2>8.1. Bouncing Ball - No Vectors<a class="headerlink" href="#bouncing-ball-no-vectors" title="Permalink to this headline">¶</a></h2>
 <p>In the PVector tutorial and in <a class="reference external" href="http://learningprocessing.com">Learning Processing</a> Section 5.7, the example programs create a bouncing ball. The bouncing ball programs provide a good example of how to program object motion.
 The code below is from the Processing.org <cite>PVector tutorial</cite> and it creates a simple bouncing ball.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
@@ -91,7 +91,7 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 </div>
 </div>
 <div class="section" id="bouncing-ball-with-pvector">
-<h2>7.2. Bouncing Ball with PVector<a class="headerlink" href="#bouncing-ball-with-pvector" title="Permalink to this headline">¶</a></h2>
+<h2>8.2. Bouncing Ball with PVector<a class="headerlink" href="#bouncing-ball-with-pvector" title="Permalink to this headline">¶</a></h2>
 <p>The PVector object provides variables to hold the data of the ball&#8217;s location coordinates and also provides methods that allow for easy use of vector operations for movement.  In the code above, the ball&#8217;s location is updated during each loop, so the new location = location + speed, and this is calculated separately for each of our canvas&#8217;s 2 dimensions: x and y.  We can instead use a PVector to hold the location and another PVector to represent speed, and then we can use the PVector add() method to calculate the new location of the ball. Below is the same bouncing ball program using PVectors for location and velocity.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">PVector</span> <span class="n">speed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="mi">1</span> <span class="o">,</span>  <span class="mf">3.3</span><span class="o">);</span>  <span class="c1">// create a new PVector object instance</span>
 <span class="n">PVector</span> <span class="n">location</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span><span class="mi">100</span><span class="o">);</span>
@@ -128,7 +128,7 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 </div></div></blockquote>
 </div>
 <div class="section" id="pvector-object">
-<h2>7.3. PVector Object<a class="headerlink" href="#pvector-object" title="Permalink to this headline">¶</a></h2>
+<h2>8.3. PVector Object<a class="headerlink" href="#pvector-object" title="Permalink to this headline">¶</a></h2>
 <p>The PVector object allows us to explore the processing object syntax.  When we want to create an instance of an object, we use the object&#8217;s constructor function.  According to the processing PVector reference, the PVector class has 3 different constructor functions. Notice that each constructor has a unique function signature, this is an important concept called function overloading.  We can have several versions of the same function, but the signature of each function must be unique. For objects, it&#8217;s helpful to have different constructor functions, for the PVector, this allows it to represent both 2D or 3D vectors depending on how we initialize our instance.</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">PVector</span><span class="o">();</span>  <span class="c1">//default constructor function</span>
 <span class="n">PVector</span><span class="o">(</span><span class="kt">float</span> <span class="n">x</span><span class="o">,</span> <span class="kt">float</span> <span class="n">y</span><span class="o">);</span>  <span class="c1">// 2 dimensional constructor function</span>
@@ -147,7 +147,7 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 </div>
 </div>
 <div class="section" id="object-dot-notation">
-<h2>7.4. Object Dot Notation<a class="headerlink" href="#object-dot-notation" title="Permalink to this headline">¶</a></h2>
+<h2>8.4. Object Dot Notation<a class="headerlink" href="#object-dot-notation" title="Permalink to this headline">¶</a></h2>
 <p>PVector is an object and has both functions and data elements which are associated with that object.  As mentioned above, we use the <cite>dot notation</cite> when accessing and modifying properties of an object.  For PVector, x and y are properties or data elements.  Below is an example of setting a property value for an instance of a PVector object.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">PVector</span> <span class="n">location</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PVector</span><span class="o">();</span>
 <span class="n">location</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>   <span class="c1">// use dot notation to initialize the x property of the location PVector</span>
@@ -164,7 +164,7 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 </div>
 </div>
 <div class="section" id="functions-pass-by-reference">
-<h2>7.5. Functions:  Pass by Reference<a class="headerlink" href="#functions-pass-by-reference" title="Permalink to this headline">¶</a></h2>
+<h2>8.5. Functions:  Pass by Reference<a class="headerlink" href="#functions-pass-by-reference" title="Permalink to this headline">¶</a></h2>
 <p>So far, when we&#8217;ve created functions, we have only used primitive variable types like int, float, booleans, or literal values.  When these values are passed into a function, a copy of the value is passed into the function, so within the function, any modification to a value only affects the local variable.  We&#8217;ve made the distinction between local and global variables based on the understanding that variables passed into a function are a local copy of a global variable, and so any corresponding global variable isn&#8217;t changed when the local function variable is modified. Example of  primitive-type function arguments: <cite>pass-by-value</cite></p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">someVal</span><span class="o">=</span><span class="mi">20</span><span class="o">;</span>  <span class="c1">// declare global variable</span>
 
@@ -201,7 +201,7 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
 <p>So now that we have had experience working with the PVector object, in the next section, let&#8217;s create a very simple ball class so we can create ball objects. Then we&#8217;ll move on to the example in chapter 8, however where the <a class="reference external" href="http://learningprocessing.com">Learning Processing</a> book creates a car class we will make a fish class.</p>
 </div>
 <div class="section" id="questions">
-<h2>7.6. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<h2>8.6. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ol class="arabic">
 <li><p class="first">Which of the following concepts can be represented by a PVector object?  location, velocity, friction, acceleration?</p>
@@ -229,23 +229,23 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">7. PVector</a><ul>
-<li><a class="reference internal" href="#bouncing-ball-no-vectors">7.1. Bouncing Ball - No Vectors</a></li>
-<li><a class="reference internal" href="#bouncing-ball-with-pvector">7.2. Bouncing Ball with PVector</a></li>
-<li><a class="reference internal" href="#pvector-object">7.3. PVector Object</a></li>
-<li><a class="reference internal" href="#object-dot-notation">7.4. Object Dot Notation</a></li>
-<li><a class="reference internal" href="#functions-pass-by-reference">7.5. Functions:  Pass by Reference</a></li>
-<li><a class="reference internal" href="#questions">7.6. Questions:</a></li>
+<li><a class="reference internal" href="#">8. PVector</a><ul>
+<li><a class="reference internal" href="#bouncing-ball-no-vectors">8.1. Bouncing Ball - No Vectors</a></li>
+<li><a class="reference internal" href="#bouncing-ball-with-pvector">8.2. Bouncing Ball with PVector</a></li>
+<li><a class="reference internal" href="#pvector-object">8.3. PVector Object</a></li>
+<li><a class="reference internal" href="#object-dot-notation">8.4. Object Dot Notation</a></li>
+<li><a class="reference internal" href="#functions-pass-by-reference">8.5. Functions:  Pass by Reference</a></li>
+<li><a class="reference internal" href="#questions">8.6. Questions:</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="drawing.html"
-                        title="previous chapter">6. Drawing Application</a></p>
+  <p class="topless"><a href="buttonObjects.html"
+                        title="previous chapter">7. Buttons As Objects</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="objects.html"
-                        title="next chapter">8. Objects</a></p>
+                        title="next chapter">9. Objects</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -270,10 +270,10 @@ The code below is from the Processing.org <cite>PVector tutorial</cite> and it c
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="objects.html" title="8. Objects"
+          <a href="objects.html" title="9. Objects"
              >next</a> |</li>
         <li class="right" >
-          <a href="drawing.html" title="6. Drawing Application"
+          <a href="buttonObjects.html" title="7. Buttons As Objects"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>

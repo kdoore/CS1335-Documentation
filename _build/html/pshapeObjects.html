@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>15. PShape Objects &mdash; CS1335 Documentation</title>
+    <title>16. PShape Objects &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="16. ArrayList" href="arrayList.html" />
-    <link rel="prev" title="14. Arrays of Objects" href="arrayObjects.html" /> 
+    <link rel="next" title="17. ArrayList" href="arrayList.html" />
+    <link rel="prev" title="15. Arrays of Objects" href="arrayObjects.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="arrayList.html" title="16. ArrayList"
+          <a href="arrayList.html" title="17. ArrayList"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="arrayObjects.html" title="14. Arrays of Objects"
+          <a href="arrayObjects.html" title="15. Arrays of Objects"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,13 +51,13 @@
           <div class="body" role="main">
             
   <div class="section" id="pshape-objects">
-<span id="pshapeobjects"></span><h1>15. PShape Objects<a class="headerlink" href="#pshape-objects" title="Permalink to this headline">¶</a></h1>
+<span id="pshapeobjects"></span><h1>16. PShape Objects<a class="headerlink" href="#pshape-objects" title="Permalink to this headline">¶</a></h1>
 <p>The Processing website has a good tutorial about <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> objects, so it&#8217;s advisable that you
 review that tutorial in order to have a basic understanding of <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> objects.  The idea is
 that <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> allows us to create geometric primitives that we can use as objects.  There are
 a variety of ways to use PShape, let&#8217;s start by creating a Star class.</p>
 <div class="section" id="stars">
-<h2>15.1. Stars<a class="headerlink" href="#stars" title="Permalink to this headline">¶</a></h2>
+<h2>16.1. Stars<a class="headerlink" href="#stars" title="Permalink to this headline">¶</a></h2>
 <p>In the Processing <a class="reference external" href="https://processing.org/tutorials/pshape/">PShape</a> tutorial, the authors create a Star class, and they use the createShape(), beginShape()
 and endShape() functions, along with a list of vertices in the Star constructor to create the geometry for the
 Star object.</p>
@@ -122,7 +122,7 @@ The easiest thing to do is to note that we&#8217;ve translated the origin to the
 if we create an ellipse at (0,0) then we&#8217;ll be able to observe where the center is.</p>
 </div>
 <div class="section" id="pshape-using-svg-image-file">
-<h2>15.2. PShape using SVG Image File<a class="headerlink" href="#pshape-using-svg-image-file" title="Permalink to this headline">¶</a></h2>
+<h2>16.2. PShape using SVG Image File<a class="headerlink" href="#pshape-using-svg-image-file" title="Permalink to this headline">¶</a></h2>
 <p>Another way that we can use PShape is to load an .svg file.  There are may sources for .svg files, for
 this project, I&#8217;m using an svg file from <cite>The Noun Project</cite>.  This site has lots of .svg icon files
 that are free for use if you provide proper attribution for the designer of the .svg file.  I&#8217;m using
@@ -136,7 +136,7 @@ programs.</p>
 </div>
 </div>
 <div class="section" id="edit-svg-files">
-<h2>15.3. Edit SVG Files<a class="headerlink" href="#edit-svg-files" title="Permalink to this headline">¶</a></h2>
+<h2>16.3. Edit SVG Files<a class="headerlink" href="#edit-svg-files" title="Permalink to this headline">¶</a></h2>
 <p>There are 2 ways that we can edit .svg files.  Since .svg files are a standardized data format file
 that list vertices for geometry and font elements, we can open the files in either a vector software
 system like Adobe Illustrator, or Inkscape.  We can also open the files in any text editor like notePad
@@ -169,7 +169,7 @@ order to load the image.</p>
 </div></blockquote>
 </div>
 <div class="section" id="svg-origin">
-<h2>15.4. SVG Origin<a class="headerlink" href="#svg-origin" title="Permalink to this headline">¶</a></h2>
+<h2>16.4. SVG Origin<a class="headerlink" href="#svg-origin" title="Permalink to this headline">¶</a></h2>
 <p>With SVG files, the x,y position refers to the top left corner of the svg file.  If you open the
 svg file in a text editor, you can read the width and height dimensions of the svg.  Those can help us
 when we try to determine the bounding box for collision detection.  Below is the display function
@@ -191,7 +191,7 @@ canvas origin to the svg corner point, then we&#8217;ll draw the rectangle at (0
 </div>
 </div>
 <div class="section" id="bounding-box">
-<h2>15.5. Bounding Box<a class="headerlink" href="#bounding-box" title="Permalink to this headline">¶</a></h2>
+<h2>16.5. Bounding Box<a class="headerlink" href="#bounding-box" title="Permalink to this headline">¶</a></h2>
 <p>In order to determine if we have a collision with the paddle, we need to define a bounding box
 for our PShape object that we&#8217;ll use to determine contact with the Paddle object.  Shiffman&#8217;s
 game used circular objects, and determining intersection with circular objects is a bit easier than
@@ -208,22 +208,22 @@ of our .svg file, this corresponds to the upper-upper left corner of the shape.<
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">15. PShape Objects</a><ul>
-<li><a class="reference internal" href="#stars">15.1. Stars</a></li>
-<li><a class="reference internal" href="#pshape-using-svg-image-file">15.2. PShape using SVG Image File</a></li>
-<li><a class="reference internal" href="#edit-svg-files">15.3. Edit SVG Files</a></li>
-<li><a class="reference internal" href="#svg-origin">15.4. SVG Origin</a></li>
-<li><a class="reference internal" href="#bounding-box">15.5. Bounding Box</a></li>
+<li><a class="reference internal" href="#">16. PShape Objects</a><ul>
+<li><a class="reference internal" href="#stars">16.1. Stars</a></li>
+<li><a class="reference internal" href="#pshape-using-svg-image-file">16.2. PShape using SVG Image File</a></li>
+<li><a class="reference internal" href="#edit-svg-files">16.3. Edit SVG Files</a></li>
+<li><a class="reference internal" href="#svg-origin">16.4. SVG Origin</a></li>
+<li><a class="reference internal" href="#bounding-box">16.5. Bounding Box</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="arrayObjects.html"
-                        title="previous chapter">14. Arrays of Objects</a></p>
+                        title="previous chapter">15. Arrays of Objects</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="arrayList.html"
-                        title="next chapter">16. ArrayList</a></p>
+                        title="next chapter">17. ArrayList</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -248,10 +248,10 @@ of our .svg file, this corresponds to the upper-upper left corner of the shape.<
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="arrayList.html" title="16. ArrayList"
+          <a href="arrayList.html" title="17. ArrayList"
              >next</a> |</li>
         <li class="right" >
-          <a href="arrayObjects.html" title="14. Arrays of Objects"
+          <a href="arrayObjects.html" title="15. Arrays of Objects"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>

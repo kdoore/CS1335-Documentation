@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8. Objects &mdash; CS1335 Documentation</title>
+    <title>9. Objects &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="9. Game Programming" href="game-design.html" />
-    <link rel="prev" title="7. PVector" href="pVector.html" /> 
+    <link rel="next" title="10. More Objects" href="moreObjects.html" />
+    <link rel="prev" title="8. PVector" href="pVector.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="9. Game Programming"
+          <a href="moreObjects.html" title="10. More Objects"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="pVector.html" title="7. PVector"
+          <a href="pVector.html" title="8. PVector"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="objects">
-<span id="id1"></span><h1>8. Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>9. Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h1>
 <p>In the previous section we used the PVector object to create a bouncing ball animation and learned about dot notation used by objects to access object properties and object methods.  Now we&#8217;re ready to create our first object, and we do this by creating a <code class="docutils literal"><span class="pre">class</span></code>.  A <code class="docutils literal"><span class="pre">class</span></code> is the specification of all of the information for our object, we create a <code class="docutils literal"><span class="pre">class</span></code> to define our object&#8217;s properties and methods, so we can consider that a <code class="docutils literal"><span class="pre">class</span></code> is like a recipe to make instances of objects.  In <a class="reference external" href="http://www.learningprocessing.com">Shiffman&#8217;s book</a>, he gives an analogy of the class definition as being like a cookie cutter, and a particular instance of an object being a cookie.  In the code below, the Ball class would be the cookie cutter and a single ball object that&#8217;s created using the constructor syntax would be like a cookie.</p>
 <p>For our bouncing ball, we can try to come up with a set of properties and behaviors that we will use to represent our ball in our program.  There are many other features of a ball that we&#8217;re going to ignore as we try to come up with an abstract concept of a bouncing ball&#8217;s features.  We can ignore whether the ball was made by an artist, or whether it came in a box when purchased.  We can ignore whether it&#8217;s old and dirty, or brand new and shiny.  For our simple example of a bouncing ball, we&#8217;ll limit our description to the following properties and behaviors:</p>
 <blockquote>
@@ -62,7 +62,7 @@
 </ul>
 </div></blockquote>
 <div class="section" id="ball-class">
-<h2>8.1. Ball Class<a class="headerlink" href="#ball-class" title="Permalink to this headline">¶</a></h2>
+<h2>9.1. Ball Class<a class="headerlink" href="#ball-class" title="Permalink to this headline">¶</a></h2>
 <p>We&#8217;ll continue with the last example of a bouncing ball for our first class.  The syntax for a creating a class involves first naming the class, and this introduces a completely new type of syntax:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
 
@@ -106,7 +106,7 @@
 </div>
 </div>
 <div class="section" id="pvector-ball-class">
-<h2>8.2. PVector Ball Class<a class="headerlink" href="#pvector-ball-class" title="Permalink to this headline">¶</a></h2>
+<h2>9.2. PVector Ball Class<a class="headerlink" href="#pvector-ball-class" title="Permalink to this headline">¶</a></h2>
 <p>Let&#8217;s define the Ball class using PVectors and see what that looks like.  We will need to initialize our PVector objects as part of the object constructor functions.  Again here we have defined 2 different constructors.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
   <span class="c1">// Variables</span>
@@ -132,7 +132,7 @@
 </div>
 </div>
 <div class="section" id="class-methods">
-<h2>8.3. Class Methods<a class="headerlink" href="#class-methods" title="Permalink to this headline">¶</a></h2>
+<h2>9.3. Class Methods<a class="headerlink" href="#class-methods" title="Permalink to this headline">¶</a></h2>
 <p>Then the final part of the class definition is that we need to define methods for the class, these methods are the code we&#8217;ll write to create the behaviors for our ball.  As mentioned in the previous section, it&#8217;s convenient to create a method that will allow you to print out the values for the Ball Ojbect&#8217;s property values that might be changing during a program execution, one way to do that is to create a function called <code class="docutils literal"><span class="pre">toString()</span></code> as shown below, this can be called from the processing global print() function because it takes a string as an input argument. This code would be included within the Ball class tab.</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">// class methods</span>
   <span class="kt">void</span> <span class="nf">display</span><span class="o">(){</span>
@@ -157,7 +157,7 @@
 </div>
 </div>
 <div class="section" id="main-sketch">
-<h2>8.4. Main Sketch<a class="headerlink" href="#main-sketch" title="Permalink to this headline">¶</a></h2>
+<h2>9.4. Main Sketch<a class="headerlink" href="#main-sketch" title="Permalink to this headline">¶</a></h2>
 <p>Then, let&#8217;s include the code that is in the main sketch page where we&#8217;ll actually create our Ball object instance:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">Ball</span> <span class="n">myBall</span><span class="o">;</span>
 
@@ -242,7 +242,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="questions">
-<h2>8.5. Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<h2>9.5. Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ol class="arabic simple">
 <li>Can you modify the speed attribute of a ball so that it&#8217;s speed is dependent on the diameter of the ball?  Smaller Balls move faster than bigger ones?</li>
@@ -260,22 +260,22 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">8. Objects</a><ul>
-<li><a class="reference internal" href="#ball-class">8.1. Ball Class</a></li>
-<li><a class="reference internal" href="#pvector-ball-class">8.2. PVector Ball Class</a></li>
-<li><a class="reference internal" href="#class-methods">8.3. Class Methods</a></li>
-<li><a class="reference internal" href="#main-sketch">8.4. Main Sketch</a></li>
-<li><a class="reference internal" href="#questions">8.5. Questions</a></li>
+<li><a class="reference internal" href="#">9. Objects</a><ul>
+<li><a class="reference internal" href="#ball-class">9.1. Ball Class</a></li>
+<li><a class="reference internal" href="#pvector-ball-class">9.2. PVector Ball Class</a></li>
+<li><a class="reference internal" href="#class-methods">9.3. Class Methods</a></li>
+<li><a class="reference internal" href="#main-sketch">9.4. Main Sketch</a></li>
+<li><a class="reference internal" href="#questions">9.5. Questions</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="pVector.html"
-                        title="previous chapter">7. PVector</a></p>
+                        title="previous chapter">8. PVector</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="game-design.html"
-                        title="next chapter">9. Game Programming</a></p>
+  <p class="topless"><a href="moreObjects.html"
+                        title="next chapter">10. More Objects</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -300,10 +300,10 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="game-design.html" title="9. Game Programming"
+          <a href="moreObjects.html" title="10. More Objects"
              >next</a> |</li>
         <li class="right" >
-          <a href="pVector.html" title="7. PVector"
+          <a href="pVector.html" title="8. PVector"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>

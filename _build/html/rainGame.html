@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10. Rain Catcher Game &mdash; CS1335 Documentation</title>
+    <title>11. Rain Catcher Game &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="11. Paddle Drop Game" href="paddleDropGame.html" />
-    <link rel="prev" title="9. More Objects" href="moreObjects.html" /> 
+    <link rel="next" title="12. Paddle Drop Game" href="paddleDropGame.html" />
+    <link rel="prev" title="10. More Objects" href="moreObjects.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="paddleDropGame.html" title="11. Paddle Drop Game"
+          <a href="paddleDropGame.html" title="12. Paddle Drop Game"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="moreObjects.html" title="9. More Objects"
+          <a href="moreObjects.html" title="10. More Objects"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="rain-catcher-game">
-<span id="raingame"></span><h1>10. Rain Catcher Game<a class="headerlink" href="#rain-catcher-game" title="Permalink to this headline">¶</a></h1>
+<span id="raingame"></span><h1>11. Rain Catcher Game<a class="headerlink" href="#rain-catcher-game" title="Permalink to this headline">¶</a></h1>
 <p>In Shiffman&#8217;s book, he creates a very simple game based on a simple ball-like objects
 and a few other simple objects like a timer object and a catcher object.  He uses arrays
 of objects so that we can use a loop to update objects for each iteration of the draw loop.</p>
@@ -62,7 +62,7 @@ program that we&#8217;re trying to create.  Let&#8217;s follow Shiffman&#8217;s 
 RainCatcher game.  Below he specifies the details of the game.</dd>
 </dl>
 <div class="section" id="rain-game-code">
-<h2>10.1. Rain Game Code<a class="headerlink" href="#rain-game-code" title="Permalink to this headline">¶</a></h2>
+<h2>11.1. Rain Game Code<a class="headerlink" href="#rain-game-code" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>The object of this game is to catch raindrops before they hit the ground.
 Every so often (depending on the level of difficulty), a new drop falls from the top
@@ -81,7 +81,7 @@ the bottom of the screen</p>
 </div></blockquote>
 </div>
 <div class="section" id="psudocode">
-<h2>10.2. Psudocode<a class="headerlink" href="#psudocode" title="Permalink to this headline">¶</a></h2>
+<h2>11.2. Psudocode<a class="headerlink" href="#psudocode" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>Psudocode is a way to write the main concepts for the program</p>
 <dl class="docutils">
@@ -95,7 +95,7 @@ Display catcher</dd>
 </div></blockquote>
 </div>
 <div class="section" id="catcher-class-code">
-<h2>10.3. Catcher Class Code<a class="headerlink" href="#catcher-class-code" title="Permalink to this headline">¶</a></h2>
+<h2>11.3. Catcher Class Code<a class="headerlink" href="#catcher-class-code" title="Permalink to this headline">¶</a></h2>
 <p>Here is code for the Catcher class:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Catcher</span><span class="o">{</span>
 <span class="kt">float</span> <span class="n">r</span><span class="o">;</span>  <span class="c1">//radius</span>
@@ -125,7 +125,7 @@ This is an important function of a constructor:  to create any objects that are 
 class.  We can&#8217;t use any of these objects until they&#8217;ve been initialized.</p>
 </div>
 <div class="section" id="ball-class-code">
-<h2>10.4. Ball Class Code<a class="headerlink" href="#ball-class-code" title="Permalink to this headline">¶</a></h2>
+<h2>11.4. Ball Class Code<a class="headerlink" href="#ball-class-code" title="Permalink to this headline">¶</a></h2>
 <p>Here is the code for the Ball class  Note that we&#8217;re using PVector for speed and location:</p>
 <div class="highlight-Java"><div class="highlight"><pre>     <span class="kd">class</span> <span class="nc">Ball</span><span class="o">{</span>
 
@@ -194,7 +194,7 @@ have your object methods designed to perform one well defined task.  If we have 
 we can also call methods from within other methods if it makes our code easier to understand.</p>
 </div>
 <div class="section" id="timer-class-code">
-<h2>10.5. Timer Class Code<a class="headerlink" href="#timer-class-code" title="Permalink to this headline">¶</a></h2>
+<h2>11.5. Timer Class Code<a class="headerlink" href="#timer-class-code" title="Permalink to this headline">¶</a></h2>
 <p>Here is the code for the timer class.  It uses the processing function <code class="docutils literal"><span class="pre">millis()</span></code> which counts milliseconds since the sketch started.  Shiffman uses
 the timer to generate an event to create a new Drop that can fall from the top of the canvas.</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Timer</span><span class="o">{</span>
@@ -227,7 +227,7 @@ the timer to generate an event to create a new Drop that can fall from the top o
 </div>
 </div>
 <div class="section" id="object-inheritance">
-<h2>10.6. Object Inheritance<a class="headerlink" href="#object-inheritance" title="Permalink to this headline">¶</a></h2>
+<h2>11.6. Object Inheritance<a class="headerlink" href="#object-inheritance" title="Permalink to this headline">¶</a></h2>
 <p>Here, we are going to use <a class="reference internal" href="glossary.html#object-inheritance"><em>Object Inheritance</em></a> is the code for the Drop class, it is a child class of the Ball class and it inherits the instance variables
 and methods from the Ball class.  we use the <code class="docutils literal"><span class="pre">super</span></code> keyword to refer to methods in the parent Ball class:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Drop</span> <span class="kd">extends</span> <span class="n">Ball</span><span class="o">{</span>
@@ -275,7 +275,7 @@ methods and instance parameters of the <code class="docutils literal"><span clas
 will be executed.</p>
 </div>
 <div class="section" id="the-main-program">
-<h2>10.7. The Main Program<a class="headerlink" href="#the-main-program" title="Permalink to this headline">¶</a></h2>
+<h2>11.7. The Main Program<a class="headerlink" href="#the-main-program" title="Permalink to this headline">¶</a></h2>
 <p>Here is a start of a main program where we are testing each of our classes.  It&#8217;s important to
 keep straight the fact that we&#8217;re declaring our classes in separate tabs, but all of the code
 to execute the program is all contained in the first processing tab.  In that tab, we have our
@@ -329,7 +329,7 @@ based on whether a falling drop object intersects with the paddle.  We&#8217;ll 
 the next section.</p>
 </div>
 <div class="section" id="test-driven-development">
-<h2>10.8. Test Driven Development<a class="headerlink" href="#test-driven-development" title="Permalink to this headline">¶</a></h2>
+<h2>11.8. Test Driven Development<a class="headerlink" href="#test-driven-development" title="Permalink to this headline">¶</a></h2>
 <p>Below is an example of the program, here we&#8217;re just testing the code for each object that
 we&#8217;ve created.  It&#8217;s a good idea to create your code in an incremental manner, so that you
 can discover errors early on.  For each section of code that you create, identify some way
@@ -341,7 +341,7 @@ tests is actually written before the code that you will be testing.</p>
 <iframe width="328" height="380" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/190172/embed/?width=300&height=300&border=true"></iframe>
 </div></div>
 <div class="section" id="questions">
-<h2>10.9. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<h2>11.9. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ol class="arabic simple">
 <li>How can we test whether the method <code class="docutils literal"><span class="pre">isIntersecting(</span> <span class="pre">)</span></code> works correctly?</li>
@@ -359,26 +359,26 @@ tests is actually written before the code that you will be testing.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">10. Rain Catcher Game</a><ul>
-<li><a class="reference internal" href="#rain-game-code">10.1. Rain Game Code</a></li>
-<li><a class="reference internal" href="#psudocode">10.2. Psudocode</a></li>
-<li><a class="reference internal" href="#catcher-class-code">10.3. Catcher Class Code</a></li>
-<li><a class="reference internal" href="#ball-class-code">10.4. Ball Class Code</a></li>
-<li><a class="reference internal" href="#timer-class-code">10.5. Timer Class Code</a></li>
-<li><a class="reference internal" href="#object-inheritance">10.6. Object Inheritance</a></li>
-<li><a class="reference internal" href="#the-main-program">10.7. The Main Program</a></li>
-<li><a class="reference internal" href="#test-driven-development">10.8. Test Driven Development</a></li>
-<li><a class="reference internal" href="#questions">10.9. Questions:</a></li>
+<li><a class="reference internal" href="#">11. Rain Catcher Game</a><ul>
+<li><a class="reference internal" href="#rain-game-code">11.1. Rain Game Code</a></li>
+<li><a class="reference internal" href="#psudocode">11.2. Psudocode</a></li>
+<li><a class="reference internal" href="#catcher-class-code">11.3. Catcher Class Code</a></li>
+<li><a class="reference internal" href="#ball-class-code">11.4. Ball Class Code</a></li>
+<li><a class="reference internal" href="#timer-class-code">11.5. Timer Class Code</a></li>
+<li><a class="reference internal" href="#object-inheritance">11.6. Object Inheritance</a></li>
+<li><a class="reference internal" href="#the-main-program">11.7. The Main Program</a></li>
+<li><a class="reference internal" href="#test-driven-development">11.8. Test Driven Development</a></li>
+<li><a class="reference internal" href="#questions">11.9. Questions:</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="moreObjects.html"
-                        title="previous chapter">9. More Objects</a></p>
+                        title="previous chapter">10. More Objects</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="paddleDropGame.html"
-                        title="next chapter">11. Paddle Drop Game</a></p>
+                        title="next chapter">12. Paddle Drop Game</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -403,10 +403,10 @@ tests is actually written before the code that you will be testing.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="paddleDropGame.html" title="11. Paddle Drop Game"
+          <a href="paddleDropGame.html" title="12. Paddle Drop Game"
              >next</a> |</li>
         <li class="right" >
-          <a href="moreObjects.html" title="9. More Objects"
+          <a href="moreObjects.html" title="10. More Objects"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>

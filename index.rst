@@ -19,6 +19,7 @@ Contents:
 	hsbSlider
 	buttons
 	drawing
+	buttonObjects
 	pVector
 	objects
 	moreObjects
