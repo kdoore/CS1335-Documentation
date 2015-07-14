@@ -265,7 +265,9 @@ and it means that when a child class has code that implements the same method th
 parent class, then it is the child method code which is executed, if a child object calls that method.  
 In essence, we end up with 2 different versions of one method, each with the same function signature, 
 but with different code within the function	body.  So we need to understand the rules the compiler uses 
-when determining which method to execute.  So, to summarize, when an object from a child class executes 
+when determining which method to execute.  
+
+So, to summarize, when an object from a child class executes 
 a method call, the compiler first looks in the class definition for the child object to see if that 
 method is implemented in the child class, if so, then that's the version that is executed.
 This a major benefit of using inheritance, we only need to make changes to methods or features that are different 
