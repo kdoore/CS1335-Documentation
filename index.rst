@@ -19,10 +19,12 @@ Contents:
 	hsbSlider
 	buttons
 	drawing
+	buttonObjects
 	pVector
 	objects
 	moreObjects
 	rainGame
+	project2a
 	paddleDropGame
 	paddle
 	inheritance

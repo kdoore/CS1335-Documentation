@@ -16,7 +16,9 @@ In this project, we'll look at button states like hover, pressed, and clicked, a
 		
 		Structure: 
 			- Square defines activation area 
-			- Circle fill and stroke changes to indicate behavior and state 
+			- Circle fill and stroke changes to indicate behavior and state
+			- Position is defined with x,y coordinates on the canvas
+			- Size is defined by some width and height values 
 
 Here, we will use global variables to maintain these button states, yet intuitively, it would make sense that the button display state information should only be used within the code to display the button.
 

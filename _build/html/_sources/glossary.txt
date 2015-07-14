@@ -7,7 +7,7 @@ Glossary
 .. _Abstract Class:
 
 Abstract Class
---------------------
+-----------------
 
 An abstract class is a class that cannot be used to instantiate objects, it is designed specifically
 to be used as a base-class for sub-class inheritance.  Abstract classes provide structure: 
@@ -56,8 +56,8 @@ An interface is very similar to an abstract class.  Similar to abstract classes,
 create object instances.  In fact, by default, methods of an interface are abstract.  This means that there's 
 only method declaration in an interface. Typically, interfaces don't have variables, however constant variables
 can be defined for use in an interface.  A class can ``implement`` an interface, whereas, a class can
-``extends`` other classes when using inheritance.  The important feature of interfaces is that a class
-can implement any number of interfaces, whereas a class can only extend 1 base-class.  Therefore, interfaces
+``extend`` other classes when using inheritance.  The important feature of interfaces is that a class
+can implement a unlimited number of interfaces, whereas a class can only extend 1 base-class in Processing.  Therefore, interfaces
 are used to provide an abstract structure for common concepts such as `comparable`, `clickable`.  For our game
 we developed an `Explodable` interface, and determined that only some of the Drop child classes will
 implement this interface.  The `Explodable` interface has an ``explode()`` method that must be defined
@@ -114,8 +114,6 @@ between these types of objects in our program.  We can do this by using the spec
 we define the Dog and Cat classes, where we would need to first define the Animal class.  The benefit of using inheritance
 in our programs is that we can eliminate duplicate code, and we can also use polymorphism as defined below to allow the 
 use of the base class as a way to reference sub-class objects.
-
-
 
 .. _Polymorphism:
 

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>11. Paddle Drop Game &mdash; CS1335 Documentation</title>
+    <title>13. Paddle Drop Game &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="12. Paddle Object" href="paddle.html" />
-    <link rel="prev" title="10. Rain Catcher Game" href="rainGame.html" /> 
+    <link rel="next" title="14. Paddle Object" href="paddle.html" />
+    <link rel="prev" title="12. CS1335 - Spr 15 - Project 2a" href="project2a.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="paddle.html" title="12. Paddle Object"
+          <a href="paddle.html" title="14. Paddle Object"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="rainGame.html" title="10. Rain Catcher Game"
+          <a href="project2a.html" title="12. CS1335 - Spr 15 - Project 2a"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="paddle-drop-game">
-<span id="paddledropgame"></span><h1>11. Paddle Drop Game<a class="headerlink" href="#paddle-drop-game" title="Permalink to this headline">¶</a></h1>
+<span id="paddledropgame"></span><h1>13. Paddle Drop Game<a class="headerlink" href="#paddle-drop-game" title="Permalink to this headline">¶</a></h1>
 <p>Based on <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDropGame, and on the program code for Learning Processing: <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4">exercise 10.4</a>,
 we want to build a slightly more complicated game based on this program.  Our game will use a paddle
 object to try and catch the falling drops.  We&#8217;ll also use <a class="reference internal" href="glossary.html#object-inheritance"><em>Object Inheritance</em></a> to have several different
@@ -60,7 +60,7 @@ interesting drop objects.  Also, we&#8217;ll use a Game class for methods and va
 this will include Button class to start the game and to allow the game to be reset.  A more advanced
 version of the game could also include gameLevels and other more advanced features</p>
 <div class="section" id="planning">
-<h2>11.1. Planning<a class="headerlink" href="#planning" title="Permalink to this headline">¶</a></h2>
+<h2>13.1. Planning<a class="headerlink" href="#planning" title="Permalink to this headline">¶</a></h2>
 <p>To begin design of our game, let&#8217;s look at the changes we&#8217;ll need to make, to modify
 <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> exercise 10.4 project code. In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> project, he has all of the game type
 code simply implemented within the processing draw loop.  We&#8217;d like to re-factor his program and
@@ -69,7 +69,7 @@ If we look at his Draw loop code, we can see that he&#8217;s incrementing a scor
 keeping track of misses, etc.  So, let&#8217;s create a Game Class, initially we can begin with the following
 instance variables, we will probably expand on these at some point:</p>
 <div class="section" id="game-instance-variables">
-<h3>11.1.1. Game: Instance Variables<a class="headerlink" href="#game-instance-variables" title="Permalink to this headline">¶</a></h3>
+<h3>13.1.1. Game: Instance Variables<a class="headerlink" href="#game-instance-variables" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>score: <code class="docutils literal"><span class="pre">int</span></code></li>
 <li>gameState: <code class="docutils literal"><span class="pre">int</span></code></li>
@@ -90,7 +90,7 @@ these are values that shouldn&#8217;t be changed within the program</p>
 imagine we&#8217;ll need the following methods:</p>
 </div>
 <div class="section" id="game-methods">
-<h3>11.1.2. Game: Methods<a class="headerlink" href="#game-methods" title="Permalink to this headline">¶</a></h3>
+<h3>13.1.2. Game: Methods<a class="headerlink" href="#game-methods" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>display( ) : <code class="docutils literal"><span class="pre">void</span></code></li>
 <li>reset( )   : <code class="docutils literal"><span class="pre">void</span></code></li>
@@ -99,7 +99,7 @@ imagine we&#8217;ll need the following methods:</p>
 </div>
 </div>
 <div class="section" id="game-button-objects">
-<h2>11.2. Game Button Objects<a class="headerlink" href="#game-button-objects" title="Permalink to this headline">¶</a></h2>
+<h2>13.2. Game Button Objects<a class="headerlink" href="#game-button-objects" title="Permalink to this headline">¶</a></h2>
 <p>If we want to include some Button objects in our game, like a startButton and a resetButton,
 then we&#8217;ll need to look at what a Button object would look like.  Shiffman provides an example of
 a Button object in <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-9/excercise-9-8">Exercise 9.8</a>  To integrate the a start button in the Game class, it&#8217;s
@@ -116,7 +116,7 @@ values because we are using the position to determine if the button has been cli
 </div>
 </div>
 <div class="section" id="game-display-buttons">
-<h2>11.3. Game Display - Buttons<a class="headerlink" href="#game-display-buttons" title="Permalink to this headline">¶</a></h2>
+<h2>13.3. Game Display - Buttons<a class="headerlink" href="#game-display-buttons" title="Permalink to this headline">¶</a></h2>
 <p>Then, in the Display method for the game, we can display the buttons depending on what
 the gameState is:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the Game class tab</span>
@@ -148,7 +148,7 @@ the gameState is:</p>
 </div>
 </div>
 <div class="section" id="button-state">
-<h2>11.4. Button State<a class="headerlink" href="#button-state" title="Permalink to this headline">¶</a></h2>
+<h2>13.4. Button State<a class="headerlink" href="#button-state" title="Permalink to this headline">¶</a></h2>
 <p>The button objects have a display method which we&#8217;ve called above in the game.display( ) method. So, the
 button knows what to look like based on it&#8217;s internal state.  That is the button&#8217;s responsibility.  However
 the main reason that we want to use a button is so we can change something in the program whenever someone
@@ -167,7 +167,7 @@ that is boolean: on, which is either true or false.  This state is changed when 
 </div>
 </div>
 <div class="section" id="game-button-integration">
-<h2>11.5. Game Button Integration<a class="headerlink" href="#game-button-integration" title="Permalink to this headline">¶</a></h2>
+<h2>13.5. Game Button Integration<a class="headerlink" href="#game-button-integration" title="Permalink to this headline">¶</a></h2>
 <p>Now we need to figure out how to integrate the button event handler into the game.  So, if we look
 back at the main program code, we have a MouseClicked( ) event and this is where the game.startButton.click()
 code must be located so it&#8217;s executed when the user clicks the mouse.  There are 2 different types of game
@@ -203,7 +203,7 @@ back to false. See the code below:</p>
 </div>
 </div>
 <div class="section" id="game-instance">
-<h2>11.6. Game Instance<a class="headerlink" href="#game-instance" title="Permalink to this headline">¶</a></h2>
+<h2>13.6. Game Instance<a class="headerlink" href="#game-instance" title="Permalink to this headline">¶</a></h2>
 <p>All of the above code assumes that we will define, initialize and utilize a Game object in
 the main program tab. Since we need access in the draw loop, as usual, we&#8217;ll declare the object
 above the setup function, initialize in the setup function, and then use in the draw loop:</p>
@@ -252,16 +252,16 @@ above the setup function, initialize in the setup function, and then use in the 
 </div>
 </div>
 <div class="section" id="inheritance">
-<h2>11.7. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
+<h2>13.7. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="child-classes-of-the-drop-class">
-<h3>11.7.1. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h3>
+<h3>13.7.1. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h3>
 <p>The next modification for our game is that we&#8217;re going to use several different drop types.
 So, we&#8217;ll have 2 different classes that inherit from the Drop class.  Let&#8217;s say we&#8217;ll have SeaHorses
 and Stars.  Since the behavior of these objects will be almost identical to <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> Drop class,
 it makes sense for us to use object inheritance when defining these objects.</p>
 </div>
 <div class="section" id="method-override">
-<h3>11.7.2. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h3>
+<h3>13.7.2. Method Override<a class="headerlink" href="#method-override" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s obvious that these objects will have unique display() methods which display their unique
 shapes.  Other methods like move() might be identical to the Drop method: move( ).</p>
 <p>When one class inherits from another class, any method that is not specified in the child
@@ -298,7 +298,7 @@ code class code below:</p>
 </div>
 </div>
 <div class="section" id="making-drops">
-<h3>11.7.3. Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
+<h3>13.7.3. Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
 <p>In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, there are several important distinctions we need to think about, which control
 the structure and behavior of our game, in <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, this structure is created in the main
 program tab.  The general idea is that he has an array:  drops[] that stores the Drop objects,
@@ -344,7 +344,7 @@ types of drops so we&#8217;ll take advantage of the idea that inheritance allows
 </div>
 </div>
 <div class="section" id="polymorphism">
-<h2>11.8. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<h2>13.8. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>As discussed above, we used inheritance to extend the Drop class, we created a child class: Seahorse.
 So, the beauty of this is that we can now put Seahorse objects in an array of that has been declared to contain Drop objects.
 This is polymorphism, it means that a parent class &#8216;reference&#8217; can be used to refer to a sub-class object.  So, we can do the
@@ -431,34 +431,34 @@ should at least convey the idea of how this might be implemented:</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">11. Paddle Drop Game</a><ul>
-<li><a class="reference internal" href="#planning">11.1. Planning</a><ul>
-<li><a class="reference internal" href="#game-instance-variables">11.1.1. Game: Instance Variables</a></li>
-<li><a class="reference internal" href="#game-methods">11.1.2. Game: Methods</a></li>
+<li><a class="reference internal" href="#">13. Paddle Drop Game</a><ul>
+<li><a class="reference internal" href="#planning">13.1. Planning</a><ul>
+<li><a class="reference internal" href="#game-instance-variables">13.1.1. Game: Instance Variables</a></li>
+<li><a class="reference internal" href="#game-methods">13.1.2. Game: Methods</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#game-button-objects">11.2. Game Button Objects</a></li>
-<li><a class="reference internal" href="#game-display-buttons">11.3. Game Display - Buttons</a></li>
-<li><a class="reference internal" href="#button-state">11.4. Button State</a></li>
-<li><a class="reference internal" href="#game-button-integration">11.5. Game Button Integration</a></li>
-<li><a class="reference internal" href="#game-instance">11.6. Game Instance</a></li>
-<li><a class="reference internal" href="#inheritance">11.7. Inheritance</a><ul>
-<li><a class="reference internal" href="#child-classes-of-the-drop-class">11.7.1. Child classes of the Drop Class</a></li>
-<li><a class="reference internal" href="#method-override">11.7.2. Method Override</a></li>
-<li><a class="reference internal" href="#making-drops">11.7.3. Making Drops</a></li>
+<li><a class="reference internal" href="#game-button-objects">13.2. Game Button Objects</a></li>
+<li><a class="reference internal" href="#game-display-buttons">13.3. Game Display - Buttons</a></li>
+<li><a class="reference internal" href="#button-state">13.4. Button State</a></li>
+<li><a class="reference internal" href="#game-button-integration">13.5. Game Button Integration</a></li>
+<li><a class="reference internal" href="#game-instance">13.6. Game Instance</a></li>
+<li><a class="reference internal" href="#inheritance">13.7. Inheritance</a><ul>
+<li><a class="reference internal" href="#child-classes-of-the-drop-class">13.7.1. Child classes of the Drop Class</a></li>
+<li><a class="reference internal" href="#method-override">13.7.2. Method Override</a></li>
+<li><a class="reference internal" href="#making-drops">13.7.3. Making Drops</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#polymorphism">11.8. Polymorphism</a></li>
+<li><a class="reference internal" href="#polymorphism">13.8. Polymorphism</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="rainGame.html"
-                        title="previous chapter">10. Rain Catcher Game</a></p>
+  <p class="topless"><a href="project2a.html"
+                        title="previous chapter">12. CS1335 - Spr 15 - Project 2a</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="paddle.html"
-                        title="next chapter">12. Paddle Object</a></p>
+                        title="next chapter">14. Paddle Object</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -483,10 +483,10 @@ should at least convey the idea of how this might be implemented:</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="paddle.html" title="12. Paddle Object"
+          <a href="paddle.html" title="14. Paddle Object"
              >next</a> |</li>
         <li class="right" >
-          <a href="rainGame.html" title="10. Rain Catcher Game"
+          <a href="project2a.html" title="12. CS1335 - Spr 15 - Project 2a"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
