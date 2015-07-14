@@ -1,8 +1,8 @@
 .. _project2a:
 
-==============================
-CS1335 - Spr 15 - Project 2a
-==============================
+=================================================
+CS1335 - Su 15 - Project 2a Design Considerations
+=================================================
 
 Based on `Shiffman's`_ RainDropGame, and on the program code for Learning Processing: `exercise 10.4`_, 
 we want to build a slightly more advanced game based on this program. 
@@ -69,7 +69,7 @@ Game: Methods
 
 	- start(): ``void`` // initializes the proper Game variables when the game starts
 	- drawButtons(): : ``void``// draws the startBtn and stopBtn buttons by invoking the drawButton() methods of the two LabeledButtons 
-	- displayScore: ``void`` // displays score, even when game is over. SCore is reset when a new game starts
+	- displayScore: ``void`` // displays score, even when game is over. Score is reset when a new game starts
 	- displayLevel(): ``void``
 	- drawBar(): ``void`` // draws the background bar behind the buttons
 	- displayGameOver(): ``void`` // displays the "Game Over" message. This is essentially copy and paste of the block code under if(gameOver) in 10.4's draw loop
@@ -82,7 +82,7 @@ Button Objects
 
 If we want to include some Button objects in our game, like a startButton and a stopButton,
 then we'll need to look at what a Button object would look like.  Shiffman provides an example of
-a Button object in `Exercise 9.8`_  Our buttons will be created from the "LabeledButton" class, a child class of
+a Button object in {{`Exercise 9.8`}}_  Our buttons will be created from the "LabeledButton" class, a child class of
 the "Button" class. Unlike the "Button" class in Shiffman, our "Button" class does not have an "on" variable, but it has 
 a "col" variable of type color. We will refer to our "labeled button" as "button". To integrate a button in the Game class, it's 
 important to remember to create and initialize the buttons in the Game constructor by invoking the constructor of the
@@ -99,12 +99,13 @@ buttons with the new clause ::
 	}
 
 To take startBtn as an example, 
-width-Wbar + 5 is the x coordinate of the button
-10 is the y coordinate of the button
-40 is the width of the button
-30 is the height of the button
-colYellow is the normal color of the button
-"Start" is a String used to label the button when it is displayed
+
+- width-Wbar + 5 is the x coordinate of the button
+- 10 is the y coordinate of the button
+- 40 is the width of the button
+- 30 is the height of the button
+- colYellow is the normal color of the button
+- "Start" is a String used to label the button when it is displayed
 
 LabeledButton class
 =====================
@@ -122,6 +123,7 @@ The LabeledButton class inherits all the variables of the Button class, namely:
 	- label: ``String`` // Button label
 
 The LabeledButton class inherits all the methods of the Button class, namely:
+
 	- rollOver(x, y): ``boolean`` // returns true if the point (x,y) is over the button
 	- drawButton(): ``void`` // displays the button with the appropriate color (highlighted color if the mouse is over the button, normal color otherwise)
 
@@ -147,7 +149,7 @@ complete version of the Game constructor with these invoked constructors is show
 		numberLivesLeft = MAX_NUMBER_LIVES;
 		totalDrops = 0;
 		drops = new Drop[MAX_NUMBER_DROPS];    // Create spots in the array 
-		timer = new Timer(300);   // Create a timer that goes off every 2 seconds
+		timer = new Timer(300);   // Create a timer and set initial value to 300 milliseconds
 		gameOver = false;
 	  }
 
@@ -352,7 +354,7 @@ game code so that when the timer goes off, we can create RegularDrop or TinyDrop
 			drops[totalDrops] = new RegularDrop();
 			
 To make our game interesting, we want to choose randomly between TinyDrop and RegularDrop. In addition, we want to be able to adjust
-the statistical percentage of RegularDrop vs TinyDrop. This can be achieved with the following code.::
+the statistical percentage of RegularDrop vs. TinyDrop. This can be achieved with the following code::
 
 	if (random(100) < PERCENT_REGULAR) {
           drops[totalDrops] = new RegularDrop();
