@@ -46,7 +46,7 @@ for designing models of systems.  The `UML`_ website states that 'modeling is th
 
 The class diagram shows the name of the class, the instance variables, and the methods.  In UML, we can use class diagrams to show relationships between
 several different classes.  There are a wide variety of UML diagrams, some are designed to show structure like this class diagram, while other UML diagrams are
-designed to model behavior and interaction of systems.  
+designed to model behavior and interaction of system entities.  
 
 Processing Tabs
 ================

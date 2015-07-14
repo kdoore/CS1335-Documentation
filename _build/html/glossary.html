@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>23. Glossary &mdash; CS1335 Documentation</title>
+    <title>24. Glossary &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="prev" title="22. Resources" href="resources.html" /> 
+    <link rel="prev" title="23. Resources" href="resources.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,7 +35,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="resources.html" title="22. Resources"
+          <a href="resources.html" title="23. Resources"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -47,9 +47,9 @@
           <div class="body" role="main">
             
   <div class="section" id="glossary">
-<span id="glossary-rst"></span><h1>23. Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<span id="glossary-rst"></span><h1>24. Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="abstract-class">
-<span id="id1"></span><h2>23.1. Abstract Class<a class="headerlink" href="#abstract-class" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>24.1. Abstract Class<a class="headerlink" href="#abstract-class" title="Permalink to this headline">¶</a></h2>
 <p>An abstract class is a class that cannot be used to instantiate objects, it is designed specifically
 to be used as a base-class for sub-class inheritance.  Abstract classes provide structure:
 instance variables and methods, that sub-classes will inherit.  Abstract classes must be extended by base classes,
@@ -69,7 +69,7 @@ program&#8217;s organization, and makes it easier to extend our program by simpl
 adding new sub-class objects.</p>
 </div>
 <div class="section" id="abstract-methods">
-<span id="id2"></span><h2>23.2. Abstract Methods:<a class="headerlink" href="#abstract-methods" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>24.2. Abstract Methods:<a class="headerlink" href="#abstract-methods" title="Permalink to this headline">¶</a></h2>
 <p>Abstract methods are used in abstract classes and interfaces.  These methods define a contract that
 child classes must enforce, any child class that extends an abstract class must implement code
 for any abstract methods defined in that class. Similarly, any class that implements an interface
@@ -85,20 +85,20 @@ methods for interfaces, however this is not supported in Processing, and all int
 are abstract by default in Processing.</p>
 </div>
 <div class="section" id="interface">
-<span id="interface-def"></span><h2>23.3. Interface:<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+<span id="interface-def"></span><h2>24.3. Interface:<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
 <p>An interface is very similar to an abstract class.  Similar to abstract classes, interfaces can&#8217;t be used to
 create object instances.  In fact, by default, methods of an interface are abstract.  This means that there&#8217;s
 only method declaration in an interface. Typically, interfaces don&#8217;t have variables, however constant variables
 can be defined for use in an interface.  A class can <code class="docutils literal"><span class="pre">implement</span></code> an interface, whereas, a class can
-<code class="docutils literal"><span class="pre">extends</span></code> other classes when using inheritance.  The important feature of interfaces is that a class
-can implement any number of interfaces, whereas a class can only extend 1 base-class.  Therefore, interfaces
+<code class="docutils literal"><span class="pre">extend</span></code> other classes when using inheritance.  The important feature of interfaces is that a class
+can implement a unlimited number of interfaces, whereas a class can only extend 1 base-class in Processing.  Therefore, interfaces
 are used to provide an abstract structure for common concepts such as <cite>comparable</cite>, <cite>clickable</cite>.  For our game
 we developed an <cite>Explodable</cite> interface, and determined that only some of the Drop child classes will
 implement this interface.  The <cite>Explodable</cite> interface has an <code class="docutils literal"><span class="pre">explode()</span></code> method that must be defined
 in any class that implements <cite>Explodable</cite>.</p>
 </div>
 <div class="section" id="function-overloading">
-<span id="id3"></span><h2>23.4. Function Overloading<a class="headerlink" href="#function-overloading" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>24.4. Function Overloading<a class="headerlink" href="#function-overloading" title="Permalink to this headline">¶</a></h2>
 <p>Function overloading occurs when there are several different variations of a single function.
 Each version of a function must have a unique function signature, specifically, the arguments
 for a function must be unique between function versions, the compiler must be able to determine
@@ -114,7 +114,7 @@ input parameters, while other constructors for an object take input parameters t
 values for initialization of instance variables.</p>
 </div>
 <div class="section" id="method-overriding">
-<span id="method-override"></span><h2>23.5. Method Overriding<a class="headerlink" href="#method-overriding" title="Permalink to this headline">¶</a></h2>
+<span id="method-override"></span><h2>24.5. Method Overriding<a class="headerlink" href="#method-overriding" title="Permalink to this headline">¶</a></h2>
 <p>Method overriding is a feature of Inheritance in many Object-Oriented languages; where both the parent and child class
 implement identical versions of a specific method.  In the Processing language, many of our custom classes
 have implemented a  `` display()`` method, since many of our programs create visual designs, animations,
@@ -126,7 +126,7 @@ looks at the child class definition to see if the method has been implemented wi
 if it has been implemented in the child class, then that child version of the class method is executed.</p>
 </div>
 <div class="section" id="object-inheritance">
-<span id="id4"></span><h2>23.6. Object Inheritance<a class="headerlink" href="#object-inheritance" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>24.6. Object Inheritance<a class="headerlink" href="#object-inheritance" title="Permalink to this headline">¶</a></h2>
 <p>Inheritance is an important feature in most Object-Oriented languages.  Inheritance in programming reflects
 the idea that the concepts that we&#8217;re trying to represent in our code often have natural hierarchical relationships,
 where objects can be categorized as belonging to a broader type of object.  These object hierarchies can be useful for
@@ -140,7 +140,7 @@ in our programs is that we can eliminate duplicate code, and we can also use pol
 use of the base class as a way to reference sub-class objects.</p>
 </div>
 <div class="section" id="polymorphism">
-<span id="id5"></span><h2>23.7. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>24.7. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>Polymorphism is one of the main benefits of using the Object-Oriented concept of Inheritance, where a child
 class is designed as an extension of the base or parent class.  Polymorphism means &#8216;many-shaped`, and in Object-
 Oriented programming, it means that we can create a child object, using a reference variable of the parent
@@ -159,7 +159,7 @@ to point to a base or parent class object as shown in the last line of code belo
 </div>
 </div>
 <div class="section" id="static-variables">
-<span id="id6"></span><h2>23.8. Static Variables<a class="headerlink" href="#static-variables" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>24.8. Static Variables<a class="headerlink" href="#static-variables" title="Permalink to this headline">¶</a></h2>
 <p>Processing does not support traditional static variables, the only way to have static variables
 is to have the entire class declared as a static class.  We aren&#8217;t going to cover Static methods, classes
 or variables in this class, however this is an important concept that will be covered in the next course.</p>
@@ -174,22 +174,22 @@ or variables in this class, however this is an important concept that will be co
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">23. Glossary</a><ul>
-<li><a class="reference internal" href="#abstract-class">23.1. Abstract Class</a></li>
-<li><a class="reference internal" href="#abstract-methods">23.2. Abstract Methods:</a></li>
-<li><a class="reference internal" href="#interface">23.3. Interface:</a></li>
-<li><a class="reference internal" href="#function-overloading">23.4. Function Overloading</a></li>
-<li><a class="reference internal" href="#method-overriding">23.5. Method Overriding</a></li>
-<li><a class="reference internal" href="#object-inheritance">23.6. Object Inheritance</a></li>
-<li><a class="reference internal" href="#polymorphism">23.7. Polymorphism</a></li>
-<li><a class="reference internal" href="#static-variables">23.8. Static Variables</a></li>
+<li><a class="reference internal" href="#">24. Glossary</a><ul>
+<li><a class="reference internal" href="#abstract-class">24.1. Abstract Class</a></li>
+<li><a class="reference internal" href="#abstract-methods">24.2. Abstract Methods:</a></li>
+<li><a class="reference internal" href="#interface">24.3. Interface:</a></li>
+<li><a class="reference internal" href="#function-overloading">24.4. Function Overloading</a></li>
+<li><a class="reference internal" href="#method-overriding">24.5. Method Overriding</a></li>
+<li><a class="reference internal" href="#object-inheritance">24.6. Object Inheritance</a></li>
+<li><a class="reference internal" href="#polymorphism">24.7. Polymorphism</a></li>
+<li><a class="reference internal" href="#static-variables">24.8. Static Variables</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="resources.html"
-                        title="previous chapter">22. Resources</a></p>
+                        title="previous chapter">23. Resources</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -214,7 +214,7 @@ or variables in this class, however this is an important concept that will be co
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="resources.html" title="22. Resources"
+          <a href="resources.html" title="23. Resources"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>13. Paddle Object &mdash; CS1335 Documentation</title>
+    <title>14. Paddle Object &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="14. Inheritance" href="inheritance.html" />
-    <link rel="prev" title="12. Paddle Drop Game" href="paddleDropGame.html" /> 
+    <link rel="next" title="15. Inheritance" href="inheritance.html" />
+    <link rel="prev" title="13. Paddle Drop Game" href="paddleDropGame.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="inheritance.html" title="14. Inheritance"
+          <a href="inheritance.html" title="15. Inheritance"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="paddleDropGame.html" title="12. Paddle Drop Game"
+          <a href="paddleDropGame.html" title="13. Paddle Drop Game"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,14 +51,14 @@
           <div class="body" role="main">
             
   <div class="section" id="paddle-object">
-<span id="paddle"></span><h1>13. Paddle Object<a class="headerlink" href="#paddle-object" title="Permalink to this headline">¶</a></h1>
+<span id="paddle"></span><h1>14. Paddle Object<a class="headerlink" href="#paddle-object" title="Permalink to this headline">¶</a></h1>
 <p>In the previous section, we reviewed Daniel <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> Rain Game, Object-Oriented Game.  Now, we want
 to customize the game to make it a bit more interesting.   The next change we&#8217;ll make is to add a
 paddle that can catch or hit the falling objects.  If we allow the objects to bounce, then that could
 provide a user with extra scoring opportunities.  For now, let&#8217;s just look at how we can implement
 a paddle that moves left and right in response to keyboard input.</p>
 <div class="section" id="pong-game">
-<h2>13.1. Pong Game<a class="headerlink" href="#pong-game" title="Permalink to this headline">¶</a></h2>
+<h2>14.1. Pong Game<a class="headerlink" href="#pong-game" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://drdoane.com/thinking-through-a-basic-pong-game-in-processing/">Dr Doane</a>, in his online article: <cite>Thinking Through a Basic Pong Game in Processing</cite> provides a nice tutorial
 on how to create a pong game using processing.  While it&#8217;s not an object-oriented approach, it still provides
 a very good overview and details of ideas we&#8217;ll want to implement. To start with, he discusses how we can use
@@ -71,7 +71,7 @@ the direction of the ball object&#8217;s speed.  In an object oriented approach,
 be implemented in the Ball class definition, in the <code class="docutils literal"><span class="pre">move(</span> <span class="pre">)</span></code> method.</p>
 </div>
 <div class="section" id="keypressed-event">
-<h2>13.2. KeyPressed Event<a class="headerlink" href="#keypressed-event" title="Permalink to this headline">¶</a></h2>
+<h2>14.2. KeyPressed Event<a class="headerlink" href="#keypressed-event" title="Permalink to this headline">¶</a></h2>
 <p>Dr. Doane then refers to the processing reference code in order to determine how to move the
 paddle object in response to a user&#8217;s keyboard interaction.  Below is the processing example
 code:</p>
@@ -102,7 +102,7 @@ keyCode == LEFT, or KeyCode == RIGHT, and then we&#8217;ll need to create code t
 behavior of our paddle&#8217;s movement based on these keyCode comparisons.</p>
 </div>
 <div class="section" id="keypressed-event-handlers">
-<h2>13.3. KeyPressed Event Handlers<a class="headerlink" href="#keypressed-event-handlers" title="Permalink to this headline">¶</a></h2>
+<h2>14.3. KeyPressed Event Handlers<a class="headerlink" href="#keypressed-event-handlers" title="Permalink to this headline">¶</a></h2>
 <p>First we need to create a Paddle class:  This will be simliar to the Ball class, but we&#8217;ll have
 a rectangular object that moves based on the users keyboard interactions.  So, instead of the
 move() method, we&#8217;ll have  pressedLeft() and  pressedRight() methods:</p>
@@ -125,7 +125,7 @@ paddle position coordinates: x,y and paddle dimensions pWidth, pHeight.  We also
 variable that controls how fast the paddle moves.</p>
 </div>
 <div class="section" id="keypressed-paddle-method-calls">
-<h2>13.4. KeyPressed Paddle Method Calls<a class="headerlink" href="#keypressed-paddle-method-calls" title="Permalink to this headline">¶</a></h2>
+<h2>14.4. KeyPressed Paddle Method Calls<a class="headerlink" href="#keypressed-paddle-method-calls" title="Permalink to this headline">¶</a></h2>
 <p>For our program, we&#8217;ll actually want to use these pressedLeft() and pressedRight() methods
 within the keyPressed event.  The pressedLeft( ) method is an event handler.  It&#8217;s code that
 we want to be executed when the keyPressed event occurs.  So, in the main program, we would
@@ -147,7 +147,7 @@ paddle1 object to call it&#8217;s pressedLeft( ) method as in the code below:</p
 </div>
 </div>
 <div class="section" id="arrows-state-indicators">
-<h2>13.5. Arrows: State Indicators<a class="headerlink" href="#arrows-state-indicators" title="Permalink to this headline">¶</a></h2>
+<h2>14.5. Arrows: State Indicators<a class="headerlink" href="#arrows-state-indicators" title="Permalink to this headline">¶</a></h2>
 <p>The example below displays left and right arrows when the user presses the arrow keys.  In order to
 display the correct arrow, I&#8217;ve created some additional variables as part of the paddle class, these
 are <cite>state</cite> variables that keep track of the last keyPress event.  I&#8217;m using <code class="docutils literal"><span class="pre">int</span></code> variables, since
@@ -157,7 +157,7 @@ I want to have 3 possible values:  pLEFT, pRIGHT, pNONE (which is the starting p
         <iframe width="228" height="180" scrolling="no" frameborder="0" src="http://www.openprocessing.org/sketch/190143/embed/?width=200&height=100&border=true"></iframe>
 </div></div>
 <div class="section" id="final-keyword-constant-values">
-<h2>13.6. Final Keyword - Constant Values<a class="headerlink" href="#final-keyword-constant-values" title="Permalink to this headline">¶</a></h2>
+<h2>14.6. Final Keyword - Constant Values<a class="headerlink" href="#final-keyword-constant-values" title="Permalink to this headline">¶</a></h2>
 <p>This introduces 4 new instance variables in order to keep track of and display the red arrows
 which indicate direction, Note the use of the <code class="docutils literal"><span class="pre">final</span></code> keyword:</p>
 <div class="highlight-Java"><div class="highlight"><pre> <span class="c1">// new instance variables for the Paddle class</span>
@@ -192,7 +192,7 @@ for the Paddle class, showing how we&#8217;ve used switch to control which arrow
 </div>
 </div>
 <div class="section" id="set-the-state-variable">
-<h2>13.7. Set the State Variable<a class="headerlink" href="#set-the-state-variable" title="Permalink to this headline">¶</a></h2>
+<h2>14.7. Set the State Variable<a class="headerlink" href="#set-the-state-variable" title="Permalink to this headline">¶</a></h2>
 <p>So, next we need to figure out <cite>where</cite> to change the value of direction.  We have already created
 the Paddle methods: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> and <code class="docutils literal"><span class="pre">pressedRight()</span></code>, and we know these methods are
 executed when the user presses the left or right keyboard arrows, these Paddle methods are <cite>event handlers</cite>
@@ -213,7 +213,7 @@ Below is the new code:</p>
 </div>
 </div>
 <div class="section" id="intersection">
-<h2>13.8. Intersection<a class="headerlink" href="#intersection" title="Permalink to this headline">¶</a></h2>
+<h2>14.8. Intersection<a class="headerlink" href="#intersection" title="Permalink to this headline">¶</a></h2>
 <p>In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, both of his objects are circular so that has made testing for intersection
 much easier.  In our game, we&#8217;re going to use a rectangular paddle and .svg PShape objects.  Both
 of these elements have their x,y locations at the upper left corner of the object, whereas circles
@@ -248,7 +248,7 @@ then we&#8217;ll want to increment the game score, and set the drop to be inacti
 the y position of the drop if it&#8217;s been hit, so that it&#8217;s off the screen, that prevents display issues.</p>
 </div>
 <div class="section" id="summary">
-<h2>13.9. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2>14.9. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>So, in the Paddle class, we have created event handler methods: <code class="docutils literal"><span class="pre">pressedLeft()</span></code> and <code class="docutils literal"><span class="pre">pressedRight()</span></code>
 When we create a Paddle object, paddle1, then we&#8217;ll have that object call these event handler methods
 within the global <code class="docutils literal"><span class="pre">keyPressed(</span> <span class="pre">)</span></code> event.  The event handler methods are used to trigger object behavior
@@ -263,7 +263,7 @@ itself be responsible for knowing how to implement it&#8217;s own behavior, so t
 Class definition.</p>
 </div>
 <div class="section" id="questions">
-<h2>13.10. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<h2>14.10. Questions:<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Why have we decided to use <code class="docutils literal"><span class="pre">int</span></code> as the type for the state variable <code class="docutils literal"><span class="pre">direction</span></code>?</p>
 </li>
@@ -285,27 +285,27 @@ Class definition.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">13. Paddle Object</a><ul>
-<li><a class="reference internal" href="#pong-game">13.1. Pong Game</a></li>
-<li><a class="reference internal" href="#keypressed-event">13.2. KeyPressed Event</a></li>
-<li><a class="reference internal" href="#keypressed-event-handlers">13.3. KeyPressed Event Handlers</a></li>
-<li><a class="reference internal" href="#keypressed-paddle-method-calls">13.4. KeyPressed Paddle Method Calls</a></li>
-<li><a class="reference internal" href="#arrows-state-indicators">13.5. Arrows: State Indicators</a></li>
-<li><a class="reference internal" href="#final-keyword-constant-values">13.6. Final Keyword - Constant Values</a></li>
-<li><a class="reference internal" href="#set-the-state-variable">13.7. Set the State Variable</a></li>
-<li><a class="reference internal" href="#intersection">13.8. Intersection</a></li>
-<li><a class="reference internal" href="#summary">13.9. Summary</a></li>
-<li><a class="reference internal" href="#questions">13.10. Questions:</a></li>
+<li><a class="reference internal" href="#">14. Paddle Object</a><ul>
+<li><a class="reference internal" href="#pong-game">14.1. Pong Game</a></li>
+<li><a class="reference internal" href="#keypressed-event">14.2. KeyPressed Event</a></li>
+<li><a class="reference internal" href="#keypressed-event-handlers">14.3. KeyPressed Event Handlers</a></li>
+<li><a class="reference internal" href="#keypressed-paddle-method-calls">14.4. KeyPressed Paddle Method Calls</a></li>
+<li><a class="reference internal" href="#arrows-state-indicators">14.5. Arrows: State Indicators</a></li>
+<li><a class="reference internal" href="#final-keyword-constant-values">14.6. Final Keyword - Constant Values</a></li>
+<li><a class="reference internal" href="#set-the-state-variable">14.7. Set the State Variable</a></li>
+<li><a class="reference internal" href="#intersection">14.8. Intersection</a></li>
+<li><a class="reference internal" href="#summary">14.9. Summary</a></li>
+<li><a class="reference internal" href="#questions">14.10. Questions:</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="paddleDropGame.html"
-                        title="previous chapter">12. Paddle Drop Game</a></p>
+                        title="previous chapter">13. Paddle Drop Game</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="inheritance.html"
-                        title="next chapter">14. Inheritance</a></p>
+                        title="next chapter">15. Inheritance</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -330,10 +330,10 @@ Class definition.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="inheritance.html" title="14. Inheritance"
+          <a href="inheritance.html" title="15. Inheritance"
              >next</a> |</li>
         <li class="right" >
-          <a href="paddleDropGame.html" title="12. Paddle Drop Game"
+          <a href="paddleDropGame.html" title="13. Paddle Drop Game"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>

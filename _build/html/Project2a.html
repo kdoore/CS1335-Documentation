@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>12. CS1335 - Spr 15 - Project 2a &mdash; CS1335 Documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="CS1335 Documentation" href="index.html" />
+    <link rel="next" title="13. Paddle Drop Game" href="paddleDropGame.html" />
+    <link rel="prev" title="11. Rain Catcher Game" href="rainGame.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="paddleDropGame.html" title="13. Paddle Drop Game"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rainGame.html" title="11. Rain Catcher Game"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cs1335-spr-15-project-2a">
+<span id="project2a"></span><h1>12. CS1335 - Spr 15 - Project 2a<a class="headerlink" href="#cs1335-spr-15-project-2a" title="Permalink to this headline">¶</a></h1>
+<p>Based on <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDropGame, and on the program code for Learning Processing: <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4">exercise 10.4</a>,
+we want to build a slightly more advanced game based on this program.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>We will add a start and stop button to enable the player to start and stop the game. The buttons are labeled Start and Stop respectively.</li>
+<li>We will have two varieties of falling objects: regular drops and tiny drops. Tiny drops are smaller than regular drops and drop faster, with a more unpredictable trajectory, but catching a tiny drop will earn extra bonus points.</li>
+<li>The score will still be displayed after the game is over</li>
+</ol>
+</div></blockquote>
+<p>You are required to implement:</p>
+<blockquote>
+<div><ul class="simple">
+<li>a Game object, which uses other objects</li>
+<li>the regular and tiny drops as child classes of a parent &#8220;Drop&#8221; class</li>
+<li>the labeled buttons as child classes of a parent &#8220;Button&#8221; class</li>
+</ul>
+</div></blockquote>
+<div class="section" id="game-class">
+<h2>12.1. Game class<a class="headerlink" href="#game-class" title="Permalink to this headline">¶</a></h2>
+<p>To begin design of our game, let&#8217;s look at the changes we&#8217;ll need to make, to modify
+<a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> exercise 10.4 project code. In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> project, he has all of the game type
+code simply implemented within the processing draw loop.</p>
+<p>We&#8217;d like to re-factor his program and
+make a separate Game class in order to make it easier to organize and understand our program code.
+If we look at his Draw loop code, we can see that he&#8217;s incrementing a score-type variable, he&#8217;s
+keeping track of misses, etc.  So, let&#8217;s create a Game Class with the following
+instance variables. Some of them are the game related variables from exercise 10-4 moved inside the Game class.</p>
+<div class="section" id="game-instance-variables">
+<h3>12.1.1. Game: Instance Variables<a class="headerlink" href="#game-instance-variables" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>score: <code class="docutils literal"><span class="pre">int</span></code> // current score</li>
+<li>level:<code class="docutils literal"><span class="pre">int</span></code>   // level the game is currently in</li>
+<li>state: <code class="docutils literal"><span class="pre">int</span></code> // Game can be in inactive or active state</li>
+<li>numberDropsDone: <code class="docutils literal"><span class="pre">int</span></code>// a drop is done if it is caught by the catcher or if it reaches the bottom of the canvas (this is called levelCounter in 10.4)</li>
+<li>numberLivesLeft: <code class="docutils literal"><span class="pre">int</span></code>// counter value initialized at MAX_NUMBER_LIVES and decremented when a drop reaches the bottom. (this is called lives in 10.4)</li>
+<li>totalDrops: <code class="docutils literal"><span class="pre">int</span></code> // number of drops generated</li>
+<li>gameOver: <code class="docutils literal"><span class="pre">boolean</span></code>// set to true when a game is over</li>
+<li>Wbar: <code class="docutils literal"><span class="pre">float</span></code>// width of the background bar behind the buttons</li>
+<li>startBtn: <code class="docutils literal"><span class="pre">LabeledButton</span></code> // Button to start the game</li>
+<li>stopBtn: <code class="docutils literal"><span class="pre">LabeledButton</span></code> // Button to stop the game</li>
+<li>catcher:<code class="docutils literal"><span class="pre">Catcher</span></code>// Catcher class</li>
+<li>timer: <code class="docutils literal"><span class="pre">Timer</span></code>// Timer class</li>
+<li>drops: array of drop objects // size of array is MAX_NUMBER_DROPS</li>
+</ul>
+</div></blockquote>
+<p>We can use integer values to indicate the possible game state values, this will allow
+us to use a switch(gameState)  structure. We can use the keyword <code class="docutils literal"><span class="pre">final</span></code> to make it clear that
+these are values that shouldn&#8217;t be changed within the program</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">final</span> <span class="kt">int</span> <span class="n">INACTIVE</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">ACTIVE</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>In a similar fashion:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">final</span> <span class="kt">int</span> <span class="n">MAX_NUMBER_DROPS</span> <span class="o">=</span> <span class="mi">50</span><span class="o">;</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">MAX_NUMBER_LIVES</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>Next, we&#8217;ll want a few methods:</p>
+</div>
+<div class="section" id="game-methods">
+<h3>12.1.2. Game: Methods<a class="headerlink" href="#game-methods" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>start(): <code class="docutils literal"><span class="pre">void</span></code> // initializes the proper Game variables when the game starts</li>
+<li>drawButtons(): : <code class="docutils literal"><span class="pre">void</span></code>// draws the startBtn and stopBtn buttons by invoking the drawButton() methods of the two LabeledButtons</li>
+<li>displayScore: <code class="docutils literal"><span class="pre">void</span></code> // displays score, even when game is over. SCore is reset when a new game starts</li>
+<li>displayLevel(): <code class="docutils literal"><span class="pre">void</span></code></li>
+<li>drawBar(): <code class="docutils literal"><span class="pre">void</span></code> // draws the background bar behind the buttons</li>
+<li>displayGameOver(): <code class="docutils literal"><span class="pre">void</span></code> // displays the &#8220;Game Over&#8221; message. This is essentially copy and paste of the block code under if(gameOver) in 10.4&#8217;s draw loop</li>
+<li>play(): <code class="docutils literal"><span class="pre">void</span></code>// generates and displays the drops, tracks the catcher, updates the game variables. This is essentially copy and paste of the remaining part of the draw loop from 10.4</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="button-objects">
+<h2>12.2. Button Objects<a class="headerlink" href="#button-objects" title="Permalink to this headline">¶</a></h2>
+<p>If we want to include some Button objects in our game, like a startButton and a stopButton,
+then we&#8217;ll need to look at what a Button object would look like.  Shiffman provides an example of
+a Button object in <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-9/excercise-9-8">Exercise 9.8</a>  Our buttons will be created from the &#8220;LabeledButton&#8221; class, a child class of
+the &#8220;Button&#8221; class. Unlike the &#8220;Button&#8221; class in Shiffman, our &#8220;Button&#8221; class does not have an &#8220;on&#8221; variable, but it has
+a &#8220;col&#8221; variable of type color. We will refer to our &#8220;labeled button&#8221; as &#8220;button&#8221;. To integrate a button in the Game class, it&#8217;s
+important to remember to create and initialize the buttons in the Game constructor by invoking the constructor of the
+buttons with the new clause</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">Game</span><span class="o">(){</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">Wbar</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="mi">7</span><span class="o">;</span>
+        <span class="n">startBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledButton</span><span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">Wbar</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="n">colYellow</span><span class="o">,</span> <span class="s">&quot;Start&quot;</span><span class="o">);</span>
+        <span class="n">stopBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledButton</span><span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">Wbar</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="n">colYellow</span><span class="o">,</span> <span class="s">&quot;Stop&quot;</span><span class="o">);</span>
+        <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>To take startBtn as an example,
+width-Wbar + 5 is the x coordinate of the button
+10 is the y coordinate of the button
+40 is the width of the button
+30 is the height of the button
+colYellow is the normal color of the button
+&#8220;Start&#8221; is a String used to label the button when it is displayed</p>
+</div>
+<div class="section" id="labeledbutton-class">
+<h2>12.3. LabeledButton class<a class="headerlink" href="#labeledbutton-class" title="Permalink to this headline">¶</a></h2>
+<p>The LabeledButton class inherits all the variables of the Button class, namely:</p>
+<blockquote>
+<div><ul class="simple">
+<li>X:  <code class="docutils literal"><span class="pre">float</span></code> // x coordinate of button</li>
+<li>Y:  <code class="docutils literal"><span class="pre">float</span></code> // y coordinate of button</li>
+<li>W: <code class="docutils literal"><span class="pre">float</span></code>// width of button</li>
+<li>H: <code class="docutils literal"><span class="pre">float</span></code> // height of button</li>
+<li>col: <code class="docutils literal"><span class="pre">color</span></code> // color of button</li>
+</ul>
+<p>The child has in addition the label variable</p>
+<ul class="simple">
+<li>label: <code class="docutils literal"><span class="pre">String</span></code> // Button label</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>The LabeledButton class inherits all the methods of the Button class, namely:</dt>
+<dd><ul class="first last simple">
+<li>rollOver(x, y): <code class="docutils literal"><span class="pre">boolean</span></code> // returns true if the point (x,y) is over the button</li>
+<li>drawButton(): <code class="docutils literal"><span class="pre">void</span></code> // displays the button with the appropriate color (highlighted color if the mouse is over the button, normal color otherwise)</li>
+</ul>
+</dd>
+</dl>
+<p>The LabeledButton has an overriding drawButton() method which displays the button and the label on top.</p>
+</div>
+<div class="section" id="use-of-objects-by-the-game-class">
+<h2>12.4. Use of objects by the Game class<a class="headerlink" href="#use-of-objects-by-the-game-class" title="Permalink to this headline">¶</a></h2>
+<p>The Game class uses several objects, namely: startBtn, stopBtn, catcher, timer and drops. These objects are members of the Game class.
+Each of these member objects must be
+created and initialized in the Game constructor by invoking the constructor of the corresponding classes with the &#8220;new&#8221; clause. A more
+complete version of the Game constructor with these invoked constructors is shown below</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">Game</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">Wbar</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="mi">7</span><span class="o">;</span>
+        <span class="n">startBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledButton</span><span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">Wbar</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="n">colYellow</span><span class="o">,</span> <span class="s">&quot;Start&quot;</span><span class="o">);</span>
+        <span class="n">stopBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledButton</span><span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">Wbar</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="n">colYellow</span><span class="o">,</span> <span class="s">&quot;Stop&quot;</span><span class="o">);</span>
+        <span class="n">catcher</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Catcher</span><span class="o">(</span><span class="mi">32</span><span class="o">);</span> <span class="c1">// Create the catcher with a radius of 32</span>
+        <span class="n">numberDropsDone</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">numberLivesLeft</span> <span class="o">=</span> <span class="n">MAX_NUMBER_LIVES</span><span class="o">;</span>
+        <span class="n">totalDrops</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">drops</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Drop</span><span class="o">[</span><span class="n">MAX_NUMBER_DROPS</span><span class="o">];</span>    <span class="c1">// Create spots in the array</span>
+        <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timer</span><span class="o">(</span><span class="mi">300</span><span class="o">);</span>   <span class="c1">// Create a timer that goes off every 2 seconds</span>
+        <span class="n">gameOver</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+  <span class="o">}</span>
+</pre></div>
+</div>
+<p>Additionally, to refer to a member of an object which is member of the Game class, you may have to use multiple levels of dots. For example,
+in the main tab, only the myGame object is known. To refer to the rollOver() member method of the startBtn member of myGame, you have to refer first to the
+startBtn member, then to the rollOver() member of startBtn, and that is denoted myGame.startBtn.rollOver().</p>
+</div>
+<div class="section" id="game-button-integration">
+<h2>12.5. Game Button Integration<a class="headerlink" href="#game-button-integration" title="Permalink to this headline">¶</a></h2>
+<p>Now we need to figure out how to integrate the button event handler into the game. We will use the MouseClicked( ) event.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the main program tab</span>
+
+<span class="kt">void</span> <span class="nf">mouseClicked</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">switch</span><span class="o">(</span><span class="n">myGame</span><span class="o">.</span><span class="na">state</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="n">INACTIVE</span><span class="o">:</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">myGame</span><span class="o">.</span><span class="na">startBtn</span><span class="o">.</span><span class="na">rollOver</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Start the game if the player clicks start button</span>
+                <span class="n">myGame</span><span class="o">.</span><span class="na">gameOver</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="n">myGame</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="k">break</span><span class="o">;</span>
+        <span class="k">case</span> <span class="n">ACTIVE</span><span class="o">:</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">myGame</span><span class="o">.</span><span class="na">stopBtn</span><span class="o">.</span><span class="na">rollOver</span><span class="o">(</span><span class="n">mouseX</span><span class="o">,</span> <span class="n">mouseY</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Stops the game if the player clicks stop button</span>
+                <span class="n">myGame</span><span class="o">.</span><span class="na">gameOver</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="n">myGame</span><span class="o">.</span><span class="na">state</span> <span class="o">=</span> <span class="n">INACTIVE</span><span class="o">;</span>
+                <span class="o">}</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="game-instance">
+<h2>12.6. Game Instance<a class="headerlink" href="#game-instance" title="Permalink to this headline">¶</a></h2>
+<p>All of the above code assumes that we will define, initialize and utilize an object of the Game class in
+the main program tab. Since we need access in the draw loop, as usual, we&#8217;ll declare the object
+above the setup function, initialize in the setup function, and then use in the draw loop:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the main tab</span>
+
+<span class="c1">//other global variables</span>
+<span class="n">Game</span> <span class="n">myGame</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
+<span class="c1">//other initializations</span>
+
+<span class="n">myGame</span><span class="o">=</span> <span class="k">new</span> <span class="n">Game</span><span class="o">();</span>   <span class="c1">//call the Game constructor, here we call the default constructor</span>
+<span class="o">}</span>  <span class="c1">//end setup</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">()</span> <span class="o">{</span>
+<span class="n">background</span><span class="o">(</span><span class="mi">255</span><span class="o">);</span>
+<span class="k">switch</span><span class="o">(</span><span class="n">myGame</span><span class="o">.</span><span class="na">state</span><span class="o">)</span> <span class="o">{</span>
+<span class="k">case</span> <span class="n">INACTIVE</span><span class="o">:</span> <span class="c1">// Game inactive</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">myGame</span><span class="o">.</span><span class="na">gameOver</span><span class="o">)</span>
+                <span class="n">myGame</span><span class="o">.</span><span class="na">displayGameOver</span><span class="o">();</span> <span class="c1">// Display the &quot;Game Over&quot; message</span>
+        <span class="k">break</span><span class="o">;</span>
+<span class="k">case</span> <span class="n">ACTIVE</span><span class="o">:</span> <span class="c1">// Playing</span>
+        <span class="n">myGame</span><span class="o">.</span><span class="na">play</span><span class="o">();</span>
+        <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span> <span class="c1">// end switch</span>
+<span class="n">myGame</span><span class="o">.</span><span class="na">drawBar</span><span class="o">();</span>
+<span class="n">myGame</span><span class="o">.</span><span class="na">drawButtons</span><span class="o">();</span>
+<span class="n">myGame</span><span class="o">.</span><span class="na">displayScore</span><span class="o">();</span>
+<span class="n">myGame</span><span class="o">.</span><span class="na">displayLevel</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inheritance">
+<h2>12.7. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="child-classes-of-the-drop-class">
+<h3>12.7.1. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h3>
+<p>The next modification for our game is that we&#8217;re going to use different drop types: regular drops and tiny drops.
+Because they are both very similar to the drop class in 10.4,  we will use inheritance and
+define them as child classes of drop.</p>
+</div>
+<div class="section" id="adaptation-of-drop">
+<h3>12.7.2. Adaptation of Drop<a class="headerlink" href="#adaptation-of-drop" title="Permalink to this headline">¶</a></h3>
+<p>To the Drop class in 10.4, we add a &#8220;score&#8221; variable and a getScore() method.</p>
+</div>
+<div class="section" id="regulardrop">
+<h3>12.7.3. RegularDrop<a class="headerlink" href="#regulardrop" title="Permalink to this headline">¶</a></h3>
+<p>RegularDrop is a child of the Drop in 10.4.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">RegularDrop</span> <span class="kd">extends</span> <span class="n">Drop</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
+
+          <span class="n">RegularDrop</span><span class="o">()</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">();</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+          <span class="o">}</span>
+
+          <span class="kt">int</span> <span class="nf">getScore</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">score</span><span class="o">;</span>
+          <span class="o">}</span>
+        <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tinydrop">
+<h3>12.7.4. TinyDrop<a class="headerlink" href="#tinydrop" title="Permalink to this headline">¶</a></h3>
+<p>TinyDrop is also a child of the Drop in 10.4.Because TinyDrop moves differently than a drop, we define
+an overriding move() method. We also have a getScore() method.</p>
+<p>When one class inherits from another class, any method that is not specified in the child
+class, will be implemented using the method in the parent class.  This is called <a class="reference internal" href="glossary.html#method-override"><em>Method Overriding</em></a>,
+and it means that when a child class has code that implements the same method that&#8217;s also in
+parent class, then it is the child method code which is executed, if a child object calls that method.
+In essence, we end up with 2 different versions of one method, each with the same function signature,
+but with different code within the function     body.  So we need to understand the rules the compiler uses
+when determining which method to execute.  So, to summarize, when an object from a child class executes
+a method call, the compiler first looks in the class definition for the child object to see if that
+method is implemented in the child class, if so, then that&#8217;s the version that is executed.
+This a major benefit of using inheritance, we only need to make changes to methods or features that are different
+in the child class.</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the TinyDrop Class tab</span>
+
+
+<span class="kd">class</span> <span class="nc">TinyDrop</span> <span class="kd">extends</span> <span class="n">Drop</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
+
+        <span class="n">TinyDrop</span><span class="o">()</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">();</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>                 <span class="c1">// TinyDrops have smaller size</span>
+                <span class="n">speed</span> <span class="o">=</span> <span class="n">random</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>   <span class="c1">// Pick a higher random speed</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">color</span><span class="o">(</span><span class="mi">150</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span> <span class="c1">// Color</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">void</span> <span class="nf">move</span><span class="o">()</span> <span class="o">{</span>
+                <span class="c1">// Increment by speed</span>
+                <span class="n">y</span> <span class="o">+=</span> <span class="n">speed</span><span class="o">;</span>
+                <span class="n">x</span> <span class="o">+=</span> <span class="n">random</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span> <span class="c1">// unpredictable fluctuation in trajectory</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="nf">getScore</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">score</span><span class="o">;</span> <span class="c1">// Score 2 points instead of 1, if catch TinyDrop</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="making-drops">
+<h3>12.7.5. Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
+<p>In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, there are several important distinctions we need to think about, which control
+the structure and behavior of our game, in <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, this structure is created in the main
+program tab.  The general idea is that he has an array:  drops[] that stores the Drop objects,
+we&#8217;ll modify this so that it can also contain Drop sub-class objects like RegularDrop and TinyDrop.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first"><code class="docutils literal"><span class="pre">Drop[]</span> <span class="pre">drops;</span></code>    //declares an array of Drop objects</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">drops</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">Drop[50];</span></code>  //initializes the array to a size of 50 elements</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">if(timer.isFinished()){</span>&nbsp;&nbsp;&nbsp; <span class="pre">....</span>&nbsp;&nbsp;&nbsp; <span class="pre">}</span></code>   //inside this block of code is where new drops are</dt>
+<dd><p class="first last">actually created each time the timer goes off.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>inside the block:  <code class="docutils literal"><span class="pre">if(timer.isFinished()){</span> <span class="pre">...</span> <span class="pre">}</span></code>  is where we need to figure out how</dt>
+<dd><p class="first last">to create different types of drops</p>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<p>So, Let&#8217;s start by focusing inside the block of code where the <code class="docutils literal"><span class="pre">timer.isFinished()</span></code> has evaluated to true:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">timer</span><span class="o">.</span><span class="na">isFinished</span><span class="o">())</span> <span class="o">{</span>
+  <span class="c1">// Deal with raindrops</span>
+  <span class="c1">// Initialize one drop</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">totalDrops</span> <span class="o">&lt;</span> <span class="n">drops</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Drop</span><span class="o">();</span><span class="c1">//(game.levels[game.currentLevel].dropSpeed);</span>
+                <span class="c1">// Increment totalDrops</span>
+                <span class="n">totalDrops</span><span class="o">++;</span>
+  <span class="o">}</span>
+  <span class="n">timer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In the above code, only 1 drop is created each time the timer goes off!  This drop is created in the
+array location:  <code class="docutils literal"><span class="pre">drops[totalDrops]</span></code>  The first time a drop is created, it&#8217;s in the first array positon:  <code class="docutils literal"><span class="pre">drops[0]</span></code>
+After the drop is created, totalDrops is incremented to <code class="docutils literal"><span class="pre">1</span></code>:  <code class="docutils literal"><span class="pre">totalDrops++</span></code>  So, the next time the <code class="docutils literal"><span class="pre">timer.isFinished()</span></code> is true,
+then the next drop will be created in the array location: drops[1].   For our game, we want to create different
+types of drops so we&#8217;ll take advantage of the idea that inheritance allows us to use <a class="reference internal" href="glossary.html#polymorphism"><em>Polymorphism</em></a></p>
+</div>
+</div>
+<div class="section" id="polymorphism">
+<h2>12.8. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<p>As discussed above, we used inheritance to extend the Drop class, we created two child classes: RegularDrop and TinyDrop.
+So, the beauty of this is that we can now put child objects in an array of that has been declared to contain Drop objects.
+This is a manifestation of polymorphism, it means that a parent class &#8216;reference&#8217; can be used to refer to a sub-class object.
+So, we can do the following:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">Drop</span> <span class="n">someDrop</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TinyDrop</span><span class="o">();</span>    <span class="c1">//someDrop is a Drop reference, it points to a TinyDrop object.</span>
+</pre></div>
+</div>
+<p>This might not seem like a very important feature on initial inspection, however, it is one of the powerful
+features that result from the Object-Oriented concept of Class Inheritance.  So, now we can change the
+game code so that when the timer goes off, we can create RegularDrop or TinyDrop objects instead of Drop objects:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TinyDrop</span><span class="o">();</span>
+<span class="c1">//or</span>
+
+<span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RegularDrop</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>To make our game interesting, we want to choose randomly between TinyDrop and RegularDrop. In addition, we want to be able to adjust
+the statistical percentage of RegularDrop vs TinyDrop. This can be achieved with the following code.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">random</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">PERCENT_REGULAR</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RegularDrop</span><span class="o">();</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+  <span class="n">drops</span><span class="o">[</span><span class="n">totalDrops</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TinyDrop</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>random(100) will return a float value randomly chosen between 0 and 100. PERCENT_REGULAR is the knob variable to control the percentage of
+generated drops which are RegularDrop. For example, if PERCENT_REGULAR is 90, 90% of the drops will be RegularDrop, and 10% will be TinyDrop.
+PERCENT_REGULAR can be added as a variable of the Game class.</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">PERCENT_REGULAR</span> <span class="o">=</span> <span class="mi">90</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scoring">
+<h2>12.9. Scoring<a class="headerlink" href="#scoring" title="Permalink to this headline">¶</a></h2>
+<p>In the original code of 10.4 shown below, whenever the player catches a drop, the score is incremented by one.:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">catcher</span><span class="o">.</span><span class="na">intersect</span><span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="o">{</span>
+  <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">finished</span><span class="o">();</span>
+  <span class="n">levelCounter</span><span class="o">++;</span>
+  <span class="n">score</span><span class="o">++;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In our project, we want to increment the score by one if the player catches a RegularDrop and increment by 2 if the player catches a TinyDrop.
+To achieve that, we add a &#8220;score&#8221; variable, along with a getScore() method to the parent Drop. The &#8220;score&#8221; variable is initialized to 1 and 2 for
+the RegularDrop and TinyDrop respectively. When the player catches a Drop, instead of incrementing the score by 1, we increment it by getScore().:</p>
+<div class="highlight-Java"><div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">catcher</span><span class="o">.</span><span class="na">intersect</span><span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="o">{</span>
+  <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">finished</span><span class="o">();</span>
+  <span class="n">numberDropsDone</span><span class="o">++;</span>
+  <span class="n">myGame</span><span class="o">.</span><span class="na">score</span> <span class="o">+=</span> <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">getScore</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-classes">
+<h2>12.10. Other classes<a class="headerlink" href="#other-classes" title="Permalink to this headline">¶</a></h2>
+<p>The Timer, Catcher, Drop classes are as defined in 10.4.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">12. CS1335 - Spr 15 - Project 2a</a><ul>
+<li><a class="reference internal" href="#game-class">12.1. Game class</a><ul>
+<li><a class="reference internal" href="#game-instance-variables">12.1.1. Game: Instance Variables</a></li>
+<li><a class="reference internal" href="#game-methods">12.1.2. Game: Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#button-objects">12.2. Button Objects</a></li>
+<li><a class="reference internal" href="#labeledbutton-class">12.3. LabeledButton class</a></li>
+<li><a class="reference internal" href="#use-of-objects-by-the-game-class">12.4. Use of objects by the Game class</a></li>
+<li><a class="reference internal" href="#game-button-integration">12.5. Game Button Integration</a></li>
+<li><a class="reference internal" href="#game-instance">12.6. Game Instance</a></li>
+<li><a class="reference internal" href="#inheritance">12.7. Inheritance</a><ul>
+<li><a class="reference internal" href="#child-classes-of-the-drop-class">12.7.1. Child classes of the Drop Class</a></li>
+<li><a class="reference internal" href="#adaptation-of-drop">12.7.2. Adaptation of Drop</a></li>
+<li><a class="reference internal" href="#regulardrop">12.7.3. RegularDrop</a></li>
+<li><a class="reference internal" href="#tinydrop">12.7.4. TinyDrop</a></li>
+<li><a class="reference internal" href="#making-drops">12.7.5. Making Drops</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polymorphism">12.8. Polymorphism</a></li>
+<li><a class="reference internal" href="#scoring">12.9. Scoring</a></li>
+<li><a class="reference internal" href="#other-classes">12.10. Other classes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rainGame.html"
+                        title="previous chapter">11. Rain Catcher Game</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="paddleDropGame.html"
+                        title="next chapter">13. Paddle Drop Game</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="paddleDropGame.html" title="13. Paddle Drop Game"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rainGame.html" title="11. Rain Catcher Game"
+             >previous</a> |</li>
+        <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Karen Doore.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

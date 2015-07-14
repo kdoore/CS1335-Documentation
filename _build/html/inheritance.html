@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>14. Inheritance &mdash; CS1335 Documentation</title>
+    <title>15. Inheritance &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="15. Arrays of Objects" href="arrayObjects.html" />
-    <link rel="prev" title="13. Paddle Object" href="paddle.html" /> 
+    <link rel="next" title="16. Arrays of Objects" href="arrayObjects.html" />
+    <link rel="prev" title="14. Paddle Object" href="paddle.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="arrayObjects.html" title="15. Arrays of Objects"
+          <a href="arrayObjects.html" title="16. Arrays of Objects"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="paddle.html" title="13. Paddle Object"
+          <a href="paddle.html" title="14. Paddle Object"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="inheritance">
-<span id="id1"></span><h1>14. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>15. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h1>
 <p>For our game, we want to have a variety of Drop objects.  The easiest way to do this is to
 create new Classes that inherit from the Drop Class. Inheritance represents a hierarchical
 relationship between object classes, which we can think of as being an <cite>is-a</cite> relationship.
@@ -59,7 +59,7 @@ In Processing, there can only be 1 level of class inheritance. Other languages a
 object hierarchies.  For our example, we&#8217;ll say that a Seahorse <cite>is-a</cite> Drop, and a Star <cite>is-a</cite>
 Drop object.</p>
 <div class="section" id="polymorphism">
-<h2>14.1. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<h2>15.1. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>One huge benefit of having  child class objects is that we can still refer to all of these objects as Drop objects,
 this is referred to as <cite>polymorphism</cite>.  This will allow us to have an array of Drop objects where
 we can loop through an array of Drop objects, with the actual objects in the array being child objects
@@ -93,7 +93,7 @@ it will over-ride the Drop class display method:</p>
 </div>
 </div>
 <div class="section" id="method-over-ride">
-<h2>14.2. Method Over-ride<a class="headerlink" href="#method-over-ride" title="Permalink to this headline">¶</a></h2>
+<h2>15.2. Method Over-ride<a class="headerlink" href="#method-over-ride" title="Permalink to this headline">¶</a></h2>
 <p>So, both the Drop class and the SeaHorse class have code that implements the display() method.
 So, the compiler must determine which display() method to use if a SeaHorse object calls the
 display() method.  The compiler first checks the child, SeaHorse class, if it has code implemented for
@@ -112,7 +112,7 @@ to the console since that&#8217;s the code we&#8217;ve written above in the Seah
 </div>
 </div>
 <div class="section" id="arrays-of-multiple-types-of-objects">
-<h2>14.3. Arrays of Multiple Types of Objects<a class="headerlink" href="#arrays-of-multiple-types-of-objects" title="Permalink to this headline">¶</a></h2>
+<h2>15.3. Arrays of Multiple Types of Objects<a class="headerlink" href="#arrays-of-multiple-types-of-objects" title="Permalink to this headline">¶</a></h2>
 <p>An array must be declared to contain a specific type of element.  Above we&#8217;ve looked at an
 array that&#8217;s been declared to hold Drop elements: <code class="docutils literal"><span class="pre">Drop[]</span> <span class="pre">drops</span></code>.  However using the Object
 concept of Inheritance will allow us to use this <code class="docutils literal"><span class="pre">drops</span></code> array to hold several different
@@ -129,20 +129,20 @@ of the Drop class.  We</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">14. Inheritance</a><ul>
-<li><a class="reference internal" href="#polymorphism">14.1. Polymorphism</a></li>
-<li><a class="reference internal" href="#method-over-ride">14.2. Method Over-ride</a></li>
-<li><a class="reference internal" href="#arrays-of-multiple-types-of-objects">14.3. Arrays of Multiple Types of Objects</a></li>
+<li><a class="reference internal" href="#">15. Inheritance</a><ul>
+<li><a class="reference internal" href="#polymorphism">15.1. Polymorphism</a></li>
+<li><a class="reference internal" href="#method-over-ride">15.2. Method Over-ride</a></li>
+<li><a class="reference internal" href="#arrays-of-multiple-types-of-objects">15.3. Arrays of Multiple Types of Objects</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="paddle.html"
-                        title="previous chapter">13. Paddle Object</a></p>
+                        title="previous chapter">14. Paddle Object</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="arrayObjects.html"
-                        title="next chapter">15. Arrays of Objects</a></p>
+                        title="next chapter">16. Arrays of Objects</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -167,10 +167,10 @@ of the Drop class.  We</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="arrayObjects.html" title="15. Arrays of Objects"
+          <a href="arrayObjects.html" title="16. Arrays of Objects"
              >next</a> |</li>
         <li class="right" >
-          <a href="paddle.html" title="13. Paddle Object"
+          <a href="paddle.html" title="14. Paddle Object"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
