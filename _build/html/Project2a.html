@@ -52,6 +52,7 @@
             
   <div class="section" id="cs1335-su-15-project-2a-design-considerations">
 <span id="project2a"></span><h1>1. CS1335 - Su 15 - Project 2a Design Considerations<a class="headerlink" href="#cs1335-su-15-project-2a-design-considerations" title="Permalink to this headline">¶</a></h1>
+<p>Khiem Le, created 7/10/5, updated 7/19/15</p>
 <p>Based on <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDropGame, and on the program code for Learning Processing: <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4">exercise 10.4</a>,
 we want to build a slightly more advanced game based on this program.</p>
 <blockquote>
@@ -139,7 +140,7 @@ buttons with the new clause</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">Game</span><span class="o">(){</span>
         <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
         <span class="n">level</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">INACTIVE</span><span class="o">;</span>
         <span class="n">Wbar</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="mi">7</span><span class="o">;</span>
         <span class="n">startBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledButton</span><span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">Wbar</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="n">colYellow</span><span class="o">,</span> <span class="s">&quot;Start&quot;</span><span class="o">);</span>
         <span class="n">stopBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledButton</span><span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">Wbar</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="n">colYellow</span><span class="o">,</span> <span class="s">&quot;Stop&quot;</span><span class="o">);</span>
@@ -191,7 +192,7 @@ complete version of the Game constructor with these invoked constructors is show
 <div class="highlight-Java"><div class="highlight"><pre><span class="n">Game</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
         <span class="n">level</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">INACTIVE</span><span class="o">;</span>
         <span class="n">Wbar</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="mi">7</span><span class="o">;</span>
         <span class="n">startBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledButton</span><span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">Wbar</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="n">colYellow</span><span class="o">,</span> <span class="s">&quot;Start&quot;</span><span class="o">);</span>
         <span class="n">stopBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledButton</span><span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">Wbar</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="n">colYellow</span><span class="o">,</span> <span class="s">&quot;Stop&quot;</span><span class="o">);</span>
@@ -329,7 +330,7 @@ in the child class.</p>
         <span class="kt">void</span> <span class="nf">move</span><span class="o">()</span> <span class="o">{</span>
                 <span class="c1">// Increment by speed</span>
                 <span class="n">y</span> <span class="o">+=</span> <span class="n">speed</span><span class="o">;</span>
-                <span class="n">x</span> <span class="o">+=</span> <span class="n">random</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span> <span class="c1">// unpredictable fluctuation in trajectory</span>
+                <span class="n">x</span> <span class="o">+=</span> <span class="n">random</span><span class="o">(-</span><span class="mi">3</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span> <span class="c1">// unpredictable fluctuation in trajectory</span>
         <span class="o">}</span>
 
         <span class="kt">int</span> <span class="nf">getScore</span><span class="o">()</span> <span class="o">{</span>

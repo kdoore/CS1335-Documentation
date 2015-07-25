@@ -4,6 +4,8 @@
 CS1335 - Su 15 - Project 2a Design Considerations
 =================================================
 
+Khiem Le, created 7/10/5, updated 7/19/15
+
 Based on `Shiffman's`_ RainDropGame, and on the program code for Learning Processing: `exercise 10.4`_, 
 we want to build a slightly more advanced game based on this program. 
 
@@ -91,7 +93,7 @@ buttons with the new clause ::
 	Game(){
 		score = 0;
     		level = 1;
-    		state = 0;
+    		state = INACTIVE;
     		Wbar = width/7;
     		startBtn = new LabeledButton(width - Wbar + 5, 10, 40, 30, colYellow, "Start");
     		stopBtn = new LabeledButton(width - Wbar + 5, 50, 40, 30, colYellow, "Stop");
@@ -140,7 +142,7 @@ complete version of the Game constructor with these invoked constructors is show
 	Game() {
 		score = 0;
 		level = 1;
-		state = 0;
+		state = INACTIVE;
 		Wbar = width/7;
 		startBtn = new LabeledButton(width - Wbar + 5, 10, 40, 30, colYellow, "Start");
 		stopBtn = new LabeledButton(width - Wbar + 5, 50, 40, 30, colYellow, "Stop");
@@ -291,7 +293,7 @@ in the child class. ::
   		void move() {
     			// Increment by speed
     			y += speed; 
-   			x += random(3); // unpredictable fluctuation in trajectory
+   			x += random(-3, 3); // unpredictable fluctuation in trajectory
   		}
 
   		int getScore() {
