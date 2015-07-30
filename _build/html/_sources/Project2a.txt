@@ -1,7 +1,7 @@
 .. _project2a:
 
 =================================================
-CS1335 - Su 15 - Project 2a Design Considerations
+CS1335 
 =================================================
 
 Khiem Le, created 7/10/5, updated 7/19/15
