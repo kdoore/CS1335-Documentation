@@ -24,7 +24,7 @@ Contents:
 	.. objects
 	.. moreObjects
 	.. rainGame
-	project2a
+	.. project2a
 	.. paddleDropGame
 	.. paddle
 	.. inheritance

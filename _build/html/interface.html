@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. Interface &mdash; CS1335 Documentation</title>
+    <title>2. Interface &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="4. Simple Audio" href="simpleAudio.html" />
-    <link rel="prev" title="2. Abstract Classes" href="abstractClass.html" /> 
+    <link rel="next" title="3. Simple Audio" href="simpleAudio.html" />
+    <link rel="prev" title="1. Abstract Classes" href="abstractClass.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="simpleAudio.html" title="4. Simple Audio"
+          <a href="simpleAudio.html" title="3. Simple Audio"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="abstractClass.html" title="2. Abstract Classes"
+          <a href="abstractClass.html" title="1. Abstract Classes"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
@@ -51,7 +51,7 @@
           <div class="body" role="main">
             
   <div class="section" id="interface">
-<span id="id1"></span><h1>3. Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>2. Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h1>
 <p>An interface defines a set of behaviors that are meaningful across several different types
 object classes.  Because a class can only have a single parent or base class, interfaces provide
 another method to define organizational structures for our programs.  Whereas a child-class can <cite>extend</cite>
@@ -73,7 +73,7 @@ keyword is not required, however only the method signature can be part of the in
 thing we need is a class that will implement the interface, and that class must provide method definition code
 for each method defined in the interface that it is implementing.</p>
 <div class="section" id="part-1-define-the-interface">
-<h2>3.1. Part 1:  Define the interface<a class="headerlink" href="#part-1-define-the-interface" title="Permalink to this headline">¶</a></h2>
+<h2>2.1. Part 1:  Define the interface<a class="headerlink" href="#part-1-define-the-interface" title="Permalink to this headline">¶</a></h2>
 <p>Interface Definition:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">//an interface is not a class, but has a similar syntax, notice the keyword: interface</span>
 
@@ -88,7 +88,7 @@ for each method defined in the interface that it is implementing.</p>
 </div>
 </div>
 <div class="section" id="part-2-some-class-implements-the-interface">
-<h2>3.2. Part 2:  Some Class implements the interface<a class="headerlink" href="#part-2-some-class-implements-the-interface" title="Permalink to this headline">¶</a></h2>
+<h2>2.2. Part 2:  Some Class implements the interface<a class="headerlink" href="#part-2-some-class-implements-the-interface" title="Permalink to this headline">¶</a></h2>
 <p>Interface Implementation:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">// class circleDrop implements the Explodable interface</span>
 
@@ -114,7 +114,7 @@ for each method defined in the interface that it is implementing.</p>
 </div>
 </div>
 <div class="section" id="part-3-combine-inheritance-and-interface">
-<h2>3.3. Part 3:  Combine Inheritance and Interface<a class="headerlink" href="#part-3-combine-inheritance-and-interface" title="Permalink to this headline">¶</a></h2>
+<h2>2.3. Part 3:  Combine Inheritance and Interface<a class="headerlink" href="#part-3-combine-inheritance-and-interface" title="Permalink to this headline">¶</a></h2>
 <p>It is important to note that a child class can use both inheritance and multiple interfaces
 using the keyword syntax below:</p>
 <blockquote>
@@ -151,7 +151,7 @@ to create a child class that extends Drop, and implements Explodable:</p>
 </div>
 </div>
 <div class="section" id="part-4-polymorphism-and-interfaces">
-<h2>3.4. Part 4:  Polymorphism and Interfaces:<a class="headerlink" href="#part-4-polymorphism-and-interfaces" title="Permalink to this headline">¶</a></h2>
+<h2>2.4. Part 4:  Polymorphism and Interfaces:<a class="headerlink" href="#part-4-polymorphism-and-interfaces" title="Permalink to this headline">¶</a></h2>
 <p>For our game, we have used polymorphism to allow us to create a Drop Array which
 contained child objects.  We can also use polymorphism with interfaces, similar to how we have
 used the abstract Drop class, once we made Drop an abstract class we could no longer
@@ -162,7 +162,7 @@ many different types of drop objects, where only some of these are explodable, a
 on all of these Explodable using an Explodable reference.</p>
 </div>
 <div class="section" id="instanceof-and-typecast">
-<h2>3.5. Instanceof and TypeCast<a class="headerlink" href="#instanceof-and-typecast" title="Permalink to this headline">¶</a></h2>
+<h2>2.5. Instanceof and TypeCast<a class="headerlink" href="#instanceof-and-typecast" title="Permalink to this headline">¶</a></h2>
 <p>We can use the <code class="docutils literal"><span class="pre">instanceof</span></code> keyword to determine if a dropList instance is an object that
 implements Explodable. Here we have an ArrayList: droplist of Drop sub-class objects, we
 are iterating through the list in reverse order in case we want to remove an element from the list</p>
@@ -202,22 +202,22 @@ are iterating through the list in reverse order in case we want to remove an ele
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">3. Interface</a><ul>
-<li><a class="reference internal" href="#part-1-define-the-interface">3.1. Part 1:  Define the interface</a></li>
-<li><a class="reference internal" href="#part-2-some-class-implements-the-interface">3.2. Part 2:  Some Class implements the interface</a></li>
-<li><a class="reference internal" href="#part-3-combine-inheritance-and-interface">3.3. Part 3:  Combine Inheritance and Interface</a></li>
-<li><a class="reference internal" href="#part-4-polymorphism-and-interfaces">3.4. Part 4:  Polymorphism and Interfaces:</a></li>
-<li><a class="reference internal" href="#instanceof-and-typecast">3.5. Instanceof and TypeCast</a></li>
+<li><a class="reference internal" href="#">2. Interface</a><ul>
+<li><a class="reference internal" href="#part-1-define-the-interface">2.1. Part 1:  Define the interface</a></li>
+<li><a class="reference internal" href="#part-2-some-class-implements-the-interface">2.2. Part 2:  Some Class implements the interface</a></li>
+<li><a class="reference internal" href="#part-3-combine-inheritance-and-interface">2.3. Part 3:  Combine Inheritance and Interface</a></li>
+<li><a class="reference internal" href="#part-4-polymorphism-and-interfaces">2.4. Part 4:  Polymorphism and Interfaces:</a></li>
+<li><a class="reference internal" href="#instanceof-and-typecast">2.5. Instanceof and TypeCast</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="abstractClass.html"
-                        title="previous chapter">2. Abstract Classes</a></p>
+                        title="previous chapter">1. Abstract Classes</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="simpleAudio.html"
-                        title="next chapter">4. Simple Audio</a></p>
+                        title="next chapter">3. Simple Audio</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -242,10 +242,10 @@ are iterating through the list in reverse order in case we want to remove an ele
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="simpleAudio.html" title="4. Simple Audio"
+          <a href="simpleAudio.html" title="3. Simple Audio"
              >next</a> |</li>
         <li class="right" >
-          <a href="abstractClass.html" title="2. Abstract Classes"
+          <a href="abstractClass.html" title="1. Abstract Classes"
              >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
