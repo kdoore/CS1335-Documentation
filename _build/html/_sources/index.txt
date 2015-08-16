@@ -13,28 +13,28 @@ Contents:
 	:numbered:
    	:titlesonly:
 
-   	introduction
-   	variables
-	functions
-	hsbSlider
-	buttons
-	drawing
-	buttonObjects
-	pVector
-	objects
-	moreObjects
-	rainGame
-	project2a
-	paddleDropGame
-	paddle
-	inheritance
-	arrayObjects
-	pshapeObjects
-	arrayList
+   	.. introduction
+   	.. variables
+	.. functions
+	.. hsbSlider
+	.. buttons
+	.. drawing
+	.. buttonObjects
+	.. pVector
+	.. objects
+	.. moreObjects
+	.. rainGame
+	.. project2a
+	.. paddleDropGame
+	.. paddle
+	.. inheritance
+	.. arrayObjects
+	.. pshapeObjects
+	.. arrayList
 	abstractClass
 	interface
 	simpleAudio
-	game-design
+	.. game-design
 	resources
 	glossary
 
