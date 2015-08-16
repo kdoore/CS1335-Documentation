@@ -13,9 +13,9 @@ Contents:
 	:numbered:
    	:titlesonly:
 
-   	.. introduction
-   	.. variables
-	.. functions
+   	 introduction
+   	 variables
+	 functions
 	.. hsbSlider
 	.. buttons
 	.. drawing
@@ -31,9 +31,9 @@ Contents:
 	.. arrayObjects
 	.. pshapeObjects
 	.. arrayList
-	abstractClass
-	interface
-	simpleAudio
+	.. abstractClass
+	.. interface
+	.. simpleAudio
 	.. game-design
 	resources
 	glossary
