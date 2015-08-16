@@ -13,9 +13,9 @@ Contents:
 	:numbered:
    	:titlesonly:
 
-   	 introduction
-   	 variables
-	 functions
+   	introduction
+   	variables
+	functions
 	.. hsbSlider
 	.. buttons
 	.. drawing

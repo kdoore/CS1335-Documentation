@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. CS1335 &mdash; CS1335 Documentation</title>
+    <title>CS1335 &mdash; CS1335 Documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,9 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="CS1335 Documentation" href="index.html" />
-    <link rel="next" title="2. Abstract Classes" href="abstractClass.html" />
-    <link rel="prev" title="CS1335 Documentation" href="index.html" /> 
+    <link rel="top" title="CS1335 Documentation" href="index.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,12 +33,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="abstractClass.html" title="2. Abstract Classes"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="CS1335 Documentation"
-             accesskey="P">previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -51,7 +43,7 @@
           <div class="body" role="main">
             
   <div class="section" id="cs1335">
-<span id="project2a"></span><h1>1. CS1335<a class="headerlink" href="#cs1335" title="Permalink to this headline">¶</a></h1>
+<span id="project2a"></span><h1>CS1335<a class="headerlink" href="#cs1335" title="Permalink to this headline">¶</a></h1>
 <p>Khiem Le, created 7/10/5, updated 7/19/15</p>
 <p>Based on <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> RainDropGame, and on the program code for Learning Processing: <a class="reference external" href="http://www.learningprocessing.com/exercises/chapter-10/exercise-10-4">exercise 10.4</a>,
 we want to build a slightly more advanced game based on this program.</p>
@@ -71,7 +63,7 @@ we want to build a slightly more advanced game based on this program.</p>
 </ul>
 </div></blockquote>
 <div class="section" id="game-class">
-<h2>1.1. Game class<a class="headerlink" href="#game-class" title="Permalink to this headline">¶</a></h2>
+<h2>Game class<a class="headerlink" href="#game-class" title="Permalink to this headline">¶</a></h2>
 <p>To begin design of our game, let&#8217;s look at the changes we&#8217;ll need to make, to modify
 <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> exercise 10.4 project code. In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> project, he has all of the game type
 code simply implemented within the processing draw loop.</p>
@@ -81,7 +73,7 @@ If we look at his Draw loop code, we can see that he&#8217;s incrementing a scor
 keeping track of misses, etc.  So, let&#8217;s create a Game Class with the following
 instance variables. Some of them are the game related variables from exercise 10-4 moved inside the Game class.</p>
 <div class="section" id="game-instance-variables">
-<h3>1.1.1. Game: Instance Variables<a class="headerlink" href="#game-instance-variables" title="Permalink to this headline">¶</a></h3>
+<h3>Game: Instance Variables<a class="headerlink" href="#game-instance-variables" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li>score: <code class="docutils literal"><span class="pre">int</span></code> // current score</li>
@@ -114,7 +106,7 @@ these are values that shouldn&#8217;t be changed within the program</p>
 <p>Next, we&#8217;ll want a few methods:</p>
 </div>
 <div class="section" id="game-methods">
-<h3>1.1.2. Game: Methods<a class="headerlink" href="#game-methods" title="Permalink to this headline">¶</a></h3>
+<h3>Game: Methods<a class="headerlink" href="#game-methods" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li>start(): <code class="docutils literal"><span class="pre">void</span></code> // initializes the proper Game variables when the game starts</li>
@@ -129,7 +121,7 @@ these are values that shouldn&#8217;t be changed within the program</p>
 </div>
 </div>
 <div class="section" id="button-objects">
-<h2>1.2. Button Objects<a class="headerlink" href="#button-objects" title="Permalink to this headline">¶</a></h2>
+<h2>Button Objects<a class="headerlink" href="#button-objects" title="Permalink to this headline">¶</a></h2>
 <p>If we want to include some Button objects in our game, like a startButton and a stopButton,
 then we&#8217;ll need to look at what a Button object would look like.  Shiffman provides an example of
 a Button object in {{<cite>Exercise 9.8</cite>}}_  Our buttons will be created from the &#8220;LabeledButton&#8221; class, a child class of
@@ -159,7 +151,7 @@ buttons with the new clause</p>
 </ul>
 </div>
 <div class="section" id="labeledbutton-class">
-<h2>1.3. LabeledButton class<a class="headerlink" href="#labeledbutton-class" title="Permalink to this headline">¶</a></h2>
+<h2>LabeledButton class<a class="headerlink" href="#labeledbutton-class" title="Permalink to this headline">¶</a></h2>
 <p>The LabeledButton class inherits all the variables of the Button class, namely:</p>
 <blockquote>
 <div><ul class="simple">
@@ -184,7 +176,7 @@ buttons with the new clause</p>
 <p>The LabeledButton has an overriding drawButton() method which displays the button and the label on top.</p>
 </div>
 <div class="section" id="use-of-objects-by-the-game-class">
-<h2>1.4. Use of objects by the Game class<a class="headerlink" href="#use-of-objects-by-the-game-class" title="Permalink to this headline">¶</a></h2>
+<h2>Use of objects by the Game class<a class="headerlink" href="#use-of-objects-by-the-game-class" title="Permalink to this headline">¶</a></h2>
 <p>The Game class uses several objects, namely: startBtn, stopBtn, catcher, timer and drops. These objects are members of the Game class.
 Each of these member objects must be
 created and initialized in the Game constructor by invoking the constructor of the corresponding classes with the &#8220;new&#8221; clause. A more
@@ -211,7 +203,7 @@ in the main tab, only the myGame object is known. To refer to the rollOver() mem
 startBtn member, then to the rollOver() member of startBtn, and that is denoted myGame.startBtn.rollOver().</p>
 </div>
 <div class="section" id="game-button-integration">
-<h2>1.5. Game Button Integration<a class="headerlink" href="#game-button-integration" title="Permalink to this headline">¶</a></h2>
+<h2>Game Button Integration<a class="headerlink" href="#game-button-integration" title="Permalink to this headline">¶</a></h2>
 <p>Now we need to figure out how to integrate the button event handler into the game. We will use the MouseClicked( ) event.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="c1">//this code is in the main program tab</span>
 
@@ -234,7 +226,7 @@ startBtn member, then to the rollOver() member of startBtn, and that is denoted 
 </div>
 </div>
 <div class="section" id="game-instance">
-<h2>1.6. Game Instance<a class="headerlink" href="#game-instance" title="Permalink to this headline">¶</a></h2>
+<h2>Game Instance<a class="headerlink" href="#game-instance" title="Permalink to this headline">¶</a></h2>
 <p>All of the above code assumes that we will define, initialize and utilize an object of the Game class in
 the main program tab. Since we need access in the draw loop, as usual, we&#8217;ll declare the object
 above the setup function, initialize in the setup function, and then use in the draw loop:</p>
@@ -269,19 +261,19 @@ above the setup function, initialize in the setup function, and then use in the 
 </div>
 </div>
 <div class="section" id="inheritance">
-<h2>1.7. Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
+<h2>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="child-classes-of-the-drop-class">
-<h3>1.7.1. Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h3>
+<h3>Child classes of the Drop Class<a class="headerlink" href="#child-classes-of-the-drop-class" title="Permalink to this headline">¶</a></h3>
 <p>The next modification for our game is that we&#8217;re going to use different drop types: regular drops and tiny drops.
 Because they are both very similar to the drop class in 10.4,  we will use inheritance and
 define them as child classes of drop.</p>
 </div>
 <div class="section" id="adaptation-of-drop">
-<h3>1.7.2. Adaptation of Drop<a class="headerlink" href="#adaptation-of-drop" title="Permalink to this headline">¶</a></h3>
+<h3>Adaptation of Drop<a class="headerlink" href="#adaptation-of-drop" title="Permalink to this headline">¶</a></h3>
 <p>To the Drop class in 10.4, we add a &#8220;score&#8221; variable and a getScore() method.</p>
 </div>
 <div class="section" id="regulardrop">
-<h3>1.7.3. RegularDrop<a class="headerlink" href="#regulardrop" title="Permalink to this headline">¶</a></h3>
+<h3>RegularDrop<a class="headerlink" href="#regulardrop" title="Permalink to this headline">¶</a></h3>
 <p>RegularDrop is a child of the Drop in 10.4.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">RegularDrop</span> <span class="kd">extends</span> <span class="n">Drop</span> <span class="o">{</span>
           <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
@@ -299,7 +291,7 @@ define them as child classes of drop.</p>
 </div>
 </div>
 <div class="section" id="tinydrop">
-<h3>1.7.4. TinyDrop<a class="headerlink" href="#tinydrop" title="Permalink to this headline">¶</a></h3>
+<h3>TinyDrop<a class="headerlink" href="#tinydrop" title="Permalink to this headline">¶</a></h3>
 <p>TinyDrop is also a child of the Drop in 10.4.Because TinyDrop moves differently than a drop, we define
 an overriding move() method. We also have a getScore() method.</p>
 <p>When one class inherits from another class, any method that is not specified in the child
@@ -341,7 +333,7 @@ in the child class.</p>
 </div>
 </div>
 <div class="section" id="making-drops">
-<h3>1.7.5. Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
+<h3>Making Drops<a class="headerlink" href="#making-drops" title="Permalink to this headline">¶</a></h3>
 <p>In <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, there are several important distinctions we need to think about, which control
 the structure and behavior of our game, in <a class="reference external" href="http://learningprocessing.com">Shiffman&#8217;s</a> game, this structure is created in the main
 program tab.  The general idea is that he has an array:  drops[] that stores the Drop objects,
@@ -387,7 +379,7 @@ types of drops so we&#8217;ll take advantage of the idea that inheritance allows
 </div>
 </div>
 <div class="section" id="polymorphism">
-<h2>1.8. Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
+<h2>Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h2>
 <p>As discussed above, we used inheritance to extend the Drop class, we created two child classes: RegularDrop and TinyDrop.
 So, the beauty of this is that we can now put child objects in an array of that has been declared to contain Drop objects.
 This is a manifestation of polymorphism, it means that a parent class &#8216;reference&#8217; can be used to refer to a sub-class object.
@@ -421,7 +413,7 @@ PERCENT_REGULAR can be added as a variable of the Game class.</p>
 </div>
 </div>
 <div class="section" id="scoring">
-<h2>1.9. Scoring<a class="headerlink" href="#scoring" title="Permalink to this headline">¶</a></h2>
+<h2>Scoring<a class="headerlink" href="#scoring" title="Permalink to this headline">¶</a></h2>
 <p>In the original code of 10.4 shown below, whenever the player catches a drop, the score is incremented by one.:</p>
 <div class="highlight-Java"><div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">catcher</span><span class="o">.</span><span class="na">intersect</span><span class="o">(</span><span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="o">{</span>
   <span class="n">drops</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">finished</span><span class="o">();</span>
@@ -442,7 +434,7 @@ the RegularDrop and TinyDrop respectively. When the player catches a Drop, inste
 </div>
 </div>
 <div class="section" id="other-classes">
-<h2>1.10. Other classes<a class="headerlink" href="#other-classes" title="Permalink to this headline">¶</a></h2>
+<h2>Other classes<a class="headerlink" href="#other-classes" title="Permalink to this headline">¶</a></h2>
 <p>The Timer, Catcher, Drop classes are as defined in 10.4.</p>
 </div>
 </div>
@@ -455,38 +447,32 @@ the RegularDrop and TinyDrop respectively. When the player catches a Drop, inste
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">1. CS1335</a><ul>
-<li><a class="reference internal" href="#game-class">1.1. Game class</a><ul>
-<li><a class="reference internal" href="#game-instance-variables">1.1.1. Game: Instance Variables</a></li>
-<li><a class="reference internal" href="#game-methods">1.1.2. Game: Methods</a></li>
+<li><a class="reference internal" href="#">CS1335</a><ul>
+<li><a class="reference internal" href="#game-class">Game class</a><ul>
+<li><a class="reference internal" href="#game-instance-variables">Game: Instance Variables</a></li>
+<li><a class="reference internal" href="#game-methods">Game: Methods</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#button-objects">1.2. Button Objects</a></li>
-<li><a class="reference internal" href="#labeledbutton-class">1.3. LabeledButton class</a></li>
-<li><a class="reference internal" href="#use-of-objects-by-the-game-class">1.4. Use of objects by the Game class</a></li>
-<li><a class="reference internal" href="#game-button-integration">1.5. Game Button Integration</a></li>
-<li><a class="reference internal" href="#game-instance">1.6. Game Instance</a></li>
-<li><a class="reference internal" href="#inheritance">1.7. Inheritance</a><ul>
-<li><a class="reference internal" href="#child-classes-of-the-drop-class">1.7.1. Child classes of the Drop Class</a></li>
-<li><a class="reference internal" href="#adaptation-of-drop">1.7.2. Adaptation of Drop</a></li>
-<li><a class="reference internal" href="#regulardrop">1.7.3. RegularDrop</a></li>
-<li><a class="reference internal" href="#tinydrop">1.7.4. TinyDrop</a></li>
-<li><a class="reference internal" href="#making-drops">1.7.5. Making Drops</a></li>
+<li><a class="reference internal" href="#button-objects">Button Objects</a></li>
+<li><a class="reference internal" href="#labeledbutton-class">LabeledButton class</a></li>
+<li><a class="reference internal" href="#use-of-objects-by-the-game-class">Use of objects by the Game class</a></li>
+<li><a class="reference internal" href="#game-button-integration">Game Button Integration</a></li>
+<li><a class="reference internal" href="#game-instance">Game Instance</a></li>
+<li><a class="reference internal" href="#inheritance">Inheritance</a><ul>
+<li><a class="reference internal" href="#child-classes-of-the-drop-class">Child classes of the Drop Class</a></li>
+<li><a class="reference internal" href="#adaptation-of-drop">Adaptation of Drop</a></li>
+<li><a class="reference internal" href="#regulardrop">RegularDrop</a></li>
+<li><a class="reference internal" href="#tinydrop">TinyDrop</a></li>
+<li><a class="reference internal" href="#making-drops">Making Drops</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#polymorphism">1.8. Polymorphism</a></li>
-<li><a class="reference internal" href="#scoring">1.9. Scoring</a></li>
-<li><a class="reference internal" href="#other-classes">1.10. Other classes</a></li>
+<li><a class="reference internal" href="#polymorphism">Polymorphism</a></li>
+<li><a class="reference internal" href="#scoring">Scoring</a></li>
+<li><a class="reference internal" href="#other-classes">Other classes</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">CS1335 Documentation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="abstractClass.html"
-                        title="next chapter">2. Abstract Classes</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -510,12 +496,6 @@ the RegularDrop and TinyDrop respectively. When the player catches a Drop, inste
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="abstractClass.html" title="2. Abstract Classes"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="CS1335 Documentation"
-             >previous</a> |</li>
         <li><a href="index.html">CS1335 Documentation</a> &raquo;</li> 
       </ul>
     </div>
