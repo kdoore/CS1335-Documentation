@@ -16,7 +16,7 @@ Contents:
    	introduction
    	variables
 	functions
-	.. hsbSlider
+	hsbSlider
 	.. buttons
 	.. drawing
 	.. buttonObjects
