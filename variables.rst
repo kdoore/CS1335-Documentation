@@ -69,7 +69,7 @@ insure correct division of numbers assigned to :code:`float` variables::
 		
 	float correctFraction = 5.0 / 2;    // 2.5  
 		
-	float correctFraction2 = (5 / 2) * 1.0  // 2.5  multiplication by 1.0 insures decimal division
+	float correctFraction2 = 5 / (2 * 1.0)  // 2.5  multiplication by 1.0 insures decimal division
 
 Integer and Float Type-Conversion
 ==================================
